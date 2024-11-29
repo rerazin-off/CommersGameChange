@@ -1,0 +1,21 @@
+@font-face{
+  font-family: "Cruinn";
+  src: url("../../assets/fonts/Cruinn Medium.ttf");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face{
+  font-family: "Jura";
+  src: url("../../assets/fonts/Jura.ttf");
+  font-weight: 700;
+  font-style: normal;
+}
+.mypd{
+  color: #888888;
+  font-family: "Cruinn";
+}
+.sewwe{
+  background-image: url("../../assets/react.svg");
+  width: 100vh;
+  height: 100vh;
+}
