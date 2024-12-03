@@ -4,6 +4,7 @@ import PlanetFirstCorpus from "../../assets/img/planet-corpus1.svg";
 import PlanetSecondCorpus from "../../assets/img/planet-corpus2.svg";
 import PlanetThirdCorpus from "../../assets/img/planet-corpus3.svg";
 import classes from "./MainPage.module.scss";
+import { Link } from 'react-router-dom';
 
 export const MainPage = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -56,9 +57,11 @@ export const MainPage = () => {
         <div className={classes.slides}>
           {slides.map((slide, index) => (
             <div key={slide.id} className={getSlideClass(index)}>
-              <div className={classes.img}>
-                <img src={slide.image} alt={`Слайд ${index + 1}`} />
-              </div>
+              <Link to={`/${slide.id}`}>
+                <div className={classes.img}>
+                  <img src={slide.image} alt={`Слайд ${index + 1}`} />
+                </div>
+              </Link>
             </div>
           ))}
         </div>
