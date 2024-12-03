@@ -1,0 +1,94 @@
+@font-face {
+  font-family: "Spaceman";
+  src: url("../../assets/fonts/SPACEMAN.TTF");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "AA Spaceman";
+  src: url("../../assets/fonts/ofont.ru_AA\ Spaceman.ttf");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Cruinn";
+  src: url("../../assets/fonts/Cruinn\ Thin.ttf");
+  font-weight: 100;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Cruinn";
+  src: url("../../assets/fonts/Cruinn\ Light.ttf");
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Cruinn";
+  src: url("../../assets/fonts/Cruinn\ Regular.ttf");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Cruinn";
+  src: url("../../assets/fonts/Cruinn\ Medium.ttf");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Cruinn";
+  src: url("../../assets/fonts/Cruinn\ Bold.ttf");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Cruinn";
+  src: url("../../assets/fonts/Cruinn\ Black.ttf");
+  font-weight: 900;
+  font-style: normal;
+}
+@font-face {
+  font-family: "ADLaM Display";
+  src: url("../../assets/fonts/ADLaMDisplay-Regular.ttf");
+  font-weight: 400;
+  font-style: normal;
+}
+*{
+  font-family: 'Cruinn', sans-serif;
+}
+.container{
+  width: 1540px;
+  margin: 0 auto;
+}
+.korpus_1{
+  background-image: url("../../assets/img/section-corpus2.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 1080px;
+}
+.korpus_1 h1{
+  font-size: 64px;
+  padding-top: 156px;
+  color: white;
+  font-family: "AA Spaceman";
+  text-align: center;
+  width: 77%;
+  line-height: 74.13px;
+  font-weight: 400;
+}
+.korpus_1 h1 span{
+  font-family: "ADLaM Display";
+}
+.korpus_1 p{
+  margin-top: 60px;
+  font-size: 40px;
+  color: white;
+  font-weight: 500;
+  padding-bottom: 256px;
+}
+.korpus_1 .text{
+  width: 734px;
+}
+.bloc{
+  display: flex;
+  justify-content: space-between;
+}
