@@ -5,7 +5,7 @@ export type ButtonProps = {
   disabled?: boolean;
 };
 
-export const StartButton = ({
+export const BackButton = ({
                          onClick,
                          children,
                          color = "primary",
