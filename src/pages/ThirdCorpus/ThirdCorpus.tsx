@@ -1,7 +1,12 @@
 import classes from '../ThirdCorpus/ThirdCorpus.module.scss';
+import { BackButton } from '../../components/Button/BackButton/BackButton.tsx';
+import { ForwardButton } from '../../components/Button/ForwardButton/ForwardButton.tsx';
 
 
 export const ThirdCorpus = () => {
+
+
+
   return (
     <div>
       <div className={classes.korpus_1}>
@@ -13,7 +18,10 @@ export const ThirdCorpus = () => {
                 -Дошкольное образование; <br />
                 -Преподавание в начальных классах; <br />
                 -Музыкальное образование.</p>
-              {/* <!-- тут будет кнопка "назад" --> */}
+            </div>
+            <div>
+              <BackButton>Назад</BackButton>
+              <ForwardButton>Вперёд</ForwardButton>
             </div>
             <div className={classes.planet}>
               {/* <!-- тут будут 4 компонента gps и кнопка "вперед", в разных классах --> */}

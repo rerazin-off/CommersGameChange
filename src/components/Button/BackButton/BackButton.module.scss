@@ -1,0 +1,20 @@
+@font-face{
+  font-family: "Jura";
+  src: url("../../../assets/fonts/Jura.ttf");
+  font-weight: 700;
+  font-style: normal;
+}
+.button button{
+  width: 333px;
+  height: 56.5px;
+  font-family: "Jura";
+  font-size: 20px;
+  background-image: url("../../../assets/img/pinke_button2.svg");
+  border: 0px solid;
+  background-repeat: no-repeat;
+}
+.btn{
+  background: none;
+  color: #FFFFFF;
+  cursor: pointer;
+}
