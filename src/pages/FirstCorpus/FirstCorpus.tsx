@@ -1,4 +1,5 @@
 import classes from "./FirstCorpus.module.scss";
+import {BackButton} from '../../components/Button/BackButton/BackButton.tsx';
 
 export const FirstCorpus = () => {
     return (
@@ -12,7 +13,7 @@ export const FirstCorpus = () => {
                         -Операционная деятельность в логистике; <br/>
                         -Экономика и бухгалтерский учет (по отраслям); <br/>
                         -Юриспруденция.</p>
-                        {/* <!-- тут будет кнопка "назад" --> */}
+                        <BackButton>Назад</BackButton>
                     </div>
                     <div className= {classes.planet}>
                         {/* <!-- тут будут 4 компонента gps и кнопка "вперед", в разных классах --> */}
