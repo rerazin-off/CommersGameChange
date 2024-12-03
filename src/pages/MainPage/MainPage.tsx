@@ -1,0 +1,84 @@
+import { useState, useEffect, useRef } from "react";
+import CatIcon from "../../assets/img/cat2.svg";
+import PlanetFirstCorpus from "../../assets/img/planet-corpus1.svg";
+import PlanetSecondCorpus from "../../assets/img/planet-corpus2.svg";
+import PlanetThirdCorpus from "../../assets/img/planet-corpus3.svg";
+import classes from "./MainPage.module.scss";
+
+export const MainPage = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+  // const intervalRef = useRef<null | ReturnType<typeof setTimeout>>(null);
+  // const intervalRef = useRef(null);
+  const intervalRef = useRef(0);
+
+  const slides = [
+    { id: 1, image: PlanetFirstCorpus },
+    { id: 2, image: PlanetSecondCorpus },
+    { id: 3, image: PlanetThirdCorpus },
+  ];
+
+  const getSlideClass = (index: number) => {
+    if (index === activeIndex) return `${classes.slide} ${classes.active}`;
+    if (index === (activeIndex + 1) % slides.length) return `${classes.slide} ${classes.right}`;
+    if (index === (activeIndex - 1 + slides.length) % slides.length) return `${classes.slide} ${classes.left}`;
+    return classes.slide;
+  };
+
+  useEffect(() => {
+    intervalRef.current = setInterval(() => {
+      setActiveIndex((prevIndex) => (prevIndex + 1) % slides.length);
+    }, 5000);
+    return () => clearInterval(intervalRef.current);
+  }, [slides.length]);
+
+  const handlePrevSlide = () => {
+    clearInterval(intervalRef.current);
+    setActiveIndex((prevIndex) => (prevIndex - 1 + slides.length) % slides.length);
+  };
+
+  const handleNextSlide = () => {
+    clearInterval(intervalRef.current);
+    setActiveIndex((prevIndex) => (prevIndex + 1) % slides.length);
+  };
+
+  return (
+    <div className={classes.universe}>
+      <div className={classes.cat}>
+        <div className={classes.container}>
+          <h1>Вселенная Нижегородский губернский колледж</h1>
+          <div className={classes.img}>
+            <img src={CatIcon} alt="Логотип" />
+          </div>
+        </div>
+      </div>
+
+      <div className={classes.slider}>
+        <div className={classes.slides}>
+          {slides.map((slide, index) => (
+            <div key={slide.id} className={getSlideClass(index)}>
+              <div className={classes.img}>
+                <img src={slide.image} alt={`Слайд ${index + 1}`} />
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className={classes.controls}>
+          <button
+            className={classes.control}
+            aria-label="Предыдущий слайд"
+            onClick={handlePrevSlide}
+          >
+            ←
+          </button>
+          <button
+            className={classes.control}
+            aria-label="Следующий слайд"
+            onClick={handleNextSlide}
+          >
+            →
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};

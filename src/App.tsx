@@ -1,14 +1,12 @@
-import './App.css';
-import FirstCorpus from './pages/FirstCorpus/FirstCorpus.tsx';
-
+import { MainPage } from './pages/MainPage/MainPage'
+import classes from './App.module.scss'
 function App() {
+  
 
   return (
-    <>
-      <FirstCorpus>
-
-      </FirstCorpus>
-    </>
+    <div className={classes.root}>
+      <MainPage></MainPage>
+    </div>
   )
 }
 
