@@ -16,7 +16,7 @@ export const ForwardButton = ({
                        }: ButtonProps) => {
   return (
     <div className={classes.button}>
-      <button onClick={onClick} color={color} disabled={disabled} className={classes.btn}>
+      <button onClick={onClick} color={color} style={style} disabled={disabled} className={classes.btn}>
         {children}
       </button>
     </div>

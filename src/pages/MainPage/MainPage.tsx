@@ -1,9 +1,9 @@
-import { useState, useEffect, useRef } from "react";
-import CatIcon from "../../assets/img/cat2.svg";
-import PlanetFirstCorpus from "../../assets/img/planet-corpus1.svg";
-import PlanetSecondCorpus from "../../assets/img/planet-corpus2.svg";
-import PlanetThirdCorpus from "../../assets/img/planet-corpus3.svg";
-import classes from "./MainPage.module.scss";
+import { useEffect, useRef, useState } from 'react';
+import CatIcon from '../../assets/img/cat2.svg';
+import PlanetFirstCorpus from '../../assets/img/planet-corpus1.svg';
+import PlanetSecondCorpus from '../../assets/img/planet-corpus2.svg';
+import PlanetThirdCorpus from '../../assets/img/planet-corpus3.svg';
+import classes from './MainPage.module.scss';
 import { Link } from 'react-router-dom';
 
 export const MainPage = () => {
