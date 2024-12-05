@@ -4,7 +4,7 @@ import truckImage from '../../assets/img/truck.svg'; //грузовик
 import hologramImage from '../../assets/img/hologram.svg'; //сфера
 import backgroundImage from '../../assets/img/background.png'; //фон
 
-const Logistics: React.FC = () => {
+export const Logistics: React.FC = () => {
   const [activeTask, setActiveTask] = useState<string | null>(null);
 
   const handleTruckClick = () => setActiveTask('truckTask');
@@ -54,4 +54,4 @@ const Logistics: React.FC = () => {
   );
 };
 
-export default Logistics;
+

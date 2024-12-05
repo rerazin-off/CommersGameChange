@@ -1,16 +1,3 @@
-@font-face {
-  font-family: "Cruinn";
-  src: url("../../assets/fonts/Cruinn Bold.ttf");
-  font-weight: 700;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Cruinn";
-  src: url("../../assets/fonts/Cruinn Black.ttf");
-  font-weight: 900;
-  font-style: normal;
-}
 
 .container {
   position: fixed;
@@ -25,6 +12,7 @@
   width: 624px;
   height: 585px;
   cursor: pointer;
+  transform: translate(1000px,-120px );
 }
 
 .tooltip {
@@ -67,4 +55,7 @@
   cursor: pointer;
   transform: translate(1030px,-510px);
   position: absolute;
+}
+.toys{
+  transform: translate(-100px, 350px);
 }

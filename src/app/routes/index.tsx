@@ -3,8 +3,7 @@ import { FirstCorpus } from '../../pages/FirstCorpus/FirstCorpus.tsx';
 import { MainPage } from '../../pages/MainPage/MainPage.tsx';
 import { SecondCorpus } from '../../pages/SecondCorpus/SecondCorpus.tsx';
 import { ThirdCorpus } from '../../pages/ThirdCorpus/ThirdCorpus.tsx';
-import { Assistant } from '../../components/Assistant/Assistant.tsx';
-import { Kidergarden } from '../../pages/ThirdCorpus/kindergarden/kindergarden.tsx';
+import { Gid_kidergarden } from '../../pages/ThirdCorpus/kindergarden/gid_kindergarden.tsx';
 import { Logistics } from '../../pages/Logistics/Logistics.tsx';
 
 
@@ -13,9 +12,6 @@ export const router = createBrowserRouter([
   { path: '/1', element: <FirstCorpus /> },
   { path: '/2', element: <SecondCorpus /> },
   { path: '/3', element: <ThirdCorpus /> },
-  { path: '/programmers', element: <ThirdCorpus /> },
-  { path: '/ass', element: <Assistant /> },
-  { path: '/4', element: <Kidergarden/> },
-  { path: '/prog', element: <ThirdCorpus /> },
+  { path: '/gid_kider', element: <Gid_kidergarden/> },
   { path: '/logistics', element: <Logistics /> },
 ]);
