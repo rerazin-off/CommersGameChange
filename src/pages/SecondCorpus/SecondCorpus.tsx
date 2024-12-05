@@ -1,4 +1,6 @@
 import classes from '../SecondCorpus/SecondCorpus.module.scss';
+import { Link } from 'react-router-dom';
+import { Button } from '../../components/Button/Button';
 
 export const SecondCorpus = () => {
   return (
@@ -12,15 +14,54 @@ export const SecondCorpus = () => {
               -Банковское дело; <br />
               -Коммерция (по отраслям); <br />
               -Торговое дело.</p>
-            {/* <!-- тут будет кнопка "назад" --> */}
           </div>
           <div className={classes.planet}>
-            {/* <!-- тут будут 4 компонента gps и кнопка "вперед", в разных классах --> */}
+            <Link to={'/arhivoveds'} className={classes.spec1}>
+              <Button
+                type="marker"
+                imageSrc="src/assets/img/buttons/marker/secondCorpus/arhivoveds.svg"
+                bgColor="purple"
+                colorText="white"
+              />
+            </Link>
+            <Link to={'/bank'} className={classes.spec2}>
+              <Button
+                type="marker"
+                imageSrc="src/assets/img/buttons/marker/secondCorpus/bank.svg"
+                bgColor="purple"
+                colorText="white"
+              />
+            </Link>
+            <Link to={'/commerce'} className={classes.spec3}>
+              <Button
+                type="marker"
+                imageSrc="src/assets/img/buttons/marker/secondCorpus/commerce.svg"
+                bgColor="purple"
+                colorText="white"
+              />
+            </Link>
+            <Link to={'/tovaroveds'} className={classes.spec4}>
+              <Button
+                type="marker"
+                imageSrc="src/assets/img/buttons/marker/secondCorpus/tovaroveds.svg"
+                bgColor="purple"
+                colorText="white"
+              />
+            </Link>
           </div>
+        </div>
+        <div className={classes.buton}>
+          <Link to={`/`}>
+            <Button type="type2" bgColor="pink">Назад</Button>
+          </Link>
+          <Link to={'/3'}>
+            <Button type="type2" bgColor="blue">Вперед</Button>
+          </Link>
         </div>
       </div>
     </div>
-  );
+)
+  ;
 };
 
 // export default SecondCorpus;

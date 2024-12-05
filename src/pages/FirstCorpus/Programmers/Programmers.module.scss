@@ -1,0 +1,37 @@
+.progs{
+  background: url("../../../assets/img/fon/programmers.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 1080px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+
+
+  .container{
+    width: 1000px;
+    margin: 0;
+    height: 973px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .comp{
+      background: url("../../../assets/img/games_marker/comp.svg");
+      background-repeat: no-repeat;
+      margin-top: 150px;
+      margin-left: 200px;
+      width: 721px;
+      height: 436px;
+    }
+    .robot{
+      background: url("../../../assets/img/games_marker/robot.png");
+      background-repeat: no-repeat;
+      margin-top: 200px;
+      width: 677px;
+      height: 647px;
+    }
+  }
+}

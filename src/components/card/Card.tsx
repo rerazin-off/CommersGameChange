@@ -1,8 +1,11 @@
 import classes from "./Card.module.scss";
-import { PinkeButton } from "../Button/PinkeButton/PinkeButton.tsx";
-import { BlueButton } from "../Button/BlueButton/BlueButton.tsx";
+import { Button } from '../Button/Button';
+import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
-const Card = (props: { post: { title: string ; body: string ; }; }) => {
+
+
+const Card = (props: { post: { title: string ; body: string ; back:string; game:string;}; }) => {
 
   return (
     <div>
@@ -11,8 +14,8 @@ const Card = (props: { post: { title: string ; body: string ; }; }) => {
         <div className={classes.img}><img src="../../assets/img/line.svg" alt="" /></div>
         <p> {props.post.body} </p>
         <div className={classes.knopki}>
-          <PinkeButton>НАЗАД</PinkeButton>
-          <BlueButton>НАЧАТЬ</BlueButton>
+          <Button bgColor={'pink'} type={'type1v2'} onClick={props.post.back}>НАЗАД</Button>
+          <Link to={`/${props.post.game}`}> <Button bgColor={'blue'} type={'type1v2'} >ВПЕРЕД</Button></Link>
         </div>
       </div>
     </div>

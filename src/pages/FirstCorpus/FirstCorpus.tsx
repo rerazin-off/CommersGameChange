@@ -21,7 +21,7 @@ export const FirstCorpus = () => {
             <Link to={'/lawyers'} className={classes.spec1}>
               <Button
                 type="marker"
-                imageSrc="src/assets/img/buttons/marker/firstCorpus/lawyers_color.svg"
+                imageSrc="src/assets/img/buttons/marker/firstCorpus/lawyers.svg"
                 bgColor="blue"
                 colorText="white"
               />
@@ -29,7 +29,7 @@ export const FirstCorpus = () => {
             <Link to={'/programmers'} className={classes.spec2}>
               <Button
                 type="marker"
-                imageSrc="src/assets/img/buttons/marker/firstCorpus/programmers_color.svg"
+                imageSrc="src/assets/img/buttons/marker/firstCorpus/programmers.svg"
                 bgColor="blue"
                 colorText="white"
               />
@@ -37,7 +37,7 @@ export const FirstCorpus = () => {
             <Link to={'/accountants'} className={classes.spec3}>
               <Button
                 type="marker"
-                imageSrc="src/assets/img/buttons/marker/firstCorpus/accountants_color.svg"
+                imageSrc="src/assets/img/buttons/marker/firstCorpus/accountants.svg"
                 bgColor="blue"
                 colorText="white"
               />
@@ -45,7 +45,7 @@ export const FirstCorpus = () => {
             <Link to={'/logistics'} className={classes.spec4}>
               <Button
                 type="marker"
-                imageSrc="src/assets/img/buttons/marker/firstCorpus/logistician_color.svg"
+                imageSrc="src/assets/img/buttons/marker/firstCorpus/logistician.svg"
                 bgColor="blue"
                 colorText="white"
               />
