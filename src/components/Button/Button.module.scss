@@ -1,0 +1,157 @@
+.Button {
+  font-size: 20px;
+  font-family: "Spaceman", sans-serif;
+  font-weight: 500;
+  border: none;
+  letter-spacing: 2px;
+  background: none;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  transition: 0.3s;
+
+  &.type1 {
+    height: 48px;
+    width: 200px;
+    &.blue {
+      background-image: url('../../assets/img/buttons/blue/type1/type1_blue.svg');
+      color: black;
+
+      &:hover {
+        background-image: url('../../assets/img/buttons/blue/type1/type1_blue_hover.svg');
+        color: white;
+      }
+    }
+    &.pink {
+      background-image: url('../../assets/img/buttons/type1_pink.svg');
+      color: black;
+
+      &:hover {
+        background-image: url('../../assets/img/buttons/type1_pink_hover.svg');
+        color: white;
+      }
+    }
+    &.purple {
+      background-image: url('../../assets/img/buttons/type1_purple.svg');
+      color: black;
+
+      &:hover {
+        background-image: url('../../assets/img/buttons/type1_purple_hover.svg');
+        color: white;
+      }
+    }
+  }
+
+  &.type1v2 {
+    height: 48px;
+    width: 200px;
+    &.blue {
+      background-image: url('../../assets/img/buttons/blue/type1v2/type1v2_blue.svg');
+      color: white;
+
+      &:hover {
+        background-image: url('../../assets/img/buttons/blue/type1v2/type1v2_blue_hover.svg');
+        color: var(--blue-color);
+      }
+    }
+    &.pink {
+      background-image: url('../../assets/img/buttons/type1v2_pink.svg');
+      color: white;
+
+      &:hover {
+        background-image: url('../../assets/img/buttons/type1v2_pink_hover.svg');
+        color: var(--pink-color);
+      }
+    }
+    &.purple {
+      background-image: url('../../assets/img/buttons/type1v2_purple.svg');
+      color: white;
+
+      &:hover {
+        background-image: url('../../assets/img/buttons/type1v2_purple_hover.svg');
+        color: var(--purple-color);
+      }
+    }
+  }
+
+  &.type2 {
+    height: 48px;
+    width: 333px;
+    &.blue {
+      background-image: url('../../assets/img/buttons/blue/type2/type2_blue.svg');
+      color: var(--blue-color);
+
+      &:hover {
+        color: white;
+      }
+    }
+    &.pink {
+      background-image: url('../../assets/img/buttons/pink/type2/type2_pink.svg');
+      color: var(--pink-color);
+
+      &:hover {
+        color: white;
+      }
+    }
+    &.purple {
+      background-image: url('../../assets/img/buttons/type2_purple.svg');
+      color: var(--purple-color);
+
+      &:hover {
+        color: white;
+      }
+    }
+  }
+
+  &.marker {
+    background-image: url('../../assets/img/buttons/marker/marker.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 128px;
+    height: 185px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .item{
+      background-repeat: no-repeat;
+      width: 130px;
+      height: 185px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .icon {
+      border-radius: 100px;
+      padding: 3px 26px;
+      margin-top: 15px;
+      height: 90px;
+      transition: .3s;
+      display: flex;
+      align-items: center;
+
+      &.blue {
+        background-color: var(--blue-color);
+        &:hover {
+          background-color: white;
+          box-shadow: 0 0 80px;
+        }
+      }
+
+      &.pink {
+        background-color: var(--pink-color);
+        &:hover {
+          background-color: white;
+          box-shadow: 0 0 80px;
+        }
+      }
+      &.purple {
+        background-color: var(--purple-color);
+        &:hover {
+          background-color: white;
+        }
+      }
+    }
+  }
+}

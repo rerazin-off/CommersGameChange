@@ -3,6 +3,7 @@ import { FirstCorpus } from '../../pages/FirstCorpus/FirstCorpus.tsx';
 import { MainPage } from '../../pages/MainPage/MainPage.tsx';
 import { SecondCorpus } from '../../pages/SecondCorpus/SecondCorpus.tsx';
 import { ThirdCorpus } from '../../pages/ThirdCorpus/ThirdCorpus.tsx';
+import { Logistics } from '../../pages/Logistics/Logistics.tsx';
 
 
 export const router = createBrowserRouter([
@@ -10,6 +11,8 @@ export const router = createBrowserRouter([
   { path: '/1', element: <FirstCorpus /> },
   { path: '/2', element: <SecondCorpus /> },
   { path: '/3', element: <ThirdCorpus /> },
+  { path: '/programmers', element: <ThirdCorpus /> },
   { path: '/prog', element: <ThirdCorpus /> },
   { path: '/4', element: <Logist /> },
+  { path: '/logistics', element: <Logistics /> },
 ]);

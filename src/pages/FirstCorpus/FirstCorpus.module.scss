@@ -54,41 +54,77 @@
 }
 *{
     font-family: 'Cruinn', sans-serif;
-}
-.container{
-    width: 1540px;
-    margin: 0 auto;
-}
-.korpus_1{
+    .container{
+        width: 1540px;
+        margin: 0 auto;
+
+    }
+    .korpus_1{
     background-image: url("../../assets/img/section-corpus1.svg");
     background-repeat: no-repeat;
     background-position: center;
     height: 1080px;
-}
-.korpus_1 h1{
-    font-size: 64px;
-    padding-top: 106px;
-    color: white;
-    font-family: "AA Spaceman";
-    text-align: center;
-    width: 77%;
-    line-height: 74.13px;
-    font-weight: 400;
-}
-.korpus_1 h1 span{
-    font-family: "ADLaM Display";
-}
-.korpus_1 p{
-    margin-top: 60px;
-    font-size: 40px;
-    color: white;
-    font-weight: 500;
-    padding-bottom: 136px;
-}
-.korpus_1 .text{
-    width: 734px;
-}
-.bloc{
-    display: flex;
-    justify-content: space-between;
+     h1 {
+         font-size: 64px;
+         padding-top: 56px;
+         color: white;
+         font-family: "AA Spaceman";
+         text-align: center;
+         width: 77%;
+         line-height: 74.13px;
+         font-weight: 400;
+     }
+    h1 span {
+        font-family: "ADLaM Display";
+    }
+     p {
+         margin-top: 60px;
+         font-size: 40px;
+         color: white;
+         font-weight: 500;
+         padding-bottom: 256px;
+     }
+    .text {
+        width: 734px;
+    }
+    .bloc {
+        display: flex;
+        justify-content: space-between;
+    } }
+    .planet{
+        display: flex;
+        flex-wrap: wrap;
+        align-content: space-between;
+        justify-content: space-between;
+        width: 40%;
+        height: 90%;
+    }
+    .buton{
+        display: flex;
+        justify-content: space-between;
+    }
+    .spec1{
+        margin-left: 120px;
+        margin-right: 100px;
+        margin-bottom: 200px;
+        margin-top: 200px;
+    }
+    .spec2{
+        margin-left: 20px;
+        margin-right: 100px;
+        margin-bottom: 100px;
+        margin-top: 140px;
+    }
+    .spec3{
+        margin-left: 140px;
+        margin-right: 100px;
+        margin-bottom: 20px;
+        margin-top: 0px;
+    }
+    .spec4{
+        margin-left: 20px;
+        margin-right: 0px;
+        margin-bottom: 0px;
+        margin-top: 50px;
+    }
 }
