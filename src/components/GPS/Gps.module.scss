@@ -1,0 +1,24 @@
+.gps {
+  background-image: url(./img/gps_shadow.svg);
+  background-repeat: no-repeat;
+  width: 180px;
+  height: 255px;
+  display: flex;
+  justify-content: center;
+
+  .img {
+    border-radius: 100px;
+    padding: 22px 30px;
+    background: #7B74EB33;
+    margin-top: 20px;
+    height: 90px;
+    transition: .5s;
+  }
+
+  .img:hover {
+    transition: .3s;
+    background: #FFFFFF99;
+    box-shadow: #FFFFFF99 0 0 80px;
+    /* backdrop-filter: blur(5px); */
+  }
+}

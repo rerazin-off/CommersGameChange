@@ -11,6 +11,7 @@
   font-size: 20px;
   background-image: url("../../../assets/img/blue_button2.svg");
   border: 0px solid;
+  background: url("../../../assets/img/blue_button2.svg");
   background-repeat: no-repeat;
 }
 .btn{
@@ -27,9 +28,20 @@
 }
 .type1{
   width: 333px;
+  height: 57px;
   height: 56.5px;
   font-family: "Jura";
   font-size: 20px;
+  color: white;
   border: 0px solid;
+  font-family: "Jura";
+  /* transition: .5s; */
+}
+/* .button2 button:hover{
+    background: url(./img/blue_hover.svg);
+    background-repeat: no-repeat;
+    color: white;
+    transition: .3s;
+} */
   background-repeat: no-repeat;
 }

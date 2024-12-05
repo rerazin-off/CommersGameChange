@@ -1,4 +1,6 @@
 import classes from "./BackButton.module.scss";
+import classes from './BackButton.module.scss';
+
 export type ButtonProps = {
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   children?: React.ReactNode;
@@ -15,6 +17,11 @@ export const BackButton = ({
   return (
     <div className={classes.button}>
       <button onClick={onClick} color={color} disabled={disabled} className={classes.btn}>
+        {children}
+      </button>
+    </div>
+    <div  className={classes.button}>
+      <button onClick={onClick} color={color} disabled={disabled} >
         {children}
       </button>
     </div>
