@@ -13,6 +13,7 @@ export const router = createBrowserRouter([
   { path: '/1', element: <FirstCorpus /> },
   { path: '/2', element: <SecondCorpus /> },
   { path: '/3', element: <ThirdCorpus /> },
+  { path: '/programmers', element: <ThirdCorpus /> },
   { path: '/ass', element: <Assistant /> },
   { path: '/4', element: <Kidergarden/> },
   { path: '/prog', element: <ThirdCorpus /> },

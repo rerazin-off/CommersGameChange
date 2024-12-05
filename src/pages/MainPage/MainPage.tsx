@@ -26,21 +26,11 @@ export const MainPage = () => {
   };
 
   useEffect(() => {
-    intervalRef.current = setInterval(() => {
+    intervalRef.current = window.setInterval(() => {
       setActiveIndex((prevIndex) => (prevIndex + 1) % slides.length);
     }, 5000);
     return () => clearInterval(intervalRef.current);
   }, [slides.length]);
-
-  const handlePrevSlide = () => {
-    clearInterval(intervalRef.current);
-    setActiveIndex((prevIndex) => (prevIndex - 1 + slides.length) % slides.length);
-  };
-
-  const handleNextSlide = () => {
-    clearInterval(intervalRef.current);
-    setActiveIndex((prevIndex) => (prevIndex + 1) % slides.length);
-  };
 
   return (
     <div className={classes.universe}>
@@ -64,22 +54,6 @@ export const MainPage = () => {
               </Link>
             </div>
           ))}
-        </div>
-        <div className={classes.controls}>
-          <button
-            className={classes.control}
-            aria-label="Предыдущий слайд"
-            onClick={handlePrevSlide}
-          >
-            ←
-          </button>
-          <button
-            className={classes.control}
-            aria-label="Следующий слайд"
-            onClick={handleNextSlide}
-          >
-            →
-          </button>
         </div>
       </div>
     </div>
