@@ -2,18 +2,14 @@ import classes from "./Card.module.scss";
 import { PinkeButton } from "../Button/PinkeButton/PinkeButton.tsx";
 import { BlueButton } from "../Button/BlueButton/BlueButton.tsx";
 
-export type CardProps = {
-  titel?: React.ReactNode;
-  children?: React.ReactNode;
-};
+const Card = (props: { post: { title: string ; body: string ; }; }) => {
 
-export const Card = ({titel, children}: CardProps) => {
   return (
     <div>
       <div className={classes.var}>
-        <h1> {titel} </h1>
+        <h1> {props.post.title} </h1>
         <div className={classes.img}><img src="../../assets/img/line.svg" alt="" /></div>
-        <p> {children} </p>
+        <p> {props.post.body} </p>
         <div className={classes.knopki}>
           <PinkeButton>НАЗАД</PinkeButton>
           <BlueButton>НАЧАТЬ</BlueButton>
@@ -22,3 +18,5 @@ export const Card = ({titel, children}: CardProps) => {
     </div>
   );
 };
+
+export default Card;
