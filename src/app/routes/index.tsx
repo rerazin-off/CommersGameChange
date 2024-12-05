@@ -5,6 +5,7 @@ import { SecondCorpus } from '../../pages/SecondCorpus/SecondCorpus.tsx';
 import { ThirdCorpus } from '../../pages/ThirdCorpus/ThirdCorpus.tsx';
 import { Assistant } from '../../components/Assistant/Assistant.tsx';
 import { Kidergarden } from '../../pages/ThirdCorpus/kindergarden/kindergarden.tsx';
+import { Logistics } from '../../pages/Logistics/Logistics.tsx';
 
 
 export const router = createBrowserRouter([
@@ -15,4 +16,5 @@ export const router = createBrowserRouter([
   { path: '/ass', element: <Assistant /> },
   { path: '/4', element: <Kidergarden/> },
   { path: '/prog', element: <ThirdCorpus /> },
+  { path: '/logistics', element: <Logistics /> },
 ]);
