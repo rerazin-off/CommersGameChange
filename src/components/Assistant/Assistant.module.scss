@@ -1,0 +1,61 @@
+
+.container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cat{
+  width: 624px;
+  height: 585px;
+  cursor: pointer;
+  transform: translate(1000px,-120px );
+}
+
+.tooltip {
+  width: 1083px;
+  height: 612.5px;
+  position: absolute;
+  bottom: 250px; /* Чуть выше кота */
+  right: 550px; /* Слева от кота */
+  background-image: url("../../assets/img/assistant.svg");
+  border-radius: 8px;
+  padding: 15px;
+  color: white;
+}
+
+.title{
+  padding-top: 125px;
+  font-size: 40px;
+  margin: 10px 0;
+  font-weight: 900;
+  color: #FFFFFF;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin-bottom: 50px;
+}
+
+.body{
+  font-size: 40px;
+  margin: 10px 0;
+  font-weight: 900;
+  color: #FFFFFF;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.X {
+  height: 50px;
+  width: 50px;
+  cursor: pointer;
+  transform: translate(1030px,-510px);
+  position: absolute;
+}
+.toys{
+  transform: translate(-100px, 350px);
+}
