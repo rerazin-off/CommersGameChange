@@ -1,11 +1,21 @@
-.progs{
-  background: url("../../../assets/img/fon/programmers.svg");
+.cont{
+  background: url("../../../assets/img/fon/programmers_s_knopkoy.svg");
   background-repeat: no-repeat;
   background-position: center;
   height: 1080px;
+}
+.buttons{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 400px;
+  padding-top: 30px;
+  padding-left: 30px;
+}
+.progs{
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
 
   .card{

@@ -16,5 +16,5 @@ export const router = createBrowserRouter([
   { path: '/programmers', element: <Programmers /> },
   { path: '/kinder', element: <Kidergarden/> },
   { path: '/logistics', element: <Logistics /> },
-  { path: '/robotGame', element:  <Logistics />,}
+  { path: '/robotGame', element:  <Logistics />,},
 ]);

@@ -1,6 +1,8 @@
 import classes from './Programmers.module.scss';
 import React, { useCallback, useState } from 'react';
 import Card from '../../../components/Card/Card';
+import { Button } from '../../../components/Button/Button';
+import { Link } from 'react-router-dom';
 
 const gameData: Record<string, { title: string; body: string }> = {
   computerGame: {
@@ -36,12 +38,22 @@ export const Programmers: React.FC = () => {
   // const handleCloseTask = () => setOpenCard(null);
 
   return (
+  <div className={classes.cont}>
     <div className={classes.progs}>
-        <div className={classes.container}>
-          <div className={classes.comp} onClick={() => handleGameClick('computerGame')}></div>
-          <div className={classes.robot} onClick={() => handleGameClick('robotGame')}></div>
-        </div>
-        <div className={classes.card}><Card title={cardData.title} body={cardData.body} game={currentGame} isOpen={openIsCard} onClose={closeCard}/> </div>
+      <div className={classes.container}>
+        <div className={classes.comp} onClick={() => handleGameClick('computerGame')}></div>
+        <div className={classes.robot} onClick={() => handleGameClick('robotGame')}></div>
+      </div>
+      <div className={classes.card}><Card title={cardData.title} body={cardData.body} game={currentGame}
+                                          isOpen={openIsCard} onClose={closeCard} /></div>
+
     </div>
-  );
+    <div className={classes.buttons}>
+      <Link to={"/1"}><Button bgColor={'white'} type={"back_arrow"} /></Link>
+      <Link to={"/"}><Button bgColor={'white'} type={"gallery"} /></Link>
+      <Link to={"/"}><Button bgColor={'white'} type={"meditation"} /></Link>
+    </div>
+  </div>
+)
+  ;
 };
