@@ -154,4 +154,53 @@
       }
     }
   }
+  &.back_arrow {
+    background-image: url('../../assets/img/buttons/white/back_arrow.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 106px;
+    height: 41.14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    .white {
+      background-color: var(--white-color);
+    }
+  }
+  &.gallery {
+    background-image: url('../../assets/img/buttons/white/Gallery.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 55.69px;
+    height: 55.694px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    .white {
+      background-color: var(--white-color);
+    }
+  }
+  &.meditation {
+    background-image: url('../../assets/img/buttons/white/meditation.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 60px;
+    height: 60.02px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    .white {
+      background-color: var(--white-color);
+    }
+  }
 }
+
