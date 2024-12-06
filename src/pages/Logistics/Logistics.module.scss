@@ -38,11 +38,31 @@
 }
 
 /* Кнопка "Назад" */
-.fixedButton {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
+.kindergarden{
+  background: url("../../../assets/img/fon_kindergarden.svg");
+  width: 1920px;
+  height: 1080px;
+  position: fixed;
 }
+.button{
+  transform: translate(0, 1015px);
+  display: flex;
+  align-content: space-between;
+  padding-left: 20px;
+}
+.arrow{
+  padding-left: 20px;
+  transform: translate(0,9px);
+}
+.gallery{
+  padding-left: 100px;
+  transform: translate(0, -10px);
+}
+.meditation{
+  padding-left: 48px;
+  transform: translate(0, -13px);
+}
+
 
 /* Модальное окно */
 .modal {

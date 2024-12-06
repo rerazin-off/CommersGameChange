@@ -3,7 +3,8 @@ import classes from './Logistics.module.scss';
 import truckImage from '../../assets/img/truck.svg'; //грузовик
 import hologramImage from '../../assets/img/hologram.svg'; //сфера
 import backgroundImage from '../../assets/img/background.svg'; //фон
-import {Button} from '../../components/Button/Button';
+import { Button } from '../../components/Button/Button';
+import { Link } from 'react-router-dom';
 
 export const Logistics: React.FC = () => {
   const [activeTask, setActiveTask] = useState<string | null>(null);
@@ -37,13 +38,30 @@ export const Logistics: React.FC = () => {
       />
 
       {/* Кнопка "Назад" */}
+      <div className={classes.arrow}>
+        <Link to={'/3'}>
+          <Button
+            type="back_arrow"
+            imageSrc="src/assets/img/buttons/white/back_arrow.svg"
+            bgColor="white"
+          />
+        </Link>
+      </div>
+      <div className={classes.gallery}>
         <Button
-          className={classes.fixedButton} // Используем новый класс для позиционирования
-          type="type1v2"
-          bgColor="pink"
-        >
-          Назад
-        </Button>
+          type="gallery"
+          imageSrc="src/assets/img/buttons/white/Gallery.svg"
+          bgColor="white"
+        />
+      </div>
+      <div className={classes.meditation}>
+        <Button
+          type="meditation"
+          imageSrc="src/assets/img/buttons/white/Gallery.svg"
+          bgColor="white"
+        />
+      </div>
+
       {/* Модальное окно для задания */}
       {activeTask && (
         <div className={classes.modal}>
@@ -55,6 +73,6 @@ export const Logistics: React.FC = () => {
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
