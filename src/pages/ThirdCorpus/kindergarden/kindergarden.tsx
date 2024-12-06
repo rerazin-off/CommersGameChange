@@ -1,15 +1,20 @@
-import classes from '../kindergarden/gid_kindergarden.module.scss';
+import classes from './KinderGarden.module.scss';
 import { Assistant } from '../../../components/Assistant/Assistant.tsx';
 import { Button } from '../../../components/Button/Button';
 import {Link} from 'react-router-dom';
 
 
-export const Gid_kidergarden = () => {
+export const Kidergarden = () => {
 
   return (
     <div className={classes.kindergarden}>
       <div className={classes.gid_kidergarden}>
-        <Assistant></Assistant>
+        <Assistant title={'Добро пожаловать на специальность ' +
+          '44.02.01 Дошкольное образование!'} body={"Здесь происходит организация мероприятий," +
+          " различных видов деятельности, занятий по" +
+          " основным образовательным программам и" +
+          " методическое обеспечение образовательного" +
+          " процесса."}></Assistant>
       <div className={classes.button}>
         <div className={classes.arrow}>
          <Link to={'/3'}>

@@ -3,8 +3,9 @@ import { FirstCorpus } from '../../pages/FirstCorpus/FirstCorpus.tsx';
 import { MainPage } from '../../pages/MainPage/MainPage.tsx';
 import { SecondCorpus } from '../../pages/SecondCorpus/SecondCorpus.tsx';
 import { ThirdCorpus } from '../../pages/ThirdCorpus/ThirdCorpus.tsx';
-import { Gid_kidergarden } from '../../pages/ThirdCorpus/kindergarden/gid_kindergarden.tsx';
+import { Kidergarden } from '../../pages/ThirdCorpus/kindergarden/kindergarden';
 import { Logistics } from '../../pages/Logistics/Logistics.tsx';
+
 
 
 export const router = createBrowserRouter([
@@ -12,6 +13,6 @@ export const router = createBrowserRouter([
   { path: '/1', element: <FirstCorpus /> },
   { path: '/2', element: <SecondCorpus /> },
   { path: '/3', element: <ThirdCorpus /> },
-  { path: '/gid_kider', element: <Gid_kidergarden/> },
+  { path: '/kinder', element: <Kidergarden/> },
   { path: '/logistics', element: <Logistics /> },
 ]);

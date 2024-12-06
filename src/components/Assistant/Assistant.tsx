@@ -3,13 +3,15 @@ import IconCat from '../../assets/img/cat2.svg';
 import IconX from '../../assets/img/x_button.svg'
 import IconToys from '../../assets/img/toys.svg'
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { info } from 'sass';
 
 // export type AssistantProps = {
 //   children?: React.ReactNode;
 //   color: "primary";
 // };
 
-export const Assistant = () => {
+export const Assistant = ((props: { title: string ; body: string ; }) => {
 
   const [openHelper, setOpenHelper] = useState(true);
 
@@ -19,24 +21,18 @@ export const Assistant = () => {
 
   return (
     <div className={classes.container}>
-      {openHelper ? (
+      {openHelper
+        ? (
           <div className={classes.tooltip}>
-            <span><p className={classes.heading}>Добро пожаловать на специальность 44.02.01<br />
-            Дошкольное образование! <br /></p></span>
-            <span><p className={classes.text}>Здесь происходит организация мероприятий,<br />
-            различных видов деятельности, занятий по<br />
-            основным образовательным программам и<br />
-            методическое обеспечение образовательного<br />
-            процесса.</p></span>
+            <span><p className={classes.title}> {props.title} </p></span>
+            <span><p className={classes.body}>{props.body}</p></span>
             <img onClick={setIsOpen} src={IconX} alt="" className={classes.X} />
             <img onClick={setIsOpen} src={IconCat} alt="" className={classes.cat} />
           </div>
         )
         :
-        <div>
-          <img src={IconToys} alt="" className={classes.toys}/>
-        </div>
+        <div></div>
       }
     </div>
-  );
-};
+  )
+})
