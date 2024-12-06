@@ -37,6 +37,7 @@
   justify-content: center;
   align-content: center;
   margin-bottom: 50px;
+  transform: translate(100px, 0px);
 }
 
 .body{
@@ -47,6 +48,8 @@
   display: flex;
   justify-content: center;
   align-content: center;
+  width: 1000px;
+  transform: translate(100px, 10px);
 }
 
 .X {

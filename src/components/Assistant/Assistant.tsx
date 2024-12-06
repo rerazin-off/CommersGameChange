@@ -31,7 +31,9 @@ export const Assistant = ((props: { title: string ; body: string ; }) => {
           </div>
         )
         :
-        <div></div>
+        <div>
+          <img/>
+        </div>
       }
     </div>
   )

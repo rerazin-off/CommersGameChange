@@ -39,6 +39,7 @@ export const Kidergarden = () => {
           bgColor="white"
         />
       </div>
+        <div className={classes.wheelchair}></div>
     </div>
 </div>
 </div>
