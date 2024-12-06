@@ -4,6 +4,9 @@ import { Button } from '../../components/Button/Button';
 
 
 export const ThirdCorpus = () => {
+
+
+
   return (
     <div>
       <div className={classes.korpus_1}>
@@ -62,6 +65,5 @@ export const ThirdCorpus = () => {
         </div>
       </div>
     </div>
-)
-  ;
+  );
 };

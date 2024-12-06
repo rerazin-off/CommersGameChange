@@ -5,8 +5,8 @@ import classes from './Button.module.scss';
 interface ButtonProps {
   className?: string;
   colorText?: string;
-  bgColor: 'blue' | 'pink' | 'purple';
-  type: 'type1'| 'type1v2' | 'type2' | 'marker';
+  bgColor: 'blue' | 'pink' | 'purple'| 'white';
+  type: 'type1'| 'type1v2' | 'type2' | 'marker'| 'back_arrow'| 'gallery'| 'meditation';
   children?: ReactNode;
   imageSrc?: string;
   width?: number;
