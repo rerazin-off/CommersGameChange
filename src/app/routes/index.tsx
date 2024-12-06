@@ -14,4 +14,5 @@ export const router = createBrowserRouter([
   { path: '/3', element: <ThirdCorpus /> },
   { path: '/programmers', element: <Programmers /> },
   { path: '/logistics', element: <Logistics /> },
+  { path: '/robotGame', element:  <Logistics />,}
 ]);

@@ -8,10 +8,13 @@
   justify-content: flex-start;
   align-items: center;
 
-
+  .card{
+    position: absolute;
+    margin-top: 300px;
+  }
 
   .container{
-    width: 1000px;
+    width: 1500px;
     margin: 0;
     height: 973px;
     display: flex;
@@ -22,12 +25,12 @@
       background: url("../../../assets/img/games_marker/comp.svg");
       background-repeat: no-repeat;
       margin-top: 150px;
-      margin-left: 200px;
+      margin-left: 120px;
       width: 721px;
       height: 436px;
     }
     .robot{
-      background: url("../../../assets/img/games_marker/robot.png");
+      background: url("../../../assets/img/games_marker/robot2.png");
       background-repeat: no-repeat;
       margin-top: 200px;
       width: 677px;

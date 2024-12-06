@@ -1,24 +1,47 @@
-import classes from './Programmers.module.scss'
-import { Link } from 'react-router-dom';
-import React, { useState } from 'react';
-import Card from '../../../components/card/Card';
+import classes from './Programmers.module.scss';
+import React, { useCallback, useState } from 'react';
+import Card from '../../../components/Card/Card';
+
+const gameData: Record<string, { title: string; body: string }> = {
+  computerGame: {
+    title: 'ПЕНСИОННЫЙ ФОНД',
+    body: 'Описание для компьютерной игры.',
+  },
+  robotGame: {
+    title: 'Игра с роботами',
+    body: 'Описание для игры с роботами.',
+  },
+  spaceGame: {
+    title: 'Космическая игра',
+    body: 'Описание для космической игры.',
+  },
+};
 
 export const Programmers: React.FC = () => {
-  const [activeTask, setActiveTask] = useState<string | null>(null);
 
-  const handleCompClick = () => setActiveTask('compTask');
-  const handleRobotClick = () => setActiveTask('robotTask');
-  const handleCloseTask = () => setActiveTask(null);
+  const [openIsCard, setOpenIsCard] = useState(false);
+  const [currentGame, setGame] = useState<string>('')
+
+  const cardData = gameData[currentGame] || { title: '', body: '' };
+
+  const handleGameClick = (param: string) => {
+    setOpenIsCard(true);
+    setGame(param);
+  };
+
+  const closeCard = useCallback(() => {
+    setOpenIsCard(false);
+    setGame('');
+  }, []);
+  // const handleCloseTask = () => setOpenCard(null);
 
   return (
     <div className={classes.progs}>
         <div className={classes.container}>
-          <div className={classes.comp} onClick={handleCompClick}></div>
-          <div className={classes.robot} onClick={handleRobotClick}></div>
+          <div className={classes.comp} onClick={() => handleGameClick('computerGame')}></div>
+          <div className={classes.robot} onClick={() => handleGameClick('robotGame')}></div>
         </div>
-        {activeTask && (
-          <Card post={back:'handleCloseTask',title:'ПЕНСИОННЫЙ ФОНД', body:'В этой игре вы  почувствуете себя сотрудником пенсионного фонда. Перед вами будут предложены ситуации, вам необходимо принять верное решение и набрать как можно больше баллов!'}/>
-        )}
+        <div className={classes.card}><Card title={cardData.title} body={cardData.body} game={currentGame} isOpen={openIsCard} onClose={closeCard}/> </div>
     </div>
   );
 };

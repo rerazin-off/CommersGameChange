@@ -11,7 +11,7 @@ interface ButtonProps {
   imageSrc?: string;
   width?: number;
   height?: number;
-  onClick?: string;
+  onClick?: () => void;
 }
 
 export const Button = memo((props: ButtonProps) => {
@@ -31,7 +31,7 @@ export const Button = memo((props: ButtonProps) => {
 
   return (
     <button
-      onClick={handleCloseTask}
+      onClick={onClick}
       className={classNames(
         classes.Button,
         { [classes.marker]: isMarker },
