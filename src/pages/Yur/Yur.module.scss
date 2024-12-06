@@ -8,8 +8,8 @@
 
 .fixedButton {
   position: absolute;
-  bottom: 30px;
-  left: 30px;
+  bottom: 10px;
+  left: 10px;
   z-index: 10;
 }
 
@@ -19,31 +19,30 @@
   background-repeat: no-repeat;
 }
 
-/* Индивидуальные стили для компонентов */
 .shelf {
-  top: 20%;
+  top: 8%;
   right: 20px;
-  width: 500px;
-  height: 500px;
+  width: 550px;
+  height: 750px;
 }
 
 .piggyBank {
-  top: 50%;
-  left: 38%;
-  width: 150px;
-  height: 150px;
+  top: 35%;
+  left: 35%;
+  width: 450px;
+  height: 250px;
 }
 
 .hammer {
-  top: 31%;
-  left: 16%;
-  width: 230px;
-  height: 260px;
+  top: 25%;
+  left: 10%;
+  width: 400px;
+  height: 500px;
 }
 
 .glassesNote {
-  top: 48%;
-  left: 59%;
-  width: 200px;
-  height: 150px;
+  top: 42%;
+  left: 55%;
+  width: 350px;
+  height: 300px;
 }

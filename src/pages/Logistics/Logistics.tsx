@@ -58,4 +58,3 @@ export const Logistics: React.FC = () => {
   );
 };
 
-
