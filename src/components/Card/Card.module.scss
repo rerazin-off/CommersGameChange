@@ -1,0 +1,44 @@
+
+.var{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  backdrop-filter: blur(70px);
+  //background-color: #2D2929;
+  background:  linear-gradient(to right, #4DE4F21A, #4DE4F205);
+  border-radius: 20px;
+  border: 1px solid #4DE4F2;
+  width: 622px;
+  height: 421px;
+}
+.var h1{
+  font-family:"AA Spaceman";
+  font-size: 32px;
+  color: #ffffff;
+  margin-top: 70px;
+  margin-left: 25px;
+  line-height: 25%;
+  margin-bottom: 0px;
+}
+.var p{
+  font-family: "Cruinn";
+  font-size: 20px;
+  font-weight: 500;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  text-align: start;
+  margin-left: 25px;
+  color: #ffffff;
+}
+.var img{
+  margin-right: 20px;
+
+}
+.knopki{
+  width: 100%;
+  margin-bottom: 52px;
+  display: flex;
+  justify-content: space-around;
+  align-content: space-between;
+}

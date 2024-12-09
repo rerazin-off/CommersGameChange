@@ -1,0 +1,48 @@
+.container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background: url('../../assets/img/backgrounds.svg') no-repeat center center;
+  background-size: cover;
+}
+
+.fixedButton {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  z-index: 10;
+}
+
+.component {
+  position: absolute;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.shelf {
+  top: 8%;
+  right: 20px;
+  width: 550px;
+  height: 750px;
+}
+
+.piggyBank {
+  top: 35%;
+  left: 35%;
+  width: 450px;
+  height: 250px;
+}
+
+.hammer {
+  top: 25%;
+  left: 10%;
+  width: 400px;
+  height: 500px;
+}
+
+.glassesNote {
+  top: 42%;
+  left: 55%;
+  width: 350px;
+  height: 300px;
+}

@@ -11,6 +11,7 @@ interface ButtonProps {
   imageSrc?: string;
   width?: number;
   height?: number;
+  onClick?: () => void;
 }
 
 export const Button = memo((props: ButtonProps) => {
@@ -23,13 +24,14 @@ export const Button = memo((props: ButtonProps) => {
     imageSrc,
     height,
     width,
-    ...otherProps
+    onClick,
   } = props;
 
   const isMarker = type === 'marker';
 
   return (
     <button
+      onClick={onClick}
       className={classNames(
         classes.Button,
         { [classes.marker]: isMarker },
@@ -40,7 +42,7 @@ export const Button = memo((props: ButtonProps) => {
         width: isMarker ? undefined : width,
         height: isMarker ? undefined : height,
       }}
-      {...otherProps}
+
     >
       {isMarker ? (
         <>
