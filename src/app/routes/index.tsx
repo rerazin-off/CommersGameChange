@@ -6,8 +6,8 @@ import { ThirdCorpus } from '../../pages/ThirdCorpus/ThirdCorpus.tsx';
 import { Kidergarden } from '../../pages/ThirdCorpus/kindergarden/kindergarden';
 import { Logistics } from '../../pages/Logistics/Logistics.tsx';
 import {Yur} from '../../pages/Yur/Yur.tsx'
-
 import { Programmers } from '../../pages/FirstCorpus/Programmers/Programmers';
+import { Economist } from '../../pages/FirstCorpus/Economist/Economist';
 
 
 export const router = createBrowserRouter([
@@ -20,4 +20,5 @@ export const router = createBrowserRouter([
   { path: '/logistics', element: <Logistics /> },
   { path: '/robotGame', element:  <Logistics />,},
   { path: '/Yur', element: <Yur /> },
+  { path: '/economist', element: <Economist /> },
 ]);

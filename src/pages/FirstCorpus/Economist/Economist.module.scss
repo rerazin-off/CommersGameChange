@@ -1,0 +1,73 @@
+.cont{
+  background: url("../../../assets/img/fon/economic2.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 1080px;
+}
+.buttons{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 400px;
+  padding-top: 30px;
+  padding-left: 30px;
+}
+.progs{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  .card{
+    position: absolute;
+    margin-top: 300px;
+  }
+
+  .container{
+    width: 1500px;
+    margin: 0;
+    height: 973px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+
+    .doska{
+      width: 836px;
+      height: 464px;
+      margin-top: 70px;
+      margin-right: 15px;
+      cursor: pointer;
+      border-radius: 20px;
+    }
+    .stol{
+      margin-top: 150px;
+      margin-left: 1130px;
+      width: 431px;
+      height: 100px;
+      cursor: pointer;
+      border-radius: 200px;
+    }
+    .doska, .stol {
+      animation: pulse 2s linear infinite;
+    }
+    .stol:hover {
+      animation: none;
+    }
+    .doska:hover {
+      animation: none;
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(77, 228, 242, 0.19);
+      }
+      70% {
+        box-shadow: 0 0 0 80px rgba(77, 228, 242, 0.51);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(77, 228, 242, 0.19);
+      }
+    }
+  }
+}
