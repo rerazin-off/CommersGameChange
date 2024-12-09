@@ -28,7 +28,7 @@ export const MainPage = () => {
   useEffect(() => {
     intervalRef.current = window.setInterval(() => {
       setActiveIndex((prevIndex) => (prevIndex + 1) % slides.length);
-    }, 5000);
+    }, 2500);
     return () => clearInterval(intervalRef.current);
   }, [slides.length]);
 

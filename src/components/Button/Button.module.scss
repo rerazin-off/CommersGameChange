@@ -43,7 +43,7 @@
   }
 
   &.type1v2 {
-    height: 48px;
+    height: 50px;
     width: 200px;
     &.blue {
       background-image: url('../../assets/img/buttons/blue/type1v2/type1v2_blue.svg');
@@ -55,11 +55,11 @@
       }
     }
     &.pink {
-      background-image: url('../../assets/img/buttons/type1v2_pink.svg');
+      background-image: url('../../assets/img/buttons/pink/type1v2/type1v2_pink.svg');
       color: white;
 
       &:hover {
-        background-image: url('../../assets/img/buttons/type1v2_pink_hover.svg');
+        background-image: url('../../assets/img/buttons/pink/type1v2/type1v2_pink_hover.svg');
         color: var(--pink-color);
       }
     }
@@ -75,30 +75,37 @@
   }
 
   &.type2 {
-    height: 48px;
+    height: 57px;
     width: 333px;
+    font-family: 'Jura';
     &.blue {
       background-image: url('../../assets/img/buttons/blue/type2/type2_blue.svg');
-      color: var(--blue-color);
+      //color: var(--blue-color);
+      color: white;
 
       &:hover {
-        color: white;
+        //color: white;
+        color: var(--blue-color);
       }
     }
     &.pink {
       background-image: url('../../assets/img/buttons/pink/type2/type2_pink.svg');
-      color: var(--pink-color);
+      //color: var(--pink-color);
+      color: white;
 
       &:hover {
-        color: white;
+        //color: white;
+        color: var(--pink-color);
       }
     }
     &.purple {
       background-image: url('../../assets/img/buttons/type2_purple.svg');
-      color: var(--purple-color);
+      //color: var(--purple-color);
+      color: white;
 
       &:hover {
-        color: white;
+        //color: white;
+        color: var(--purple-color);
       }
     }
   }
@@ -107,15 +114,8 @@
     background-image: url('../../assets/img/buttons/marker/marker.svg');
     background-repeat: no-repeat;
     background-position: center;
-    width: 128px;
-    height: 185px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
 
     .item{
-      background-repeat: no-repeat;
       width: 130px;
       height: 185px;
       display: flex;
@@ -123,10 +123,10 @@
     }
 
     .icon {
-      border-radius: 100px;
-      padding: 3px 26px;
+      border-radius: 50px;
+      padding: 0.5px 26px;
       margin-top: 15px;
-      height: 90px;
+      height: 95px;
       transition: .3s;
       display: flex;
       align-items: center;
@@ -150,6 +150,7 @@
         background-color: var(--purple-color);
         &:hover {
           background-color: white;
+          box-shadow: 0 0 80px;
         }
       }
     }
