@@ -16,7 +16,7 @@ export const SecondCorpus = () => {
               -Торговое дело.</p>
           </div>
           <div className={classes.planet}>
-            <Link to={'/arhivoveds'} className={classes.spec1}>
+            <Link to={'/dou'} className={classes.spec1}>
               <Button
                 type="marker"
                 imageSrc="src/assets/img/buttons/marker/secondCorpus/arhivoveds.svg"
