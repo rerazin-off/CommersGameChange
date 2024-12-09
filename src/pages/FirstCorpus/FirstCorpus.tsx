@@ -18,7 +18,7 @@ export const FirstCorpus = () => {
               -Юриспруденция.</p>
           </div>
           <div className={classes.planet}>
-            <Link to={'/lawyers'} className={classes.spec1}>
+            <Link to={'/Yur'} className={classes.spec1}>
               <Button
                 type="marker"
                 imageSrc="src/assets/img/buttons/marker/firstCorpus/lawyers.svg"
