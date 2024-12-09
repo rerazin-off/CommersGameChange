@@ -8,6 +8,7 @@ import { Logistics } from '../../pages/Logistics/Logistics.tsx';
 import {Yur} from '../../pages/Yur/Yur.tsx'
 
 import { Programmers } from '../../pages/FirstCorpus/Programmers/Programmers';
+import { SpecialKidergarden } from '../../pages/ThirdCorpus/special-kindergarten/SpecialKindergarden';
 
 
 export const router = createBrowserRouter([
@@ -20,4 +21,5 @@ export const router = createBrowserRouter([
   { path: '/logistics', element: <Logistics /> },
   { path: '/robotGame', element:  <Logistics />,},
   { path: '/Yur', element: <Yur /> },
+  { path: '/SpecialKinder', element: <SpecialKidergarden/> },
 ]);

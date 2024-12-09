@@ -1,33 +1,47 @@
-.kindergarden{
-  background: url("../../../assets/img/fon_kindergarden.svg");
-  width: 1920px;
+.cont{
+  background: url("../../../assets/img/fon_kindergarden (3).svg");
+  background-repeat: no-repeat;
+  background-position: center;
   height: 1080px;
-  position: fixed;
+}
+.card{
+  position: absolute;
+  margin-top: 300px;
 }
 .button{
-  transform: translate(0, 1015px);
   display: flex;
-  align-content: space-between;
-  padding-left: 20px;
+  justify-content: space-around;
+  align-items: center;
+  width: 400px;
+  padding-top: 35px;
+  padding-left: 30px;
 }
-.arrow{
-  padding-left: 20px;
-  transform: translate(0,9px);
+.container {
+  width: 1500px;
+  margin: 0;
+  height: 973px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.gallery{
-  padding-left: 100px;
-  transform: translate(0, -10px);
-}
-.meditation{
-  padding-left: 48px;
-  transform: translate(0, -13px);
-}
+.progs{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  }
 .wheelchair{
-  background-image: url("../../../assets/img/wheelchair.svg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  width: 352px;
-  height: 813.2px;
-  transform: translate(1050px, -490px);
+  width: 348px;
+  height: 445px;
+  transform: translate(1000px, 270px);
+}
+.telescope{
+  width: 373.5px;
+  height: 408.95px;
+  transform: translate(210px, 140px);
+}
+.сrescent{
+  width: 310px;
+  height: 400px;
+  transform: translate(-950px, 190px);
 }
