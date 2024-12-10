@@ -3,6 +3,7 @@ import React, { useCallback, useState } from 'react';
 import Card from '../../../components/Card/Card';
 import { Button } from '../../../components/Button/Button';
 import { Link } from 'react-router-dom';
+import { Assistant } from '../../../components/Assistant/Assistant';
 
 const gameData: Record<string, { title: string; body: string }> = {
   shelfGame: {
@@ -21,7 +22,7 @@ const gameData: Record<string, { title: string; body: string }> = {
   },
   hammerGame: {
     title: 'Игра суд',
-    body: 'Вам будет необходимо выступить в роли ссудьи, выносящего приговор!' +
+    body: 'Вам будет необходимо выступить в роли судьи, выносящего приговор!' +
       'Помните, что от вашего решения зависит судьба человека!',
   },
 
@@ -47,6 +48,7 @@ export const Yur: React.FC = () => {
 
   return (
     <div className={classes.cont}>
+      <Assistant title={"Право и организация социального обеспечения 40.02.01"} body={"Обеспечение реализации прав граждан в сфере пенсионного обеспечения и социальной защиты; Организация обеспечения деятельности учреждения социальной защиты населения и органов Пенсионного фонда РФ; Социально-правовая защита граждан;"} mar={"-550px"}></Assistant>
       <div className={classes.progs}>
         <div className={classes.container}>
           <div className={classes.shelf} onClick={() => handleGameClick('shelfGame')}></div>
