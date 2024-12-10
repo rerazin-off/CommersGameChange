@@ -56,9 +56,9 @@ const Card = (props: CardProps) => {
     <div>
         <div className={classes.var}>
           <div className={classes.text}>
-            <h1> {title} </h1>
-            <div className={classes.img}><img src={lineImage} alt="" /></div>
-            <p> {body} </p>
+              <h1> {title} </h1>
+              <div className={classes.img}><img src={lineImage} alt="" /></div>
+              <p> {body} </p>
           </div>
           <div className={classes.knopki}>
             <Button onClick={closeCard} bgColor={'pink'} type={'type1v2'}>НАЗАД</Button>

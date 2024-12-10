@@ -11,29 +11,35 @@
   border: 1px solid #4DE4F2;
   width: 622px;
   height: 421px;
-}
-.var h1{
-  font-family:"AA Spaceman";
-  font-size: 32px;
-  color: #ffffff;
-  margin-top: 70px;
-  margin-left: 25px;
-  line-height: 25%;
-  margin-bottom: 0px;
-}
-.var p{
-  font-family: "Cruinn";
-  font-size: 20px;
-  font-weight: 500;
-  margin-top: 0px;
-  margin-bottom: 0px;
-  text-align: start;
-  margin-left: 25px;
-  color: #ffffff;
-}
-.var img{
-  margin-right: 20px;
+  .text{
+    width: 622px;
+  }
 
+  h1{
+    font-family:"AA Spaceman";
+    font-size: 32px;
+    color: #ffffff;
+    margin-top: 70px;
+    margin-left: 66px;
+    line-height: 25%;
+    margin-bottom: 0px;
+  }
+
+  p{
+    font-family: "Cruinn";
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    text-align: start;
+    margin-left: 62px;
+    margin-right: 48px;
+    color: #ffffff;
+  }
+
+  img {
+    margin-left: 41px;
+  }
 }
 .knopki{
   width: 100%;

@@ -22,6 +22,7 @@
   right: 550px; /* Слева от кота */
   background-image: url("../../assets/img/assistant.svg");
   background-filter: blur(2px);
+  backdrop-filter: blur(2px);
   border-radius: 8px;
   padding: 15px;
   color: white;
@@ -48,7 +49,9 @@
 .X {
   height: 50px;
   width: 50px;
+  margin-top: 80px;
   cursor: pointer;
   transform: translate(1030px,-510px);
   position: absolute;
+}
 }

@@ -1,5 +1,5 @@
 .cont{
-  background: url("../../../assets/img/fon/programmers_s_knopkoy.svg");
+  background: url("../../../assets/img/fon/prog.svg");
   background-repeat: no-repeat;
   background-position: center;
   height: 1080px;
@@ -32,19 +32,41 @@
     justify-content: center;
 
     .comp{
-      background: url("../../../assets/img/games_marker/comp.svg");
-      background-repeat: no-repeat;
-      margin-top: 150px;
-      margin-left: 120px;
-      width: 721px;
-      height: 436px;
+      margin-top: 200px;
+      margin-right: 250px;
+      width: 436px;
+      height: 300px;
+      cursor: pointer;
+      border-radius: 40px;
     }
     .robot{
-      background: url("../../../assets/img/games_marker/robot2.png");
-      background-repeat: no-repeat;
-      margin-top: 200px;
-      width: 677px;
-      height: 647px;
+      margin-top: 370px;
+      margin-right: 50px;
+      width: 300px;
+      height: 510px;
+      cursor: pointer;
+      border-radius: 100px;
+    }
+    .comp, .robot {
+      animation: pulse 1.5s linear infinite;
+    }
+    .robot:hover {
+      animation: none;
+    }
+    .comp:hover {
+      animation: none;
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(77, 228, 242, 0.19);
+      }
+      70% {
+        box-shadow: 0 0 0 80px rgba(77, 228, 242, 0.51);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(77, 228, 242, 0.19);
+      }
     }
   }
 }

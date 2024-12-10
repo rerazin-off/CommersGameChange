@@ -6,9 +6,12 @@ import { ThirdCorpus } from '../../pages/ThirdCorpus/ThirdCorpus.tsx';
 import { Kidergarden } from '../../pages/ThirdCorpus/kindergarden/kindergarden';
 import { Logistics } from '../../pages/Logistics/Logistics.tsx';
 import {Yur} from '../../pages/Yur/Yur.tsx'
-
+import { Logistics } from '../../pages/FirstCorpus/Logistics/Logistics.tsx';
+import {Yur} from '../../pages/FirstCorpus/Yur/Yur.tsx'
+import {Dou} from '../../pages/SecondCorpus/Dou/dou.tsx'
 import { Programmers } from '../../pages/FirstCorpus/Programmers/Programmers';
 import { SpecialKidergarden } from '../../pages/ThirdCorpus/special-kindergarten/SpecialKindergarden';
+import { Economist } from '../../pages/FirstCorpus/Economist/Economist';
 
 
 export const router = createBrowserRouter([
@@ -19,7 +22,9 @@ export const router = createBrowserRouter([
   { path: '/programmers', element: <Programmers /> },
   { path: '/kinder', element: <Kidergarden/> },
   { path: '/logistics', element: <Logistics /> },
-  { path: '/robotGame', element:  <Logistics />,},
+  // { path: '/robotGame', element:  < />,},
   { path: '/Yur', element: <Yur /> },
   { path: '/SpecialKinder', element: <SpecialKidergarden/> },
+  { path: '/economist', element: <Economist /> },
+  { path: '/dou', element: <Dou /> },
 ]);
