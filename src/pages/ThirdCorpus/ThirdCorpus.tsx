@@ -37,7 +37,7 @@ export const ThirdCorpus = () => {
                   colorText="white"
                 />
               </Link>
-              <Link to={'/musicians'} className={classes.spec3}>
+              <Link to={'/music'} className={classes.spec3}>
                 <Button
                   type="marker"
                   imageSrc="src/assets/img/buttons/marker/thirdCorpus/musicians.svg"
@@ -60,7 +60,7 @@ export const ThirdCorpus = () => {
               <Button type="type2" bgColor="pink">Назад</Button>
             </Link>
             <Link to={'/1'}>
-              <Button type="type2" bgColor="blue">Вперед</Button>
+              <Button type="type2" bgColor="blue">Вперёд</Button>
             </Link>
           </div>
         </div>
