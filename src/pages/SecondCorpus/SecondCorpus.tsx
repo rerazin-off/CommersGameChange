@@ -32,14 +32,6 @@ export const SecondCorpus = () => {
                 colorText="white"
               />
             </Link>
-            <Link to={'/commerce'} className={classes.spec3}>
-              <Button
-                type="marker"
-                imageSrc="src/assets/img/buttons/marker/secondCorpus/commerce.svg"
-                bgColor="purple"
-                colorText="white"
-              />
-            </Link>
             <Link to={'/tovaroveds'} className={classes.spec4}>
               <Button
                 type="marker"
