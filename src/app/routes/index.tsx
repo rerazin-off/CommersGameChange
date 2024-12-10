@@ -10,6 +10,7 @@ import {Dou} from '../../pages/SecondCorpus/Dou/dou.tsx'
 import { Programmers } from '../../pages/FirstCorpus/Programmers/Programmers';
 import { SpecialKidergarden } from '../../pages/ThirdCorpus/special-kindergarten/SpecialKindergarden';
 import { Economist } from '../../pages/FirstCorpus/Economist/Economist';
+import { MusiciansRoom } from '../../pages/ThirdCorpus/musiciansroom/MusiciansRoom';
 
 
 export const router = createBrowserRouter([
@@ -25,4 +26,5 @@ export const router = createBrowserRouter([
   { path: '/SpecialKinder', element: <SpecialKidergarden/> },
   { path: '/economist', element: <Economist /> },
   { path: '/dou', element: <Dou /> },
+  { path: '/music', element: <MusiciansRoom /> },
 ]);

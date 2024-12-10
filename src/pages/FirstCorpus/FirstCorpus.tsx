@@ -57,7 +57,7 @@ export const FirstCorpus = () => {
             <Button type="type2" bgColor="pink">Назад</Button>
           </Link>
           <Link to={'/2'}>
-            <Button type="type2" bgColor="blue">Вперед</Button>
+            <Button type="type2" bgColor="blue">Вперёд</Button>
           </Link>
         </div>
       </div>
