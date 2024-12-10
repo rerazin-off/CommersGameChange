@@ -3,6 +3,7 @@ import React, { useCallback, useState } from 'react';
 import Card from '../../../components/Card/Card';
 import { Button } from '../../../components/Button/Button';
 import { Link } from 'react-router-dom';
+import { Assistant } from '../../../components/Assistant/Assistant';
 
 const gameData: Record<string, { title: string; body: string }> = {
   truckGame: {

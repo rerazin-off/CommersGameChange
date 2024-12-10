@@ -8,7 +8,7 @@ import { useState } from 'react';
 //   color: "primary";
 // };
 
-export const Assistant = ((props: { title: string ; body: string}) => {
+export const Assistant = ((props: { title: string ; body: string; mar:string;}) => {
 
   const [openHelper, setOpenHelper] = useState(true);
 
@@ -23,7 +23,7 @@ export const Assistant = ((props: { title: string ; body: string}) => {
           <div className={classes.tooltip}>
             <span><p className={classes.title}> {props.title} </p></span>
             <span><p className={classes.body}>{props.body}</p></span>
-            <img onClick={setIsOpen} src={IconX} alt="" className={classes.X} />
+            <img onClick={setIsOpen} src={IconX} alt="" className={classes.X} style={{marginTop: `${props.mar}`}}/>
             <img onClick={setIsOpen} src={IconCat} alt="" className={classes.cat} />
           </div>
         )
