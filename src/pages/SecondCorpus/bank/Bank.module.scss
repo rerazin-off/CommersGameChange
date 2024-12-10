@@ -1,0 +1,96 @@
+.cont{
+  background: url("../../../assets/img/fon/bank.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 1080px;
+}
+.buttons{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 400px;
+  padding-top: 30px;
+  padding-left: 30px;
+}
+.progs{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  .card{
+    position: absolute;
+    margin-top: 300px;
+  }
+
+  .container{
+    width: 1700px;
+    margin: 0;
+    height: 973px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .papka{
+      width: 134px;
+      height: 196px;
+      margin-top: 320px;
+      margin-left: 173px;
+      cursor: pointer;
+      border-radius: 20px;
+    }
+    .list{
+      margin-top: 370px;
+      width: 116px;
+      height: 100px;
+      margin-left: 160px;
+      cursor: pointer;
+      border-radius: 20px;
+    }
+    .ekran{
+      margin-top: 40px;
+      width: 233px;
+      height: 127px;
+      margin-left: 170px;
+      cursor: pointer;
+      border-radius: 20px;
+      //transform: rotate(-5deg);
+    }
+    .koshel{
+      margin-top: 680px;
+      width: 80px;
+      height: 90px;
+      margin-left: 560px;
+      cursor: pointer;
+      border-radius: 20px;
+      //transform: rotate(-5deg);
+    }
+    .papka, .list, .ekran, .koshel {
+      animation: pulse 2s linear infinite;
+    }
+    .papka:hover {
+      animation: none;
+    }
+    .list:hover {
+      animation: none;
+    }
+    .ekran:hover {
+      animation: none;
+    }
+    .koshel:hover {
+      animation: none;
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0px rgba(191, 188, 255, 0);
+      }
+      70% {
+        box-shadow: 0 0 0 20px #BFBCFF;
+      }
+      100% {
+        box-shadow: 0 0 0 0px rgba(191, 188, 255, 0);
+      }
+    }
+  }
+}
