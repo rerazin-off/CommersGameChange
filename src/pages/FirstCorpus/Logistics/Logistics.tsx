@@ -12,7 +12,7 @@ const gameData: Record<string, { title: string; body: string }> = {
       ' в правильном порядке все элементы транспортировки!',
   },
   hologramGame: {
-    title: 'Спасти королевство',
+    title: 'Спаси королевство',
     body: 'Ваша задача спасти королевство за минимальное время и минимальные расходы.',
   },
 
@@ -38,10 +38,12 @@ export const Logistics: React.FC = () => {
 
   return (
     <div className={classes.cont}>
+      <Assistant title={" Операционная деятельность в логистике 38.02.03 "} body={"Планирование и организация логистического процесса в организациях (в подразделениях) различных сфер деятельности; Управление логистическими процессами в закупках, производстве и распределении; Оптимизация ресурсов организации(подразделения),связанных с управлением потоками:"} mar={"-550px"}></Assistant>
       <div className={classes.progs}>
         <div className={classes.container}>
-          <div className={classes.truck} onClick={() => handleGameClick('truckGame')}></div>
           <div className={classes.hologram} onClick={() => handleGameClick('hologramGame')}></div>
+          <div className={classes.truck} onClick={() => handleGameClick('truckGame')}></div>
+
         </div>
         <div className={classes.card}><Card title={cardData.title} body={cardData.body} game={currentGame}
                                             isOpen={openIsCard} onClose={closeCard} /></div>
