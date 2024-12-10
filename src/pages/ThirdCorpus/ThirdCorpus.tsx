@@ -16,11 +16,12 @@ export const ThirdCorpus = () => {
               <h1>ПЛАНЕТА <br /> 3 КОРПУС</h1>
               <p>Эта самая дружелюбная и добрая планете, ведь на ней обитают следующие специальности: <br />
                 -Дошкольное образование; <br />
+                -Специальное дошкольное образование; <br />
                 -Преподавание в начальных классах; <br />
                 -Музыкальное образование.</p>
             </div>
             <div className={classes.planet}>
-              <Link to={'/kubik'} className={classes.spec1}>
+              <Link to={'/SpecialKinder'} className={classes.spec1}>
                 <Button
                   type="marker"
                   imageSrc="src/assets/img/buttons/marker/thirdCorpus/icons.svg"
@@ -28,7 +29,7 @@ export const ThirdCorpus = () => {
                   colorText="white"
                 />
               </Link>
-              <Link to={'/kindergarten-teachers'} className={classes.spec2}>
+              <Link to={'/kinder'} className={classes.spec2}>
                 <Button
                   type="marker"
                   imageSrc="src/assets/img/buttons/marker/thirdCorpus/kindergarten-teachers.svg"

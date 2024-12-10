@@ -1,0 +1,42 @@
+.cont{
+  background: url("../../../assets/img/fon_special_kindergarden.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 1080px;
+}
+.card{
+  position: absolute;
+  margin-top: 300px;
+}
+.button{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 400px;
+  padding-top: 35px;
+  padding-left: 30px;
+}
+.container {
+  width: 1500px;
+  margin: 0;
+  height: 973px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.progs{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.flowers{
+  width: 348px;
+  height: 445px;
+  transform: translate(-450px, 180px);
+}
+.tent{
+  width: 650px;
+  height: 520px;
+  transform: translate(210px, 180px);
+}
