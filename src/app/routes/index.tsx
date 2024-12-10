@@ -12,6 +12,7 @@ import { SpecialKidergarden } from '../../pages/ThirdCorpus/special-kindergarten
 import { Economist } from '../../pages/FirstCorpus/Economist/Economist';
 import { Bank } from '../../pages/SecondCorpus/bank/Bank';
 import { Torgashi } from '../../pages/SecondCorpus/torgashi/Torgashi';
+import { MusiciansRoom } from '../../pages/ThirdCorpus/musiciansroom/MusiciansRoom';
 
 
 export const router = createBrowserRouter([
@@ -29,4 +30,5 @@ export const router = createBrowserRouter([
   { path: '/dou', element: <Dou /> },
   { path: '/bank', element: <Bank /> },
   { path: '/tovaroveds', element: <Torgashi /> },
+  { path: '/music', element: <MusiciansRoom /> },
 ]);

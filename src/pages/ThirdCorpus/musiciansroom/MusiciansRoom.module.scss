@@ -1,0 +1,83 @@
+.cont{
+  background: url("../../../assets/img/fon/fon_mucic.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 1080px;
+}
+.card{
+  position: absolute;
+  margin-top: 300px;
+}
+.button{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 400px;
+  padding-top: 35px;
+  padding-left: 30px;
+}
+.container {
+  width: 1500px;
+  margin: 0;
+  height: 973px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.progs{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.guitar{
+  width: 183px;
+  height: 205px;
+  transform: translate(293px, -60px);
+  border-radius: 114px;
+}
+.drums{
+  width: 244.21px;
+  height: 233.6px;
+  transform: translate(-273px, 340px);
+  border-radius: 116.8px;
+}
+.xylophone{
+  width: 184.04px;
+  height: 99.24px;
+  transform: translate(300px, 190px);
+  border-radius: 50px;
+}
+.notes{
+  width: 270px;
+  height: 186.11px;
+  transform: translate(450px, 55px);
+  border-radius: 114px;
+}
+.guitar, .drums, .xylophone, .notes{
+  animation: pulse 2s linear infinite;
+}
+.guitar:hover {
+  animation: none;
+}
+.drums:hover {
+  animation: none;
+}
+.xylophone:hover {
+  animation: none;
+}
+.notes:hover {
+  animation: none;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(209, 209, 209, 0.19);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(255, 255, 255, 0.51);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(209, 209, 209, 0.19);
+  }
+}
