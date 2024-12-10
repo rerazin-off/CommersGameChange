@@ -40,7 +40,7 @@ export const Programmers: React.FC = () => {
 
   return (
   <div className={classes.cont}>
-    <Assistant title={"gtyxbjyysq ajyl hjccbb dfc ghjlfcn"} body={"Задумались, как сделать пульсирующий элемент на чистом css/html. В данной статей, мы покажем самый простой пример того, как реализоваться анимацию пульсацию, используя html и css."}></Assistant>
+    <Assistant mar={"-470px"} title={"Добро пожаловать на специальность 09.02.07 Информационные системы и программирование!"} body={"Задумались, как сделать пульсирующий элемент на чистом css/html. В данной статей, мы покажем самый простой пример того, как реализоваться анимацию пульсацию, используя html и css."}></Assistant>
     <div className={classes.progs}>
       <div className={classes.container}>
         <div className={classes.comp} onClick={() => handleGameClick('computerGame')}></div>
