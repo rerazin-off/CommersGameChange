@@ -3,15 +3,16 @@ import React, { useCallback, useState } from 'react';
 import Card from '../../../components/Card/Card';
 import { Button } from '../../../components/Button/Button';
 import { Link } from 'react-router-dom';
+import { Assistant } from '../../../components/Assistant/Assistant';
 
 const gameData: Record<string, { title: string; body: string }> = {
   computerGame: {
-    title: 'ПЕНСИОННЫЙ ФОНД',
-    body: 'Описание для компьютерной игры.',
+    title: 'Бухгалтерия',
+    body: 'Вам необходимо распределить расходы на те, которые организация может произвести и на те, которые не может',
   },
   robotGame: {
-    title: 'Игра с роботами',
-    body: 'Описание для игры с роботами.',
+    title: 'Лото',
+    body: 'Вам будут необходимо выбрать вариант ответа, после нажатия на выбранный вариант он исчезнет и более будет не доступен, выбирайте внимательно!',
   },
   spaceGame: {
     title: 'Космическая игра',
@@ -39,6 +40,7 @@ export const Economist: React.FC = () => {
 
   return (
     <div className={classes.cont}>
+      <Assistant title={"gtyxbjyysq ajyl hjccbb dfc ghjlfcn"} body={"Задумались, как сделать пульсирующий элемент на чистом css/html. В данной статей, мы покажем самый простой пример того, как реализоваться анимацию пульсацию, используя html и css."}></Assistant>
       <div className={classes.progs}>
         <div className={classes.container}>
           <div className={classes.doska} onClick={() => handleGameClick('computerGame')}></div>
