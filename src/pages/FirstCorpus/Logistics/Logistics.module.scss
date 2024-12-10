@@ -37,8 +37,8 @@
       margin-right: 200px;
       cursor: pointer;
       object-fit: contain;
-      border-radius: 30px;
-    }
+       border-radius: 30px;
+ }
     .hologram{
       margin-left: 60px;
       margin-bottom: 80px;
@@ -46,6 +46,7 @@
       height: 420px;
       cursor: pointer;
       object-fit: contain;
+
       //position: relative;
       animation: pulse 2s infinite;
       border-radius: 3000px;
@@ -71,6 +72,8 @@
       100% {
         box-shadow: 0 0 0 0 rgba(77, 228, 242, 0.19);
       }
+
+
     }
   }
 }
