@@ -8,7 +8,7 @@ import { useState } from 'react';
 //   color: "primary";
 // };
 
-export const Assistant = ((props: { title: string ; body: string; mar:string;}) => {
+export const Assistant = ((props: { title: string ; body: string; mar:string; cat:string;}) => {
 
   const [openHelper, setOpenHelper] = useState(true);
 
@@ -24,7 +24,7 @@ export const Assistant = ((props: { title: string ; body: string; mar:string;}) 
             <span><p className={classes.title}> {props.title} </p></span>
             <span><p className={classes.body}>{props.body}</p></span>
             <img onClick={setIsOpen} src={IconX} alt="" className={classes.X} style={{marginTop: `${props.mar}`}}/>
-            <img onClick={setIsOpen} src={IconCat} alt="" className={classes.cat} />
+            <img onClick={setIsOpen} src={IconCat} alt="" className={classes.cat} style={{marginTop: `${props.cat}`}} />
           </div>
         )
         : (
