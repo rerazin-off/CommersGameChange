@@ -45,6 +45,7 @@ export const MusiciansRoom = () => {
   return (
 
     <div className={classes.cont}><Assistant
+      cat={"-30px"}
       mar={"-430px"}
       title={'Добро пожаловать на специальность ' +
         '53.02.01 Музыкальное образование!'} body={"Здесь происходит организация и преподование" +

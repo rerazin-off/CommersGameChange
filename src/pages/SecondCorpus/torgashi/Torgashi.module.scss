@@ -32,41 +32,20 @@
     align-items: center;
 
     .prilavok{
-      width: 134px;
-      height: 196px;
+      width: 750px;
+      height: 200px;
       margin-top: 320px;
-      margin-left: 173px;
+      margin-left: 300px;
       cursor: pointer;
       border-radius: 20px;
     }
     .teleska{
-      margin-top: 370px;
-      width: 116px;
-      height: 100px;
-      margin-left: 160px;
+      margin-top: 500px;
+      width: 400px;
+      height: 400px;
+      margin-left: 120px;
       cursor: pointer;
       border-radius: 20px;
-    }
-    .prilavok, .teleska{
-      animation: pulse 2s linear infinite;
-    }
-    .prilavok:hover {
-      animation: none;
-    }
-    .teleska:hover {
-      animation: none;
-    }
-
-    @keyframes pulse {
-      0% {
-        box-shadow: 0 0 0 0px rgba(191, 188, 255, 0);
-      }
-      70% {
-        box-shadow: 0 0 0 20px #BFBCFF;
-      }
-      100% {
-        box-shadow: 0 0 0 0px rgba(191, 188, 255, 0);
-      }
     }
   }
 }
