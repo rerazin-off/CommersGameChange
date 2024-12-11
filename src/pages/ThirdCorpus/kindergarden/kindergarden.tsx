@@ -41,6 +41,7 @@ export const Kidergarden = () => {
   return (
 
         <div className={classes.cont}><Assistant
+          fon={'thirdPlanet1'} link={'3'}
           cat={"-120px"}
           mar={"-510px"}
           title={'Добро пожаловать на специальность ' +

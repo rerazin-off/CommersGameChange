@@ -44,7 +44,7 @@ export const Bank: React.FC = () => {
 
   return (
     <div className={classes.cont}>
-      <Assistant cat={"-80px"} mar={"-470px"} title={"Добро пожаловать на специальность 38.02.07 Банковское дело!"} body={"Эта специальность обучает студентов основам экономики, банковского законодательства, кредитных и депозитных операций, валютного обмена и управления рисками."}></Assistant>
+      <Assistant fon={'secondPlanet1'} link={'2'} cat={"-80px"} mar={"-470px"} title={"Добро пожаловать на специальность 38.02.07 Банковское дело!"} body={"Эта специальность обучает студентов основам экономики, банковского законодательства, кредитных и депозитных операций, валютного обмена и управления рисками."}></Assistant>
       <div className={classes.progs}>
         <div className={classes.container}>
           <div className={classes.papka} onClick={() => handleGameClick('papkaGame')}></div>

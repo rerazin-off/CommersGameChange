@@ -39,21 +39,21 @@ export const Torgashi: React.FC = () => {
   // const handleCloseTask = () => setOpenCard(null);
 
   return (
-    <div className={classes.cont}>
-      <Assistant cat={"-80px"} mar={"-470px"} title={"Добро пожаловать на специальность 38.02.08 Торговое дело!"} body={"Эта специальность  готовит специалистов для работы в сфере торговли. Студенты изучают экономику, маркетинг, товароведение и организацию торговых процессов."}></Assistant>
-      <div className={classes.progs}>
-        <div className={classes.container}>
-          <div className={classes.prilavok} onClick={() => handleGameClick('prilavokGame')}></div>
-          <div className={classes.teleska} onClick={() => handleGameClick('teleskaGame')}></div>
+        <div className={classes.cont}>
+          <Assistant fon={'secondPlanet1'} link={'2'} cat={"-80px"} mar={"-470px"} title={"Добро пожаловать на специальность 38.02.08 Торговое дело!"} body={"Эта специальность  готовит специалистов для работы в сфере торговли. Студенты изучают экономику, маркетинг, товароведение и организацию торговых процессов."}></Assistant>
+          <div className={classes.progs}>
+            <div className={classes.container}>
+              <div className={classes.prilavok} onClick={() => handleGameClick('prilavokGame')}></div>
+              <div className={classes.teleska} onClick={() => handleGameClick('teleskaGame')}></div>
+            </div>
+            <div className={classes.card}><Card title={cardData.title} body={cardData.body} game={currentGame}
+                                                isOpen={openIsCard} onClose={closeCard} /></div>
+          </div>
+          <div className={classes.buttons}>
+            <Link to={"/2"}><Button bgColor={'white'} type={"back_arrow"} /></Link>
+            <Link to={"/"}><Button bgColor={'white'} type={"gallery"} /></Link>
+            <Link to={"/"}><Button bgColor={'white'} type={"meditation"} /></Link>
+          </div>
         </div>
-        <div className={classes.card}><Card title={cardData.title} body={cardData.body} game={currentGame} isOpen={openIsCard} onClose={closeCard} /></div>
-      </div>
-      <div className={classes.buttons}>
-        <Link to={"/2"}><Button bgColor={'white'} type={"back_arrow"} /></Link>
-        <Link to={"/"}><Button bgColor={'white'} type={"gallery"} /></Link>
-        <Link to={"/"}><Button bgColor={'white'} type={"meditation"} /></Link>
-      </div>
-    </div>
-  )
-    ;
+  );
 };
