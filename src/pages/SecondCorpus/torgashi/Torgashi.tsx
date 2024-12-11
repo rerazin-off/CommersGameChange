@@ -6,11 +6,11 @@ import { Link } from 'react-router-dom';
 import { Assistant } from '../../../components/Assistant/Assistant';
 
 const gameData: Record<string, { title: string; body: string }> = {
-  computerGame: {
+  prilavokGame: {
     title: 'Бухгалтерия',
     body: 'Вам необходимо распределить расходы на те, которые организация может произвести и на те, которые не может',
   },
-  robotGame: {
+  teleskaGame: {
     title: 'Лото',
     body: 'Вам будут необходимо выбрать вариант ответа, после нажатия на выбранный вариант он исчезнет и более будет не доступен, выбирайте внимательно!',
   },
@@ -43,8 +43,8 @@ export const Torgashi: React.FC = () => {
       <Assistant cat={"-80px"} mar={"-470px"} title={"Добро пожаловать на специальность 38.02.08 Торговое дело!"} body={"Эта специальность  готовит специалистов для работы в сфере торговли. Студенты изучают экономику, маркетинг, товароведение и организацию торговых процессов."}></Assistant>
       <div className={classes.progs}>
         <div className={classes.container}>
-          <div className={classes.prilavok} onClick={() => handleGameClick('computerGame')}></div>
-          <div className={classes.teleska} onClick={() => handleGameClick('robotGame')}></div>
+          <div className={classes.prilavok} onClick={() => handleGameClick('prilavokGame')}></div>
+          <div className={classes.teleska} onClick={() => handleGameClick('teleskaGame')}></div>
         </div>
         <div className={classes.card}><Card title={cardData.title} body={cardData.body} game={currentGame} isOpen={openIsCard} onClose={closeCard} /></div>
       </div>

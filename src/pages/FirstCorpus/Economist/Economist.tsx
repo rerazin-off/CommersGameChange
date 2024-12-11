@@ -6,11 +6,11 @@ import { Link } from 'react-router-dom';
 import { Assistant } from '../../../components/Assistant/Assistant';
 
 const gameData: Record<string, { title: string; body: string }> = {
-  computerGame: {
+  doskaGame: {
     title: 'Бухгалтерия',
     body: 'Вам необходимо распределить расходы на те, которые организация может произвести и на те, которые не может',
   },
-  robotGame: {
+  stolGame: {
     title: 'Лото',
     body: 'Вам будут необходимо выбрать вариант ответа, после нажатия на выбранный вариант он исчезнет и более будет не доступен, выбирайте внимательно!',
   },
@@ -43,8 +43,8 @@ export const Economist: React.FC = () => {
       <Assistant cat={"-160px"} mar={"-560px"} title={"Добро пожаловать на специальность 38.02.01 Экономика и бухгалтерский учет!"} body={"Эта специальность готовит специалистов для работы в сфере бухгалтерского учета, финансов и налогообложения. Студенты учат экономику, бухгалтерию, налоги, аудит и анализ деятельности компаний. Профессии: бухгалтер, экономист, налоговый консультант, аудитор."}></Assistant>
       <div className={classes.progs}>
         <div className={classes.container}>
-          <div className={classes.doska} onClick={() => handleGameClick('computerGame')}></div>
-          <div className={classes.stol} onClick={() => handleGameClick('robotGame')}></div>
+          <div className={classes.doska} onClick={() => handleGameClick('doskaGame')}></div>
+          <div className={classes.stol} onClick={() => handleGameClick('stolGame')}></div>
         </div>
         <div className={classes.card}><Card title={cardData.title} body={cardData.body} game={currentGame} isOpen={openIsCard} onClose={closeCard} /></div>
 
