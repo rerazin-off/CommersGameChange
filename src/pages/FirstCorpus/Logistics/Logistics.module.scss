@@ -51,29 +51,5 @@
       animation: pulse 2s infinite;
       border-radius: 3000px;
     }
-    .truck, .hologram {
-      animation: pulse 1.5s linear infinite;
-    }
-    .truck:hover {
-      animation: none;
-    }
-    .hologram:hover {
-      animation: none;
-
-    }
-
-    @keyframes pulse {
-      0% {
-        box-shadow: 0 0 0 0 rgba(77, 228, 242, 0.19);
-      }
-      70% {
-        box-shadow: 0 0 0 50px rgba(77, 228, 242, 0.51);
-      }
-      100% {
-        box-shadow: 0 0 0 0 rgba(77, 228, 242, 0.19);
-      }
-
-
-    }
   }
 }

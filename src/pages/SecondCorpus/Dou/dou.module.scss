@@ -49,26 +49,5 @@
       object-fit: contain;
       border-radius: 40px;
     }
-    .laptop, .shelfs {
-      animation: pulse 1.5s linear infinite;
-    }
-    .laptop:hover {
-      animation: none;
-    }
-    .shelfs:hover {
-      animation: none;
-    }
-
-    @keyframes pulse {
-      0% {
-        box-shadow: 0 0 0 0 rgba(191, 188, 255, 0.19);
-      }
-      70% {
-        box-shadow: 0 0 0 30px rgba(191, 188, 255, 0.51);
-      }
-      100% {
-        box-shadow: 0 0 0 0 rgba(191, 188, 255, 0.19);
-      }
     }
   }
-}
