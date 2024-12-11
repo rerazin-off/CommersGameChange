@@ -38,6 +38,7 @@ export const SpecialKidergarden = () => {
 
     <div className={classes.cont}>
       <Assistant
+        cat={"-70px"}
         mar={"-470px"}
         title={'Добро пожаловать на специальность ' +
         '44.02.04 Специальное дошкольное образование!'} body={"Здесь происходит организация мероприятий, " +

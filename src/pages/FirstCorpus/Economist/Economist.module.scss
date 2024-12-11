@@ -48,26 +48,5 @@
       cursor: pointer;
       border-radius: 200px;
     }
-    .doska, .stol {
-      animation: pulse 2s linear infinite;
-    }
-    .stol:hover {
-      animation: none;
-    }
-    .doska:hover {
-      animation: none;
-    }
-
-    @keyframes pulse {
-      0% {
-        box-shadow: 0 0 0 0px rgba(77, 228, 242, 0.19);
-      }
-      70% {
-        box-shadow: 0 0 0 80px rgba(77, 228, 242, 0.51);
-      }
-      100% {
-        box-shadow: 0 0 0 0px rgba(77, 228, 242, 0.19);
-      }
-    }
   }
 }

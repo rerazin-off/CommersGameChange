@@ -65,32 +65,5 @@
       border-radius: 20px;
       //transform: rotate(-5deg);
     }
-    .papka, .list, .ekran, .koshel {
-      animation: pulse 2s linear infinite;
-    }
-    .papka:hover {
-      animation: none;
-    }
-    .list:hover {
-      animation: none;
-    }
-    .ekran:hover {
-      animation: none;
-    }
-    .koshel:hover {
-      animation: none;
-    }
-
-    @keyframes pulse {
-      0% {
-        box-shadow: 0 0 0 0px rgba(191, 188, 255, 0);
-      }
-      70% {
-        box-shadow: 0 0 0 20px #BFBCFF;
-      }
-      100% {
-        box-shadow: 0 0 0 0px rgba(191, 188, 255, 0);
-      }
-    }
   }
 }
