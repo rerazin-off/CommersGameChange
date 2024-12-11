@@ -41,6 +41,7 @@ export const MusiciansRoom = () => {
   return (
 
     <div className={classes.cont}><Assistant
+      fon={'thirdPlanet1'} link={'3'}
       cat={"-30px"}
       mar={"-430px"}
       title={'Добро пожаловать на специальность ' +
