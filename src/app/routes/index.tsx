@@ -13,6 +13,7 @@ import { Economist } from '../../pages/FirstCorpus/Economist/Economist';
 import { Bank } from '../../pages/SecondCorpus/bank/Bank';
 import { Torgashi } from '../../pages/SecondCorpus/torgashi/Torgashi';
 import { MusiciansRoom } from '../../pages/ThirdCorpus/musiciansroom/MusiciansRoom';
+import { ElementarySchool } from '../../pages/ThirdCorpus/ElementarySchool/ElementarySchool';
 
 
 export const router = createBrowserRouter([
@@ -31,4 +32,5 @@ export const router = createBrowserRouter([
   { path: '/bank', element: <Bank /> },
   { path: '/tovaroveds', element: <Torgashi /> },
   { path: '/music', element: <MusiciansRoom /> },
+  { path: '/ElemShool', element: <ElementarySchool /> },
 ]);

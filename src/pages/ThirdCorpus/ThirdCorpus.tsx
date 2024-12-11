@@ -45,7 +45,7 @@ export const ThirdCorpus = () => {
                   colorText="white"
                 />
               </Link>
-              <Link to={'/teachers'} className={classes.spec4}>
+              <Link to={'/ElemShool'} className={classes.spec4}>
                 <Button
                   type="marker"
                   imageSrc="src/assets/img/buttons/marker/thirdCorpus/teachers.svg"

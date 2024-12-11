@@ -6,10 +6,6 @@ import React, { useCallback, useState } from 'react';
 import Card from '../../../components/Card/Card';
 
 const gameData: Record<string, { title: string; body: string }> = {
-  guitarGame: {
-    title: '',
-    body: '',
-  },
   drumsGame: {
     title: '',
     body: '',
@@ -53,7 +49,6 @@ export const MusiciansRoom = () => {
     </Assistant>
       <div className={classes.progs}>
         <div className={classes.container}>
-          <div className={classes.guitar} onClick={() => handleGameClick('guitarGame')}></div>
           <div className={classes.drums} onClick={() => handleGameClick('drumsGame')}></div>
           <div className={classes.xylophone} onClick={() => handleGameClick('xylophoneGame')}></div>
           <div className={classes.notes} onClick={() => handleGameClick('notesGame')}></div>
