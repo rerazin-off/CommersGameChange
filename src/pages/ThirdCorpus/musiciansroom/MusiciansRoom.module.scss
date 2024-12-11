@@ -1,5 +1,5 @@
 .cont{
-  background: url("../../../assets/img/fon/fon_mucic.svg");
+  background: url("../../../assets/img/fon/fon_music.svg");
   background-repeat: no-repeat;
   background-position: center;
   height: 1080px;
@@ -54,30 +54,30 @@
   transform: translate(450px, 55px);
   border-radius: 114px;
 }
-.guitar, .drums, .xylophone, .notes{
-  animation: pulse 2s linear infinite;
-}
-.guitar:hover {
-  animation: none;
-}
-.drums:hover {
-  animation: none;
-}
-.xylophone:hover {
-  animation: none;
-}
-.notes:hover {
-  animation: none;
-}
-
-@keyframes pulse {
-  0% {
-    box-shadow: 0 0 0 0 rgba(209, 209, 209, 0.19);
-  }
-  70% {
-    box-shadow: 0 0 0 15px rgba(255, 255, 255, 0.51);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(209, 209, 209, 0.19);
-  }
-}
+//.guitar, .drums, .xylophone, .notes{
+//  animation: pulse 2s linear infinite;
+//}
+//.guitar:hover {
+//  animation: none;
+//}
+//.drums:hover {
+//  animation: none;
+//}
+//.xylophone:hover {
+//  animation: none;
+//}
+//.notes:hover {
+//  animation: none;
+//}
+//
+//@keyframes pulse {
+//  0% {
+//    box-shadow: 0 0 0 0 rgba(209, 209, 209, 0.19);
+//  }
+//  70% {
+//    box-shadow: 0 0 0 15px rgba(255, 255, 255, 0.51);
+//  }
+//  100% {
+//    box-shadow: 0 0 0 0 rgba(209, 209, 209, 0.19);
+//  }
+//}

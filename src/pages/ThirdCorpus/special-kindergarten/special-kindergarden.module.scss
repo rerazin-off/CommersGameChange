@@ -1,5 +1,5 @@
 .cont{
-  background: url("../../../assets/img/fon_special_kindergarden.svg");
+  background: url("../../../assets/img/fon/fon_special_kindergarden (2).svg");
   background-repeat: no-repeat;
   background-position: center;
   height: 1080px;
@@ -42,27 +42,27 @@
   transform: translate(210px, 180px);
   border-radius: 100px;
 }
-.flowers, .tent {
-  animation: pulse 2s linear infinite;
-}
-.wheelchair:hover {
-  animation: none;
-}
-.telescope:hover {
-  animation: none;
-}
-.сrescent:hover {
-  animation: none;
-}
-
-@keyframes pulse {
-  0% {
-    box-shadow: 0 0 0 0 rgba(209, 209, 209, 0.19);
-  }
-  70% {
-    box-shadow: 0 0 0 15px rgba(255, 255, 255, 0.51);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(209, 209, 209, 0.19);
-  }
-}
+//.flowers, .tent {
+//  animation: pulse 2s linear infinite;
+//}
+//.wheelchair:hover {
+//  animation: none;
+//}
+//.telescope:hover {
+//  animation: none;
+//}
+//.сrescent:hover {
+//  animation: none;
+//}
+//
+//@keyframes pulse {
+//  0% {
+//    box-shadow: 0 0 0 0 rgba(209, 209, 209, 0.19);
+//  }
+//  70% {
+//    box-shadow: 0 0 0 15px rgba(255, 255, 255, 0.51);
+//  }
+//  100% {
+//    box-shadow: 0 0 0 0 rgba(209, 209, 209, 0.19);
+//  }
+//}
