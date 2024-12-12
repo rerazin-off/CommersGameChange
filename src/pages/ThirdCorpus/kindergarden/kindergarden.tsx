@@ -42,8 +42,8 @@ export const Kidergarden = () => {
 
         <div className={classes.cont}><Assistant
           fon={'thirdPlanet1'} link={'3'}
-          cat={"-120px"}
-          mar={"-510px"}
+          cat={"-130px"}
+          mar={"-535px"}
           title={'Добро пожаловать на специальность ' +
             '44.02.01 Дошкольное образование!'} body={"Здесь происходит организация мероприятий," +
           " различных видов деятельности, занятий по" +
