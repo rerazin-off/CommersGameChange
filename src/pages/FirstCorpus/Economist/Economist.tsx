@@ -52,7 +52,7 @@ export const Economist: React.FC = () => {
       <div className={classes.buttons}>
         <Link to={"/1"}><Button bgColor={'white'} type={"back_arrow"} /></Link>
         <Link to={"/"}><Button bgColor={'white'} type={"gallery"} /></Link>
-        <Link to={"/"}><Button bgColor={'white'} type={"meditation"} /></Link>
+        <Link to={"/psih"}><Button bgColor={'white'} type={"meditation"} /></Link>
       </div>
     </div>
   )
