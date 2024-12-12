@@ -33,7 +33,7 @@ export const Assistant = ((props: { title: string ; body: string; mar:string; ca
               <div className={classes.buttons}>
                 <Link to={`/${props.link}`}><Button bgColor={'white'} type={"back_arrow"} /></Link>
                 <Link to={"/"}><Button bgColor={'white'} type={"gallery"} /></Link>
-                <Link to={"/"}><Button bgColor={'white'} type={"meditation"} /></Link>
+                <Link to={"/psih"}><Button bgColor={'white'} type={"meditation"} /></Link>
               </div>
           </div>
         )

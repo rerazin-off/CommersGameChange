@@ -38,7 +38,7 @@ export const Logistics: React.FC = () => {
 
   return (
     <div className={classes.cont}>
-      <Assistant fon={'firstPlanet2'} link={'1'} cat={"-160px"} title={" Операционная деятельность в логистике 38.02.03 "} body={"Планирование и организация логистического процесса в организациях (в подразделениях) различных сфер деятельности; Управление логистическими процессами в закупках, производстве и распределении; Оптимизация ресурсов организации(подразделения),связанных с управлением потоками:"} mar={"-550px"}></Assistant>
+      <Assistant fon={'firstPlanet2'} link={'1'} cat={"-160px"} title={" Добро пожаловать на специальность 38.02.03 Операционная деятельность в логистике! "} body={"Планирование и организация логистического процесса в организациях (в подразделениях) различных сфер деятельности; Управление логистическими процессами в закупках, производстве и распределении; Оптимизация ресурсов организации(подразделения),связанных с управлением потоками:"} mar={"-550px"}></Assistant>
       <div className={classes.progs}>
         <div className={classes.container}>
           <div className={classes.hologram} onClick={() => handleGameClick('hologramGame')}></div>
@@ -52,7 +52,7 @@ export const Logistics: React.FC = () => {
       <div className={classes.buttons}>
         <Link to={"/1"}><Button bgColor={'white'} type={"back_arrow"} /></Link>
         <Link to={"/"}><Button bgColor={'white'} type={"gallery"} /></Link>
-        <Link to={"/"}><Button bgColor={'white'} type={"meditation"} /></Link>
+        <Link to={"/Psih"}><Button bgColor={'white'} type={"meditation"} /></Link>
       </div>
     </div>
   )
