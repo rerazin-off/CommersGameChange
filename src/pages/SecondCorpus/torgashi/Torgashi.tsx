@@ -40,7 +40,7 @@ export const Torgashi: React.FC = () => {
 
   return (
         <div className={classes.cont}>
-          <Assistant fon={'secondPlanet1'} link={'2'} cat={"-80px"} mar={"-470px"} title={"Добро пожаловать на специальность 38.02.08 Торговое дело!"} body={"Эта специальность  готовит специалистов для работы в сфере торговли. Студенты изучают экономику, маркетинг, товароведение и организацию торговых процессов."}></Assistant>
+          <Assistant fon={'secondPlanet1'} link={'2'} cat={"-110px"} mar={"-490px"} title={"Добро пожаловать на специальность 38.02.08 Торговое дело!"} body={"Эта специальность  готовит специалистов для работы в сфере торговли. Студенты изучают экономику, маркетинг, товароведение и организацию торговых процессов."}></Assistant>
           <div className={classes.progs}>
             <div className={classes.container}>
               <div className={classes.prilavok} onClick={() => handleGameClick('prilavokGame')}></div>

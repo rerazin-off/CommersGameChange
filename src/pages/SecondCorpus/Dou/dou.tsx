@@ -39,7 +39,7 @@ export const Dou: React.FC = () => {
   return (
     <div className={classes.cont}>
       <div className={classes.progs}>
-        <Assistant fon={'secondPlanet1'} link={'2'} cat={"-200px"} title={"Добро пожаловать на специальность 46.02.01 Документационное обеспечение упраленияя и архивоведение!"} body={"Организация архивной и справочно-информационной работы по документам организации; Осуществление документационного обеспечения управления и архивного дела с использованием программных средств учета, обработки и поиска документов."} mar={"-590px"}></Assistant>
+        <Assistant fon={'secondPlanet1'} link={'2'} cat={"-170px"} title={"Добро пожаловать на специальность 46.02.01 Документационное обеспечение упраленияя и архивоведение!"} body={"Эта специальность обучает работе с документацией и архивами. Студенты изучают оформление документов, документооборот и использование IT-технологий."} mar={"-535px"}></Assistant>
         <div className={classes.container}>
           <div className={classes.laptop} onClick={() => handleGameClick('laptopGame')}></div>
           <div className={classes.shelfs} onClick={() => handleGameClick('shelfsGame')}></div>
