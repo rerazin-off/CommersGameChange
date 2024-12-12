@@ -66,16 +66,20 @@ export const SpecialKidergarden = () => {
           </Link>
         </div>
         <div className={classes.gallery}>
-          <Button
-            type="gallery"
-            bgColor="white"
-          />
+          <Link to={'/'}>
+            <Button
+              type='gallery'
+              bgColor='white'
+            />
+          </Link>
         </div>
         <div className={classes.meditation}>
-          <Button
-            type="meditation"
-            bgColor="white"
-          />
+          <Link to={'/psih'}>
+            <Button
+              type='meditation'
+              bgColor='white'
+            />
+          </Link>
         </div>
       </div>
     </div>
