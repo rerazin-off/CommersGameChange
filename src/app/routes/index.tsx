@@ -14,6 +14,7 @@ import { Bank } from '../../pages/SecondCorpus/bank/Bank';
 import { Torgashi } from '../../pages/SecondCorpus/torgashi/Torgashi';
 import { MusiciansRoom } from '../../pages/ThirdCorpus/musiciansroom/MusiciansRoom';
 import { ElementarySchool } from '../../pages/ThirdCorpus/ElementarySchool/ElementarySchool';
+import { Psih } from '../../pages/MainPage/Psih/Psih';
 
 
 export const router = createBrowserRouter([
@@ -33,4 +34,5 @@ export const router = createBrowserRouter([
   { path: '/tovaroveds', element: <Torgashi /> },
   { path: '/music', element: <MusiciansRoom /> },
   { path: '/ElemShool', element: <ElementarySchool /> },
+  { path: '/Psih', element: <Psih /> },
 ]);

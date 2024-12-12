@@ -1,0 +1,62 @@
+.cont{
+  background: url("../../../assets/img/fon/psih.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 1080px;
+}
+.buttons{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 400px;
+  padding-top: 30px;
+  padding-left: 30px;
+}
+.progs {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  .card {
+    position: absolute;
+    margin-top: 300px;
+  }
+
+  .container {
+    margin: 0;
+    height: 973px;
+    display: flex;
+    align-items: center;
+
+    .flours {
+      width: 350px;
+      height: 150px;
+      margin-top: 650px;
+      margin-left: 10px;
+      margin-right: 300px;
+      cursor: pointer;
+      object-fit: contain;
+      border-radius: 30px;
+    }
+
+    .pillow {
+      margin-bottom: 80px;
+      width: 200px;
+      height: 200px;
+      cursor: pointer;
+      object-fit: contain;
+      margin-right: 125px;
+      //position: relative;
+    }
+
+    .pillows {
+      margin-left: 200px;
+      margin-top: 470px;
+      width: 450px;
+      height: 250px;
+      cursor: pointer;
+      object-fit: contain;
+    }
+  }
+}
