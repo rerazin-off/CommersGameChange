@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Тест: внутренний монстр.</title>
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/js.js"></script>
+    <script src="js/jquery.js"></script>
+    <style type="text/css">
+        .back {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 0;
+    left: 0;
+    width: 5vw;
+    height: 5vw;
+    z-index: 100;
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 100vw;
+    font-size: 1vw;
+}
+    </style>
+</head>
+
+
+<body>
+  
+   <a class="back" href="../../index.html?block=evils">НАЗАД</a>
+    <div class="zatemn" id="zat"></div>
+    <div class="title" id="title1">
+        <div class="question">
+            <div class="h1"><strong>ОПРЕДЕЛИ СВОЕГО ВНУТРЕННЕГО МОНСТРА.</strong> <br>Наше подсознание таит в себе много неизведанного и неожиданного, даже для нас самих. Чтобы узнать, что вы за человек на самом деле, и какова ваша жизненная цель, предлагаем пройти этот забавный тест. Выберите фигуру, которая нравится вам больше всего!</div>
+        </div>
+        <input type="button" value="Начать" id="b3" onclick="not()">
+    </div>
+    <div class="block" id="231">
+        <div class="flex-1">
+            <div class="img-1 img"></div>
+            <div class="img-2 img"></div>
+            <div class="img-3 img"></div>
+        </div>
+        <div class="flex-1">
+            <div class="img-4 img"></div>
+            <div class="img-5 img"></div>
+            <div class="img-6 img"></div>
+        </div>
+        <div class="flex-1">
+            <div class="img-7 img"></div>
+            <div class="img-8 img"></div>
+            <div class="img-9 img"></div>
+        </div>
+    </div>
+    <div class="foto">
+        <img src="img/man-1.png" class="img-10">
+        <img src="img/man-2.png" class="img-11">
+    </div>
+    <div class="on-main" onclick="nazad()"></div>
+    <div class="test-1 test" id="1" style="display: none">
+        Дела обстоят не очень хорошо… Вы — гедонист, и ваша основная цель — наслаждаться жизнью, вкушая все ее блага и наслаждения. Вы не просто любите вкусно есть, придаваться плотским утехам и одеваться в лучшие наряды, для вас это — смысл жизни. Но в какой-то момент вам придется заплатить за свои проступки. Умерьте свой пыл, чтобы после не жалеть о содеянном.
+    </div>
+    <div class="test-2 test" id="2" style="display: none">
+        Вы — реинкарнация Супермена. Вы пришли в мир, чтобы делать добро. Ваша способность жертвовать собой ради других просто поражает! Вы самый дружелюбный, отзывчивый и миролюбивый человек. Мир ценит все, что вы делаете для него!
+    </div>
+    <div class="test-3 test" id="3" style="display: none">
+        Вы — прирожденный учитель. Вы много знаете и охотно делитесь своим опытом с другими. Вы считаете, что главный источник всех бед — глупость. Обучая других, вы делаете этот мир чуточку лучше. Возможно, в одиночку вам не удастся избавить человечество от невежества, но именно такова ваша цель.
+    </div>
+    <div class="test-4 test" id="4" style="display: none">
+        Вы — страстный и очень обаятельный человек. Больше всего вы любите кружить голову противоположному полу. Вам нравится соблазнять, и вы действительно профи в этом. Без внимания вы просто рискуете завянуть. Но будьте осторожны — когда-нибудь кто-то может разбить и ваше сердце.
+    </div>
+    <div class="test-5 test" id="5" style="display: none">
+        Как бы ужасно это ни звучало, но вы пришли в этот мир, чтобы быть добычей. В мире львов вы — газель. Вы наивный и открытый человек, именно поэтому так часто попадаете в неприятные ситуации. Возможно, в следующей жизни вы получите награду за все ваши прошлые и будущие жертвы.
+    </div>
+    <div class="test-6 test" id="6" style="display: none">
+        У вас много друзей, вы любите быть в центре внимания. Можете легко найти общий язык с кем угодно и непринужденно чувствуете себя в любом окружении. Ваша цель — дарить людям радость!
+    </div>
+    <div class="test-7 test" id="7" style="display: none">
+        Вы — боец. Вы не из тех, кто боится состязаний и соперничества. Как только кто-то бросает вам вызов, ваши глаза загораются азартом. Ваша цель — побеждать! Из вас получился бы отличный спортсмен или бизнесмен.
+    </div>
+    <div class="test-8 test" id="8" style="display: none">
+        Вы — творческий и неординарный человек. Ваше мнение часто не сходится с мнением большинства. Но вы привыкли быть белой вороной и не испытываете дискомфорта, связанного с этим. Ваша цель — нести в мир передовые идеи. Когда-нибудь человечество по достоинству оценит ваш вклад в культуру, философию или искусство.
+    </div>
+    <div class="test-9 test" id="9" style="display: none">
+        Вы — человек довольно традиционных взглядов. Вы не гонитесь за переменчивой модой, а в жизни ищите стабильность и надежную опору. Ваша главная цель — воспитать детей, построить дом и просто быть достойным человеком. Что ж, это похвально, тем более, что у вас уже неплохо получается!
+    </div>
+
+    <script>
+        let opElem = {
+            image: document.getElementsByClassName('img'),
+            test: document.getElementsByClassName('test')
+        }
+        document.body.addEventListener('click', e => {
+            if (e.target.classList.contains('img')) {
+                [...opElem.test].forEach(el => el.style.display = 'none');
+                opElem.test[[...opElem.image].indexOf(e.target)].style.display = "block";
+                var elem = document.getElementById('zat');
+                elem.style.visibility = 'visible';
+            }
+            if (e.target.classList.contains('test')) {
+                e.target.style.display = 'none';
+                var elem = document.getElementById('zat');
+                elem.style.visibility = 'hidden';
+            }
+        });
+
+        function not() {
+            var elem = document.getElementById('title1');
+            elem.style.visibility = 'hidden';
+        }
+
+        function nazad() {
+            var elem = document.getElementById('title1');
+            elem.style.visibility = 'visible';
+        }
+
+    </script>
+</body>
+
+
+</html>

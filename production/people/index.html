@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Собери человечка</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="js/jquery.ui.touch-punch.min.js"></script>
+    <style type="text/css">
+        .back {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 0;
+    left: 0;
+    width: 5vw;
+    height: 5vw;
+    z-index: 100;
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 100vw;
+    font-size: 1vw;
+}
+    </style>
+   
+</head>
+
+<body>
+     <a class="back" href="../../index.html?block=evils">НАЗАД</a>
+   <div class="title" id="title">
+         <div class="question1">
+            <div class="h1"><strong>«Собери человечка»</strong></div>
+        </div>
+        <input type="button" value="Начать" onclick="none()">
+    </div>
+    
+   <div id="tem1" class="time">
+        <div id="gol1" class="item " data-drag="item1" data-drag-true="false"><img src="img/golova-kryg.svg" class="item0" alt=""></div>
+ 
+        <div id="gol2" class="item" data-drag="item2" data-drag-true="false"><img src="img/golova-kvadrat2.svg" class="item0" alt=""></div>
+        <div id="gol3" class="item" data-drag="item3" data-drag-true="false"><img src="img/golova-treygolnik.svg" class="item0" alt=""></div>
+        <div id="gol4" class="item" data-drag="item4" data-drag-true="false"><img src="img/golova-treygolnik2.svg" class="item0" alt=""></div>
+
+     
+    </div>
+    
+     <div id="tem2" class="time2" >
+
+        <div id="gol5" class="item" data-drag="item5" data-drag-true="false"><img src="img/treygolnik-telo.svg" class="item01" alt=""></div>
+        <div id="gol6" class="item" data-drag="item6" data-drag-true="false"><img src="img/oval-telo.svg" class="item0" alt=""></div>
+        <div id="gol7" class="item" data-drag="item7" data-drag-true="false"><img src="img/strannoetelo.svg" class="item0" alt=""></div>
+        <div id="gol8" class="item" data-drag="item8" data-drag-true="false"><img src="img/pryamougolnik-telo.svg" class="item0" alt=""></div>
+        <div id="gol9" class="item" data-drag="item9" data-drag-true="false"><img src="img/treygolnik-telo.svg" class="item02" alt=""></div>
+        <div id="gol10" class="item" data-drag="item10" data-drag-true="false"><img src="img/pryamougolnik-telo.svg" class="item01" alt=""></div>
+        <div id="gol11" class="item" data-drag="item11" data-drag-true="false"><img src="img/pryamougolnik-telo.svg" class="item02" alt=""></div>
+         <div id="gol12" class="item" data-drag="item12" data-drag-true="false"><img src="img/dva-truegolnika.svg" class="item0" alt=""></div>
+    </div>
+    
+    
+     <div id="tem3" class="time2" >
+
+        <div id="gol13" class="item" data-drag="item13" data-drag-true="false"><img src="img/pryamougolnik4.svg" class="item9" alt=""></div>
+        <div id="gol14" class="item" data-drag="item14" data-drag-true="false"><img src="img/treygolnik2.svg" class="item9" alt=""></div>
+        <div id="gol15" class="item" data-drag="item15" data-drag-true="false"><img src="img/oval2.svg" class="item9" alt=""></div>
+       
+        
+    </div>
+    
+      <div id="tem4" class="time2" >
+
+        <div id="gol16" class="item" data-drag="item16" data-drag-true="false"><img src="img/pryamougolnik3.svg" class="item9" alt=""></div>
+        <div id="gol17" class="item" data-drag="item17" data-drag-true="false"><img src="img/treygolnik.svg" class="item9" alt=""></div>
+        <div id="gol18" class="item" data-drag="item18" data-drag-true="false"><img src="img/oval.svg" class="item9" alt=""></div>
+       
+        
+    </div>
+    
+    
+    
+    
+    
+     <div id="tem5" class="time2" >
+
+        <div id="gol19" class="item" data-drag="item19" data-drag-true="false"><img src="img/pryamougolnik.svg" class="item9" alt=""></div>
+        <div id="gol20" class="item" data-drag="item20" data-drag-true="false"><img src="img/treygolnik5.svg" class="item9" alt=""></div>
+       
+       
+        
+    </div>
+    
+     <div id="tem6" class="time2" >
+
+        <div id="gol21" class="item" data-drag="item21" data-drag-true="false"><img src="img/pryamougolnik2.svg" class="item9" alt=""></div>
+        <div id="gol22" class="item" data-drag="item22" data-drag-true="false"><img src="img/treygolnik6.svg" class="item9" alt=""></div>
+   
+       
+        
+    </div>
+
+    <div class="block1">
+        <div class="index drop" data-drop="item1"  ></div>
+   
+    </div>
+   <div class="block1">
+        <div class="index drop"   data-drop="item2"  ></div>
+   
+    </div>
+     <div class="block1">
+        <div class="index drop"   data-drop="item3"  ></div>
+   
+    </div>
+     <div class="block1">
+        <div class="index drop"   data-drop="item4"  ></div>
+   
+    </div>
+    
+     <div class="block1">
+        <div class="index drop"   data-drop="item5"  ></div>
+   
+    </div>
+     <div class="block1">
+        <div class="index drop"   data-drop="item6"  ></div>
+   
+    </div>
+     <div class="block1">
+        <div class="index drop"   data-drop="item7"  ></div>
+   
+    </div>
+     <div class="block1">
+        <div class="index drop"   data-drop="item8"  ></div>
+   
+    </div>
+     <div class="block1">
+        <div class="index drop"   data-drop="item9"  ></div>
+   
+    </div>
+     <div class="block1">
+        <div class="index drop"   data-drop="item10"  ></div>
+   
+    </div>
+     <div class="block1">
+        <div class="index drop"   data-drop="item11"  ></div>
+   
+    </div>
+     <div class="block1">
+        <div class="index drop"   data-drop="item12"  ></div>
+   
+    </div>
+
+    <div class="block1">
+        <div class="index drop"   data-drop="item13"  ></div>
+   
+    </div>
+        <div class="block1">
+        <div class="index drop"   data-drop="item14"  ></div>
+   
+    </div>
+        <div class="block1">
+        <div class="index drop"   data-drop="item15"  ></div>
+   
+    </div>
+
+       <div class="block1">
+        <div class="index drop"   data-drop="item16"  ></div>
+   
+    </div>
+       <div class="block1">
+        <div class="index drop"   data-drop="item17"  ></div>
+   
+    </div>
+       <div class="block1">
+        <div class="index drop"   data-drop="item18"  ></div>
+   
+    </div>
+
+        <div class="block1">
+        <div class="index drop"   data-drop="item19"  ></div>
+   
+    </div>
+        <div class="block1">
+        <div class="index drop"   data-drop="item20"  ></div>
+   
+    </div>
+       <div class="block1">
+        <div class="index drop"   data-drop="item21"  ></div>
+   
+    </div>
+       <div class="block1">
+        <div class="index drop"   data-drop="item22"  ></div>
+   
+    </div>
+    
+    
+       <div id="myspan1" class="end">
+           <div class="question"> 
+           <p div="qwe123"> Руководитель – люди, которые склонны к организации и руководству. Они, как правило, обладают ораторскими способностями, хорошими лидерскими качествами, прекрасно адаптируются в социальной сфере. Важно отметить, что проявление данных качеств во многом зависит и от уровня психического развития, поэтому при низком уровне данные черты могут присутствовать ситуативно </p>
+     </div>
+    </div>
+    
+    
+    <div id="myspan2" class="end">
+        <div class="question"> 
+           <p> Ученый – такие люди способны быстро абстрагироваться от реальности, имеют уникальную способность анализировать и рационально продумывать любую ситуацию, а также обладают концептуальным умом и душевным равновесием. Представители этого типа наиболее часто встречаются среди деятелей кино, режиссуры, цирка и мультипликации. </p>
+      </div>
+    </div>
+    <div id="myspan3" class="end">
+        <div class="question"> 
+           <p> Нечувствительный к переживаниям других – противоположный эмотивному тип людей, которые либо вообще не замечают переживаний других, либо относятся к ним с невниманием и даже усиливают давление на людей. В случаях, когда они являются хорошими специалистами, они запросто способны заставлять остальных делать то, что, по их мнению, правильно. Нередко для данного типа характерна черствость, возникающая в определенных ситуациях, чаще тогда, когда такие люди замыкаются в собственных заботах.окружающим, но и к себе. Нередко у них наблюдаются нервные заболевания, которые являются результатом перенапряжения. </p>
+      </div>
+    </div>
+    
+    <div id="myspan4" class="end">
+        <div class="question"> 
+           <p>Интуитивный – такие люди отличаются высокой чувствительностью нервной системы и ее истощаемостью. Они нередко проявляют себя в технических видах творчества, также обладают ручными навыками и хорошим воображением. Эти люди любят новизну и склонны поддерживать новые идеи. Они альтруисты, привыкли заботиться о других, свободолюбивы и не выносят посягательств на их свободу. У них есть собственный моральный кодекс и хорошо выработанный самоконтроль. </p>
+      </div>
+    </div>
+    
+    <div id="myspan5" class="end">
+        <div class="question"> 
+           <p > Ответственный исполнитель – обладает многими качествами руководителя, но при принятии серьезных решений склонен колебаться. Такие люди отличаются высоким уровнем профессионализма и ответственностью. У них повышенная чувствительность к правдивости, к тому же они очень требовательны не только к </p>
+      </div>
+    </div>
+    
+    <div id="myspan6" class="end">
+        <div class="question"> 
+           <p> Эмотивный – такие люди отличаются повышенным сопереживанием к окружающим. Они могут тяжело переживать даже определенные кадры из фильма, быть потрясенными и впадать в депрессию надолго из-за каких-либо тяжелых событий. Заботы других находят у данного типа большое сочувствие и участие, на которые они расходуют слишком много энергии. Однако в итоге таким людям часто не остается энергии на реализацию своих способностей. </p>
+      </div>
+    </div>
+    <div id="myspan7" class="end">
+        <div class="question"> 
+           <p id="myspan"> Изобретатель, конструктор, художник – это творческие натуры с технической жилкой, которые встречаются в областях художественного, интеллектуального и технического творчества. В большинстве своем такие люди являются интровертами. У них тоже собственные моральные нормы и хорошо развитый самоконтроль. Эти люди довольно эмоциональны и нередко одержимы своими гениальными идеями. </p>
+      </div>
+    </div>
+    <div id="myspan8" class="end">
+        <div class="question"> 
+           <p> Тревожно-мнительный – это очень способные и одаренные люди, которые обладают множеством навыков. Таким людям тесно в рамках одной профессии, в связи с чем они нередко меняют ее на полностью противоположную, а также часто имеют различные хобби, которые могут выступать второй профессией. Беспорядок и грязь такие люди не выносят физически, по поводу чего нередко имеют конфликты с окружающими. Этот тип людей очень ранимый и нуждается в постоянном подбадривании близких. </p>
+      </div>
+    </div>
+    
+            
+     
+    <div id="qwe" class="end1">
+          <div class="question">
+           <p id="span">Выберете голову</p>
+      </div>
+    </div>
+
+    <div id="qwe1" class="end1">
+          <div class="question">
+           <p id="span">Выберете туловище</p>
+     </div>
+    </div>
+    
+    <div id="qwe2" class="end1">
+          <div class="question">
+           <p id="span">Выберете левую руку</p>
+     </div>
+    </div>
+    <div id="qwe3" class="end1">
+          <div class="question">
+           <p id="span">Выберете правую руку</p>
+     </div>
+    </div>
+    <div id="qwe4" class="end1">
+          <div class="question">
+           <p id="span">Выберете правую ногу</p>
+     </div>
+    </div>
+    <div id="qwe5" class="end1">
+          <div class="question">
+           <p id="span">Выберете левую ногу</p>
+     </div>
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div id="golo" class="end2">    </div>
+    <div id="golp" class="end3">    </div>
+    <div id="golt1" class="end4">    </div>
+    <div id="golt2" class="end5">    </div>
+    
+    <div id="telt1" class="item01 end6" >    </div>
+    <div id="telo" class="end7">    </div>
+    <div id="telh1" class="end8">    </div>
+    <div id="telp1" class="item0 end9" >    </div>
+    <div id="telt2" class="item02 end10" >    </div>
+    <div id="telp2" class="item01  end11" >    </div>
+    <div id="telp3" class="item02 end12" >    </div>
+    <div id="telh2" class="end13">    </div>
+    
+    
+     <div id="lr1" class="lr">    </div>
+     <div id="lr2" class="lr1">    </div>
+     <div id="lr3" class="lr2">    </div>
+    
+    
+     <div id="pr1" class="pr">    </div>
+     <div id="pr2" class="pr1">    </div>
+     <div id="pr3" class="pr2">    </div>
+    
+    
+      <div id="ln1" class="ln1">    </div>
+     <div id="ln2" class="ln2">    </div>
+    
+    
+    <div id="pn1" class="pn1">    </div>
+     <div id="pn2" class="pn2">    </div>
+    
+    
+    <script src="js/js.js"></script>
+    
+     <script>
+          pn1.style.visibility = "hidden";
+          pn2.style.visibility = "hidden";
+        ln1.style.visibility = "hidden";
+        ln2.style.visibility = "hidden";
+         
+           pr1.style.visibility = "hidden";
+           pr2.style.visibility = "hidden";
+           pr3.style.visibility = "hidden";
+     
+        lr1.style.visibility = "hidden";
+        lr2.style.visibility = "hidden";
+        lr3.style.visibility = "hidden";
+        
+        golo.style.visibility = "hidden";
+         golp.style.visibility = "hidden";
+         golt1.style.visibility = "hidden";
+         golt2.style.visibility = "hidden";
+         
+         
+             
+       telt1.style.visibility = "hidden"; 
+        telo.style.visibility = "hidden";
+        telh1.style.visibility = "hidden";
+        telp1.style.visibility = "hidden";
+         telt2.style.visibility = "hidden";
+        telp2.style.visibility = "hidden";
+          telp3.style.visibility = "hidden";
+         telh2.style.visibility = "hidden";
+         
+           tem1.style.visibility = "visible";
+          tem2.style.visibility = "hidden";
+          tem3.style.visibility = "hidden";
+         tem4.style.visibility = "hidden";
+          tem5.style.visibility = "hidden";
+          tem6.style.visibility = "hidden";
+          myspan1.style.visibility = "hidden";
+         myspan2.style.visibility = "hidden";
+         myspan3.style.visibility = "hidden";
+         myspan4.style.visibility = "hidden";
+         myspan5.style.visibility = "hidden";
+         myspan6.style.visibility = "hidden";
+         myspan7.style.visibility = "hidden";
+        myspan8.style.visibility = "hidden";
+        qwe1.style.visibility = "hidden";
+        qwe2.style.visibility = "hidden";
+        qwe3.style.visibility = "hidden";
+        qwe4.style.visibility = "hidden";
+        qwe5.style.visibility = "hidden";
+     function none() {
+    document.getElementById('title').style.visibility = "hidden";
+}
+
+$(document).ready(function () {
+
+    var item = $('.item');
+    item.each(function (i, elem) {
+        var winWidth = $(".items").width();
+        var winHeight = $(".items").height();
+        var left = Math.floor(Math.random() * (winWidth - 300)) + 'px';
+        var top = Math.floor(Math.random() * (winHeight + 50)) + 'px';
+        $(this).css({
+            "top": top,
+            "left": left
+        });
+
+    });
+
+
+    $(".item").draggable({
+        cursor: "pointer",
+        drag: function (event, ui) {
+            $(this).addClass("dragElem");
+        },
+        stop: function (event, ui) {
+            $(this).removeClass("dragElem");
+        }
+    });
+
+    var correctAnswer1 = 0;
+    var correctAnswer2 = 0;
+    var correctAnswer3 = 0;
+    var correctAnswer4 = 0;
+    var correctAnswer5 = 0;
+    var correctAnswer6 = 0;
+    var correctAnswer7 = 0;
+    var correctAnswer8 = 0;
+    var correctAnswer9 = 0;
+    var correctAnswer10 = 0;
+var correctAnswer11 = 0;
+    var correctAnswer12 = 0;
+       var correctAnswer13 = 0;
+     var correctAnswer14 = 0;
+     var correctAnswer15 = 0;
+ var correctAnswer16 = 0;
+     var correctAnswer17 = 0;
+     var correctAnswer18 = 0;
+    var correctAnswer19 = 0;
+        var correctAnswer20 = 0;
+        var correctAnswer21 = 0;
+      var correctAnswer22 = 0;
+    var Answer1 = $('[data-drag = item1]').length;
+    var Answer2 = $('[data-drag = item2]').length;
+    var Answer3 = $('[data-drag = item3]').length;
+    var Answer4 = $('[data-drag = item4]').length;
+    var Answer5 = $('[data-drag = item5]').length;
+    var Answer6 = $('[data-drag = item6]').length;
+    var Answer7 = $('[data-drag = item7]').length;
+    var Answer8 = $('[data-drag = item8]').length;
+    var Answer9 = $('[data-drag = item9]').length;
+    var Answer10 = $('[data-drag = item10]').length;
+var Answer11 = $('[data-drag = item11]').length;
+    var Answer12 = $('[data-drag = item12]').length;
+  var Answer13 = $('[data-drag = item13]').length;
+  var Answer14 = $('[data-drag = item14]').length;
+  var Answer15 = $('[data-drag = item15]').length;
+var Answer16 = $('[data-drag = item16]').length;
+var Answer17 = $('[data-drag = item17]').length;
+var Answer18 = $('[data-drag = item18]').length;
+var Answer19 = $('[data-drag = item19]').length;
+    var Answer20 = $('[data-drag = item20]').length;
+    var Answer21 = $('[data-drag = item21]').length;
+        var Answer22 = $('[data-drag = item22]').length;
+    $(".drop").droppable({
+        classes: {
+            "ui-droppable": "active",
+            "ui-droppable-hover": "hover"
+        },
+        accept: function (el) {
+            var test = el.attr("data-drag");
+            var test1 = $(this).attr("data-drop");
+            if (test == test1) {
+                return true;
+            } else {
+                return false;
+            }
+        },
+        over: function (event, ui) {
+            $(this).addClass("truedrop");
+
+        },
+        out: function (event, ui) {
+        },
+        drop: function (event, ui) {
+            if (ui.draggable.attr('data-drag-true') == 'false') {
+                switch ($(this).attr('data-drop')) {
+                    case 'item1':
+                        correctAnswer1++;
+                        ui.draggable.attr('data-drag-true', 'true');
+                        break;
+                        
+                    case 'item2':
+                        correctAnswer2++;
+                        ui.draggable.attr('data-drag-true', 'true');
+                        break;
+                        
+                        
+                    case 'item3':
+                        correctAnswer3++;
+                        ui.draggable.attr('data-drag-true', 'true');
+                        break;
+                    case 'item4':
+                        correctAnswer4++;
+                        ui.draggable.attr('data-drag-true', 'true');
+                        break;
+                    
+                               
+                    case 'item5':
+                        correctAnswer5++;
+                        ui.draggable.attr('data-drag-true', 'true');
+                        break;
+                               
+                    case 'item6':
+                        correctAnswer6++;
+                        ui.draggable.attr('data-drag-true', 'true');
+                        break;
+                               
+                    case 'item7':
+                        correctAnswer7++;
+                        ui.draggable.attr('data-drag-true', 'true');
+                        break;
+                               
+                    case 'item8':
+                        correctAnswer8++;
+                        ui.draggable.attr('data-drag-true', 'true');
+                        break;
+                               
+                    case 'item9':
+                        correctAnswer9++;
+                        ui.draggable.attr('data-drag-true', 'true');
+                        break;
+                               
+                    case 'item10':
+                        correctAnswer10++;
+                        ui.draggable.attr('data-drag-true', 'true');
+                        break;
+                               
+                    case 'item11':
+                        correctAnswer11++;
+                        ui.draggable.attr('data-drag-true', 'true');
+                        break;
+                               
+                    case 'item12':
+                        correctAnswer12++;
+                        ui.draggable.attr('data-drag-true', 'true');
+                        break;
+                 
+                          case 'item13':
+                        correctAnswer13++;
+                        ui.draggable.attr('data-drag-true', 'true');
+                        break;
+                          case 'item14':
+                        correctAnswer14++;
+                        ui.draggable.attr('data-drag-true', 'true');
+                        break;
+                          case 'item15':
+                        correctAnswer15++;
+                        ui.draggable.attr('data-drag-true', 'true');
+                        break;
+                        
+                           case 'item16':
+                        correctAnswer16++;
+                        ui.draggable.attr('data-drag-true', 'true');
+                        break;
+                        
+                           case 'item17':
+                        correctAnswer17++;
+                        ui.draggable.attr('data-drag-true', 'true');
+                        break;
+                        
+                           case 'item18':
+                        correctAnswer18++;
+                        ui.draggable.attr('data-drag-true', 'true');
+                        break;
+                        
+                            case 'item19':
+                        correctAnswer19++;
+                        ui.draggable.attr('data-drag-true', 'true');
+                        break;
+                            case 'item20':
+                        correctAnswer20++;
+                        ui.draggable.attr('data-drag-true', 'true');
+                        break;
+                            case 'item21':
+                        correctAnswer21++;
+                        ui.draggable.attr('data-drag-true', 'true');
+                        break;
+                        
+                           case 'item22':
+                        correctAnswer22++;
+                        ui.draggable.attr('data-drag-true', 'true');
+                        break;
+                    default:
+                        break;
+                };
+            }
+            if (correctAnswer1 == Answer1)  {
+             
+                 tem2.style.visibility = "visible";
+                tem1.style.visibility = "hidden";
+                 
+                  qwe1.style.visibility = "visible";
+                  golo.style.visibility = "visible";
+       
+        
+         
+
+            }
+          
+             if (correctAnswer2 == Answer2)  {
+                 tem2.style.visibility = "visible";
+                tem1.style.visibility = "hidden";
+              
+                 qwe1.style.visibility = "visible";
+                  golp.style.visibility = "visible";
+                  
+            }
+            
+  if (correctAnswer3 == Answer3)  {
+                 tem2.style.visibility = "visible";
+                tem1.style.visibility = "hidden";
+                 qwe1.style.visibility = "visible";
+    golt1.style.visibility = "visible";
+            }
+              if (correctAnswer4 == Answer4)  {
+                 tem2.style.visibility = "visible";
+                tem1.style.visibility = "hidden";
+                
+                qwe1.style.visibility = "visible";
+                   golt2.style.visibility = "visible";
+            }
+            
+        
+            if (correctAnswer5 == Answer5)  {
+                 tem3.style.visibility = "visible";
+                tem2.style.visibility = "hidden";
+              
+              myspan1.style.visibility = "visible";
+                 qwe2.style.visibility = "visible";
+                
+                
+                 telt1.style.visibility = "visible";
+       
+
+        
+
+        
+                
+            }
+            
+            if (correctAnswer6 == Answer6)  {
+                 tem3.style.visibility = "visible";
+                tem2.style.visibility = "hidden";
+                
+                 myspan2.style.visibility = "visible";
+              qwe2.style.visibility = "visible";
+                 telo.style.visibility = "visible";
+            }
+            if (correctAnswer7 == Answer7)  {
+                        telh1.style.visibility = "visible";
+                 tem3.style.visibility = "visible";
+                tem2.style.visibility = "hidden";
+              
+                 myspan3.style.visibility = "visible";
+               qwe2.style.visibility = "visible";
+            }
+            if (correctAnswer8 == Answer8)  {
+                telp1.style.visibility = "visible";
+                 tem3.style.visibility = "visible";
+                tem2.style.visibility = "hidden";
+                
+                 myspan4.style.visibility = "visible";
+              qwe2.style.visibility = "visible";
+            }
+            if (correctAnswer9 == Answer9)  {
+                   telt2.style.visibility = "visible";
+                 tem3.style.visibility = "visible";
+                tem2.style.visibility = "hidden";
+                
+                 myspan5.style.visibility = "visible";
+               qwe2.style.visibility = "visible";
+            }
+            if (correctAnswer10 == Answer10)  {
+                 telp2.style.visibility = "visible";
+                 tem3.style.visibility = "visible";
+                tem2.style.visibility = "hidden";
+                
+                 myspan6.style.visibility = "visible";
+               qwe2.style.visibility = "visible";
+            }
+            if (correctAnswer11 == Answer11)  {
+                 
+        telp2.style.visibility = "visible";
+                 tem3.style.visibility = "visible";
+                tem2.style.visibility = "hidden";
+                
+                 myspan7.style.visibility = "visible";
+              qwe2.style.visibility = "visible";
+            }
+            if (correctAnswer12 == Answer12)  {
+                  telh2.style.visibility = "visible";
+                 tem3.style.visibility = "visible";
+                tem2.style.visibility = "hidden";
+               
+                 myspan8.style.visibility = "visible";
+                qwe2.style.visibility = "visible";
+            }
+            
+            
+              if (correctAnswer13 == Answer13)  {
+                 tem4.style.visibility = "visible";
+                tem3.style.visibility = "hidden";
+                
+                        qwe3.style.visibility = "visible";
+                  
+                  
+                  
+                  
+        lr1.style.visibility ="visible";
+      
+                  
+                  
+            }
+              if (correctAnswer14 == Answer14)  {
+                 tem4.style.visibility = "visible";
+                tem3.style.visibility = "hidden";
+               
+                        qwe3.style.visibility = "visible";
+                  lr2.style.visibility = "visible";
+      
+            }
+              if (correctAnswer15 == Answer15)  {
+                 tem4.style.visibility = "visible";
+                tem3.style.visibility = "hidden";
+                 
+                        qwe3.style.visibility = "visible";
+                    lr3.style.visibility = "visible";
+            }
+             if (correctAnswer16 == Answer16)  {
+                 tem5.style.visibility = "visible";
+                tem4.style.visibility = "hidden";
+              
+                          qwe4.style.visibility = "visible";
+                    
+                    
+                        pr1.style.visibility =  "visible";
+            }
+            
+                if (correctAnswer17 == Answer17)  {
+                 tem5.style.visibility = "visible";
+                tem4.style.visibility = "hidden";
+                   pr2.style.visibility =  "visible";
+                     qwe4.style.visibility = "visible";
+            }
+                if (correctAnswer18 == Answer18)  {
+                 tem5.style.visibility = "visible";
+                tem4.style.visibility = "hidden";
+                pr3.style.visibility =  "visible";
+                     qwe4.style.visibility = "visible";
+            }
+            
+            
+            
+            
+            
+            
+            
+            
+                  if (correctAnswer19 == Answer19)  {
+                 tem6.style.visibility = "visible";
+                tem5.style.visibility = "hidden";
+                 
+                       qwe5.style.visibility = "visible";
+                       ln1.style.visibility = "visible";
+                   
+            }
+            
+                  if (correctAnswer20 == Answer20)  {
+                 tem6.style.visibility = "visible";
+                tem5.style.visibility = "hidden";
+                
+                       qwe5.style.visibility = "visible";
+                       ln2.style.visibility = "visible";
+            }
+            
+                 if (correctAnswer21 == Answer21)  {
+              
+                tem6.style.visibility = "hidden";
+              pn1.style.visibility = "visible";
+                   
+                       end();
+            }
+                 if (correctAnswer22 == Answer22)  {
+                 
+                tem6.style.visibility = "hidden";
+                pn2.style.visibility = "visible";
+                    
+                       end();
+            }
+          
+            
+            
+            
+            
+            
+            
+            
+            
+    
+            
+            
+            
+        }
+    });
+    
+    
+   
+
+    
+    //Перезагрузка страницы при клике
+    $('.end').click(function () {
+        location.reload();
+
+    });
+    end = function () {
+        $(".end").addClass("finish");
+        $(".drop").addClass("win");
+    }
+
+});
+
+
+        
+        
+    </script>
+    
+    
+</body>
+</html>

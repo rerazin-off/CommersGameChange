@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Пропажа банковской карты</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="js/jquery.ui.touch-punch.min.js"></script>
+</head>
+
+<body>
+
+    <a class="back" href="../../../index.html?block=chein">НАЗАД</a>
+    <div class="title" id="title">
+        <div class="title-text">
+            <h1 class="zagolovok">Определи последовательность действий при пропаже карты</h1>
+        </div>
+        <input type="button" value="Начать" onclick="none()">
+    </div>
+
+    <div class="time">
+        <div class="item" data-drag="item1" data-drag-true="false"><img src="img/1.png" ><p>Звонок в банк</p></div>
+        <div class="item" data-drag="item6" data-drag-true="false"><img src="img/6.png" ><p>Написать заявление</p></div>
+        <div class="item" data-drag="item4" data-drag-true="false"><img src="img/4.png" ><p>Посетить банк</p></div>
+        <div class="item" data-drag="item3" data-drag-true="false"><img src="img/3.png" ><p>Следовать указаниям оператора</p></div>
+        <div class="item" data-drag="item2" data-drag-true="false"><img src="img/2.png" ><p>Заблокировать карту</p></div>
+        <div class="item" data-drag="item5" data-drag-true="false"><img src="img/5.png" ><p>Предъявить документы</p></div>
+        <div class="item" data-drag="item7" data-drag-true="false"><img src="img/7.png" ><p>Ждать выплат</p></div>
+       
+    </div>
+
+    <div class="block1">
+        <div class="index drop" data-drop="item1">1</div>
+        <div class="index drop" data-drop="item2">2</div>
+        <div class="index drop" data-drop="item3">3</div>
+        <div class="index drop" data-drop="item4">4</div>
+        <div class="index drop" data-drop="item5">5</div>
+        <div class="index drop" data-drop="item6">6</div> 
+        <div class="index drop" data-drop="item7">7</div>
+    </div>
+
+
+    <div class="end">
+        <p class="zagolovok">Поздравляем! Все верно!</p>
+    </div>
+
+
+    <script src="js/js.js"></script>
+</body>
+</html>

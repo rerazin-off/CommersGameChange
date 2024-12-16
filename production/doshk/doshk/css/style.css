@@ -1,0 +1,183 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap&subset=cyrillic');
+@import url('https://fonts.googleapis.com/css?family=Lobster&display=swap&subset=cyrillic');
+* {
+  box-sizing: border-box;
+}
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  display: flex;
+  user-select: none;
+} 
+
+.hach{
+    width: 100vw;
+    height: 100vh;
+    background-image: url(../icon/fom.jpg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.ok{
+    width: 30vw;
+    height: 40vh;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 1vw;
+    border: 1vw solid rgb(135, 206, 250);
+    background-color: rgba(135, 206, 250, 0.7);
+}
+.ok p{
+    font-family: 'Lobster', cursive;
+    text-align: center;
+    font-weight: bold;
+    font-size: 3vw;
+}
+.knop{
+    width: 10vw;
+    height: 8vh;
+    border: 0.3vw solid rgb(135, 206, 250);
+    display: flex;
+    align-items: center;
+    background-color: rgba(135, 206, 250, 0.7); 
+}
+
+.knop:active { 
+    background: rgba(135, 206, 250, 0.5); 
+ } 
+.knop a{
+    font-family: 'Lobster', cursive;
+    text-align: center;
+    font-style: 1vw;
+    margin: 0 auto;
+    text-decoration: none;
+    color: black;
+}
+.back {
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: space-between;
+  background-image: url(../icon/fon.jpg);
+}
+
+.back-btn {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 0;
+  left: 0;
+  width: 5vw;
+  height: 5vw;
+  z-index: 100;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 100vw;
+  font-size: 1vw;
+  
+}
+
+.block {
+  display: flex;
+  height: 33.5vh;
+  width: 70vw;
+  border-top: 0.1vw solid rgba(255, 255, 255, 0.68);
+  background-color: rgb(245, 237, 171, 0.5);
+  /* background-color: rgba(0, 0, 0, 0.77); */
+  /* position: relative; */
+  background-size: 80%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.block p{
+  font-family: 'Nunito';
+  text-align: center;
+  margin-right: 10vh;
+  margin-left: 1vh;
+  margin-top: 1vh;
+  font-size: 3vh;
+  font-weight: bold;
+}
+
+.block:nth-child(1) {
+  background-image: url(../icon/mlad.png);
+  background-size: 12vw 23vh;
+  background-position: left bottom;
+ 
+}
+
+.block:nth-child(2) {
+  background-image: url(../icon/rrv.png);
+  background-size: 12vw 24vh;
+  background-position: left bottom;
+}
+
+.block:nth-child(3) {
+  background-image: url(../icon/doshk.png);
+  background-size: 11vw 29vh;
+  background-position: left bottom;
+}
+.igr img{
+  width: 13vh;
+  height:13vh;
+  margin: 1vw;
+  /* background-color: rgba(255, 0, 0, 0.66);
+  background-color: hidden; */
+}
+#v{
+  width: 12vh;
+  height: 12vh;
+}
+.igr {
+  align-items: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 42vw;
+  background-color: rgb(245, 237, 171);
+}
+
+.igr p{
+  font-family: 'Nunito';
+  text-align: center;
+}
+.front{
+  display: flex;
+  width:70vw;
+  flex-direction: column;
+  flex-wrap: wrap;
+  position: absolute;
+}
+.next {
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+  font-size: 3vw;
+  position: absolute;
+  right: 5vw;
+  top: 40vh;
+  width: 30vw;
+  height: 8vw;
+  border-radius: 3vw;
+  background-color: #d93f1c;
+  transition: 0.5s;
+  visibility: hidden;
+  border: 0.3vw solid rgba(0, 0, 0, 0.52);
+}
+
+.next:hover {
+  background-color: rgb(144, 36, 12);
+  transition: 0.5s;
+}
+
+
+

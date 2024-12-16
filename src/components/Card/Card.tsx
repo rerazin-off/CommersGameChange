@@ -46,7 +46,11 @@ const Card = (props: CardProps) => {
         setIsClose(false);
       }, ANIMATION_DELAY);
     }
-  }, [onClose])
+  }, [onClose]);
+
+  const redirectToGame = () => {
+    window.location.href = props.game;
+  };
 
   if (!isOpen && !isClose) {
     return null;
@@ -62,7 +66,7 @@ const Card = (props: CardProps) => {
           </div>
           <div className={classes.knopki}>
             <Button onClick={closeCard} bgColor={'pink'} type={'type1v2'}>НАЗАД</Button>
-            <Link to={`/${game}`}> <Button bgColor={'blue'} type={'type1v2'}>ВПЕРЕД</Button></Link>
+            <Button bgColor={'blue'} type={'type1v2'} onClick={redirectToGame}>ВПЕРЕД</Button>
           </div>
         </div>
     </div>

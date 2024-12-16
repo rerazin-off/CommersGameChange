@@ -1,0 +1,128 @@
+html,body{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    margin: 0 auto;
+     background-image: url(../img/bg1.jpg);
+    
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.anketa{
+    position: absolute;
+    width: 50vw;
+    height: 95%;
+    
+    top:5%;
+    
+     background-image: url(../img/n1.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    
+}
+.oblako{
+    position: absolute;
+    width: 35vw;
+    height: 25vw;
+   visibility: hidden;
+    top:5vw;
+    left: 40vw;
+    background-image: url(../img/obl1.png);
+    background-size: 90%;
+    background-repeat: no-repeat;
+}
+
+.yes{
+    border-radius: 1vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2vw;
+    position: absolute;
+    width: 12vw;
+    height: 5vw;
+    color: white;
+    top:48vw;
+    left: 60vw; 
+     background-color:#009900;
+}
+.no{
+    border-radius: 1vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2vw;
+    position: absolute;
+    width: 12vw;
+    height: 5vw;
+    color: white;
+    top:48vw;
+    left: 78vw; 
+     background-color: #ff3300;
+}
+.start{z-index: 10;
+    background-color: rgba(82, 135, 181, 0.48);
+      position: absolute;
+    width: 100%;
+    height: 100%;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+}
+.pole{
+  
+     width: 100%;
+    height: 100%;
+    visibility: hidden;
+}
+.zad{
+    font-family: cursive;
+    background-color: white;
+      display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50vw;
+    height: 40vw;
+    
+    font-size: 3vw;
+    text-align: center;
+}
+
+.end{
+display: flex;
+     justify-content: center;
+     position: absolute;
+     top: 0;
+     left: 0;
+     right: 0;
+     bottom: 0;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+    
+     background-repeat: no-repeat;
+     background-position: center;
+     background-size: cover;
+     color: white;
+     font-size: 4vw;
+
+     visibility: hidden;
+     background-color: rgba(0, 0, 0, 0.82);
+ }
+
+ .end.finish {
+     display: flex;
+ }
+
+.text{
+    margin-left: 5vw;
+    margin-top: 5vw;
+    width: 20vw;
+    height: 11vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   font-size: 1vw;
+}

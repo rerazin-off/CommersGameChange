@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Цветок</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="js/jquery.ui.touch-punch.min.js"></script>
+</head>
+
+<body>
+
+
+    <div class="title" id="title">
+        <input type="button" value="Начать" onclick="none()">
+        <div class="name">Вырасти цветок</div>
+    </div>
+
+    <a class="back" href="../../index.html?block=rostok">НАЗАД</a>
+
+    <div class="time">
+        <div class="item" id="item1" data-drag="item1" data-drag-true="false"><img src="img/1.png" alt=""></div>
+        <div class="item" id="item2" data-drag="item2" data-drag-true="false"><img src="img/2.png" alt=""></div>
+        <div class="item" id="item3" data-drag="item3" data-drag-true="false"><img src="img/3.png" alt=""></div>
+        <div class="item" id="item4" data-drag="item4" data-drag-true="false"><img src="img/4.png" alt=""></div>
+    </div>
+
+    <div class="zadanie" id="q">
+        <p>Полейте росток!</p>
+    </div>
+
+    <div class="flower drop" id="fl1" data-drop="item1"></div>
+    <div class="flower drop" id="fl2" data-drop="item2"></div>
+    <div class="flower drop" id="fl3" data-drop="item3"></div>
+    <div class="flower drop" id="fl4" data-drop="item4"></div>
+    <div class="flower" id="fl5"></div>
+    <input type="button" id="restart" value="Начать заново" onclick="restart()">
+
+    <div class="end">
+        <p>Поздравляем! Цветок вырос!</p>
+    </div>
+
+
+    <script src="js/js.js"></script>
+</body>
+
+</html>

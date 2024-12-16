@@ -1,0 +1,652 @@
+body {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0;
+    position: absolute;
+    width: 100%;
+
+    background-size: 105%;
+    min-height: 100%;
+    background-repeat: no-repeat;
+    background-color: rgba(255, 255, 255, 0.92);
+    overflow: hidden;
+    background-image: url(../img/background.gif);
+}
+
+.end {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(247, 237, 225, 0.92);
+    color: black;
+    font-size: 1vw;
+    display: none;
+    z-index: 20;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #2e0448;
+
+}
+
+qwe123 {
+
+    background: rgba(169, 216, 151, 0.92);
+
+}
+
+.end.finish {
+    display: flex;
+}
+
+.end1 {
+    position: absolute;
+    top: 40vw;
+    left: 70vw;
+
+
+    justify-content: center;
+    align-items: center;
+
+    color: black;
+    font-size: 30px;
+
+
+
+}
+
+.end2 {
+    position: absolute;
+    top: 10vw;
+    left: 21vw;
+    height: 15vw;
+    width: 15vw;
+    background-repeat: no-repeat;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../img/golova-kryg.svg);
+    color: black;
+    font-size: 30px;
+}
+
+
+.end3 {
+    position: absolute;
+    top: 10vw;
+    left: 21vw;
+    height: 15vw;
+    width: 15vw;
+    background-repeat: no-repeat;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../img/golova-kvadrat.svg);
+    color: black;
+    font-size: 30px;
+}
+
+.end4 {
+    position: absolute;
+    top: 10vw;
+    left: 21vw;
+    height: 15vw;
+    width: 15vw;
+    background-repeat: no-repeat;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../img/golova-treygolnik.svg);
+    color: black;
+    font-size: 30px;
+}
+
+.end5 {
+    position: absolute;
+    top: 10vw;
+    left: 21vw;
+    height: 15vw;
+    width: 15vw;
+    background-repeat: no-repeat;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../img/golova-treygolnik2.svg);
+    color: black;
+    font-size: 30px;
+}
+
+
+
+
+
+
+
+.end6 {
+    position: absolute;
+    top: 17vw;
+    left: 23.5vw;
+    height: 18vw;
+    width: 18vw;
+    background-repeat: no-repeat;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../img/treygolnik-telo.svg);
+    color: black;
+    font-size: 30px;
+}
+
+.end7 {
+    position: absolute;
+    top: 17vw;
+    left: 23.5vw;
+    height: 18vw;
+    width: 18vw;
+    background-repeat: no-repeat;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../img/oval-telo.svg);
+    color: black;
+    font-size: 30px;
+}
+
+.end8 {
+    position: absolute;
+    top: 20vw;
+    left: 20vw;
+    height: 18vw;
+    width: 18vw;
+    background-repeat: no-repeat;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../img/strannoetelo.svg);
+    color: black;
+    font-size: 30px;
+}
+
+.end9 {
+    position: absolute;
+    top: 17vw;
+    left: 21vw;
+    height: 18vw;
+    width: 18vw;
+    background-repeat: no-repeat;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../img/pryamougolnik-telo.svg);
+    color: black;
+    font-size: 30px;
+}
+
+.end10 {
+    position: absolute;
+    top: 17.5vw;
+    left: 25vw;
+    height: 18vw;
+    width: 18vw;
+    background-repeat: no-repeat;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../img/treygolnik-telo.svg);
+    color: black;
+    font-size: 30px;
+}
+
+.end11 {
+    position: absolute;
+    top: 17.7vw;
+    left: 20vw;
+    height: 18vw;
+    width: 18vw;
+    background-repeat: no-repeat;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../img/pryamougolnik-telo.svg);
+    color: black;
+    font-size: 30px;
+}
+
+.end12 {
+    position: absolute;
+    top: 17vw;
+    left: 23.5vw;
+    height: 18vw;
+    width: 18vw;
+    background-repeat: no-repeat;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../img/pryamougolnik-telo.svg);
+    color: black;
+    font-size: 30px;
+}
+
+.end13 {
+    position: absolute;
+    top: 20vw;
+    left: 20vw;
+    height: 18vw;
+    width: 18vw;
+    background-repeat: no-repeat;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../img/dva-truegolnika.svg);
+    color: black;
+    font-size: 30px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.lr {
+    position: absolute;
+    top: 18vw;
+    left: 33vw;
+    height: 13vw;
+    width: 13vw;
+
+    background-repeat: no-repeat;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../img/pryamougolnik3.svg);
+    color: black;
+    font-size: 30px;
+}
+
+
+
+.lr1 {
+    position: absolute;
+    top: 18vw;
+    left: 30vw;
+    height: 13vw;
+    width: 13vw;
+
+    background-repeat: no-repeat;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../img/treygolnik2.svg);
+    color: black;
+    font-size: 30px;
+}
+
+.lr2 {
+    position: absolute;
+    top: 18vw;
+    left: 30vw;
+    height: 13vw;
+    width: 13vw;
+
+    background-repeat: no-repeat;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../img/oval2.svg);
+    color: black;
+    font-size: 30px;
+}
+
+
+
+
+
+.pr {
+    position: absolute;
+    top: 17vw;
+    left: 15vw;
+    height: 13vw;
+    width: 13vw;
+
+    background-repeat: no-repeat;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../img/pryamougolnik4.svg);
+    color: black;
+    font-size: 30px;
+}
+
+
+.pr1 {
+    position: absolute;
+    top: 18vw;
+    left: 15vw;
+    height: 13vw;
+    width: 13vw;
+
+    background-repeat: no-repeat;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../img/treygolnik.svg);
+    color: black;
+    font-size: 30px;
+}
+
+
+.pr2 {
+    position: absolute;
+    top: 18vw;
+    left: 15vw;
+    height: 13vw;
+    width: 13vw;
+
+    background-repeat: no-repeat;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../img/oval.svg);
+    color: black;
+    font-size: 30px;
+}
+
+
+
+
+.ln1 {
+    position: absolute;
+    top: 32vw;
+    left: 19vw;
+    height: 13vw;
+    width: 13vw;
+
+    background-repeat: no-repeat;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../img/pryamougolnik.svg);
+    color: black;
+    font-size: 30px;
+}
+
+.ln2 {
+    position: absolute;
+    top: 32vw;
+    left: 19vw;
+    height: 13vw;
+    width: 13vw;
+
+    background-repeat: no-repeat;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../img/treygolnik5.svg);
+    color: black;
+    font-size: 30px;
+}
+
+
+
+.pn1 {
+    position: absolute;
+    top: 32vw;
+    left: 26vw;
+    height: 13vw;
+    width: 13vw;
+
+    background-repeat: no-repeat;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../img/pryamougolnik2.svg);
+    color: black;
+    font-size: 30px;
+}
+
+.pn2 {
+    position: absolute;
+    top: 32vw;
+    left: 26vw;
+    height: 13vw;
+    width: 13vw;
+
+    background-repeat: no-repeat;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../img/treygolnik6.svg);
+    color: black;
+    font-size: 30px;
+}
+
+
+
+
+.end.finish {
+    display: flex;
+}
+
+.title {
+    top: 0;
+    left: 0;
+    position: absolute;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    z-index: 15;
+    background-image: url(../img/background.jpg);
+    background-position: center;
+}
+
+.title-text {
+    display: flex;
+    margin-top: 5%;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.72);
+    border-radius: 1000px;
+    height: 20%;
+    width: 80%;
+    color: #000000;
+    font-size: 1.4vw;
+}
+
+.title > input {
+    width: 20%;
+    height: 15%;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 1000px;
+    border: none;
+    font-size: 5vw;
+
+}
+
+.time {
+    display: flex;
+    height: 35vw;
+    width: 20vw;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: absolute;
+    top: 1vw;
+    right: 5vw;
+}
+
+.time2 {
+    display: flex;
+    height: 35vw;
+    width: 30vw;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: absolute;
+    top: 1vw;
+    right: 5vw;
+}
+
+#tem1 {
+    visibility: hidden;
+}
+
+.item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 7vw;
+    width: 7vw;
+    margin: auto;
+}
+
+.item0 {
+
+    height: 15vw;
+    width: 15vw;
+
+}
+
+.item9 {
+
+    height: 13vw;
+    width: 13vw;
+
+}
+
+.item01 {
+
+    height: 18vw;
+    width: 18vw;
+
+}
+
+.item02 {
+
+    height: 12vw;
+    width: 12vw;
+
+}
+
+.index {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    text-align: center;
+    align-items: center;
+    width: 90vw;
+    height: 50vw;
+    border-radius: 7000vw;
+    margin: 1vw;
+    font-size: 5vw;
+    color: #ffb100;
+}
+
+img {
+    position: absolute;
+    z-index: 10;
+    height: 4.5vw;
+
+
+}
+
+.back {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 0;
+    left: 0;
+    width: 5vw;
+    height: 5vw;
+    z-index: 100;
+    background-color: rgba(160, 83, 83, 0.6);
+    border-radius: 100vw;
+    font-size: 1vw;
+}
+
+
+.block1 {
+    display: flex;
+    position: absolute;
+    justify-content: space-around;
+    left: 2vw;
+    top: 3vw;
+    width: 60vw;
+}
+
+.block2 {
+    display: flex;
+    position: absolute;
+    top: 18vw;
+    left: 30vw;
+
+
+}
+
+.block3 {
+    display: flex;
+    position: absolute;
+    justify-content: space-around;
+    width: 60vw;
+    top: 36vw;
+    left: 30vw;
+}
+
+@keyframes rotate_time {
+    0% {
+        top: 30vw;
+        left: -2vw;
+    }
+
+    100% {
+        top: 30vw;
+        left: 100vw;
+    }
+}
+
+.gg {
+    animation-name: rotate_time;
+    position: absolute;
+    animation-duration: 4s;
+    animation-timing-function: linear;
+    animation-iteration-count: 100;
+    top: 30vw;
+    left: 2vw;
+}
+
+.zadanie {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 23vw;
+    left: 6vw;
+    background-color: rgba(255, 255, 255, 0.9);
+    width: 20vw;
+    height: 20vw;
+    font-size: 3vw;
+    text-align: center;
+    color: #ffb100;
+    border-radius: 50vw;
+
+}
+
+
+.question {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 96%;
+    margin: auto;
+    height: auto;
+    background-color: white;
+    margin-top: 10%;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 2vw;
+}
+
+.question1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 96%;
+    margin: auto;
+    height: 25%;
+    background-color: white;
+    margin-top: 10%;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 4vw;
+}
