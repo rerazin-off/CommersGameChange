@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>ХозОперации</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="js/jquery.ui.touch-punch.min.js"></script>
+</head>
+
+<body>
+
+    <a class="back" href="../index.html">МЕНЮ</a>
+    <div class="title" id="title">
+        <div class="title-text">
+            <h1>Отразите хозяйственные операции поставщика в правильном хронологическом порядке с указанием первичных документов, используя кассовый метод.</h1>
+        </div>
+        <input type="button" value="Начать" onclick="none()">
+    </div>
+
+    <div class="time">
+        <div class="item" data-drag="item4" data-drag-true="false"><img src="img/item1.png" alt=""><p>Выписка банка по счету</p></div>
+        <div class="item" data-drag="item7" data-drag-true="false"><img src="img/item1.png" alt=""><p>Бухгалтерская справка</p></div>
+        <div class="item" data-drag="item3" data-drag-true="false"><img src="img/item1.png" alt=""><p>Товарная накладная</p></div>
+        <div class="item" data-drag="item2" data-drag-true="false"><img src="img/item1.png" alt=""><p>Банковская выписка</p></div>
+        <div class="item" data-drag="item6" data-drag-true="false"><img src="img/item1.png" alt=""><p>Акт об оказании услуг</p></div>
+    </div>
+
+    <div class="time time2">
+        <div class="item" data-drag="item5" data-drag-true="false"><img src="img/item1.png" alt=""><p>Бухгалтерская справка</p></div>
+        <div class="item" data-drag="item1" data-drag-true="false"><img src="img/item1.png" alt=""><p>Расходная накладная</p></div>
+    </div>
+
+    <div class="time3">
+        <div class="item" data-drag="item3" data-drag-true="false"><img src="img/item2.2.png" alt=""><p>Д62 К90.1</p></div>
+        <div class="item" data-drag="item4" data-drag-true="false"><img src="img/item2.2.png" alt=""><p>Д90.2 К45</p></div>
+    </div>
+
+    <div class="time4">
+        <div class="item" data-drag="item2" data-drag-true="false"><img src="img/item2.2.png" alt=""><p>Д51 К62</p></div>
+        <div class="item" data-drag="item6" data-drag-true="false"><img src="img/item2.2.png" alt=""><p>Д62 К91.1</p></div>
+        <div class="item" data-drag="item1" data-drag-true="false"><img src="img/item2.2.png" alt=""><p>Д45 К41</p></div>
+        <div class="item" data-drag="item5" data-drag-true="false"><img src="img/item2.2.png" alt=""><p>Д90.3 К68</p></div>
+        <div class="item" data-drag="item7" data-drag-true="false"><img src="img/item2.2.png" alt=""><p>Д91.2 К68</p></div>
+    </div>
+
+
+    <img class="inf" src="img/info.png" onclick="info()">
+    <div class="index drop" data-drop="item1"></div>
+    <div class="index index2 drop" data-drop="item2"></div>
+    <div class="index index3 drop" data-drop="item3"></div>
+    <div class="index index4 drop" data-drop="item4"></div>
+    <div class="index index5 drop" data-drop="item5"></div>
+    <div class="index index6 drop" data-drop="item6"></div>
+    <div class="index index7 drop" data-drop="item7"></div>
+
+    <div class="end" id="end">
+        <p id="myspan">Поздравляем! Все верно!</p>
+    </div>
+    <script src="js/js.js"></script>
+</body>
+</html>

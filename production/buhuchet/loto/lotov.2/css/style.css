@@ -1,0 +1,133 @@
+body {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #5481b5;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-image: url(../img/fon.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+.back11111111 {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 0;
+    left: 0;
+    width: 7vw;
+    height: 7vw;
+    z-index: 100;
+    background-color: rgb(255, 255, 255);
+    border-radius: 100vw;
+    font-size: 1vw;
+}
+.button {
+    display: flex;
+    width: 100%;
+    border-radius: 0px;
+    margin: 0 auto;
+    height: 60%;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+input {
+    width: 15%;
+    height: 20%;
+    font-size: 1.4vw;
+    border-radius: 1000vw;
+    border: none;
+    background: white;
+    opacity: 0.8;
+    margin: 5px 3.5%;
+    white-space: pre-line;
+}
+
+.question {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    text-align: center;
+    width: 83%;
+    height: 15%;
+    padding: 1%;
+    margin-top: 2%;
+    border-radius: 100px;
+}
+
+.question >p{
+    width: 87%;
+    font-size: 2vw;
+}
+.vivod{
+    position: absolute;
+    top: 30%;
+    margin:auto;
+    height:30%;
+    width: 50%;
+    background-color: white;
+    display: flex;
+    font-size: 90%;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;    
+}
+
+
+img{
+    height: 102%;
+    width: 102%;
+    z-index: 5;
+    background-color: white;
+    border-radius: 1000px;
+    border-width: 100px;
+    margin-left: -1px;
+    margin-top: -1px;
+    visibility: hidden;
+}
+
+.img {
+    background-color: #1e8fcb;
+    width: 10%;
+    height: 100%;
+    border-radius: 100%;
+}
+
+.menu, .exit {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    background-color: #5481b5;
+    z-index: 10;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-image: url(../img/fon.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.exit{visibility: hidden;}
+
+.menu-y, .menu-e {
+    background-color: white;
+    width: 80%;
+    height: 20%;
+    margin: auto;
+    margin-top: 5%;
+    border-radius: 100px;
+    opacity: 0.8;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    font-size: 2vw;
+}

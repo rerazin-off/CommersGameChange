@@ -1,0 +1,497 @@
+@font-face{
+    src: url('../font/8847.ttf');
+    font-family: 'Main';
+}
+*{
+    margin: 0;
+    font-family: 'Main';
+    -moz-user-select: none;
+-khtml-user-select: none;
+user-select: none;
+}
+body{
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(to top,#C7FFEB, #D0E6F7);
+}
+
+.main{
+    position: relative;
+    height: 100vh;
+}
+.main h1{
+    font-size: 1000%;
+    text-align: center;
+    margin-bottom: 3%;
+    color: #0485B2;
+    margin-top: 35px;
+}
+
+.item{
+    display: flex;
+}
+.peop{
+    height: 63vh;
+}
+.numite{
+    display: flex;
+    height: 250px;
+    margin-bottom:10px;
+    overflow:hidden; 
+    border-radius: 25px;
+}
+.items1 .numite:last-child, .items2 .numite:last-child {
+         margin-bottom:20px;
+}
+.items1 .numite{
+        justify-content: flex-end;
+        margin-left: 100px;
+}
+.items2 .numite{
+        margin-left: 100px;
+        margin-right: 100px;
+}
+.numite .num{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #FC6B9F;
+    font-weight: bold;
+    padding: 2%;
+    margin: 0;
+    height: auto;
+    border-bottom-left-radius: 25px;
+    border-top-left-radius: 25px;
+    z-index: 2;
+}
+@keyframes viletRight{
+    0%{
+        transform: translateX(-2000px);
+        transform-origin: left;
+        transition: 1s;
+    }
+    100%{
+        transform: translateX(0);
+        transition: 1s;
+        transform-origin: left;
+    }
+}
+.items1 .numite .desc-num{
+    border-bottom-left-radius: 25px;
+    border-top-left-radius: 25px;
+    border-top-right-radius:  0px;
+    border-bottom-right-radius: 0px;
+    padding-right: 20px;
+    animation-name: viletLeft;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    transform-origin: bottom;
+    transform: translateX(2000px);
+    animation-fill-mode: forwards;
+    overflow: hidden;
+}
+.items2 .numite .desc-num{
+    animation-name: viletRight;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    transform-origin: bottom;
+    transform: translateX(-2000px);
+    animation-fill-mode: forwards;
+    overflow: hidden;
+}
+.items1 .numite .num{
+    
+    order: 1;
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    
+}
+
+.numite .num p{
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    font-size: 80px;
+    color: white;
+}
+.numite .desc-num{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #FFF5E0; эва
+    padding: 2%;
+    border-bottom-right-radius: 25px;
+    border-top-right-radius: 25px;
+    width: 100%;
+    overflow: hidden;
+}
+@keyframes viletLeft{
+    0%{
+        transform: translateX(2000px);
+        transform-origin: right;
+        transition: 1s;
+    }
+    100%{
+        transform: translateX(0);
+        transition: 1s;
+        transform-origin: right;
+    }
+}
+.nom1 .desc-num{
+    animation-name: viletRight;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    transform-origin: bottom;
+}
+.nom2 .desc-num{
+    animation-name: viletRight;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    transform-origin: bottom;
+    animation-delay:2s;
+}
+.nom3 .desc-num{
+    animation-name: viletRight;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    transform-origin: bottom;
+    animation-delay:4s;
+}
+.nom4 .desc-num{
+    animation-name: viletRight;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    transform-origin: bottom;
+    animation-delay:6s;
+}
+.nom5 .desc-num{
+    animation-name: viletRight;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    transform-origin: bottom;
+    animation-delay:8s;
+}
+
+.nom6 .desc-num{
+    animation-name: viletLeft;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    transform-origin: bottom;
+}
+.nom7 .desc-num{
+    animation-name: viletLeft;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    transform-origin: bottom;
+    animation-delay:2s;
+}
+.nom8 .desc-num{
+    animation-name: viletLeft;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    transform-origin: bottom;
+    animation-delay:4s;
+}
+.nom9 .desc-num{
+    animation-name: viletLeft;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    transform-origin: bottom;
+    animation-delay:6s;
+}
+.nom10 .desc-num{
+    animation-name: viletLeft;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    transform-origin: bottom;
+    animation-delay:8s;
+}
+
+.numite .desc-num p{
+    font-size: 50px;
+    color: #4A66A6;
+    width: 100%;
+    padding-left: 20px;
+}
+.items1 .desc-num p{
+    color: #4A66A6;
+    text-align: right;
+}
+.items1{
+    margin: 0;
+    padding: 0;
+    width: 50vw;
+}
+
+.sl{
+/*    background: red;*/
+    width: 80vw;
+    margin: 0 auto;
+    padding: 0;
+}
+.sl_slide{
+    width: 30vw;
+/*    background: green;*/
+    margin: 0;
+    padding: 0;
+}
+.img_work{
+    background: #4A66A6;
+    border-radius: 4%;
+    width: 325px;
+    height: 300px;
+    margin: 0 auto;
+}
+.namework{
+    font-size: 360%;
+    margin-top: 20px;
+    text-align: center;
+}
+h2{
+    font-size: 120px;
+    color: 	#016444;
+    text-align: center;
+    display: inline-block;
+    padding: 25px 30px;
+}
+.line{
+    width: 10%;
+    height: 6px;
+    background: green;
+    display: inline-block;
+    border-radius: 50%;
+}
+.items2 .numite{
+    padding-right: 20px;
+    width: auto;
+}
+.nom1 .num,.nom2 .num,.nom3 .num ,.nom4 .num ,.nom5 .num , .nom6 .num, .nom7 .num, .nom8 .num, .nom9 .num{
+    padding: 0 55px;
+}
+.nom10 .num{
+    padding: 0 36px;
+}
+.title{
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+}
+.sl .sl_slide{
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.gradient{
+    animation-delay: .5s;
+}
+.gradient1{
+    animation-delay: .15s;
+}
+.gradient2{
+   animation-delay: .25s;
+}
+.gradient3{
+    animation-delay: .35s;
+}
+.gradient3{
+    animation-delay: .35s;
+}
+
+@keyframes shadow {
+            0% {
+                box-shadow: 0 0 0px 0px #6698CB;
+                transform: translateY(0px);
+                border-radius: 25px;
+            }
+            50% {
+                box-shadow: 0 0 100px 20px #f5d6ab;
+                transform: translateY(0px) scale(1.03);
+                border-radius: 25px;
+            }
+            100% {
+                box-shadow: 0 0 0px 0px #fcb69f;
+                transform: translateY(0px);
+                border-radius: 25px;
+            }
+        }
+@keyframes sha1 {
+            0% {
+                font-size: 80px;
+            }
+            50% {
+                font-size: 95px;
+                padding: 0 ;
+
+            }
+            100% {
+                font-size: 80px;
+            }
+        }
+@keyframes trmig {
+            0% {
+            color: white;
+            }
+            50% {
+            color: #00AA85;
+            }
+            100% {
+            color: white;
+            }
+}
+ .gradient-all {
+            animation-name: sha1;
+            animation-duration: 9s;
+            animation-iteration-count: infinite;
+        }
+.tex-anim{
+    animation-name: sha1;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+}
+#tyr{
+    animation-name: trmig;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    transform-origin: bottom;
+}
+.gradient-all {
+            animation-name: shadow;
+            animation-duration: 3s;
+            animation-iteration-count: infinite;
+            transform-origin: bottom;
+        }
+canvas{
+    position: relative;
+}
+.timeClock{
+    position: absolute;
+    top: 590px;
+    left:2210px;
+    font-size: 28px;
+    transform: rotate(14deg);
+    display: inline-block;
+    width: 120px;
+}
+.timeClock #tyr{
+    font-size: 48px;
+}
+#tyr, #timemun, #timeho{
+    display: inline-block;
+}
+.timeClock p{
+    display: inline-block;
+    color: white;
+}
+.a_sl{
+    text-decoration: none;
+    color: black;
+    width: 50px;
+}
+#widow{
+    background: rgba(0,0,0,0.5);
+    width: 110vw;
+    height: 110vh;
+    position: absolute;
+    top:-10px;
+    left: -5px;
+    z-index: 3;
+}
+.wid-vis{
+    background: #c2cdef;
+    width: 1800px;
+    height: 1300px;
+    position: absolute;
+    top: 500px;
+    left: 1110px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 25px;
+    z-index: 4;
+}
+#ex{
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 20px;
+}
+#ex p a{
+    font-size: 100px;
+    text-decoration: none;
+    color: #697fe9;
+    
+}
+.wid-vis .cont{
+    padding: 20px;
+}
+.wid-vis img{
+    width: 400px;
+    margin-left: 650px;
+}
+.wid-vis .cont h1{
+    text-align: center;
+    font-size: 120px;
+}
+.wid-vis .cont p{
+    text-align: center;
+    font-size: 50px;
+}
+.block-text{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+.active{
+    display: flex;
+}
+.block-text .block{
+    width: 60vw;
+    height: 60vh;
+    background-color: white;
+    padding: 80px;
+    background: #c2cdef;
+    overflow: hidden;
+    z-index: 8;
+}
+
+.block-text .block #modal-header{
+    font-size: 120px;
+    text-align: center;
+}
+.block-text .block .modal-text{
+    font-size: 60px;
+    text-align: center;
+}
+#modal-img{
+    margin: 0 auto;
+}
+.exite{
+    font-size: 120px;
+    float: right;
+    color: darkblue;
+    text-decoration: none;
+}
+.exe{
+    position: absolute;
+    background-color: rgba(0,0,0,0.8);
+    z-index: 3;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: -100px;
+    display: none;
+}
+.act-ex{
+    display: inline-block;
+}

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Право и организация социального обеспечения</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+</head>
+
+<body>
+    <a class="back11111111" href="../../../index.html?block=pwork">НАЗАД</a>
+    <div class="mainh1">
+        <h1>Право и организация социального обеспечения</h1>
+    </div>
+    <div class="display">
+        <img class="message" src="img/mes.gif" alt="">
+        <img class="start" src="img/start.png" id="startGame">
+        <div class="zayavka" id="zayavka">
+            <a class="check" href="" onclick="checkDate(event)">Проверить!</a>
+            <h1>Заявление на получение страховой пенсии по старости</h1>
+            <p id="application"></p>
+
+        </div>
+        <div id="all_form">
+            <form id="form">
+                <div class="krit">
+                    <h1>Критерии оценки заявки</h1>
+                    <input type="text" placeholder="ФИО" id="fullname" value="">
+                    <input type="text" placeholder="Гражданство" id="citizenship" value="">
+                    <input type="text" placeholder="Возраст (полных лет)" id="voz" value="">
+                    <!-- сделать вывод даты -->
+                    <input type="text" placeholder="Адрес проживания" id="addres" value="">
+                    <input type="text" placeholder="Стаж работы (полных лет)" id="work" value="">
+                    <input type="text" placeholder="Профессия" id="prof" value="">
+                    <input type="submit" style="display: none;">
+                </div>
+            </form>
+            <form id="form2">
+                <div class="krit">
+                    <h1>Критерии оценки заявки</h1>
+                    <input type="text" placeholder="ФИО" id="fullname_two" value="">
+                    <input type="text" placeholder="Гражданство" id="citizenship_two" value="">
+                    <input type="text" placeholder="Опыт работы (полных лет)" id="expirience_work" value="">
+                    <!-- сделать вывод даты -->
+                    <input type="text" placeholder="Номер телефона" id="telephone" value="">
+                    <input type="text" placeholder="СНИЛС" id="snils" value="">
+                    <input type="submit" style="display: none;">
+                </div>
+            </form>
+            <form id="form3" >
+                <div class="krit">
+                    <h1>Критерии оценки заявки</h1>
+                    <input type="text" placeholder="ФИО" id="fullname_three" value="">
+                    <input type="text" placeholder="Гражданство" id="citizenship_three" value="">
+                    <input type="text" placeholder="Профессия" id="prof_three" value="">
+                    <input type="text" placeholder="Серия и номер паспорта" id="passport" value="">
+                    <!-- сделать вывод даты -->
+                    <input type="text" placeholder="Дата выдачи паспорта" id="date_passport" value="">
+                    <input type="text" placeholder="Стаж работы (полных лет)" id="work_three" value="">
+
+                    <input type="submit" style="display: none;">
+                </div>
+            </form>
+        </div>
+       
+        <div class="otkaz">
+            <p>Вам отказано в кредите</p>
+        </div>
+        <div class="odobr" id="odobr">
+
+        </div>
+    </div>
+
+    <script src="js/moment.js"></script>
+    <script src="js/js.js"></script>
+    <script>
+
+    </script>
+</body>
+
+</html>
