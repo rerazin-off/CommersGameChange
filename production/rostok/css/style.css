@@ -1,0 +1,252 @@
+body {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0;
+    position: absolute;
+    width: 100%;
+    background-image: url(../img/bg.jpg);
+    background-size: 100%;
+    min-height: 100%;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    user-select: none;
+}
+
+.end {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(248, 223, 192, 0.92);
+    color: black;
+    font-size: 72px;
+    display: none;
+    z-index: 20;
+}
+
+.end.finish {
+    display: flex;
+}
+
+/*Title*/
+.title {
+    top: 0;
+    left: 0;
+    position: absolute;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    z-index: 15;
+    background-image: url(../img/title.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+@keyframes shadow {
+    0% {
+        box-shadow: 0 0 2vw #000000;
+    }
+
+    50% {
+        box-shadow: 0 0 5vw #fff, 0 0 20px #fff, 0 0 10vw #fff;
+    }
+
+    100% {
+        box-shadow: 0 0 2vw #000000;
+    }
+}
+
+.name {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.39);
+    border: 0.5vw solid white;
+    width: 30vw;
+    height: 30vw;
+    animation: shadow 3s infinite linear;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #22506d;
+    font-size: 5vw;
+    text-align: center;
+}
+
+input {
+    width: 15vw;
+    height: 6vw;
+    position: absolute;
+    bottom: 2vw;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 5vw;
+    border: none;
+    font-size: 3.5vw;
+    color: #22506d;
+    z-index: 4;
+}
+
+.back {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 0;
+    left: 0;
+    width: 5vw;
+    height: 5vw;
+    z-index: 100;
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    font-size: 1vw;
+    text-decoration: none;
+}
+
+/*End Title*/
+
+.time {
+    display: flex;
+    height: 10vw;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    position: absolute;
+    top: 2vw;
+}
+
+.item,
+.item1,
+.item2,
+.item3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 7vw;
+    width: 7vw;
+    margin: auto;
+}
+
+.flower {
+    display: flex;
+    position: absolute;
+    left: 42vw;
+    bottom: 3vw;
+    justify-content: center;
+    flex-direction: row;
+    text-align: center;
+    align-items: center;
+    width: 25vw;
+    height: 25vw;
+    margin: 1vw;
+    font-size: 4vw;
+    color: #ffb100;
+    background-image: url(../img/r0.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 30%;
+}
+
+#fl2,
+#fl3,
+#fl4,
+#fl5 {
+    display: none;
+}
+
+#fl2 {
+    background-image: url(../img/r1.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 70%;
+    width: 27vw;
+    height: 27vw;
+    left: 43vw;
+    bottom: 5.3vw;
+}
+
+#fl3 {
+    background-image: url(../img/r2.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 80%;
+    width: 29vw;
+    height: 29vw;
+    left: 41vw;
+    bottom: 5.3vw;
+}
+
+#fl4 {
+    background-image: url(../img/r3.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 90%;
+    width: 31vw;
+    height: 31vw;
+    left: 40vw;
+    bottom: 6.5vw;
+}
+
+#fl5 {
+    background-image: url(../img/r4.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 95%;
+    width: 33vw;
+    height: 33vw;
+    left: 39vw;
+    bottom: 7vw;
+}
+
+img {
+    position: absolute;
+    z-index: 10;
+    height: 8vw;
+}
+
+
+
+
+.block1 {
+    display: flex;
+    position: absolute;
+    justify-content: space-around;
+    left: 18vw;
+    top: 10vw;
+    width: 60vw;
+}
+
+
+.zadanie {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 23vw;
+    left: 6vw;
+    background-color: rgba(18, 59, 35, 0.6);
+    width: 20vw;
+    height: 20vw;
+    font-size: 3vw;
+    text-align: center;
+    color: #f2fff1;
+    border-radius: 50vw;
+
+}
+
+#restart {
+    visibility: hidden;
+    position: absolute;
+    right: 2vw;
+    bottom: 23vw;
+    width: 20%;
+    height: 15%;
+    background-color: rgba(18, 59, 35, 0.6);
+    border-radius: 2vw;
+    border: none;
+    font-size: 2.5vw;
+    color: #f2fff1;
+}

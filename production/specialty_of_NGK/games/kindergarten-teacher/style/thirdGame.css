@@ -1,0 +1,49 @@
+@import "../../../style/fonts.css";
+@import "../../commonStyle.css";
+
+body {
+    background-image: url("../img/bg3.png");
+}
+
+.kid {
+    background-image: url("../img/kidWithoutClothes.png");
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+    height: 80vh;
+    width: 32vh;
+    top: 18%;
+    left: 57%;
+    transform: translateX(-50%);
+}
+
+.title {
+    position: absolute;
+    padding: 0 1.5vw;
+    width: 28%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0 2vw 2vw 0;
+    background: rgb(158, 163, 255);
+}
+
+.title h1 {
+    text-align: start;
+    font-size: 4.5vh;
+    line-height: 5.2vh;
+}
+
+.clothes {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    height: 35%;
+    margin-top: 1vh;
+}
+
+.toMenu {
+    margin-top: 0;
+}

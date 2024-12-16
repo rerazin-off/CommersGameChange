@@ -52,7 +52,7 @@ export const SpecialKidergarden = () => {
           <div className={classes.flowers} onClick={() => handleGameClick('flowersGame')}></div>
           <div className={classes.tent} onClick={() => handleGameClick('tentGame')}></div>
         </div>
-        <div className={classes.card}><Card title={cardData.title} body={cardData.body} game={currentGame}
+        <div className={classes.card}><Card title={cardData.title} body={cardData.body} game={`http://${currentGame}.local/`}
                                             isOpen={openIsCard} onClose={closeCard} /></div>
 
       </div>

@@ -1,0 +1,31 @@
+@import "../../../style/fonts.css";
+@import "../../commonStyle.css";
+
+body {
+    background-image: url("../img/bg.jpg");
+}
+
+img {
+    position: absolute;
+}
+
+#car2 {
+    transform: rotate(8deg);
+}
+
+#car1 {
+    z-index: 5;
+    transform: rotate(8deg);
+}
+
+#gun2 {
+    transform: rotate(12deg) scale(0.9);
+}
+
+#toysForKukla {
+    transform: rotateX(30deg);
+}
+
+.toMenu {
+    margin-top: 0;
+}

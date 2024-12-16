@@ -1,0 +1,256 @@
+@font-face{
+    src: url('../font/8847.ttf');
+    font-family: 'Main';
+}
+*{
+    font-family: 'Main';
+    margin: 0;
+}
+body{
+/*
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+*/
+    background: linear-gradient(to top, #fdf7bd, #f1da36);
+    position: relative;
+    overflow:  hidden;
+}
+.wr{
+    padding-top: 20px;
+    padding-left: 30px;
+    position: relative;
+}
+.wr h1{
+    padding: none;
+    margin: 0;
+    text-align: center;
+    font-size: 252px;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    user-select: none; 
+    color: #800000;
+}
+.wr img{
+    cursor: pointer;
+}
+/*Позиции стикеров. Первый столбец*/
+#no42{
+    position: absolute;
+    top: 120%;
+    left: 4%;
+    transform:  rotate(-15deg);
+}
+#no14{
+    position: absolute;
+    top: 330%;
+    left: 5%;
+}
+#no40{
+    position: absolute;
+    top: 530%;
+    left: 7%;
+}
+/*Второй столбец*/
+#no28{
+    position: absolute;
+    top: 120%;
+    left: 26%;
+}
+#no7{
+    position: absolute;
+    top: 330%;
+    left: 26%;
+}
+#no36{
+    position: absolute;
+    top: 530%;
+    left: 26%;
+}
+/*3 столбец*/
+#no8{
+    position: absolute;
+    top: 120%;
+    left: 46%;
+}
+#no15{
+    position: absolute;
+    top: 330%;
+    left: 46%;
+}
+#no1{
+    position: absolute;
+    top: 534%;
+    left: 46%;
+    transform:  rotate(-7deg);
+}
+#no6{
+    position: absolute;
+    top: 590%;
+    left: 57%;
+    transform:  rotate(7deg);
+}
+/*4 столбец*/
+#no35{
+    position: absolute;
+    top: 120%;
+    left: 67%;
+    transform:  rotate(7deg);
+}
+#no4{
+    position: absolute;
+    top: 258%;
+    left: 64%;
+    transform:  rotate(-7deg);
+}
+#no5{
+    position: absolute;
+    top: 400%;
+    left: 68%;
+    transform:  rotate(7deg);
+}
+#no31{
+    position: absolute;
+    top: 540%;
+    left: 68%;
+    transform:  rotate(-7deg);
+}
+/*5 столбец*/
+#no2-5{
+    position: absolute;
+    top: 120%;
+    left: 80%;
+    transform:  rotate(-15deg);
+}
+#no24{
+    position: absolute;
+    top: 250%;
+    left: 80%;
+    transform:  rotate(-12deg);
+}
+#no120{
+    position: absolute;
+    top: 380%;
+    left: 80%;
+    transform:  rotate(-7deg);
+}
+
+#no16{
+    position: absolute;
+    top: 559%;
+    left: 85%;
+    transform:  rotate(7deg);
+}
+/*Всплывающее окно*/
+.win{
+    position: absolute;
+    background: black;
+    background:  rgba(0%,0%,0%, 60% );
+    width: 10000px;
+    height: 10000px;
+
+    z-index: 4;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom:-10px;
+    display: none;
+    
+}
+.win .d16 {
+    position: absolute;
+    top: 450px;
+    left: 800px;
+    padding: 50px;
+    background: #E3FBFF;
+    opacity: 1;
+    width: 1900px;
+    height: 1300px;
+    z-index: 5;
+}
+
+.win #ex p{
+    font-size: 175px;
+    float: right;
+    cursor: pointer;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    user-select: none; 
+}
+.win #ex a{
+    text-decoration: none;
+    color: #2C3291;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    user-select: none; 
+}
+.win #nanum{
+    font-size: 130px;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    user-select: none; 
+}
+.win .text{
+    
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-content: space-between;
+    align-items: center;
+    flex-direction: column;
+}
+.win .text .num{
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+  align-content: center;
+}
+.win .text .num #nanum{
+    font-size: 330px;
+    margin: 0;
+    padding: 0;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    user-select: none; 
+/*    width: 260px;*/
+    text-align: center;
+}
+.win .text .num #namnum{
+    font-size: 150px;
+/*    width: 260px;*/
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    color: #425CAA;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    user-select: none; 
+}
+.win .text .desknum{
+    text-align: center;
+    font-size: 100px;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    user-select: none; 
+}
+.list-1{
+     height:190%;
+}
+.list-2{
+    height:120%;
+}
+.list-3{
+    height:100%;;
+}
+
+
+@keyframes pulsing {
+    0%   {  transform:  rotate(0deg);}
+    50%   { transform:  rotate(-10deg);}
+    100% { transform: rotate(0deg);}
+}
+
+.pulse-1{
+    -webkit-animation: pulsing 5s infinite;
+    animation: pulsing 10s infinite;
+}

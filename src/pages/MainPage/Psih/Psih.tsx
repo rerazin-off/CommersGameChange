@@ -41,7 +41,7 @@ export const Psih: React.FC = () => {
 
   return (
     <div className={classes.cont}>
-      <Assistant fon={'psih'} link={'1'} cat={"-80px"} title={" Добро пожаловать в комнату психологической разгрузки!"} body={"Здесь вы найдете поддержку, уютное пространство для восстановления и сможете поговорить с нашим педагогом-психологом по предварительной записи. "} mar={"-470px"}></Assistant>
+      <Assistant fon={'psih'} link={'1'} cat={"-80px"} title={" Добро пожаловать в комнату психологической разгрузки!"} body={"Здесь вы найдете поддержку, уютное пространство для восстановления и сможете поговорить с нашим педагогом-психологом по предварительной записи. "} mar={"-495px"}></Assistant>
       <div className={classes.progs}>
         <div className={classes.container}>
           <div className={classes.flours} onClick={() => handleGameClick('floursGame')}></div>

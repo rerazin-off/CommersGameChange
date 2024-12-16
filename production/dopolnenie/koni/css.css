@@ -1,0 +1,393 @@
+@font-face{
+    font-family:'Main';
+    src: url('fo1.ttf');
+}
+/*
+@font-face{
+    src: url('../font/8847.ttf');
+    font-family: 'Main';
+}
+*/
+*{
+    font-family:'Main';
+    margin: 0;
+    -moz-user-select: none;
+-khtml-user-select: none;
+user-select: none; 
+    
+}
+:active, :hover, :focus {
+    outline: 0;
+    outline-offset: 0;
+}
+body{
+    background: #BBD86B;
+}
+#train {
+      position: absolute;
+      cursor: pointer;
+      height: 5%;
+      width: 5%;
+      margin-top: 15%;
+      margin-left: 26%;
+
+  }
+
+
+.back {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 0;
+    left: 0;
+    width: 5vw;
+    height: 5vw;
+    z-index: 100;
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 100vw;
+    font-size: 1vw;
+}
+
+
+
+  .zad1 {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      height: 20%;
+  }
+
+  .zad {
+      position: absolute;
+      width: 55%;
+      height: auto;
+      margin: auto;
+      margin-top: 0;
+      font-size: 85px;
+      background: url(fg.svg);
+      padding: 5px;
+      background-repeat: no-repeat;
+      background-size: cover;
+      color: #80000E;
+      text-align: center;
+  }
+
+  body {
+      background-image: url(bg-main.svg);
+      background-repeat: no-repeat;
+      background-size: cover;
+      overflow: hidden;
+  }
+
+  #train1 {
+      margin-top: 30%;
+      position: absolute;
+      cursor: pointer;
+      height: 5%;
+      width: 5%;
+
+      margin-left: 26%;
+  }
+
+  #train2 {
+      margin-top: 45%;
+      position: absolute;
+      cursor: pointer;
+      height: 5%;
+      width: 5%;
+
+      margin-left: 26%;
+  }
+
+  #train0 {
+      position: absolute;
+      cursor: pointer;
+      height: 5%;
+      width: 5%;
+      margin-top: 15%;
+      margin-left: 26%;
+  }
+
+  #train11 {
+      margin-top: 30%;
+      position: absolute;
+      cursor: pointer;
+      height: 5%;
+      width: 5%;
+
+      margin-left: 26%;
+  }
+
+  #train22 {
+      margin-top: 45%;
+      position: absolute;
+      cursor: pointer;
+      height: 5%;
+      width: 5%;
+
+      margin-left: 26%;
+  }
+
+  button {
+      border-radius: 50%;
+      font-size: 60px;
+      width: 80px;
+      height: 80px;
+      font-family: Arial;
+  }
+.min{
+    background: #ff7979;
+}
+.plus{
+    background: #3498db;
+}
+input[type="text"]{
+    font-size: 60px;
+    height: 60px;
+    width: 60px;
+    background: #f6e58d;
+     background: linear-gradient(to top, #fefcea, #f6e58d);
+    border: none;
+    color: #800000;
+    text-align: center;
+    border-radius: 15px;
+}
+.ful{visibility: hidden;}
+  .h1 {
+      position: absolute;
+      width: 15%;
+      margin-left: 18%;
+      margin-top: 11%;
+      height: 20%;
+      background-image: url(village-1.svg);
+      background-repeat: no-repeat;
+      z-index: 4;
+  }
+.h1 form{
+      margin-top: 50%;
+      margin-left: 28%;
+}
+.h1 .but{
+      margin-left: 21%;
+}
+
+  .h2 {
+      position: absolute;
+      width: 15%;
+      margin-left: 18%;
+      height: 20%;
+      margin-top: 25%;
+      background-image: url(village-2.svg);
+      background-repeat: no-repeat;
+
+      z-index: 4;
+  }
+.h2 form{
+    margin-top: 55%;
+          margin-left: 28%;
+
+}
+.h2 .but{
+      margin-left: 21%;
+}
+  .h3 {
+      position: absolute;
+      width: 15%;
+
+      height: 20%;
+      margin-left: 18%;
+      margin-top: 43%;
+      background-image: url(village-3.svg);
+      background-repeat: no-repeat;
+
+      z-index: 4;
+  }
+.h3 form{
+    margin-top: 34%;
+    margin-left: 28%;
+
+}
+.h3 .but{
+      margin-left: 21%;
+}
+
+
+
+  .z1 {
+      position: absolute;
+      margin-left: 75%;
+      width: 10%;
+      margin-top: 9%;
+      height: 20%;
+      background-image: url(%D1%81astle-1.svg);
+      background-repeat: no-repeat;
+      z-index: 4;
+  }
+.z1 form, .z2 form, .z3 form{
+      margin-top: 115%;
+      margin-left: 30%;
+}
+
+  .z2 {
+      position: absolute;
+      margin-left: 75%;
+      width: 10%;
+      height: 20%;
+
+      margin-top: 25%;
+      background-image: url(%D1%81astle-2.svg);
+      background-repeat: no-repeat;
+
+      z-index: 4;
+  }
+
+
+  .z3 {
+      position: absolute;
+      margin-left: 75%;
+      width: 10%;
+      height: 20%;
+      margin-top: 40%;
+      background-image: url(%D1%81astle-3.svg);
+      background-repeat: no-repeat;
+      z-index: 4;
+  }
+
+
+  #oq {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color:rgba(0,0,0,0.4);
+      margin: auto;
+      visibility: hidden;
+      z-index: 6;
+      text-align: center;
+      font-size: 200%;
+  }
+.wr{
+    background: url(list.svg);
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    height: 100%;
+    color:#80000E;
+    
+}
+  #q {
+      text-align: center;
+      padding-top: 10%;
+  }
+#wr1{
+    background: url(list.svg);
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    color:#80000E;
+    font-size: 170%;
+    
+    background-color:rgba(0,0,0,0.4);
+}
+  #q1 { 
+      text-align: center;
+      padding-top: 10%;
+      
+  }
+#q11 {color: #470007;
+      text-align: center;
+      padding-top: 2%;
+    width: 55%;
+    margin: auto;
+       font-size: 110%;
+  }
+
+  #canvas {
+      z-index: 10;
+  }
+
+
+
+  #z1 {
+      visibility: hidden;
+  }
+
+  #z2 {
+      visibility: hidden;
+  }
+
+  #z3 {
+      visibility: hidden;
+  }
+
+
+  #z11 {
+      visibility: hidden;
+  }
+
+  #z22 {
+      visibility: hidden;
+  }
+
+  #z33 {
+      visibility: hidden;
+  }
+
+
+  #z111 {
+      visibility: hidden;
+  }
+
+  #z222 {
+      visibility: hidden;
+  }
+
+  #z333 {
+      visibility: hidden;
+  }
+.ques{  
+position: absolute;
+    width: 5%;
+    height: 10%;
+     top:72%;
+    
+    left: 2%;
+background-image:url(ques.svg);
+    background-repeat: no-repeat;
+}
+.refresh{position: absolute;
+    width: 5%;
+    height: 10%;
+    left: 2%;
+    top:85%;
+    
+background-image:url(refresh.svg);
+background-repeat: no-repeat;}
+
+
+#wr2{visibility: hidden;
+    background: url(list.svg);
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    color:#80000E;
+    font-size: 170%;
+    
+    background-color:rgba(0,0,0,0.4);
+}
+
+  #q2 {
+      text-align: center;
+      padding-top: 10%;
+      
+  }
+#q22 {
+      text-align: center;
+      padding-top: 2%;
+    width: 55%;
+    margin: auto;color: #470007;
+       font-size: 110%;
+  }

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>-_-</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="js/jquery.ui.touch-punch.min.js"></script>
+    
+   
+</head>
+
+<body>
+<a class="back" href="../../index.html?block=mat"><img src="back.png"></a>
+    
+   <div id="tem1" class="time">
+        <div id="gol1" class="item zxc" data-drag="item1" data-drag-true="false"><img src="img1/cpu.svg" class="item0" alt=""></div>
+ 
+        <div id="gol2" class="item " data-drag="item2" data-drag-true="false"><img src="img1/videokarta.svg" class="item010" alt=""></div>
+        <div id="gol3" class="item zxc" data-drag="item3" data-drag-true="false"><img src="img1/3v.svg" class="item0" alt=""></div>
+        <div id="gol4" class="item " data-drag="item4" data-drag-true="false"><img src="img1/OZU.svg" class="item011" alt=""></div>
+  <div id="gol5" class="item zxc" data-drag="item5" data-drag-true="false"><img src="img1/kuler.svg" class="item012" alt=""></div>
+     <div id="gol6" class="item zxc" data-drag="item6" data-drag-true="false"><img src="img1/%D0%B1%D0%BB%D0%BE%D0%BA-%D0%BF%D0%B8%D1%82%D0%B0%D0%BD%D0%B8%D1%8F.svg" class="item013 pudgesss" alt=""></div>
+       <div id="gol7" class="item zxc" data-drag="item7" data-drag-true="false"><img src="img1/hard-disk.svg" class="item014 pudgess" alt=""></div>
+       
+    </div>
+     <div class="time2">
+ </div>
+    <div class="block1">
+        <div class="index1 drop" data-drop="item1"  ></div>
+   
+    </div>
+   <div class="block1">
+        <div class="index2 drop"   data-drop="item2"  ></div>
+   
+    </div>
+     <div class="block1">
+        <div class="index3 drop"   data-drop="item3"  ></div>
+   
+    </div>
+     <div class="block1">
+        <div class="index4 drop"   data-drop="item4"  ></div>
+   
+    </div>
+    
+    
+    <div class="block1">
+        <div class="index5 drop"   data-drop="item5"  ></div>
+   
+    </div>
+            
+     <div class="block1">
+        <div class="index6 drop"   data-drop="item6"  ></div>
+   
+    </div>
+    <div class="block1">
+        <div class="index7 drop"   data-drop="item7"  ></div>
+   
+    </div>
+    
+        
+    <div id="gol10" class="end2">    </div>
+    <div id="gol20" class="end3">    </div>
+    <div id="gol30" class="end4">    </div>
+    <div id="gol40" class="end5">    </div>
+    <div id="gol50" class="item01 end6" >    </div>
+    <div id="gol60" class="end7">    </div>
+      <div id="gol70" class="end999">    </div>
+    
+    
+    <div class="end">
+        <p class="asd">Поздравляем! Все верно!</p>
+        <img class="gg" alt="">
+    </div>
+    
+    <script src="js/js.js"></script>
+    
+     <script>
+         
+   var t = 0 ;
+           tem1.style.visibility = "visible";
+      
+   
+    var z=0,x=0,c=0,v=0,b=0,n=0,m=0,p=0;
+         
+    gol10.style.visibility = "hidden";
+    gol20.style.visibility = "hidden";
+    gol30.style.visibility = "hidden";
+    gol40.style.visibility = "hidden";
+    gol50.style.visibility = "hidden";
+    gol60.style.visibility = "hidden";
+    gol70.style.visibility = "hidden";
+         
+                       gol5.style.visibility = "hidden";
+        
+     function none() {
+    document.getElementById('title').style.visibility = "hidden";
+}
+
+$(document).ready(function () {
+
+    var item = $('.item');
+    item.each(function (i, elem) {
+        var winWidth = $(".items").width();
+        var winHeight = $(".items").height();
+        var left = Math.floor(Math.random() * (winWidth - 300)) + 'px';
+        var top = Math.floor(Math.random() * (winHeight + 50)) + 'px';
+        $(this).css({
+            "top": top,
+            "left": left
+        });
+
+    });
+
+
+    $(".item").draggable({
+        cursor: "pointer",
+        drag: function (event, ui) {
+            $(this).addClass("dragElem");
+        },
+        stop: function (event, ui) {
+            $(this).removeClass("dragElem");
+        }
+    });
+
+    var correctAnswer1 = 0;
+    var correctAnswer2 = 0;
+    var correctAnswer3 = 0;
+    var correctAnswer4 = 0;
+    var correctAnswer5 = 0;
+     var correctAnswer6 = 0;
+    var correctAnswer7 = 0;
+    var Answer1 = $('[data-drag = item1]').length;
+    var Answer2 = $('[data-drag = item2]').length;
+    var Answer3 = $('[data-drag = item3]').length;
+    var Answer4 = $('[data-drag = item4]').length;
+    var Answer5 = $('[data-drag = item5]').length;
+    var Answer6 = $('[data-drag = item4]').length;
+    var Answer7 = $('[data-drag = item5]').length;
+    $(".drop").droppable({
+        classes: {
+            "ui-droppable": "active",
+            "ui-droppable-hover": "hover"
+        },
+        accept: function (el) {
+            var test = el.attr("data-drag");
+            var test1 = $(this).attr("data-drop");
+            if (test == test1) {
+                return true;
+            } else {
+                return false;
+            }
+        },
+        over: function (event, ui) {
+            $(this).addClass("truedrop");
+
+        },
+        out: function (event, ui) {
+        },
+        drop: function (event, ui) {
+            if (ui.draggable.attr('data-drag-true') == 'false') {
+                switch ($(this).attr('data-drop')) {
+                    case 'item1':
+                        correctAnswer1++;
+                        ui.draggable.attr('data-drag-true', 'true');
+                        break;
+                        
+                    case 'item2':
+                        correctAnswer2++;
+                        ui.draggable.attr('data-drag-true', 'true');
+                        break;
+                        
+                        
+                    case 'item3':
+                        correctAnswer3++;
+                        ui.draggable.attr('data-drag-true', 'true');
+                        break;
+                    case 'item4':
+                        correctAnswer4++;
+                        ui.draggable.attr('data-drag-true', 'true');
+                        break;
+                    
+                               
+                    
+                       case 'item5':
+                        correctAnswer5++;
+                        ui.draggable.attr('data-drag-true', 'true');
+                        break;
+                        case 'item6':
+                        correctAnswer6++;
+                        ui.draggable.attr('data-drag-true', 'true');
+                        break;
+                        case 'item7':
+                        correctAnswer7++;
+                        ui.draggable.attr('data-drag-true', 'true');
+                        break;
+                    default:
+                        break;
+                };
+            }
+            if (correctAnswer1 == Answer1)  {
+              gol10.style.visibility = "visible";
+             gol1.style.visibility =  "hidden";
+
+                  gol5.style.visibility = "visible";
+                
+                z=1;
+            
+                
+            }
+           if (correctAnswer2 == Answer2)  {
+                       gol2.style.visibility  = "hidden";
+             x=1;
+ gol20.style.visibility = "visible";
+            }
+             if (correctAnswer3 == Answer3)  {
+                       gol3.style.visibility  = "hidden";
+           c=1;
+ gol30.style.visibility = "visible";
+            }
+             if (correctAnswer4 == Answer4)  {
+             gol4.style.visibility = "hidden";
+             v=1;
+ gol40.style.visibility = "visible";
+            }
+            
+            
+       if (correctAnswer5 == Answer5)  {
+                    b=1;
+         
+                       gol5.style.visibility = "hidden";
+           gol50.style.visibility = "visible";
+
+            }
+     if (correctAnswer6 == Answer6)  {
+                 
+            n=1;
+                       gol6.style.visibility = "hidden";
+           gol60.style.visibility = "visible";
+
+            }
+            
+            
+           if (correctAnswer7 == Answer7)  {
+           gol7.style.visibility = "hidden";
+           gol70.style.visibility = "visible";
+   m=1;
+            }   
+            
+            
+            
+            
+    p=z+x+c+v+b+n+m;
+            
+        if(p==7){
+           end();
+           }    
+            
+        }
+    });
+    
+    
+   
+
+    
+    //Перезагрузка страницы при клике
+    $('.end').click(function () {
+        location.reload();
+
+    });
+    end = function () {
+        $(".end").addClass("finish");
+        $(".drop").addClass("win");
+    }
+
+});
+
+
+        
+        
+    </script>
+    
+    
+</body>
+</html>

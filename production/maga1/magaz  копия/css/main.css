@@ -1,0 +1,120 @@
+﻿body{
+    background-color: #414141;
+    background-image: url(../img/fon.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+	margin: 0;
+	overflow: hidden;
+    user-select: none;
+}
+
+*{
+	box-sizing: border-box;
+}
+
+.p {
+	height: 4vw;
+	z-index: 2;
+	margin: 0 0.5vw;
+}
+
+.shkaf1{
+	width: 18vw;
+	height: auto;
+	position: absolute;
+	left: 1vw;
+	top: 25vw;
+}
+
+.shkaf1-2{
+	width: 18vw;
+	height: auto;
+	position: absolute;
+	left: 22vw;
+	top: 25vw;
+}
+
+
+
+.shkaf1 > div{
+	
+	width: inherit;
+	height: 3.5vw;
+	margin-bottom: 0.8vw;
+	display: flex;
+	justify-content: space-around;
+	align-items: flex-end;
+	padding: 0 1vw;
+}
+
+.shkaf2{
+	width: 36vw;
+	height: auto;
+	position: absolute;
+	left: 42vw;
+	top: 25vw;
+}
+
+.shkaf2 > div{
+	width: inherit;
+	height: 6vw;
+	margin-bottom: 0.8vw;
+	display: flex;
+	justify-content: space-around;
+	align-items: flex-end;
+	padding: 0 1vw;
+    
+  
+}
+
+.shkaf3{
+	width: 19vw;
+	height: auto;
+	position: absolute;
+	left: 80vw;
+	top: 40vw;
+}
+
+.shkaf3 > div{
+	width: inherit;
+	height: 14vw;
+	margin-bottom: 0.8vw;
+	display: flex;
+	justify-content: space-around;
+	align-items: flex-end;
+	padding: 0 1vw;
+}
+
+.shkaf3 > div>img{
+	display: none;
+}
+
+.prod {
+	position: absolute;
+	width: 30vw;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	height: auto;
+	background-color: rgba(123, 123, 123, 0.7);
+	padding: 1vw;
+	top: 5vw;
+	right: 1vw;
+	border-radius: 2vw;
+}
+
+.info{
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	display: flex;
+	font-size: 1.5vw;
+	position: absolute;
+	top: 5vw;
+	left: 32vw;
+	width: 30vw;
+	height: 20vw;
+	background-color: rgba(255, 255, 255, 0.75);
+	padding: 0.5vw;
+	z-index: 3;
+}

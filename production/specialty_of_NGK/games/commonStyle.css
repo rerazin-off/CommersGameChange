@@ -1,0 +1,103 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+    -moz-user-select: none;
+}
+
+html {
+    overflow: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+button {
+    cursor: pointer;
+}
+
+h1 {
+    font-size: 9vh;
+    text-align: center;
+    line-height: 10vh;
+}
+
+body {
+    font-family: 'CyrRound', serif;
+    height: 100vh;
+    width: 100vw;
+    background-size: cover;
+    display: grid;
+    place-content: center;
+}
+
+.congratulation {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    place-content: center;
+    width: 80vw;
+    height: 75vh;
+    background: rgba(255, 255, 255);
+    box-shadow: 0 0 15px 0 rgba(137, 137, 137, 0.8);
+    border-radius: 2vw;
+    overflow: hidden;
+}
+
+.congratulation img {
+    position: absolute;
+    z-index: 0;
+    pointer-events: none;
+}
+
+#salutLeft {
+    left: 0;
+    bottom: 0;
+}
+
+#salutRight {
+    right: 0;
+    bottom: 0;
+    transform: scale(-1, 1);
+}
+
+.btn-row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 7vh;
+    border-radius: 1vw;
+}
+
+.toMenu, .toNext, .againButton {
+    font-family: CyrRound, serif;
+    color: white;
+    font-size: 6vh;
+    text-align: center;
+    padding: 0.25vh 1.2vw;
+    margin: 0 1vw;
+    background: #45b100;
+    border-radius: 1vw;
+    border: 0.15vw solid white;
+    width: 32%;
+}
+
+.toMenu {
+    margin-top: 2vh;
+}
+
+.backButton {
+    font-size: 3.5vh;
+    position: absolute;
+    left: 1%;
+    top: 2%;
+    padding: 0.25vh 0.8vw;
+    background: #45b100;
+    border-radius: 0.75vw;
+    border: 0.15vw solid white;
+}

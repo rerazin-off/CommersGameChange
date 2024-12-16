@@ -1,0 +1,223 @@
+@font-face{
+    src: url('../font/8847.ttf');
+    font-family: 'Main';
+}
+*{
+    font-family: 'Main';
+    margin: 0;
+}
+body{
+
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: #FDC87F;
+    background-image: url(../img/bg.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+    overflow:  hidden;
+}
+.wr{
+    padding-top: 20px;
+    padding-left: 30px;
+    position: relative;
+}
+.wr h1{
+    padding: none;
+    margin: 0;
+    text-align: center;
+    font-size: 212px;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    user-select: none; 
+    color: #262262;
+}
+.wr img{
+    cursor: pointer;
+}
+/*Позиции стикеров. Первый столбец*/
+#no402{
+    position: absolute;
+    top: 450px;
+    left: 1450px;
+    transform:  rotate(-15deg);
+}
+#no100000{
+    position: absolute;
+    top: 400px;
+    left: 150px;
+    transform:  rotate(-15deg);
+}
+#no1400{
+    position: absolute;
+    top: 900px;
+    left: 100px;
+    transform:  rotate(-15deg);
+}
+#no20{
+    position: absolute;
+    top: 1480px;
+    left: 530px;
+    transform:  rotate(-15deg);
+}
+#no10000{
+    position: absolute;
+    top: 1010px;
+    left: 1300px;
+    transform:  rotate(-15deg);
+}
+#no99{
+    position: absolute;
+    top: 1600px;
+    left:  1500px;
+}
+#no432{
+    position: absolute;
+    top: 450px;
+    left: 2300px;
+}
+#no700{
+    position: absolute;
+    top: 1590px;
+    left: 2300px;
+}
+#no1999{
+    position: absolute;
+    top: 970px;
+    left: 2300px;
+}
+#no4000{
+    position: absolute;
+    top: 670px;
+    left: 3100px;
+}
+#no11163{
+    position: absolute;
+    top: 1370px;
+    left: 3000px;
+    transform:  rotate(7deg);
+}
+/*Второй столбец*/
+
+
+
+
+
+
+
+/*Всплывающее окно*/
+.win{
+    position: absolute;
+    background: black;
+    background:  rgba(0%,0%,0%, 60% );
+    width: 10000px;
+    height: 10000px;
+
+    z-index: 4;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom:-10px;
+    display: none;
+    
+}
+.win .d16 {
+    position: absolute;
+    top: 450px;
+    left: 800px;
+    padding: 50px;
+    background: #E3FBFF;
+    opacity: 1;
+    width: 1900px;
+    height: 1300px;
+    z-index: 5;
+}
+
+.win #ex p{
+    font-size: 175px;
+    float: right;
+    cursor: pointer;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    user-select: none; 
+}
+.win #ex a{
+    text-decoration: none;
+    color: #2C3291;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    user-select: none; 
+}
+.win #nanum{
+    font-size: 130px;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    user-select: none; 
+}
+.win .text{
+    
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-content: space-between;
+    align-items: center;
+    flex-direction: column;
+}
+.win .text .num{
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+  align-content: center;
+}
+.win .text .num #nanum{
+    font-size: 330px;
+    margin: 0;
+    padding: 0;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    user-select: none; 
+/*    width: 260px;*/
+    text-align: center;
+}
+.win .text .num #namnum{
+    font-size: 150px;
+/*    width: 260px;*/
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    color: #425CAA;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    user-select: none; 
+}
+.win .text .desknum{
+    text-align: center;
+    font-size: 100px;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    user-select: none; 
+}
+
+.list-1{
+     height:900px;
+}
+.list-2{
+    height:600px;
+}
+.list-3{
+    height:600px;
+}
+
+
+
+@keyframes pulsing {
+    0%   {  transform:  rotate(0deg);}
+    50%   { transform:  rotate(-10deg);}
+    100% { transform: rotate(0deg);}
+}
+
+.pulse-1{
+    -webkit-animation: pulsing 5s infinite;
+    animation: pulsing 10s infinite;
+}

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Бухгалтерия</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="js/jquery.ui.touch-punch.min.js"></script>
+     <link href="http://allfont.ru/allfont.css?fonts=cyrillicold" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+    <a class="back" href="../../../index.html?block=buh">НАЗАД</a>
+    <div class="title" id="title">
+        <input type="button" value="Начать" onclick="none()">
+    </div>
+    <div class="izda1" id="izda">
+        <p>Организация ООО "Авангард" занимается созданием праздничных подарков. Вам необходимо распределить расходы на те, которые организация может произвести и на те, которые не может.    
+        </p>
+    </div>
+    <img class="svitok" id="svitok" src="img/info.png" alt="">
+    <div class="pods" id="svitok1" onclick="helpex()"><p><i><b id="akus">Подсказка:</b>
+            <br>Помоги Директору определить, какие расходы могут быть произведены для создания готовой продукции. Те расходы, которые идут на создание продукции необходимо переместить в зеленый кружок, остальные в красный. 
+ <br> <br><b>Давайте приступим к выполнению задания!</b></i></p></div>
+    <div class="time" id="time">
+        <div class="item" data-drag="item2" data-drag-true="false"><img src="img/umbrella.png" alt=""></div>
+        <div class="item" id="qwe" data-drag="item1" data-drag-true="false"><img src="img/1863970.png" alt=""></div>
+        <div class="item" data-drag="item2" data-drag-true="false"><img src="img/home-clipart-8.png" alt=""></div>
+        <div class="item" data-drag="item1" data-drag-true="false"><img src="img/falling-money-transparent-png-7.png" alt=""></div>
+        <div class="item item11" data-drag="item1" data-drag-true="false"><img src="img/Building-PNG-Tra%D0%BF%D0%BFnsparent-Image.png" alt=""></div>
+    </div>
+
+    <div class="time3" id="time2">
+        <div class="item item11" data-drag="item2" data-drag-true="false"><img src="img/strona-4.png" alt=""></div>
+        <div class="item item11" data-drag="item1" data-drag-true="false"><img src="img/empty-box-png-2.png" alt=""></div>
+        <div class="item item11" data-drag="item1" data-drag-true="false"><img src="img/doki11.png" alt=""></div>
+        <div class="item item11" data-drag="item2" data-drag-true="false"><img src="img/Building-PNG-Transparent-Image.png" alt=""></div>
+        <div class="item item11" data-drag="item1" data-drag-true="false"><img src="img/truck.png" alt=""></div>
+        <div class="item item11" data-drag="item1" data-drag-true="false"><img src="img/karanda89.png" alt=""></div>
+    </div>
+
+    <div class="flower drop" data-drop="item1" id="fl1"></div>
+    <div class="flower1 flower drop" data-drop="item2" id="fl2"></div>
+    <input type="button" id="help" value="Подсказка" onclick="help()">
+    <input type="button" id="restart" value="Далее" onclick="restart()">
+
+    <div class="end" id="ended">
+        <p>Вы набрали 10/10 баллов!</p>
+    </div>
+
+    <div class="too" id="too">
+        <div class="time2">
+            <p><b>В деятельности ООО "Авангард" количество расходов может быть досточно большим, поэтому наиболее важные из них должны проводиться раньше других. Ваша задача расположить расходы в порядке первоочередности.</b></p>
+
+            <div class="item text" data-drag="item4" data-drag-true="false"><b>Налоги</b></div>
+
+            <div class="item text" data-drag="item6" data-drag-true="false"><b>Аренда офиса</b></div>
+            <div class="item text" data-drag="item9" data-drag-true="false"><b>Канцтовары </b></div>
+            <div class="item text" data-drag="item3" data-drag-true="false"><b>Заработная плата </b></div>
+            <div class="item text" data-drag="item7" data-drag-true="false"><b>Стоимость готовой продукции</b></div>
+            <div class="item text" data-drag="item8" data-drag-true="false"><b>Транспортные затраты </b></div>
+            <div class="item text" data-drag="item5" data-drag-true="false"><b>Страховые взносы с заработной платы </b></div>
+
+        </div>
+        <div class="column">
+            <div class="priemnik drop" data-drop="item3"></div>
+            <div class="priemnik drop" data-drop="item4"></div>
+            <div class="priemnik drop" data-drop="item5"></div>
+            <div class="priemnik drop" data-drop="item6"></div>
+            <div class="priemnik drop" data-drop="item7"></div>
+            <div class="priemnik drop" data-drop="item8"></div>
+            <div class="priemnik drop" data-drop="item9"></div>
+        </div>
+    </div>
+
+
+    <script src="js/js.js"></script>
+</body>
+</html>

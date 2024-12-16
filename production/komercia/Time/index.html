@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Время хранения</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="js/jquery.ui.touch-punch.min.js"></script>
+</head>
+<body>
+     <a class="back" href="../../../index.html?block=komerciaTime=kab5">НАЗАД</a>
+   <div class="title" id="title">
+       <div class="title-text">
+           <h1>Расставьте правильное время хранения для кажого продукта</h1>
+       </div>
+       <input type="button" value="Начать" onclick="none()">
+   </div>
+   
+   <div class="time">
+       <div class="item" data-drag="item1" data-drag-true="false" id ="Clock1">72</div>
+       <div class="item" data-drag="item2" data-drag-true="false" id ="Clock2">48</div>
+       <div class="item" data-drag="item3" data-drag-true="false" id ="Clock3">36</div>
+       <div class="item" data-drag="item4" data-drag-true="false" id ="Clock4">24</div>
+       <div class="item" data-drag="item5" data-drag-true="false" id ="Clock5">18</div>
+       <div class="item" data-drag="item6" data-drag-true="false" id ="Clock6">12</div>
+       <div class="item" data-drag="item7" data-drag-true="false" id ="Clock7">6</div>
+   </div>
+   
+   <div class="index drop" data-drop="item1">Торты и пирожные без отделки кремом, с белковым кремом или фруктовой отделкой</div>
+   <div class="index drop" data-drop="item2">Мясо жареное, тушки уток и цыплят запеченные, мясо птицы и кроликов жареное, рыба всех наименований</div>
+   <div class="index drop" data-drop="item3">Торты и пирожные со сливочным кремом, в том числе пирожное "Картошка", рыба всех наименований жареная</div>
+   <div class="index drop" data-drop="item4">Мясо отварное, тушеное, печень жареная, птица отварная, яйца вареные, рыба отварная, изделия из кальмара, салат из капусты квашеной, отварная свекла и морковь</div>
+   <div class="index drop" data-drop="item5">Субпродукты мясные отварные - язык, сердце, почки, запеканки капустная, морковная, овощная, картофельная с мясом, картофель отварной</div>
+   <div class="index drop" data-drop="item6">Салат(мясной, столичный, рыбный) без заправки, раки и креветки вареные, котлеты, студни мясные и мясо заливное</div>
+   <div class="index drop" data-drop="item7">Торты и пирожные с заварным кремом или кремом из взбитых сливок</div>
+    <img src="heh.png" height="42%" class="oups">
+    
+    
+     <div class="end">
+      <p>Поздравляем! Все верно!</p>
+    </div>
+   
+    
+    <script src="js/js.js"></script>
+    <script>
+        if (location.search=="?kab=kab5") {
+            document.querySelector('.back').href = '../../../index.html?block=komerciaTime=kab5'
+        } else if (location.search=="?kab=kab8") {
+            document.querySelector('.back').href = '../../../index.html?block=komerciaTime=kab8'
+        }
+    </script>
+</body>
+</html>

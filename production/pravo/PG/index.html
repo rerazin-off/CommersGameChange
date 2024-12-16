@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Квест 2</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/jquery-3.3.1.min.js"></script>
+</head>
+
+<body>
+
+    <a class="back" href="../../index.html">МЕНЮ</a>
+    <div class="title" id="title">
+        <input type="button" value="Начать" onclick="none()">
+        <div class="name">Правовой турнир</div>
+    </div>
+    
+<table border="1" id="table">
+<colgroup>
+    <col  style="width: 38vw;">
+  </colgroup>
+  
+<tr><td>Знаменательные даты</td><td>100</td><td >100</td><td>100</td><td >100</td><td></td></tr>
+
+<tr><td>Известные люди</td><td onclick="img(1)">100</td><td onclick="img(2)">100</td><td  onclick="img(3)">100</td><td onclick="img(4)">100</td><td></td></tr>
+
+<tr><td>Термины</td><td>100</td><td>100</td><td>100</td><td></td><td></td></tr>
+
+<tr><td>Партии</td><td>100</td><td>100</td><td >100</td><td></td><td></td></tr>
+
+<tr><td>Ты и школа</td><td>100</td><td>100</td><td>100</td><td >100</td><td></td></tr>
+
+<tr><td>Ты и полиция</td><td>100</td><td>100</td><td>100</td><td>100</td><td></td></tr>
+<tr><td>Ты и труд</td><td>100</td><td>100</td><td>100</td><td >100</td><td>100</td></tr>
+
+<tr><td>Ты и общество </td><td>100</td><td>100</td><td></td><td></td><td></td></tr>
+
+<tr><td>Ты и семья</td><td>100</td><td>100</td><td>100</td><td >100</td><td></td></tr>
+
+<tr><td>Трудовое право</td><td>100</td><td>100</td><td>100</td><td>100</td><td></td></tr>
+<tr><td>Гражданское право</td><td>100</td><td>100</td><td>100</td><td>100</td><td></td></tr>
+<tr><td>Сказки 1</td><td>100</td><td>100</td><td>100</td><td >100</td><td>100</td></tr>
+
+</table>
+      
+<div class="img"></div>      
+       
+<div class="button">
+    <input type="button" value="Верно" onclick="yes()">
+    <input type="button" value="Не верно" onclick="no()">
+</div>
+
+<div class="vopr"></div>
+<p class="ball">000000</p>
+       
+    <input type="button" value="Ответ" onclick="otvet()" class="otv">
+        
+    <div class="end">
+        <p class="endp">Поздравляем! Квест окончен!</p>
+    </div>
+
+
+    <script src="js/js.js"></script>
+</body>
+</html>
