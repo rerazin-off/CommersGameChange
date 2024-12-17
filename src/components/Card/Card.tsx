@@ -3,6 +3,7 @@ import { Button } from '../Button/Button';
 import { Link } from 'react-router-dom';
 import { MutableRefObject, useCallback, useEffect, useRef, useState } from 'react';
 import lineImage from '../../assets/img/line.svg';
+import Game from '../Game/Game';
 
 
 interface CardProps {
@@ -66,7 +67,8 @@ const Card = (props: CardProps) => {
           </div>
           <div className={classes.knopki}>
             <Button onClick={closeCard} bgColor={'pink'} type={'type1v2'}>НАЗАД</Button>
-            <Button bgColor={'blue'} type={'type1v2'} onClick={redirectToGame}>ВПЕРЕД</Button>
+            <Link to={`/game/${game}`}><Button bgColor={'blue'} type={'type1v2'}>ВПЕРЕД</Button></Link>
+            {/*<Button bgColor={'blue'} type={'type1v2'} onClick={redirectToGame}>ВПЕРЕД</Button>*/}
           </div>
         </div>
     </div>
