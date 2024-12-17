@@ -5,25 +5,29 @@ import { Button } from '../../../components/Button/Button';
 import { Link } from 'react-router-dom';
 import { Assistant } from '../../../components/Assistant/Assistant';
 
-const gameData: Record<string, { title: string; body: string }> = {
+const gameData: Record<string, { title: string; body: string; url: string }> = {
   shelfGame: {
     title: 'Тест по праву',
     body: 'Правовые аспекты трудоустройства несовершеноллетних!',
+    url: '../../../production/site_pravo/index.html'
   },
   piggyBankGame: {
     title: 'Пенсионый фонд',
     body: 'В этой игре вы почувствуете себя сотрудником пенсионного фонда. Перед вами будут предложены ситуации, ' +
       'вам необходимо принять верное решение и набрать как можно больше всего баллов!',
+    url: '../../../production/dopolnenie/pensia/index.html'
   },
   sheetGame: {
     title: 'Право',
     body: 'Интерактивное приложение право и организация социального обеспечения. Вам будет необходимо правильно' +
       'составить заявку в МФЦ, основываясь на примере!',
+    url: '../../../production/pravo/pwork/index.html'
   },
   hammerGame: {
     title: 'Игра суд',
     body: 'Вам будет необходимо выступить в роли судьи, выносящего приговор!' +
       'Помните, что от вашего решения зависит судьба человека!',
+    url: '../../../production/pravo/syd/index.html'
   },
 
 };
@@ -33,11 +37,11 @@ export const Yur: React.FC = () => {
   const [openIsCard, setOpenIsCard] = useState(false);
   const [currentGame, setGame] = useState<string>('')
 
-  const cardData = gameData[currentGame] || { title: '', body: '' };
+  const cardData = gameData[currentGame] || { title: '', body: '', url: '' };
 
-  const handleGameClick = (param: string) => {
+  const handleGameClick = (gameId: string) => {
     setOpenIsCard(true);
-    setGame(param);
+    setGame(gameId);
   };
 
   const closeCard = useCallback(() => {
