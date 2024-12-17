@@ -15,6 +15,7 @@ import { Torgashi } from '../../pages/SecondCorpus/torgashi/Torgashi';
 import { MusiciansRoom } from '../../pages/ThirdCorpus/musiciansroom/MusiciansRoom';
 import { ElementarySchool } from '../../pages/ThirdCorpus/ElementarySchool/ElementarySchool';
 import { Psih } from '../../pages/MainPage/Psih/Psih';
+import Game from '../../components/Game/Game';
 
 
 export const router = createBrowserRouter([
@@ -35,4 +36,5 @@ export const router = createBrowserRouter([
   { path: '/music', element: <MusiciansRoom /> },
   { path: '/ElemShool', element: <ElementarySchool /> },
   { path: '/Psih', element: <Psih /> },
+  { path: '/game/:gameId', element: <Game /> },
 ]);
