@@ -35,7 +35,7 @@ const gameData: Record<string, { title: string; body: string; url: string }> = {
 export const Yur: React.FC = () => {
 
   const [openIsCard, setOpenIsCard] = useState(false);
-  const [currentGame, setGame] = useState<string>('')
+  const [currentGame, setGame] = useState<string>('');
 
   const cardData = gameData[currentGame] || { title: '', body: '', url: '' };
 
@@ -60,7 +60,7 @@ export const Yur: React.FC = () => {
           <div className={classes.sheet} onClick={() => handleGameClick('sheetGame')}></div>
           <div className={classes.hammer} onClick={() => handleGameClick('hammerGame')}></div>
         </div>
-        <div className={classes.card}><Card title={cardData.title} body={cardData.body} game={currentGame}
+        <div className={classes.card}><Card title={cardData.title} body={cardData.body} game={cardData.url}
                                             isOpen={openIsCard} onClose={closeCard} /></div>
 
       </div>
