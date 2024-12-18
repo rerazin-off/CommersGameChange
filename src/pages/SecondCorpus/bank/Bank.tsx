@@ -5,8 +5,26 @@ import { Button } from '../../../components/Button/Button';
 import { Link } from 'react-router-dom';
 import { Assistant } from '../../../components/Assistant/Assistant';
 
-const gameData: Record<string, { title: string; body: string }> = {
+const gameData: Record<string, { title: string; body: string; url: string  }> = {
   papkaGame: {
+    title: 'Бухгалтерия',
+    body: 'Вам необходимо распределить расходы на те, которые организация может произвести и на те, которые не может',
+    url: '../../../production/bank/bankwork/index.html'
+  },
+  listGame: {
+    title: 'Лото',
+    body: 'Вам будут необходимо выбрать вариант ответа, после нажатия на выбранный вариант он исчезнет и более будет не доступен, выбирайте внимательно!',
+    url: '../../../production/dopolnenie/Ankety/ank/index.html'
+  },
+  ekranGame: {
+    title: 'Космическая игра',
+    body: 'Описание для космической игры.',
+    url: '../../../production/bank/priznaki/index.html'
+  },
+  koshelGame: {
+    title: 'Космическая игра',
+    body: 'Описание для космической игры.',
+    url: '../../../production/bank/chein/index.html'
     title: 'Банковское дело',
     body: 'Вам необходимо правильно составить заявку в банк, основываясь на примере!',
   },
@@ -52,8 +70,8 @@ export const Bank: React.FC = () => {
           <div className={classes.ekran} onClick={() => handleGameClick('ekranGame')}></div>
           <div className={classes.koshel} onClick={() => handleGameClick('koshelGame')}></div>
         </div>
-        <div className={classes.card}><Card title={cardData.title} body={cardData.body} game={currentGame}
-                                            isOpen={openIsCard} onClose={closeCard} /></div>
+        <div className={classes.card}><Card title={cardData.title} body={cardData.body} game={cardData.url}
+                                            backLink={'bank'} isOpen={openIsCard} onClose={closeCard} /></div>
 
       </div>
       <div className={classes.buttons}>

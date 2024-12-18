@@ -5,14 +5,16 @@ import { Link } from 'react-router-dom';
 import React, { useCallback, useState } from 'react';
 import Card from '../../../components/Card/Card';
 
-const gameData: Record<string, { title: string; body: string }> = {
+const gameData: Record<string, { title: string; body: string; url: string  }> = {
   backpackGame: {
     title: '',
     body: '',
+    url: ''
   },
   drumsGame: {
     title: '',
     body: '',
+    url: ''
   },
 };
 
@@ -49,7 +51,7 @@ export const ElementarySchool = () => {
           <div className={classes.backpack} onClick={() => handleGameClick('backpackGame')}></div>
           <div className={classes.glass} onClick={() => handleGameClick('glassGame')}></div>
         </div>
-        <div className={classes.card}><Card title={cardData.title} body={cardData.body} game={currentGame}
+        <div className={classes.card}><Card title={cardData.title} body={cardData.body} game={cardData.url} backLink={'ElementarySchool'}
                                             isOpen={openIsCard} onClose={closeCard} /></div>
 
       </div>

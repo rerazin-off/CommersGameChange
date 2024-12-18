@@ -16,6 +16,7 @@ import { MusiciansRoom } from '../../pages/ThirdCorpus/musiciansroom/MusiciansRo
 import { ElementarySchool } from '../../pages/ThirdCorpus/ElementarySchool/ElementarySchool';
 import { Psih } from '../../pages/MainPage/Psih/Psih';
 import Game from '../../components/Game/Game';
+import { Doy } from '../../pages/game/doy/doy';
 import {BankGame } from '../../pages/game/bank/bankGame'
 
 
@@ -37,10 +38,11 @@ export const router = createBrowserRouter([
   { path: '/music', element: <MusiciansRoom /> },
   { path: '/ElemShool', element: <ElementarySchool /> },
   { path: '/Psih', element: <Psih /> },
+  // { path: '/game/:gameId', element: <Game /> },
+  { path: '/doyGame', element: <Doy/> },
 
   { path: '/game/:gameId', element: <Game /> },
   { path: '/gbank', element: <BankGame /> },
-
   { path: '/game', element: <Game /> },
 
 ]);

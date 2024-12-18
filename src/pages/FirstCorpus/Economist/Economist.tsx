@@ -5,18 +5,16 @@ import { Button } from '../../../components/Button/Button';
 import { Link } from 'react-router-dom';
 import { Assistant } from '../../../components/Assistant/Assistant';
 
-const gameData: Record<string, { title: string; body: string }> = {
+const gameData: Record<string, { title: string; body: string; url: string }> = {
   doskaGame: {
     title: 'Бухгалтерия',
     body: 'Вам необходимо распределить расходы на те, которые организация может произвести и на те, которые не может',
+    url: '../../../production/buhuchet/buh2/index.html'
   },
   stolGame: {
     title: 'Лото',
     body: 'Вам будут необходимо выбрать вариант ответа, после нажатия на выбранный вариант он исчезнет и более будет не доступен, выбирайте внимательно!',
-  },
-  spaceGame: {
-    title: 'Космическая игра',
-    body: 'Описание для космической игры.',
+    url: '../../../production/buhuchet/loto/lotov.2/index.html'
   },
 };
 
@@ -46,7 +44,7 @@ export const Economist: React.FC = () => {
           <div className={classes.doska} onClick={() => handleGameClick('doskaGame')}></div>
           <div className={classes.stol} onClick={() => handleGameClick('stolGame')}></div>
         </div>
-        <div className={classes.card}><Card title={cardData.title} body={cardData.body} game={currentGame} isOpen={openIsCard} onClose={closeCard} /></div>
+        <div className={classes.card}><Card title={cardData.title} backLink={'economist'} body={cardData.body} game={cardData.url} isOpen={openIsCard} onClose={closeCard} /></div>
 
       </div>
       <div className={classes.buttons}>

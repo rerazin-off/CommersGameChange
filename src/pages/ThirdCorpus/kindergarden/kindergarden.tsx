@@ -5,18 +5,21 @@ import { Link } from 'react-router-dom';
 import React, { useCallback, useState } from 'react';
 import Card from '../../../components/Card/Card';
 
-const gameData: Record<string, { title: string; body: string }> = {
+const gameData: Record<string, { title: string; body: string; url: string }> = {
   wheelchairGame: {
     title: 'Дочки-матери',
     body: 'Интерактивная игра. Вам необходимо расставить подходящие игрушки на коврик, а лишнее убрать в сторону.',
+    url: '../../../production/specialty_of_NGK/games/mother-daughter/index.html'
   },
   сrescentGame: {
     title: 'Игрушки и часики',
     body: 'Интерактивные приложения. Вам будет необходимо расставить элементы на свои места в двух увлекательных играх!',
+    url: '../../../production/doshk/doshk/index.html'
   },
   telescopeGame: {
     title: 'Я воспитатель',
     body: 'Вам предстоит пройти различные интерактивные игры, в каждой из которых нужно расставить элементы на свои места согласно заданию.',
+    url: ''
   },
 };
 
@@ -57,8 +60,8 @@ export const Kidergarden = () => {
               <div className={classes.telescope} onClick={() => handleGameClick('telescopeGame')}></div>
               <div className={classes.сrescent} onClick={() => handleGameClick('сrescentGame')}></div>
             </div>
-            <div className={classes.card}><Card title={cardData.title} body={cardData.body} game={currentGame}
-                                                isOpen={openIsCard} onClose={closeCard} /></div>
+            <div className={classes.card}><Card title={cardData.title} body={cardData.body} game={cardData.url}
+                                                backLink={'Kidergarden'} isOpen={openIsCard} onClose={closeCard} /></div>
 
           </div>
           <div className={classes.button}>

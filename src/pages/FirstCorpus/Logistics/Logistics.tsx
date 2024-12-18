@@ -5,15 +5,17 @@ import { Button } from '../../../components/Button/Button';
 import { Link } from 'react-router-dom';
 import { Assistant } from '../../../components/Assistant/Assistant';
 
-const gameData: Record<string, { title: string; body: string }> = {
+const gameData: Record<string, { title: string; body: string; url: string }> = {
   truckGame: {
     title: 'Цепочка',
     body: 'Интерактивное приложение Логистическая цепочка. Вам будет необходимо расставить' +
       ' в правильном порядке все элементы транспортировки!',
+    url: '../../../production/dopolnenie/koni/index.html'
   },
   hologramGame: {
     title: 'Спаси королевство',
     body: 'Ваша задача спасти королевство за минимальное время и минимальные расходы.',
+    url: '../../../production/logic/index.html'
   },
 
 };
@@ -45,7 +47,7 @@ export const Logistics: React.FC = () => {
           <div className={classes.truck} onClick={() => handleGameClick('truckGame')}></div>
 
         </div>
-        <div className={classes.card}><Card title={cardData.title} body={cardData.body} game={currentGame}
+        <div className={classes.card}><Card title={cardData.title} body={cardData.body} game={cardData.url} backLink={'logistics'}
                                             isOpen={openIsCard} onClose={closeCard} /></div>
 
       </div>

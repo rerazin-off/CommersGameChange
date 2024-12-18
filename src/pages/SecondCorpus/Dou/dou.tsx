@@ -6,14 +6,16 @@ import { Link } from 'react-router-dom';
 import { Assistant } from '../../../components/Assistant/Assistant';
 
 
-const gameData: Record<string, { title: string; body: string }> = {
+const gameData: Record<string, { title: string; body: string; url: string }> = {
   laptopGame: {
     title: 'Документы',
     body: 'Вам необходимо расположить в правильное последовательности этапы работы с документом',
+    url: ''
   },
   shelfsGame: {
     title: 'Документы',
     body: 'Вам необходимо расположить в правильное последовательности этапы работы с документом',
+    url: '../../../production/cheindoy/index.html'
   },
 
 };
@@ -44,13 +46,12 @@ export const Dou: React.FC = () => {
           <div className={classes.laptop} onClick={() => handleGameClick('laptopGame')}></div>
           <div className={classes.shelfs} onClick={() => handleGameClick('shelfsGame')}></div>
         </div>
-        <div className={classes.card}><Card title={cardData.title} body={cardData.body} game={currentGame}
-                                            isOpen={openIsCard} onClose={closeCard} /></div>
+        <div className={classes.card}><Card title={cardData.title} body={cardData.body} game={cardData.url} backLink={'dou'} isOpen={openIsCard} onClose={closeCard}/></div>
       </div>
       <div className="image-cact">{}</div>
       <div className={classes.buttons}>
         <Link to={"/2"}><Button bgColor={'white'} type={"back_arrow"} /></Link>
-        <Link to={"/"}><Button bgColor={'white'} type={"gallery"} /></Link>
+        <Link to={"/doyGame"}><Button bgColor={'white'} type={"gallery"} /></Link>
         <Link to={"/psih"}><Button bgColor={'white'} type={"meditation"} /></Link>
       </div>
     </div>
