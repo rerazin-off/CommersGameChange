@@ -48,6 +48,13 @@ const Card = (props: CardProps) => {
     }
   }, [onClose]);
 
+
+  // const redirectToGame = () => {
+  //   window.location.href = props.game;
+  // };
+
+
+
   if (!isOpen && !isClose) {
     return null;
   }
