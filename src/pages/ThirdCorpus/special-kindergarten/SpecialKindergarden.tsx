@@ -5,18 +5,20 @@ import { Link } from 'react-router-dom';
 import React, { useCallback, useState } from 'react';
 import Card from '../../../components/Card/Card';
 
-const gameData: Record<string, { title: string; body: string }> = {
+const gameData: Record<string, { title: string; body: string; url: string;}> = {
   flowersGame: {
     title: 'Росток',
     body: 'Интерактивное приложение Росток. Вам будет необходимо вырастить цветок!',
+    url: '../../../production/rostok/index.html',
   },
   tentGame: {
     title: 'Дом',
     body: 'Интерактивное приложение Дом. Вам будет необходимо построить дом из предложенных программой элементов!',
+    url: '../../../production/home/index.html',
   },
 };
 
-export const SpecialKidergarden = () => {
+export const SpecialKidergarden: React.FC = () => {
 
   const [openIsCard, setOpenIsCard] = useState(false);
   const [currentGame, setGame] = useState<string>('')
@@ -52,8 +54,8 @@ export const SpecialKidergarden = () => {
           <div className={classes.flowers} onClick={() => handleGameClick('flowersGame')}></div>
           <div className={classes.tent} onClick={() => handleGameClick('tentGame')}></div>
         </div>
-        <div className={classes.card}><Card title={cardData.title} body={cardData.body} game={`http://${currentGame}.local/`}
-                                            isOpen={openIsCard} onClose={closeCard} /></div>
+        <div className={classes.card}><Card title={cardData.title} body={cardData.body} game={cardData.url}
+                                            isOpen={openIsCard} onClose={closeCard} backLink={'SpecialKinder'}/></div>
 
       </div>
       <div className={classes.button}>
