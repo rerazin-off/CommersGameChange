@@ -37,6 +37,10 @@ export const router = createBrowserRouter([
   { path: '/music', element: <MusiciansRoom /> },
   { path: '/ElemShool', element: <ElementarySchool /> },
   { path: '/Psih', element: <Psih /> },
+
   { path: '/game/:gameId', element: <Game /> },
   { path: '/gbank', element: <BankGame /> },
+
+  { path: '/game', element: <Game /> },
+
 ]);

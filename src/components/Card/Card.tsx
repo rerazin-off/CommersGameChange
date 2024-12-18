@@ -11,6 +11,7 @@ interface CardProps {
   onClose?: () => void;
   isOpen?: boolean;
   game: string;
+  backLink: string;
 }
 
 const Card = (props: CardProps) => {
@@ -19,6 +20,7 @@ const Card = (props: CardProps) => {
     title,
     body,
     game,
+    backLink,
     isOpen,
     onClose,
   } = props;
@@ -26,12 +28,10 @@ const Card = (props: CardProps) => {
   const ANIMATION_DELAY = 300;
 
   const [isClose, setIsClose] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
   const timerRef = useRef() as MutableRefObject<ReturnType<typeof setTimeout>>;
 
   useEffect(() => {
     if (isOpen) {
-      setIsMounted(true);
       setIsClose(false);
     }
   }, [isOpen]);
@@ -48,9 +48,12 @@ const Card = (props: CardProps) => {
     }
   }, [onClose]);
 
+
   // const redirectToGame = () => {
   //   window.location.href = props.game;
   // };
+
+
 
   if (!isOpen && !isClose) {
     return null;
@@ -66,8 +69,7 @@ const Card = (props: CardProps) => {
           </div>
           <div className={classes.knopki}>
             <Button onClick={closeCard} bgColor={'pink'} type={'type1v2'}>НАЗАД</Button>
-            <Link to={`/game/${game}`}><Button bgColor={'blue'} type={'type1v2'}>ВПЕРЕД</Button></Link>
-            {/*<Button bgColor={'blue'} type={'type1v2'} onClick={redirectToGame}>ВПЕРЕД</Button>*/}
+            <Link to={`/game?url=${encodeURIComponent(game)}&backLink=/${encodeURIComponent(backLink)}`}><Button bgColor={'blue'} type={'type1v2'}>ВПЕРЕД</Button></Link>
           </div>
         </div>
     </div>
