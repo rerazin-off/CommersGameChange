@@ -12,33 +12,19 @@ const gameData: Record<string, { title: string; body: string; url: string  }> = 
     url: '../../../production/bank/bankwork/index.html'
   },
   listGame: {
-    title: 'Лото',
-    body: 'Вам будут необходимо выбрать вариант ответа, после нажатия на выбранный вариант он исчезнет и более будет не доступен, выбирайте внимательно!',
-    url: '../../../production/dopolnenie/Ankety/ank/index.html'
-  },
-  ekranGame: {
-    title: 'Космическая игра',
-    body: 'Описание для космической игры.',
-    url: '../../../production/bank/priznaki/index.html'
-  },
-  koshelGame: {
-    title: 'Космическая игра',
-    body: 'Описание для космической игры.',
-    url: '../../../production/bank/chein/index.html'
-    title: 'Банковское дело',
-    body: 'Вам необходимо правильно составить заявку в банк, основываясь на примере!',
-  },
-  listGame: {
     title: 'Анкеты',
     body: 'Вам необходимо просмотреть анкеты и определить, каким клиентам будет одобрен кредит!',
+    url: '../../../production/dopolnenie/Ankety/ank/index.html'
   },
   ekranGame: {
     title: 'Признаки человека',
     body: 'Вам будет необходимо соотнести признаки финансово грамотного человека и человека с низкой финансовой грамотностью!',
+    url: '../../../production/bank/priznaki/index.html'
   },
   koshelGame: {
-    title: 'Банковская карта',
-    body: 'Вам будет необходимо правильно определить последовательность ваших действий при пропаже банковской карты!',
+    url: '../../../production/bank/chein/index.html',
+    title: 'Банковское дело',
+    body: 'Вам необходимо правильно составить заявку в банк, основываясь на примере!',
   },
 };
 
