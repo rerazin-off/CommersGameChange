@@ -60,8 +60,15 @@ export const Yur: React.FC = () => {
           <div className={classes.sheet} onClick={() => handleGameClick('sheetGame')}></div>
           <div className={classes.hammer} onClick={() => handleGameClick('hammerGame')}></div>
         </div>
-        <div className={classes.card}><Card title={cardData.title} body={cardData.body} game={currentGame}
-                                            isOpen={openIsCard} onClose={closeCard} /></div>
+        <div className={classes.card}>
+          <Card title={cardData.title}
+                body={cardData.body}
+                game={cardData.url}
+                isOpen={openIsCard}
+                onClose={closeCard}
+                backLink={'Yur'}
+          />
+        </div>
 
       </div>
       <div className={classes.buttons}>
