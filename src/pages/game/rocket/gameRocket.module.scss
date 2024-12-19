@@ -1,0 +1,54 @@
+/*основные стили*/
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+  border-width: 0px;
+  border-style: initial;
+  border-color: initial;
+  border-image: initial;
+  outline: none;
+  list-style-type: none;
+  text-decoration: none;
+}
+.aiC{
+  display: flex;
+  align-items: center;
+}
+.jcC{
+  display: flex;
+  justify-content: center;
+}
+.App {
+  text-align: center;
+  overflow: hidden;
+}
+.background{
+  background: url( "../../../assets/img/fon/bg-rocket.svg");
+  background-size: cover;
+  height: 100vh;
+}
+.dark{
+  background: linear-gradient(#00000080, #00000080), url("../../../assets/img/fon/bg-rocket.svg");
+  height: 100vh;
+}
+.btnDrawing{
+  background: none;
+  position: absolute;
+  top: 89vh;
+  left: 3vw;
+}
+.btnCheck{
+  background: none;
+  position: absolute;
+  top: 59vh;
+  right: 9vw;
+}
+.rocketElements{
+  position: absolute;
+  top: 31vh;
+  left: 40vw;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
