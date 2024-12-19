@@ -1,0 +1,36 @@
+.container {
+  width: 1920px;
+  height: 100vh;
+  background-image: url("/src/assets/img/fon/musicalgame_categories.svg");
+  background-size: cover;
+}
+
+.categoryString{
+  position: absolute;
+  left: 6vh;
+  top: 16vh;
+}
+
+.categoryWind {
+  position: absolute;
+  left: 64vh;
+  top: 6vh;
+}
+
+.categoryHit {
+  position: absolute;
+  left: 64vh;
+  bottom: 38vh;
+}
+
+.categoryKeyboard {
+  position: absolute;
+  right: 37vh;
+  top: 16vh;
+}
+
+.backButton {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+}
