@@ -47,21 +47,21 @@ export const LogistCep: React.FC = () => {
           <div key={i} className={classes.circle}>
             <span>{i + 1}</span>
             {pos > 0 && (
-              <img src={containers.find((bag) => bag.id === pos)?.image} alt={containers[pos - 1].label} />
+              <img src={containers.find((cont) => cont.id === pos)?.image} alt={containers[pos - 1].label} />
             )}
           </div>
         ))}
       </div>
 
       <div className={classes.containerss}>
-        {containers.map((bag) => (
+        {containers.map((cont) => (
           <img
-            key={bag.id}
-            src={bag.image}
-            alt={bag.label}
+            key={cont.id}
+            src={cont.image}
+            alt={cont.label}
             draggable
-            onDragEnd={() => handleDrop(positions.indexOf(0), bag.id)}
-            className={classes.bag}
+            onDragEnd={() => handleDrop(positions.indexOf(0), cont.id)}
+            className={classes.cont}
           />
         ))}
       </div>
