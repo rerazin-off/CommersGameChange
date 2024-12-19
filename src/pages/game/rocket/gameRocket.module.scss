@@ -1,15 +1,6 @@
 /*основные стили*/
 * {
-  box-sizing: border-box;
-  margin: 0px;
-  padding: 0px;
-  border-width: 0px;
-  border-style: initial;
-  border-color: initial;
-  border-image: initial;
-  outline: none;
-  list-style-type: none;
-  text-decoration: none;
+  border-style: none;
 }
 .aiC{
   display: flex;
@@ -19,10 +10,8 @@
   display: flex;
   justify-content: center;
 }
-.App {
-  text-align: center;
-  overflow: hidden;
-}
+
+
 .background{
   background: url( "../../../assets/img/fon/bg-rocket.svg");
   background-size: cover;
@@ -51,4 +40,14 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 30px;
+}
+
+
+/*стили компонента DropArea*/
+.dropArea{
+  height: 59vh;
+  width: 11vw;
+  position: absolute;
+  top: 8vh;
+  left:14vw;
 }
