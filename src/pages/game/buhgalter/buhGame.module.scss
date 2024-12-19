@@ -1,0 +1,54 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-image: url('/path-to-your-background-image.jpg'); /* Укажите путь к изображению */
+  background-size: cover;
+  color: #fff;
+}
+
+.item {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.dropZones {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  position: relative;
+}
+
+.dropZone {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  /* Разместите зоны на фоне звезд и черной дыры */
+}
+
+.checkButton {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #0f0;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.checkButton:hover {
+  background-color: #0c0;
+}
+
+.success {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 255, 0, 0.8);
+  padding: 20px;
+  font-size: 24px;
+  border-radius: 10px;
+}
