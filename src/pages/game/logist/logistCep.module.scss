@@ -1,0 +1,115 @@
+.container {
+  width: 1920px;
+  height: 1080px;
+  background: url("/src/assets/img/fon/fon_game_logist_cep.svg") no-repeat center center;
+  background-size: cover;
+  position: relative;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); // 3 колонки для кружков
+  gap: 30px;
+  position: absolute;
+  top: 170px;
+  left: 120px;
+  width: 50%;
+  justify-content: center;
+
+  .circle {
+    width: 189px;
+    height: 189px;
+    background-color: #D9D9D9;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    span {
+      font-size: 50px;
+      font-weight: bold;
+    }
+    &:nth-child(1) {
+      transform: translate(-65px, 0px);
+    }
+    &:nth-child(2) {
+      transform: translate(-35px, 0px);
+    }
+    &:nth-child(3) {
+      transform: translate(-3px, -3px);
+    }
+    &:nth-child(4) {
+      transform: translate(965px, -75px);
+    }
+    &:nth-child(5) {
+      transform: translate(330px, 65px);
+    }
+    &:nth-child(6) {
+      transform: translate(-350px, 195px);
+    }
+    &:nth-child(7) {
+      transform: translate(458px, 195px);
+    }
+    &:nth-child(8) {
+      transform: translate(490px, 195px);
+    }
+    &:nth-child(9) {
+      transform: translate(530px, 195px);
+    }
+    &:nth-child(10) {
+      transform: translate(1560px, -25px);
+    }
+  }
+}
+
+.containerss {
+  position: absolute;
+  right: 50px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); // 2 колонки для мешков
+  gap: 20px 35px; // Отступы между рядами и колонками
+
+  .containers {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: grab;
+    transition: transform 0.2s;
+
+    img {
+      width: 246px; // Ширина изображения
+      height: 136px;
+    }
+
+    span {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #fff;
+      text-align: center;
+      font-weight: bold;
+    }
+    &:nth-child(7){
+      grid-column: 2;
+    }
+
+    &:active {
+      cursor: grabbing;
+      transform: scale(0.95);
+    }
+  }
+}
+
+.checkButton {
+  position: absolute;
+  bottom: 20px;
+  right:20px;
+  width:200px ;
+  height: 60px;
+}
+
+.backButton {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+}
