@@ -17,8 +17,14 @@ import { ElementarySchool } from '../../pages/ThirdCorpus/ElementarySchool/Eleme
 import { Psih } from '../../pages/MainPage/Psih/Psih';
 import Game from '../../components/Game/Game';
 import { Doy } from '../../pages/game/doy/doy';
+
 import {BankGame } from '../../pages/game/bank/bankGame';
 import {SorterGame } from '../../pages/game/buhgalter/buhGame';
+
+import {BankGame } from '../../pages/game/bank/bankGame'
+import { LogistCep } from '../../pages/game/logist/LogistCep';
+import { Musical } from '../../pages/game/musical/musical';
+
 
 
 export const router = createBrowserRouter([
@@ -45,6 +51,11 @@ export const router = createBrowserRouter([
   { path: '/game/:gameId', element: <Game /> },
   { path: '/gbank', element: <BankGame /> },
   { path: '/game', element: <Game /> },
+
   { path: '/gbuh', element: <SorterGame /> },
+
+  { path: '/gamelogist', element: <LogistCep/> },
+  { path: '/musical', element: <Musical/> },
+
 
 ]);

@@ -69,7 +69,8 @@ const Card = (props: CardProps) => {
           </div>
           <div className={classes.knopki}>
             <Button onClick={closeCard} bgColor={'pink'} type={'type1v2'}>НАЗАД</Button>
-            <Link to={`/game?url=${encodeURIComponent(game)}&backLink=/${encodeURIComponent(backLink)}`}><Button bgColor={'blue'} type={'type1v2'}>ВПЕРЕД</Button></Link>
+            {/*<Link to={`/game?url=${encodeURIComponent(game)}&backLink=/${encodeURIComponent(backLink)}`}><Button bgColor={'blue'} type={'type1v2'}>ВПЕРЕД</Button></Link>*/}
+            <Link to={`/${(game)}`}><Button bgColor={'blue'} type={'type1v2'}>ВПЕРЕД</Button></Link>
           </div>
         </div>
     </div>
