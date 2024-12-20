@@ -1,18 +1,20 @@
+html{
+  overflow: hidden;
+}
 .container {
   width: 1920px;
   height: 1080px;
-  background: url("/src/assets/img/fon/fon_game_logist_cep.svg") no-repeat center center;
+  background: url("../../../assets/img/fon/fon_game_logist_cep.svg") no-repeat center center;
   background-size: cover;
   position: relative;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); // 3 колонки для кружков
   gap: 30px;
   position: absolute;
-  top: 170px;
-  left: 120px;
+  top: 150px;
+  left: 150px;
   width: 50%;
   justify-content: center;
 
@@ -24,90 +26,70 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
     span {
       font-size: 50px;
       font-weight: bold;
     }
     &:nth-child(1) {
-      transform: translate(-65px, 0px);
+      transform: translate(-450px);
     }
     &:nth-child(2) {
-      transform: translate(-35px, 0px);
+      transform: translate(-90px, -220px);
     }
     &:nth-child(3) {
-      transform: translate(-3px, -3px);
+      transform: translate(270px, -440px);
     }
     &:nth-child(4) {
-      transform: translate(965px, -75px);
+      transform: translate(530px, -470px);
     }
     &:nth-child(5) {
-      transform: translate(330px, 65px);
+      transform: translate(240px, -550px);
     }
     &:nth-child(6) {
-      transform: translate(-350px, 195px);
+      transform: translate(-110px, -600px);
     }
     &:nth-child(7) {
-      transform: translate(458px, 195px);
+      transform: translate(200px, -625px);
     }
     &:nth-child(8) {
-      transform: translate(490px, 195px);
+      transform: translate(500px, -840px);
     }
     &:nth-child(9) {
-      transform: translate(530px, 195px);
+      transform: translate(815px, -1060px);
     }
     &:nth-child(10) {
-      transform: translate(1560px, -25px);
+      transform: translate(1100px, -1275px);
     }
   }
 }
-
-.containerss {
+.bags {
   position: absolute;
+  top: 30px;
   right: 50px;
   display: grid;
-  grid-template-columns: repeat(2, 1fr); // 2 колонки для мешков
-  gap: 20px 35px; // Отступы между рядами и колонками
-
-  .containers {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  gap: 20px 57px;
+  .bag {
+    width: 246px;
+    height: 136px;
     cursor: grab;
     transition: transform 0.2s;
-
-    img {
-      width: 246px; // Ширина изображения
-      height: 136px;
-    }
-
-    span {
-      margin-top: 10px;
-      font-size: 14px;
-      color: #fff;
-      text-align: center;
-      font-weight: bold;
-    }
-    &:nth-child(7){
+    &:nth-child(10) {
       grid-column: 2;
-    }
 
-    &:active {
-      cursor: grabbing;
-      transform: scale(0.95);
+      &:active {
+        cursor: grabbing;
+        transform: scale(0.95);
+      }
     }
   }
 }
-
 .checkButton {
   position: absolute;
   bottom: 20px;
-  right:20px;
-  width:200px ;
-  height: 60px;
+  right: 20px;
 }
-
 .backButton {
   position: absolute;
   bottom: 20px;
