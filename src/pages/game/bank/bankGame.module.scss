@@ -8,7 +8,7 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); // 3 колонки для кружков
+  grid-template-columns: repeat(3, 1fr);
   gap: 30px;
   position: absolute;
   top: 150px;
@@ -24,15 +24,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 3px solid #4de4f2;
-
+    border: 3px solid #fff;
+    filter: drop-shadow( 0 0 20px #4de4f2);
     span {
       font-size: 24px;
       font-weight: bold;
     }
 
     &:nth-child(7) {
-      grid-column: 2; // Центр 7 круг
+      grid-column: 2;
     }
   }
 }
@@ -42,36 +42,21 @@
   top: 100px;
   right: 50px;
   display: grid;
-  grid-template-columns: repeat(3, 1fr); // 3 колонки для мешков
-  gap: 40px 50px; // Отступы между рядами и колонками
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px 50px;
 
   .bag {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    width: 200px;
+    height: 250px;
     cursor: grab;
     transition: transform 0.2s;
-
-    img {
-      width: 120px; // Ширина изображения
-      height: 120px;
-    }
-
-    span {
-      margin-top: 10px;
-      font-size: 14px;
-      color: #fff;
-      text-align: center;
-      font-weight: bold;
-    }
-    &:nth-child(7){
+    &:nth-child(7) {
       grid-column: 2;
-    }
 
     &:active {
       cursor: grabbing;
       transform: scale(0.95);
+    }
     }
   }
 }
@@ -79,13 +64,16 @@
 .checkButton {
   position: absolute;
   bottom: 20px;
-  right:20px;
-  width:200px ;
-  height: 60px;
+  right: 20px;
 }
 
 .backButton {
   position: absolute;
   bottom: 20px;
   left: 20px;
+}
+.card{
+  position: absolute;
+  margin-top: 350px;
+  margin-left: 34%;
 }
