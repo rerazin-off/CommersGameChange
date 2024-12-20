@@ -81,10 +81,10 @@
 //   );
 // };
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import styles from './buhGame.module.scss';
-import {Button} from "../../../components/Button/Button";
-import { Link } from 'react-router-dom';
+// import {Button} from "../../../components/Button/Button"; // Компонент Button пока не нужен
+// import { Link } from 'react-router-dom'; // Компонент Link пока не нужен
 
 // Тип для описания расхода
 type Expense = {
@@ -96,83 +96,172 @@ type Expense = {
 
 // Начальные расходы
 const initialExpenses: Expense[] = [
-  { id: 1, name: 'Expense1', image: 'src/assets/img/game_assets/buhsorter/dom.svg', isCorrect: true },
-  { id: 2, name: 'Expense2', image: 'src/assets/img/game_assets/buhsorter/kanctovary.svg', isCorrect: false },
-  // Добавьте остальные расходы
+  { id: 1, name: 'Expense1', image: 'src/assets/img/game_assets/buhsorter/dom.svg', isCorrect: false },
+  { id: 2, name: 'Expense2', image: 'src/assets/img/game_assets/buhsorter/kanctovary.svg', isCorrect: true },
+  { id: 3, name: 'Expense3', image: 'src/assets/img/game_assets/buhsorter/strahovka.svg', isCorrect: true },
+  { id: 4, name: 'Expense4', image: 'src/assets/img/game_assets/buhsorter/taxes.svg', isCorrect: true },
+  { id: 5, name: 'Expense5', image: 'src/assets/img/game_assets/buhsorter/office.svg', isCorrect: true },
+  { id: 6, name: 'Expense6', image: 'src/assets/img/game_assets/buhsorter/salary.svg', isCorrect: true },
+  { id: 7, name: 'Expense7', image: 'src/assets/img/game_assets/buhsorter/transport.svg', isCorrect: true },
+  { id: 8, name: 'Expense8', image: 'src/assets/img/game_assets/buhsorter/obed.svg', isCorrect: false },
+  { id: 9, name: 'Expense9', image: 'src/assets/img/game_assets/buhsorter/phone.svg', isCorrect: false },
+  { id: 10, name: 'Expense10', image: 'src/assets/img/game_assets/buhsorter/priceproduct.svg', isCorrect: true },
+  { id: 11, name: 'Expense11', image: 'src/assets/img/game_assets/buhsorter/pytevka.svg', isCorrect: false },
 ];
 
 export const SorterGame: React.FC = () => {
   const [expenses, setExpenses] = useState(initialExpenses);
-  const [currentExpenseIndex, setCurrentExpenseIndex] = useState(0);
-  const [star, setStar] = useState<Expense[]>([]);
-  const [blackhole, setBlackhole] = useState<Expense[]>([]);
-  const [dragging, setDragging] = useState(false);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [currentExpenseIndex, setCurrentExpenseIndex] = useState(0); // Индекс текущего расхода
+  const [star, setStar] = useState<Expense[]>([]); // Массив расходов на звезде
+  const [blackhole, setBlackhole] = useState<Expense[]>([]); // Массив расходов в черной дыре
+  const [dragging, setDragging] = useState(false); // Флаг, показывающий, идет ли перетаскивание
+  const [position, setPosition] = useState({ x: 0, y: 0 }); // Текущая позиция перетаскиваемого элемента
+  const [offset, setOffset] = useState({ x: 0, y: 0 }); // Смещение курсора относительно левого верхнего угла изображения
+  const draggableRef = useRef<HTMLImageElement>(null); // Реф для перетаскиваемого элемента
+  const [showModal, setShowModal] = useState(false);
 
+
+  // Обработчик начала касания/нажатия на элемент
   const handleTouchStart = (event: React.TouchEvent) => {
-    setDragging(true);
+    if (!currentExpense) return; // Если нет текущего расхода, выходим
+    setDragging(true); // Устанавливаем флаг перетаскивания
+    const touch = event.touches[0]; // Получаем данные о касании
+    const rect = draggableRef.current!.getBoundingClientRect(); // Получаем размеры и позицию элемента
+
+    // Вычисляем смещение, чтобы курсор был по центру элемента
+    setOffset({
+      x: touch.clientX - rect.left,
+      y: touch.clientY - rect.top,
+    });
+
+    // Устанавливаем начальную позицию элемента
+    setPosition({ x: rect.left, y: rect.top });
   };
 
+
+
+  // Обработчик перемещения касания/курсора
   const handleTouchMove = (event: React.TouchEvent) => {
-    if (!dragging) return;
-    const touch = event.touches[0];
-    setPosition({ x: touch.clientX, y: touch.clientY });
+    if (!dragging || !currentExpense) return; // Если не перетаскиваем или нет текущего расхода, выходим
+    const touch = event.touches[0]; // Получаем данные о касании
+
+    // Устанавливаем позицию элемента в соответствии с положением курсора
+    setPosition({
+      x: touch.clientX - offset.x,
+      y: touch.clientY - offset.y,
+    });
   };
 
-  const handleTouchEnd = (target: 'star' | 'blackhole') => {
-    setDragging(false);
-    const expense = expenses[currentExpenseIndex];
-    if (target === 'star' && star.length < 7) {
-      setStar([...star, expense]);
-    } else if (target === 'blackhole' && blackhole.length < 4) {
-      setBlackhole([...blackhole, expense]);
+
+  // Функция для проверки, находится ли элемент в пределах зоны
+  const isInsideZone = (x: number, y: number, zoneElement: HTMLElement | null) => {
+    if (!zoneElement) return false; // Если зона не существует, выходим
+    const rect = zoneElement.getBoundingClientRect(); // Получаем размеры и позицию зоны
+    return x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom; // Проверяем, находится ли элемент внутри зоны
+  };
+
+  // Обработчик завершения касания/нажатия
+  const handleTouchEnd = () => {
+    if (!dragging || !currentExpense) return; // Если не перетаскиваем или нет текущего расхода, выходим
+    setDragging(false); // Сбрасываем флаг перетаскивания
+
+    const starZoneElement = document.querySelector(`.${styles.starZone}`); // Получаем DOM-элемент зоны звезды
+    if (isInsideZone(position.x, position.y, starZoneElement) && star.length < 7) { // Проверяем, находится ли элемент в зоне звезды, и не переполнена ли она
+      setStar([...star, currentExpense]);  // Добавляем текущий расход в массив расходов на звезде
+      setCurrentExpenseIndex((prevIndex) => prevIndex + 1); // Переходим к следующему расходу
     }
-    setCurrentExpenseIndex((prevIndex) => prevIndex + 1);
+
+    const blackholeZoneElement = document.querySelector(`.${styles.blackholeZone}`); // Получаем DOM-элемент зоны черной дыры
+    if (isInsideZone(position.x, position.y, blackholeZoneElement) && blackhole.length < 4) { // Проверяем, находится ли элемент в зоне черной дыры, и не переполнена ли она
+      setBlackhole([...blackhole, currentExpense]); // Добавляем текущий расход в массив расходов в черной дыре
+      setCurrentExpenseIndex((prevIndex) => prevIndex + 1);  // Переходим к следующему расходу
+    }
   };
 
-  const handleCheck = () => {
-    const incorrectInStar = star.filter((e) => !e.isCorrect);
-    const incorrectInBlackhole = blackhole.filter((e) => e.isCorrect);
 
+  // Обработчик нажатия кнопки "Проверить"
+  const handleCheck = () => {
+    const incorrectInStar = star.filter((e) => !e.isCorrect); // Находим неправильные расходы в звезде
+    const incorrectInBlackhole = blackhole.filter((e) => e.isCorrect); // Находим неправильные расходы в черной дыре
+
+    // Если нет ошибок, показываем модальное окно
     if (incorrectInStar.length === 0 && incorrectInBlackhole.length === 0) {
-      alert('Молодец!');
+      setShowModal(true);
     } else {
+      // Удаляем неправильные элементы, оставляем только правильные
       setStar(star.filter((e) => e.isCorrect));
       setBlackhole(blackhole.filter((e) => !e.isCorrect));
     }
   };
 
-  const currentExpense = expenses[currentExpenseIndex];
+  // Закрытие модального окна
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setStar([]);
+    setBlackhole([]);
+    setCurrentExpenseIndex(0)
+  };
 
+  const currentExpense = expenses[currentExpenseIndex]; // Получаем текущий расход
+  const isGameFinished = star.length === 7 && blackhole.length === 4; // Проверяем, завершена ли игра
+
+  // Эта часть кода обеспечивает плавное перемещение изображения, а также его изначальное расположение по центру
+  useEffect(() => {
+    if(currentExpense){
+      const draggableElement = draggableRef.current;
+      if (draggableElement) {
+        const containerRect = document.querySelector(`.${styles.container}`)?.getBoundingClientRect();
+        if (containerRect) {
+          const initialX = containerRect.width / 2 - draggableElement.offsetWidth / 2;
+          const initialY = containerRect.height / 2 - draggableElement.offsetHeight / 2;
+          setPosition({ x: initialX, y: initialY });
+        }
+      }
+    }
+  }, [currentExpense])
   return (
     <div className={styles.container}>
+      {/* Текущий расход */}
       {currentExpense && (
         <img
+          ref={draggableRef}
           src={currentExpense.image}
           alt={currentExpense.name}
           className={styles.draggable}
-          style={{ transform: `translate(${position.x}px, ${position.y}px)` }}
+          style={{ transform: `translate(${position.x}px, ${position.y}px)`, cursor: dragging ? 'grabbing' : 'grab'}}
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
-          onTouchEnd={() => handleTouchEnd('star')}
+          onTouchEnd={handleTouchEnd}
         />
       )}
-      <div className={styles.zone} onTouchEnd={() => handleTouchEnd('star')}>
+      {/* Зона звезды */}
+      <div className={`${styles.zone} ${styles.starZone}`}>
         <div className={styles.star}>
           {star.map((expense) => (
             <img key={expense.id} src={expense.image} alt={expense.name} />
           ))}
         </div>
       </div>
-      <div className={styles.zone} onTouchEnd={() => handleTouchEnd('blackhole')}>
+      {/* Зона черной дыры */}
+      <div className={`${styles.zone} ${styles.blackholeZone}`}>
         <div className={styles.blackhole}>
           {blackhole.map((expense) => (
             <img key={expense.id} src={expense.image} alt={expense.name} />
           ))}
         </div>
       </div>
-      {star.length === 7 && blackhole.length === 4 && (
+      {/* Кнопка "Проверить", которая отображается только после заполнения обеих зон */}
+      {isGameFinished && (
         <button onClick={handleCheck} className={styles.checkButton}>Проверить</button>
+      )}
+      {/* Модальное окно "Молодец!" */}
+      {showModal && (
+        <div className={styles.modal}>
+          <div className={styles.modalContent}>
+            <h2>Молодец!</h2>
+            <button onClick={handleCloseModal}>Играть заново</button>
+          </div>
+        </div>
       )}
     </div>
   );
