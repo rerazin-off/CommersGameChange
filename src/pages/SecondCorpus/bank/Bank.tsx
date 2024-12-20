@@ -22,7 +22,8 @@ const gameData: Record<string, { title: string; body: string; url: string  }> = 
     url: '../../../production/bank/priznaki/index.html'
   },
   koshelGame: {
-    url: '../../../production/bank/chein/index.html',
+    // url: '../../../production/bank/chein/index.html',
+    url: 'gbank',
     title: 'Банковское дело',
     body: 'Вам необходимо правильно составить заявку в банк, основываясь на примере!',
   },
