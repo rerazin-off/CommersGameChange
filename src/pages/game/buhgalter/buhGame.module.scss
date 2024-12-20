@@ -1,0 +1,155 @@
+////.container {
+////  display: flex;
+////  flex-direction: column;
+////  align-items: center;
+////  justify-content: center;
+////  height: 100vh;
+////  background: url("/src/assets/img/fon/buh_sort_game.svg") no-repeat center center;
+////  background-size: cover;
+////  color: #fff;
+////}
+////
+////.item {
+////  font-size: 24px;
+////  margin-bottom: 20px;
+////}
+////
+////.dropZones {
+////  display: flex;
+////  justify-content: space-around;
+////  width: 100%;
+////  position: relative;
+////}
+////
+////.dropZone {
+////  width: 100px;
+////  height: 100px;
+////  position: absolute;
+////  /* Разместите зоны на фоне звезд и черной дыры */
+////}
+////
+////.checkButton {
+////  margin-top: 20px;
+////  padding: 10px 20px;
+////  background-color: #0f0;
+////  border: none;
+////  cursor: pointer;
+////  font-size: 16px;
+////  transition: background-color 0.3s;
+////}
+////
+////.checkButton:hover {
+////  background-color: #0c0;
+////}
+////
+////.success {
+////  position: absolute;
+////  top: 50%;
+////  left: 50%;
+////  transform: translate(-50%, -50%);
+////  background-color: rgba(0, 255, 0, 0.8);
+////  padding: 20px;
+////  font-size: 24px;
+////  border-radius: 10px;
+////}
+////
+////.backButton {
+////  position: absolute;
+////  bottom: 20px;
+////  left: 20px;
+////}
+//
+
+
+.container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 100vh;
+  background-image: url('/src/assets/img/fon/buh_sort_game.svg'); // Фон
+  background-size: cover;
+  position: relative;
+}
+
+
+.expenses {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.img {
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+  cursor: pointer; // Курсор как указатель
+}
+
+//.zone {
+//  width: 200px;
+//  height: 200px;
+//  border: 2px solid white;
+//  border-radius: 50%; // Круглая форма
+//  display: flex;
+//  justify-content: center;
+//  align-items: center;
+//}
+//
+//.star, .blackhole {
+//  display: flex;
+//  flex-wrap: wrap; // Разрешает перенос элементов
+//}
+//
+//.checkButton {
+//  position: absolute;
+//  bottom: 20px;
+//  left: 50%;
+//  transform: translateX(-50%);
+//  padding: 10px 20px;
+//  background-color: #4CAF50; // Зеленый цвет
+//  color: white;
+//  border: none;
+//  border-radius: 5px;
+//  font-size: 16px;
+//  cursor: pointer; // Курсор как указатель
+//}
+
+.draggable {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+}
+
+.zone {
+  width: 200px;
+  height: 200px;
+  border: 2px solid white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.star, .blackhole {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.checkButton {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
