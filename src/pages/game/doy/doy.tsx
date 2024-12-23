@@ -16,16 +16,19 @@ const bags = [
   { id: 6, image: "/src/assets/img/game_assets/doy/Registration.svg" },
 ];
 const correctOrder = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-const cardData = {
-  title: 'Поздравляем!',
-  body: 'Вы успешно завершили игру. Отличная работа!',
-  url: '',
-};
+
 
 export const Doy: React.FC = () => {
   const [positions, setPositions] = useState<number[]>(Array(9).fill(0));
   const [shuffledBags, setShuffledBags] = useState<typeof bags>([]);
   const [openIsCard, setOpenIsCard] = useState(false);
+  const [attempts, setAttempts] = useState<number>(0); // Новый счетчик попыток
+
+  const cardData = {
+    title: 'Поздравляем!',
+    body: <>Вы успешно завершили игру! <br /> Количество попыток: {attempts}</>,
+    url: 'dou',
+  };
 
   useEffect(() => {
     const shuffled = [...bags].sort(() => Math.random() - 0.5);
@@ -47,6 +50,7 @@ export const Doy: React.FC = () => {
   };
 
   const checkResults = () => {
+    setAttempts(prevAttempts => prevAttempts + 1); // Увеличиваем количество попыток на 1
     if (JSON.stringify(positions) === JSON.stringify(correctOrder)) {
       setOpenIsCard(true); // Показать модальное окно при полном успехе
     } else {
@@ -116,23 +120,27 @@ export const Doy: React.FC = () => {
         </div>
       )}
 
-      <div className={classes.card}>
-        <Card
-          title={cardData.title}
-          body={cardData.body}
-          game={cardData.url}
-          backLink={'bank'}
-          isOpen={openIsCard}
-          onClose={closeCard}
-        />
-      </div>
 
       <div className={classes.backButton}>
-        <Link to={"/bank"}>
+        <Link to={"/dou"}>
           <Button bgColor={"pink"} type={"type1v2"}>
             НАЗАД
           </Button>
         </Link>
+      </div>
+
+      <div className={classes.card}>
+        <div className={classes.bog}>
+          <Card
+            type={'gameOver'}
+            title={cardData.title}
+            body={cardData.body}
+            game={cardData.url}
+            backLink={' '}
+            isOpen={openIsCard}
+            onClose={closeCard}
+          />
+        </div>
       </div>
     </div>
   );

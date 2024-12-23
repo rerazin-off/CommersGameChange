@@ -46,7 +46,7 @@ export const Dou: React.FC = () => {
           <div className={classes.laptop} onClick={() => handleGameClick('laptopGame')}></div>
           <div className={classes.shelfs} onClick={() => handleGameClick('shelfsGame')}></div>
         </div>
-        <div className={classes.card}><Card title={cardData.title} body={cardData.body} game={cardData.url} backLink={'dou'} isOpen={openIsCard} onClose={closeCard}/></div>
+        <div className={classes.card}><Card type={'game'} title={cardData.title} body={cardData.body} game={cardData.url} backLink={'dou'} isOpen={openIsCard} onClose={closeCard}/></div>
       </div>
       <div className="image-cact">{}</div>
       <div className={classes.buttons}>

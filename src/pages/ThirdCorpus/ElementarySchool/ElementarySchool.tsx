@@ -51,7 +51,7 @@ export const ElementarySchool = () => {
           <div className={classes.backpack} onClick={() => handleGameClick('backpackGame')}></div>
           <div className={classes.glass} onClick={() => handleGameClick('glassGame')}></div>
         </div>
-        <div className={classes.card}><Card title={cardData.title} body={cardData.body} game={cardData.url} backLink={'ElementarySchool'}
+        <div className={classes.card}><Card type={'game'} title={cardData.title} body={cardData.body} game={cardData.url} backLink={'ElementarySchool'}
                                             isOpen={openIsCard} onClose={closeCard} /></div>
 
       </div>

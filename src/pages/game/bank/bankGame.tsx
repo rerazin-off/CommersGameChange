@@ -137,6 +137,7 @@ export const BankGame: React.FC = () => {
           backLink={'bank'}
           isOpen={openIsCard}
           onClose={closeCard}
+          type={'gameOver'}
         />
       </div>
 
