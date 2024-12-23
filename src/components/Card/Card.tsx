@@ -12,6 +12,7 @@ interface CardProps {
   isOpen?: boolean;
   game: string;
   backLink: string;
+  type: 'game' | 'gameOver';
 }
 
 const Card = (props: CardProps) => {
@@ -23,7 +24,10 @@ const Card = (props: CardProps) => {
     backLink,
     isOpen,
     onClose,
+    type,
   } = props;
+
+  const isMarker = type === 'gameOver';
 
   const ANIMATION_DELAY = 300;
 
@@ -53,28 +57,40 @@ const Card = (props: CardProps) => {
   //   window.location.href = props.game;
   // };
 
-
+  const handleReloadPage = useCallback(() => {
+    window.location.reload();
+  }, []);
 
   if (!isOpen && !isClose) {
     return null;
   }
 
   return (
-    <div>
-        <div className={classes.var}>
-          <div className={classes.text}>
-              <h1> {title} </h1>
-              <div className={classes.img}><img src={lineImage} alt="" /></div>
-              <p> {body} </p>
+    <>
+      <div className={classes.cardBackdrop}></div>
+      <div className={classes.var}>
+        <div className={classes.text}>
+          <h1> {title} </h1>
+          <div className={classes.img}><img src={lineImage} alt="" /></div>
+          <p> {body} </p>
+        </div>
+        {isMarker? (
+          <div className={classes.knopki}>
+            <Link to={`/${(game)}`}><Button bgColor={'pink'} type={'type1v2'}>НАЗАД</Button></Link>
+            <Button onClick={handleReloadPage} bgColor={'blue'} type={'type1v2'}>ЗАНОВО</Button>
           </div>
+        ) : (
           <div className={classes.knopki}>
             <Button onClick={closeCard} bgColor={'pink'} type={'type1v2'}>НАЗАД</Button>
             {/*<Link to={`/game?url=${encodeURIComponent(game)}&backLink=/${encodeURIComponent(backLink)}`}><Button bgColor={'blue'} type={'type1v2'}>ВПЕРЕД</Button></Link>*/}
             <Link to={`/${(game)}`}><Button bgColor={'blue'} type={'type1v2'}>ВПЕРЕД</Button></Link>
           </div>
-        </div>
-    </div>
-  );
+        )}
+
+      </div>
+    </>
+  )
+    ;
 };
 
 export default Card;

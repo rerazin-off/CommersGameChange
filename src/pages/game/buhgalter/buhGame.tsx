@@ -123,7 +123,6 @@ export const SorterGame: React.FC = () => {
 
   // Обработчик начала касания/нажатия на элемент
   const handleTouchStart = (event: React.TouchEvent) => {
-    if (!currentExpense) return; // Если нет текущего расхода, выходим
     setDragging(true); // Устанавливаем флаг перетаскивания
     const touch = event.touches[0]; // Получаем данные о касании
     const rect = draggableRef.current!.getBoundingClientRect(); // Получаем размеры и позицию элемента
@@ -142,7 +141,7 @@ export const SorterGame: React.FC = () => {
 
   // Обработчик перемещения касания/курсора
   const handleTouchMove = (event: React.TouchEvent) => {
-    if (!dragging || !currentExpense) return; // Если не перетаскиваем или нет текущего расхода, выходим
+    if (!dragging) return; // Если не перетаскиваем или нет текущего расхода, выходим
     const touch = event.touches[0]; // Получаем данные о касании
 
     // Устанавливаем позицию элемента в соответствии с положением курсора
@@ -154,7 +153,7 @@ export const SorterGame: React.FC = () => {
 
 
   // Функция для проверки, находится ли элемент в пределах зоны
-  const isInsideZone = (x: number, y: number, zoneElement: HTMLElement | null) => {
+  const isInsideZone = (x: number, y: number, zoneElement: Element | null) => {
     if (!zoneElement) return false; // Если зона не существует, выходим
     const rect = zoneElement.getBoundingClientRect(); // Получаем размеры и позицию зоны
     return x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom; // Проверяем, находится ли элемент внутри зоны
@@ -162,19 +161,24 @@ export const SorterGame: React.FC = () => {
 
   // Обработчик завершения касания/нажатия
   const handleTouchEnd = () => {
-    if (!dragging || !currentExpense) return; // Если не перетаскиваем или нет текущего расхода, выходим
-    setDragging(false); // Сбрасываем флаг перетаскивания
+    if (!dragging) return;
+    setDragging(false);
 
-    const starZoneElement = document.querySelector(`.${styles.starZone}`); // Получаем DOM-элемент зоны звезды
-    if (isInsideZone(position.x, position.y, starZoneElement) && star.length < 7) { // Проверяем, находится ли элемент в зоне звезды, и не переполнена ли она
-      setStar([...star, currentExpense]);  // Добавляем текущий расход в массив расходов на звезде
-      setCurrentExpenseIndex((prevIndex) => prevIndex + 1); // Переходим к следующему расходу
+    const blackholeZoneElement = document.querySelector(`.blackholeZone`);
+    const starZoneElement = document.querySelector(`.starZone`);
+
+    if (isInsideZone(position.x, position.y, starZoneElement) && star.length < 7) {
+      setStar([...star, currentExpense]);
+      if(currentExpenseIndex < expenses.length - 1) {
+        setCurrentExpenseIndex((prevIndex) => prevIndex + 1);
+      }
     }
 
-    const blackholeZoneElement = document.querySelector(`.${styles.blackholeZone}`); // Получаем DOM-элемент зоны черной дыры
-    if (isInsideZone(position.x, position.y, blackholeZoneElement) && blackhole.length < 4) { // Проверяем, находится ли элемент в зоне черной дыры, и не переполнена ли она
-      setBlackhole([...blackhole, currentExpense]); // Добавляем текущий расход в массив расходов в черной дыре
-      setCurrentExpenseIndex((prevIndex) => prevIndex + 1);  // Переходим к следующему расходу
+    if (isInsideZone(position.x, position.y, blackholeZoneElement) && blackhole.length < 4) {
+      setBlackhole([...blackhole, currentExpense]);
+      if(currentExpenseIndex < expenses.length - 1) {
+        setCurrentExpenseIndex((prevIndex) => prevIndex + 1);
+      }
     }
   };
 
@@ -218,7 +222,7 @@ export const SorterGame: React.FC = () => {
         }
       }
     }
-  }, [currentExpense])
+  }, [currentExpense, dragging]) // добавляем dragging в зависимости useEffect чтобы он обновлялся когда мы перетаскиваем расход
   return (
     <div className={styles.container}>
       {/* Текущий расход */}
@@ -228,25 +232,29 @@ export const SorterGame: React.FC = () => {
           src={currentExpense.image}
           alt={currentExpense.name}
           className={styles.draggable}
-          style={{ transform: `translate(${position.x}px, ${position.y}px)`, cursor: dragging ? 'grabbing' : 'grab'}}
+          style={{ left: position.x, top: position.y, cursor: dragging ? 'grabbing' : 'grab'}}
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
         />
       )}
       {/* Зона звезды */}
-      <div className={`${styles.zone} ${styles.starZone}`}>
+      <div className={`${styles.zone} starZone`}>
         <div className={styles.star}>
           {star.map((expense) => (
-            <img key={expense.id} src={expense.image} alt={expense.name} />
+            <div key={expense.id} className={styles.expenseInZone}>
+              <img src={expense.image} alt={expense.name} />
+            </div>
           ))}
         </div>
       </div>
       {/* Зона черной дыры */}
-      <div className={`${styles.zone} ${styles.blackholeZone}`}>
+      <div className={`${styles.zone} blackholeZone`}>
         <div className={styles.blackhole}>
           {blackhole.map((expense) => (
-            <img key={expense.id} src={expense.image} alt={expense.name} />
+            <div key={expense.id} className={styles.expenseInZone}>
+              <img src={expense.image} alt={expense.name} />
+            </div>
           ))}
         </div>
       </div>

@@ -57,7 +57,7 @@ export const Bank: React.FC = () => {
           <div className={classes.ekran} onClick={() => handleGameClick('ekranGame')}></div>
           <div className={classes.koshel} onClick={() => handleGameClick('koshelGame')}></div>
         </div>
-        <div className={classes.card}><Card title={cardData.title} body={cardData.body} game={cardData.url}
+        <div className={classes.card}><Card type={'game'} title={cardData.title} body={cardData.body} game={cardData.url}
                                             backLink={'bank'} isOpen={openIsCard} onClose={closeCard} /></div>
 
       </div>
