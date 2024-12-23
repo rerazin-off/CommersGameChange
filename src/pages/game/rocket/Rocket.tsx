@@ -12,12 +12,13 @@ import classes from './gameRocket.module.scss'
 export const Rocket: React.FC = () => {
   const [showDrawing, setShowDrawing] = useState(false);
   const [elements, setElements] = useState(RocketElements.body);
-  const [droppedBodies, setDroppedBodies] = useState<string[]>([]);
-  const [droppedWindows, setDroppedWindows] = useState<string[]>([]);
-  const [droppedGlass, setDroppedGlass] = useState<string[]>([]);
-  const [droppedWings, setDroppedWings] = useState<string[]>([]);
-  const [droppedBolt, setDroppedBolt]=useState<string[]>([]);
-
+  const [droppedEl, setDroppedEl]=useState({
+    bodies:[],
+    windows:[],
+    glass:[],
+    wings:[],
+    bolts:[],
+  })
   let clickBtn = () => {
     setShowDrawing(true);
   };
@@ -25,34 +26,35 @@ export const Rocket: React.FC = () => {
     setShowDrawing(false);
   };
   let moveElement = (id: string) => {
-    const bodyElement = RocketElements.body.find(element => element.id==id);
+    const bodyElement = RocketElements.body.find(element => element.id === id);
     if (bodyElement) {
-      setDroppedBodies([bodyElement.src]);
+      setDroppedEl({ ...droppedEl, bodies: [...droppedEl.bodies, bodyElement.src] });
       setElements(RocketElements.window);
       return;
     }
-    const windowElement = RocketElements.window.find(element => element.id==id);
+    const windowElement = RocketElements.window.find(element => element.id === id);
     if (windowElement) {
-      setDroppedWindows([windowElement.src]);
+      setDroppedEl({ ...droppedEl, windows: [windowElement.src] });
       setElements(RocketElements.glass);
       return;
     }
-    const glassElement = RocketElements.glass.find(element => element.id==id);
+    const glassElement = RocketElements.glass.find(element => element.id === id);
     if (glassElement) {
-      setDroppedGlass([glassElement.src]);
+      setDroppedEl({ ...droppedEl, glass: [...droppedEl.glass, glassElement.src] });
       setElements(RocketElements.wings);
       return;
     }
-    const wingsElement = RocketElements.wings.find(element => element.id==id);
+    const wingsElement = RocketElements.wings.find(element => element.id === id);
     if (wingsElement) {
-      setDroppedWings([wingsElement.src]);
+      setDroppedEl({ ...droppedEl, wings: [...droppedEl.wings, wingsElement.src] });
       setElements(RocketElements.bolt);
       return;
     }
-    const boltElement = RocketElements.bolt.find(element => element.id==id);
+    const boltElement = RocketElements.bolt.find(element => element.id === id);
     if (boltElement) {
-      const boltGroupEl=RocketElements.boltGroup.find(group=>group.id==boltElement.id);
-      setDroppedBolt(boltGroupEl.src);
+      const boltGroupEl = RocketElements.boltGroup.find(group => group.id === boltElement.id);
+      setDroppedEl({ ...droppedEl, bolts: [...droppedEl.bolts, boltGroupEl.src]
+      });
       setElements([]);
     }
   };
@@ -68,11 +70,11 @@ export const Rocket: React.FC = () => {
         )}
         {showDrawing === false && (
           <DropArea
-            droppedBodySrc={droppedBodies}
-            droppedWindowSrc={[droppedWindows]}
-            droppedGlassSrc={[droppedGlass]}
-            droppedWingsSrc={[droppedWings]}
-            droppedBoltSrc={[droppedBolt]}
+            droppedBodySrc={[droppedEl.bodies]}
+            droppedWindowSrc={[droppedEl.windows]}
+            droppedGlassSrc={[droppedEl.glass]}
+            droppedWingsSrc={[droppedEl.wings]}
+            droppedBoltSrc={[droppedEl.bolts]}
           />
         )}
         <button className={classes.btnDrawing} onClick={clickBtn}>

@@ -59,5 +59,12 @@ export const RocketElements = {
     { id: 'bolt2', src: boltGroup2 },
     { id: 'bolt3', src: boltGroup3 },
     { id: 'bolt4', src: boltGroup4 }
+  ],
+  correctEl:[
+    {id :'body2'},
+    {id: 'window4'},
+    {id :'glass1'},
+    {id: 'wings3'},
+    {id :'bolt4'}
   ]
 };

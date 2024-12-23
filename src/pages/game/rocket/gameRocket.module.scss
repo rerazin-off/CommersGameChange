@@ -44,29 +44,35 @@
 /*стили для drop картинок*/
 .rocketBody{
   position: absolute;
-  left: 2.6vw;
+  left: 2.2vw;
   height: 100%;
+  z-index: 2;
 }
 .rocketWindow{
   position: absolute;
   top: 10vh;
-  left: 4.5vw;
-  z-index: 2;
+  left: 5vw;
+  z-index: 3;
   width: 50%;
 }
 .rocketGlass{
   position: absolute;
+  z-index: 2;
   top: 16.4vh;
-  left: 5.8vw;
+  left: 6vw;
   width: 35%;
 }
 .rocketWings{
-  width: 100%;
+  width: 91%;
+  position: absolute;
+  z-index: 1;
+  left: 1.5vw;
 }
 .rocketBolts{
   position: absolute;
+  z-index: 3;
   top: 48vh;
-  left: 9vh;
+  left: 10vh;
 }
 
 
