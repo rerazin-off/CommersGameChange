@@ -21,7 +21,6 @@ import { Doy } from '../../pages/game/doy/doy';
 import {BankGame } from '../../pages/game/bank/bankGame';
 import {SorterGame } from '../../pages/game/buhgalter/buhGame';
 
-import {BankGame } from '../../pages/game/bank/bankGame'
 import { LogistCep } from '../../pages/game/logist/LogistCep';
 import { Musical } from '../../pages/game/musical/musical';
 
