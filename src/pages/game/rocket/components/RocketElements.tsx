@@ -1,5 +1,5 @@
-import body1 from '@/assets/img/game_assets/game-rocket-img/body1.svg';
-import body2 from '@/assets/img/game_assets/game-rocket-img/body2.svg';
+import body1 from '../../../../assets/img/game_assets/game-rocket-img/body1.svg';
+import body2 from '../../../../assets/img/game_assets/game-rocket-img/body2.svg';
 import body3 from '@/assets/img/game_assets/game-rocket-img/body3.svg';
 import body4 from '@/assets/img/game_assets/game-rocket-img/body4.svg';
 import window1 from '@/assets/img/game_assets/game-rocket-img/window1.svg';
@@ -59,5 +59,12 @@ export const RocketElements = {
     { id: 'bolt2', src: boltGroup2 },
     { id: 'bolt3', src: boltGroup3 },
     { id: 'bolt4', src: boltGroup4 }
+  ],
+  correctEl:[
+    {id :'body2'},
+    {id: 'window4'},
+    {id :'glass1'},
+    {id: 'wings3'},
+    {id :'bolt4'}
   ]
 };
