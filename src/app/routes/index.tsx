@@ -23,7 +23,7 @@ import { Rocket } from '../../pages/game/rocket/gameRocket';
 import {SorterGame } from '../../pages/game/buhgalter/buhGame';
 import { LogistCep } from '../../pages/game/logist/LogistCep';
 import { Musical } from '../../pages/game/musical/musical';
-import {BankGame} from '../../pages/game/bank/bankGame'
+
 
 
 export const router = createBrowserRouter([

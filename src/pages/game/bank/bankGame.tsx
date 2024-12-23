@@ -59,7 +59,7 @@ export const BankGame: React.FC = () => {
 
   const cardData = {
     title: 'Поздравляем!',
-    body: `Вы успешно завершили игру за ${attempts} ${attempts === 1 ? 'попытку' : 'попыток'}. Отличная работа!`,
+    body: <>Вы успешно завершили игру! <br/> Количество попыток: {attempts}</>,
     url: '',
   };
 
@@ -121,6 +121,14 @@ export const BankGame: React.FC = () => {
         </div>
       )}
 
+
+      <div className={classes.backButton}>
+        <Link to={"/bank"}>
+          <Button bgColor={"pink"} type={"type1v2"}>
+            НАЗАД
+          </Button>
+        </Link>
+      </div>
       <div className={classes.card}>
         <Card
           title={cardData.title}
@@ -132,13 +140,6 @@ export const BankGame: React.FC = () => {
         />
       </div>
 
-      <div className={classes.backButton}>
-        <Link to={"/bank"}>
-          <Button bgColor={"pink"} type={"type1v2"}>
-            НАЗАД
-          </Button>
-        </Link>
-      </div>
     </div>
   );
 };
