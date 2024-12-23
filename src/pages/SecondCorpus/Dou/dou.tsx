@@ -15,7 +15,7 @@ const gameData: Record<string, { title: string; body: string; url: string }> = {
   shelfsGame: {
     title: 'Документы',
     body: 'Вам необходимо расположить в правильное последовательности этапы работы с документом',
-    url: '../../../production/cheindoy/index.html'
+    url: 'doyGame'
   },
 
 };
@@ -51,7 +51,7 @@ export const Dou: React.FC = () => {
       <div className="image-cact">{}</div>
       <div className={classes.buttons}>
         <Link to={"/2"}><Button bgColor={'white'} type={"back_arrow"} /></Link>
-        <Link to={"/doyGame"}><Button bgColor={'white'} type={"gallery"} /></Link>
+        <Link to={"/"}><Button bgColor={'white'} type={"gallery"} /></Link>
         <Link to={"/psih"}><Button bgColor={'white'} type={"meditation"} /></Link>
       </div>
     </div>
