@@ -19,16 +19,18 @@ const bags = [
 
 const correctOrder = [1, 2, 3, 4 ,5 , 6, 7, 8, 9, 10];
 
-const cardData = {
-  title: 'Поздравляем!',
-  body: 'Вы успешно завершили игру. Отличная работа!',
-  url: 'gamelogist',
-};
 
 export const LogistCep: React.FC = () => {
   const [positions, setPositions] = useState<number[]>(Array(10).fill(0));
   const [shuffledBags, setShuffledBags] = useState<typeof bags>([]);
   const [openIsCard, setOpenIsCard] = useState(false);
+  const [attempts, setAttempts] = useState<number>(0); // Новый счетчик попыток
+
+  const cardData = {
+    title: 'Поздравляем!',
+    body: <>Вы успешно завершили игру! <br/> Количество попыток: {attempts}</>,
+    url: 'logistics',
+  };
 
   useEffect(() => {
     const shuffled = [...bags].sort(() => Math.random() - 0.5);
@@ -50,6 +52,7 @@ export const LogistCep: React.FC = () => {
   };
 
   const checkResults = () => {
+    setAttempts(prevAttempts => prevAttempts + 1); // Увеличиваем количество попыток на 1
     if (JSON.stringify(positions) === JSON.stringify(correctOrder)) {
       setOpenIsCard(true); // Показать модальное окно при полном успехе
     } else {
@@ -59,6 +62,7 @@ export const LogistCep: React.FC = () => {
       setPositions(newPositions);
     }
   };
+
 
   const closeCard = useCallback(() => {
     setOpenIsCard(false);
@@ -117,7 +121,7 @@ export const LogistCep: React.FC = () => {
 
       {positions.every((pos) => pos > 0) && (
         <div onClick={checkResults} className={classes.checkButton}>
-          <Button bgColor={"pink"} type={"type1v2"}>
+          <Button bgColor={"blue"} type={"type1v2"}>
             ПРОВЕРИТЬ
           </Button>
         </div>
