@@ -5,7 +5,7 @@ import React, { useState, useRef, useEffect, useCallback } from 'react';
 import Card from '../../../components/Card/Card';
 
 const bags = [
-  { id: 9, image: "@/assets/img/game_assets/doy/second.svg" },
+  { id: 9, image: "/src/assets/img/game_assets/doy/second.svg" },
   { id: 4, image: "/src/assets/img/game_assets/doy/Check.svg" },
   { id: 3, image: "/src/assets/img/game_assets/doy/Decoration.svg" },
   { id: 1, image: "/src/assets/img/game_assets/doy/Compilation.svg" },
