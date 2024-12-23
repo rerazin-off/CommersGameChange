@@ -17,12 +17,12 @@ const bags = [
   { id: 10, label: "Дом - получение покупателем", image: "/src/assets/img/game_assets/logist/home.svg" },
 ];
 
-const correctOrder = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const correctOrder = [1, 2, 3, 4 ,5 , 6, 7, 8, 9, 10];
 
 const cardData = {
   title: 'Поздравляем!',
   body: 'Вы успешно завершили игру. Отличная работа!',
-  url: '',
+  url: 'gamelogist',
 };
 
 export const LogistCep: React.FC = () => {
@@ -58,9 +58,11 @@ export const LogistCep: React.FC = () => {
       );
       setPositions(newPositions);
     }
-    const closeCard = useCallback(() => {
-      setOpenIsCard(false);
-    }, []);
+  };
+
+  const closeCard = useCallback(() => {
+    setOpenIsCard(false);
+  }, []);
 
   return (
     <div className={classes.container}>
@@ -84,7 +86,6 @@ export const LogistCep: React.FC = () => {
                 draggable
                 onDragStart={() => handleDragStart(pos)}
                 onDragEnd={() => {
-                  handleDragEnd();
                   const newPositions = [...positions];
                   newPositions[i] = 0;
                   setPositions(newPositions);
@@ -94,7 +95,6 @@ export const LogistCep: React.FC = () => {
           </div>
         ))}
       </div>
-
 
       <div className={classes.bags}>
         {shuffledBags.map(
@@ -113,6 +113,7 @@ export const LogistCep: React.FC = () => {
         )}
       </div>
 
+
       {positions.every((pos) => pos > 0) && (
         <div onClick={checkResults} className={classes.checkButton}>
           <Button bgColor={"pink"} type={"type1v2"}>
@@ -121,16 +122,7 @@ export const LogistCep: React.FC = () => {
         </div>
       )}
 
-      <div className={classes.card}>
-        <Card
-          title={cardData.title}
-          body={cardData.body}
-          game={cardData.url}
-          backLink={'logistics'}
-          isOpen={openIsCard}
-          onClose={closeCard}
-        />
-      </div>
+
 
       <div className={classes.backButton}>
         <Link to={"/logistics"}>
@@ -139,7 +131,16 @@ export const LogistCep: React.FC = () => {
           </Button>
         </Link>
       </div>
+      {openIsCard &&
+        <Card
+          title={cardData.title}
+          body={cardData.body}
+          game={cardData.url}
+          backLink={'/logistics'}
+          isOpen={openIsCard}
+          onClose={closeCard}
+        />
+      }
     </div>
   );
-  };
 };
