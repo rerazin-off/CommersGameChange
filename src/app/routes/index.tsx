@@ -46,8 +46,6 @@ export const router = createBrowserRouter([
   { path: '/Psih', element: <Psih /> },
   // { path: '/game/:gameId', element: <Game /> },
   { path: '/doyGame', element: <Doy/> },
-
-  { path: '/game/:gameId', element: <Game /> },
   { path: '/gbank', element: <BankGame /> },
   { path: '/game', element: <Game /> },
   // { path: '/rocket', element: <Rocket /> },

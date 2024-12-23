@@ -108,6 +108,7 @@ export const LogistCep: React.FC = () => {
                 onDragStart={() => handleDragStart(bag.id)}
                 onDragEnd={handleDragEnd}
                 className={classes.bag}
+
               />
             )
         )}
@@ -139,6 +140,7 @@ export const LogistCep: React.FC = () => {
           backLink={'/logistics'}
           isOpen={openIsCard}
           onClose={closeCard}
+          type={'gameOver'}
         />
       }
     </div>
