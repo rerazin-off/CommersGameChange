@@ -41,22 +41,39 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 30px;
 }
-.rocketPart{
+/*стили для drop картинок*/
+.rocketBody{
+  position: absolute;
+  left: 2.2vw;
   height: 100%;
 }
 .rocketWindow{
   position: absolute;
-  top: 22vh;
-  left: 3.3vw;
+  top: 10vh;
+  left: 4vw;
   z-index: 2;
-  width: 55%;
+  width: 50%;
+}
+.rocketGlass{
+  position: absolute;
+  top: 16.4vh;
+  left: 5.3vw;
+  width: 35%;
+}
+.rocketWings{
+  width: 100%;
+}
+.rocketBolts{
+  position: absolute;
+  top: 48vh;
+  left: 8.5vh;
 }
 
 
 /*стили компонента DropArea*/
 .dropArea{
   height: 59vh;
-  width: 11vw;
+  width: 17vw;
   position: absolute;
   top: 8vh;
   left:14vw;
