@@ -80,19 +80,22 @@
   flex-direction: column;
 }
 
-.img {
-  width: 100px;
-  height: 100px;
+.img{
+  width: 150px;
+  height: 150px;
   margin: 10px;
   cursor: pointer; // Курсор как указатель
 }
 
 .draggable {
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   position: absolute;
   cursor: grab; // Меняем курсор на "захват"
   touch-action: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 
@@ -106,14 +109,6 @@
   align-items: center;
 }
 
-.starZone {
-  // Добавляем класс для зоны звезды
-}
-
-.blackholeZone {
-  // Добавляем класс для зоны черной дыры
-}
-
 .star, .blackhole {
   display: flex;
   flex-wrap: wrap;
@@ -124,8 +119,8 @@
 }
 
 .star img, .blackhole img { // Стили для элементов внутри контейнеров
-  width: 80px;
-  height: 80px;
+  width: 150px;
+  height: 150px;
   margin: 10px; // задаём отступы между элементами
 }
 
@@ -160,4 +155,12 @@
   padding: 20px;
   border-radius: 5px;
   text-align: center;
+}
+
+.expenseInZone{
+  width: 150px;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
