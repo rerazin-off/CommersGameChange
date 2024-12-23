@@ -44,7 +44,7 @@ export const Torgashi: React.FC = () => {
               <div className={classes.prilavok} onClick={() => handleGameClick('prilavokGame')}></div>
               <div className={classes.teleska} onClick={() => handleGameClick('teleskaGame')}></div>
             </div>
-            <div className={classes.card}><Card title={cardData.title} body={cardData.body} game={cardData.url} backLink={'tovaroveds'}
+            <div className={classes.card}><Card type={'game'} title={cardData.title} body={cardData.body} game={cardData.url} backLink={'tovaroveds'}
                                                 isOpen={openIsCard} onClose={closeCard} /></div>
           </div>
           <div className={classes.buttons}>

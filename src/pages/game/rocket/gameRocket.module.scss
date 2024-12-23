@@ -1,0 +1,64 @@
+/*основные стили*/
+* {
+  border-style: none;
+}
+.aiC{
+  display: flex;
+  align-items: center;
+}
+.jcC{
+  display: flex;
+  justify-content: center;
+}
+
+
+.background{
+  background: url( "../../../assets/img/fon/bg-rocket.svg");
+  background-size: cover;
+  height: 100vh;
+}
+.dark{
+  background: linear-gradient(#00000080, #00000080), url("../../../assets/img/fon/bg-rocket.svg");
+  height: 100vh;
+}
+.btnDrawing{
+  background: none;
+  position: absolute;
+  top: 89vh;
+  left: 3vw;
+}
+.btnCheck{
+  background: none;
+  position: absolute;
+  top: 59vh;
+  right: 9vw;
+}
+.rocketElements{
+  position: absolute;
+  top: 31vh;
+  left: 40vw;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+.rocketPart{
+  height: 100%;
+}
+.rocketWindow{
+  position: absolute;
+  top: 22vh;
+  left: 3.3vw;
+  z-index: 2;
+  width: 55%;
+}
+
+
+/*стили компонента DropArea*/
+.dropArea{
+  height: 59vh;
+  width: 11vw;
+  position: absolute;
+  top: 8vh;
+  left:14vw;
+}
+

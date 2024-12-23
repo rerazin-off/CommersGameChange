@@ -22,7 +22,8 @@ const gameData: Record<string, { title: string; body: string; url: string  }> = 
     url: '../../../production/bank/priznaki/index.html'
   },
   koshelGame: {
-    url: '../../../production/bank/chein/index.html',
+    // url: '../../../production/bank/chein/index.html',
+    url: 'gbank',
     title: 'Банковское дело',
     body: 'Вам необходимо правильно составить заявку в банк, основываясь на примере!',
   },
@@ -56,7 +57,7 @@ export const Bank: React.FC = () => {
           <div className={classes.ekran} onClick={() => handleGameClick('ekranGame')}></div>
           <div className={classes.koshel} onClick={() => handleGameClick('koshelGame')}></div>
         </div>
-        <div className={classes.card}><Card title={cardData.title} body={cardData.body} game={cardData.url}
+        <div className={classes.card}><Card type={'game'} title={cardData.title} body={cardData.body} game={cardData.url}
                                             backLink={'bank'} isOpen={openIsCard} onClose={closeCard} /></div>
 
       </div>

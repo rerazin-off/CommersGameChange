@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from 'react';
 import classes from "./bankGame.module.scss";
 import { Button } from "../../../components/Button/Button";
 import { Link } from "react-router-dom";
+import Card from '../../../components/Card/Card';
 
 const bags = [
   { id: 1, label: "Звонок в банк", image: "/src/assets/img/bag-call.png" },
@@ -18,6 +19,8 @@ const correctOrder = [1, 6, 4, 3, 2, 5, 7];
 export const BankGame: React.FC = () => {
   const [positions, setPositions] = useState<number[]>(Array(7).fill(0));
   const [shuffledBags, setShuffledBags] = useState<typeof bags>([]);
+  const [openIsCard, setOpenIsCard] = useState(false);
+  const [attempts, setAttempts] = useState<number>(0); // Новый счетчик попыток
 
   useEffect(() => {
     const shuffled = [...bags].sort(() => Math.random() - 0.5);
@@ -39,15 +42,27 @@ export const BankGame: React.FC = () => {
   };
 
   const checkResults = () => {
-    const newPositions = positions.map((pos, idx) =>
-      pos === correctOrder[idx] ? pos : 0
-    );
-
-    setPositions(newPositions);
-
-    console.log("Текущие позиции:", positions);
-    console.log("Корректные позиции:", newPositions);
+    setAttempts(prevAttempts => prevAttempts + 1); // Увеличиваем количество попыток на 1
+    if (JSON.stringify(positions) === JSON.stringify(correctOrder)) {
+      setOpenIsCard(true); // Показать модальное окно при полном успехе
+    } else {
+      const newPositions = positions.map((pos, idx) =>
+        pos === correctOrder[idx] ? pos : 0
+      );
+      setPositions(newPositions);
+    }
   };
+
+  const closeCard = useCallback(() => {
+    setOpenIsCard(false);
+  }, []);
+
+  const cardData = {
+    title: 'Поздравляем!',
+    body: <>Вы успешно завершили игру! <br/> Количество попыток: {attempts}</>,
+    url: '',
+  };
+
 
   return (
     <div className={classes.container}>
@@ -71,7 +86,6 @@ export const BankGame: React.FC = () => {
                 draggable
                 onDragStart={() => handleDragStart(pos)}
                 onDragEnd={() => {
-                  handleDragEnd();
                   const newPositions = [...positions];
                   newPositions[i] = 0;
                   setPositions(newPositions);
@@ -81,7 +95,6 @@ export const BankGame: React.FC = () => {
           </div>
         ))}
       </div>
-
 
       <div className={classes.bags}>
         {shuffledBags.map(
@@ -108,6 +121,7 @@ export const BankGame: React.FC = () => {
         </div>
       )}
 
+
       <div className={classes.backButton}>
         <Link to={"/bank"}>
           <Button bgColor={"pink"} type={"type1v2"}>
@@ -115,6 +129,18 @@ export const BankGame: React.FC = () => {
           </Button>
         </Link>
       </div>
+      <div className={classes.card}>
+        <Card
+          title={cardData.title}
+          body={cardData.body}
+          game={cardData.url}
+          backLink={'bank'}
+          isOpen={openIsCard}
+          onClose={closeCard}
+          type={'gameOver'}
+        />
+      </div>
+
     </div>
   );
 };
