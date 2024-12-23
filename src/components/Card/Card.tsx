@@ -60,21 +60,23 @@ const Card = (props: CardProps) => {
   }
 
   return (
-    <div>
-        <div className={classes.var}>
-          <div className={classes.text}>
-              <h1> {title} </h1>
-              <div className={classes.img}><img src={lineImage} alt="" /></div>
-              <p> {body} </p>
-          </div>
-          <div className={classes.knopki}>
-            <Button onClick={closeCard} bgColor={'pink'} type={'type1v2'}>НАЗАД</Button>
-            {/*<Link to={`/game?url=${encodeURIComponent(game)}&backLink=/${encodeURIComponent(backLink)}`}><Button bgColor={'blue'} type={'type1v2'}>ВПЕРЕД</Button></Link>*/}
-            <Link to={`/${(game)}`}><Button bgColor={'blue'} type={'type1v2'}>ВПЕРЕД</Button></Link>
-          </div>
+    <>
+      <div className={classes.cardBackdrop}></div>
+      <div className={classes.var}>
+        <div className={classes.text}>
+          <h1> {title} </h1>
+          <div className={classes.img}><img src={lineImage} alt="" /></div>
+          <p> {body} </p>
         </div>
-    </div>
-  );
+        <div className={classes.knopki}>
+          <Button onClick={closeCard} bgColor={'pink'} type={'type1v2'}>НАЗАД</Button>
+          {/*<Link to={`/game?url=${encodeURIComponent(game)}&backLink=/${encodeURIComponent(backLink)}`}><Button bgColor={'blue'} type={'type1v2'}>ВПЕРЕД</Button></Link>*/}
+          <Link to={`/${(game)}`}><Button bgColor={'blue'} type={'type1v2'}>ВПЕРЕД</Button></Link>
+        </div>
+      </div>
+    </>
+  )
+    ;
 };
 
 export default Card;
