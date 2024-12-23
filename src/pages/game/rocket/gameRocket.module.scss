@@ -41,6 +41,16 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 30px;
 }
+.rocketPart{
+  height: 100%;
+}
+.rocketWindow{
+  position: absolute;
+  top: 22vh;
+  left: 3.3vw;
+  z-index: 2;
+  width: 55%;
+}
 
 
 /*стили компонента DropArea*/
@@ -51,3 +61,4 @@
   top: 8vh;
   left:14vw;
 }
+
