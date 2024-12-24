@@ -21,12 +21,13 @@ import {BankGame } from '../../pages/game/bank/bankGame';
 // import { Rocket } from '../../pages/game/rocket/gameRocket';
 import { Rocket } from '../../pages/game/rocket/gameRocket';
 import {SorterGame } from '../../pages/game/buhgalter/buhGame';
- 9-create-games-link
 
 
-main
+
+
 import { LogistCep } from '../../pages/game/logist/LogistCep';
 import { Musical } from '../../pages/game/musical/musical';
+import ExpenseSorterGame from '../../pages/game/buhgalter/buhgame2.0/BuhgalGame';
 
 
 
@@ -54,6 +55,7 @@ export const router = createBrowserRouter([
   { path: '/game', element: <Game /> },
   // { path: '/rocket', element: <Rocket /> },
   { path: '/gbuh', element: <SorterGame /> },
+  { path: '/gbuh2', element: <ExpenseSorterGame /> },
 
   { path: '/gamelogist', element: <LogistCep/> },
   { path: '/musical', element: <Musical/> },

@@ -263,7 +263,7 @@ export const SorterGame: React.FC = () => {
         </div>
       </div>
       <div className={styles.backButton}>
-        <Link to={'/bank'}>
+        <Link to={'/economist'}>
           <Button bgColor={'pink'} type={'type1v2'}>
             НАЗАД
           </Button>
