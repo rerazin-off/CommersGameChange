@@ -48,7 +48,7 @@
   .bag {
     width: 200px;
     height: 250px;
-    cursor: grab;
+    cursor: pointer;
     transition: transform 0.2s;
     &:nth-child(7) {
       grid-column: 2;
