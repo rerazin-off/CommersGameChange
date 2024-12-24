@@ -54,7 +54,7 @@ export const SpecialKidergarden: React.FC = () => {
           <div className={classes.flowers} onClick={() => handleGameClick('flowersGame')}></div>
           <div className={classes.tent} onClick={() => handleGameClick('tentGame')}></div>
         </div>
-        <div className={classes.card}><Card title={cardData.title} body={cardData.body} game={cardData.url}
+        <div className={classes.card}><Card type={'game'} title={cardData.title} body={cardData.body} game={cardData.url}
                                             isOpen={openIsCard} onClose={closeCard} backLink={'SpecialKinder'}/></div>
 
       </div>

@@ -16,16 +16,11 @@ const bags = [
 
 const correctOrder = [1, 6, 4, 3, 2, 5, 7];
 
-const cardData = {
-  title: 'Поздравляем!',
-  body: 'Вы успешно завершили игру. Отличная работа!',
-  url: '',
-};
-
 export const BankGame: React.FC = () => {
   const [positions, setPositions] = useState<number[]>(Array(7).fill(0));
   const [shuffledBags, setShuffledBags] = useState<typeof bags>([]);
   const [openIsCard, setOpenIsCard] = useState(false);
+  const [attempts, setAttempts] = useState<number>(0); // Новый счетчик попыток
 
   useEffect(() => {
     const shuffled = [...bags].sort(() => Math.random() - 0.5);
@@ -47,6 +42,7 @@ export const BankGame: React.FC = () => {
   };
 
   const checkResults = () => {
+    setAttempts(prevAttempts => prevAttempts + 1); // Увеличиваем количество попыток на 1
     if (JSON.stringify(positions) === JSON.stringify(correctOrder)) {
       setOpenIsCard(true); // Показать модальное окно при полном успехе
     } else {
@@ -60,6 +56,13 @@ export const BankGame: React.FC = () => {
   const closeCard = useCallback(() => {
     setOpenIsCard(false);
   }, []);
+
+  const cardData = {
+    title: 'Поздравляем!',
+    body: <>Вы успешно завершили игру! <br/> Количество попыток: {attempts}</>,
+    url: '',
+  };
+
 
   return (
     <div className={classes.container}>
@@ -110,7 +113,6 @@ export const BankGame: React.FC = () => {
         )}
       </div>
 
-
       {positions.every((pos) => pos > 0) && (
         <div onClick={checkResults} className={classes.checkButton}>
           <Button bgColor={"pink"} type={"type1v2"}>
@@ -119,16 +121,6 @@ export const BankGame: React.FC = () => {
         </div>
       )}
 
-      <div className={classes.card}>
-        <Card
-          title={cardData.title}
-          body={cardData.body}
-          game={cardData.url}
-          backLink={'bank'}
-          isOpen={openIsCard}
-          onClose={closeCard}
-        />
-      </div>
 
       <div className={classes.backButton}>
         <Link to={"/bank"}>
@@ -137,6 +129,18 @@ export const BankGame: React.FC = () => {
           </Button>
         </Link>
       </div>
+      <div className={classes.card}>
+        <Card
+          title={cardData.title}
+          body={cardData.body}
+          game={cardData.url}
+          backLink={'bank'}
+          isOpen={openIsCard}
+          onClose={closeCard}
+          type={'gameOver'}
+        />
+      </div>
+
     </div>
   );
 };

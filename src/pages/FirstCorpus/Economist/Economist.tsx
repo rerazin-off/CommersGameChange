@@ -44,7 +44,7 @@ export const Economist: React.FC = () => {
           <div className={classes.doska} onClick={() => handleGameClick('doskaGame')}></div>
           <div className={classes.stol} onClick={() => handleGameClick('stolGame')}></div>
         </div>
-        <div className={classes.card}><Card title={cardData.title} backLink={'economist'} body={cardData.body} game={cardData.url} isOpen={openIsCard} onClose={closeCard} /></div>
+        <div className={classes.card}><Card type={'game'} title={cardData.title} backLink={'economist'} body={cardData.body} game={cardData.url} isOpen={openIsCard} onClose={closeCard} /></div>
 
       </div>
       <div className={classes.buttons}>

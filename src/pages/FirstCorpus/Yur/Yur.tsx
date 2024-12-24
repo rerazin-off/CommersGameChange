@@ -71,6 +71,7 @@ export const Yur: React.FC = () => {
                 isOpen={openIsCard}
                 onClose={closeCard}
                 backLink={'Yur'}
+                type={'game'}
           />
         </div>
 

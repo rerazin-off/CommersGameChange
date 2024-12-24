@@ -44,7 +44,7 @@ export const Programmers: React.FC = () => {
         <div className={classes.comp} onClick={() => handleGameClick('computerGame')}></div>
         <div className={classes.robot} onClick={() => handleGameClick('robotGame')}></div>
       </div>
-      <div className={classes.card}><Card title={cardData.title} body={cardData.body} game={cardData.url} backLink={'programmers'}
+      <div className={classes.card}><Card type={'game'} title={cardData.title} body={cardData.body} game={cardData.url} backLink={'programmers'}
                                           isOpen={openIsCard} onClose={closeCard} /></div>
 
     </div>
