@@ -6,7 +6,6 @@ import DropArea from './components/DropArea';
 import { RocketElements } from './components/RocketElements';
 import btnCheck from '@/assets/img/game_assets/game-rocket-img/btn-check.svg';
 import icon from '@/assets/img/game_assets/game-rocket-img/icon.svg';
-import drawing from '@/assets/img/game_assets/game-rocket-img/drawing.svg';
 import classes from './gameRocket.module.scss'
 
 export const Rocket: React.FC = () => {
@@ -86,9 +85,7 @@ export const Rocket: React.FC = () => {
           <img src={icon} />
         </button>
         {showDrawing && (
-          <div className={classes.drawing} onClick={clickDrawing}>
-            <img src={drawing} />
-          </div>
+          <div className={classes.drawing} onClick={clickDrawing}></div>
         )}
         {btnCheckView && (
           <button className={classes.btnCheck} onClick={checkDroppedEl}>
