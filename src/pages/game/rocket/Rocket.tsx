@@ -26,38 +26,43 @@ export const Rocket: React.FC = () => {
     setShowDrawing(false);
   };
   let moveElement = (id: string) => {
-    const bodyElement = RocketElements.body.find(element => element.id === id);
-    if (bodyElement) {
-      setDroppedEl({ ...droppedEl, bodies: [...droppedEl.bodies, bodyElement.src] });
+    const updateDroppesEl=(elements:any[], key: keyof typeof droppedEl)=>{
+      const element=elements.find((el)=>el.id==id);
+      if (element){
+        setDroppedEl((prev)=>({
+          ...prev,
+          [key]: [...prev[key], element.src]
+        }));
+        return true;
+      }
+    }
+    if (updateDroppesEl(RocketElements.body, 'bodies')){
       setElements(RocketElements.window);
-      return;
     }
-    const windowElement = RocketElements.window.find(element => element.id === id);
-    if (windowElement) {
-      setDroppedEl({ ...droppedEl, windows: [windowElement.src] });
+    if (updateDroppesEl(RocketElements.window, 'windows')){
       setElements(RocketElements.glass);
-      return;
     }
-    const glassElement = RocketElements.glass.find(element => element.id === id);
-    if (glassElement) {
-      setDroppedEl({ ...droppedEl, glass: [...droppedEl.glass, glassElement.src] });
+    if (updateDroppesEl(RocketElements.glass, 'glass')){
       setElements(RocketElements.wings);
-      return;
     }
-    const wingsElement = RocketElements.wings.find(element => element.id === id);
-    if (wingsElement) {
-      setDroppedEl({ ...droppedEl, wings: [...droppedEl.wings, wingsElement.src] });
+    if (updateDroppesEl(RocketElements.wings, 'wings')){
       setElements(RocketElements.bolt);
-      return;
     }
-    const boltElement = RocketElements.bolt.find(element => element.id === id);
-    if (boltElement) {
-      const boltGroupEl = RocketElements.boltGroup.find(group => group.id === boltElement.id);
-      setDroppedEl({ ...droppedEl, bolts: [...droppedEl.bolts, boltGroupEl.src]
-      });
+    if (updateDroppesEl(RocketElements.bolt, 'bolts')){
+      let boltGroupEl=RocketElements.boltGroup.find((group)=>group.id==id);
+      setDroppedEl((prev)=>({
+        ...prev,
+        bolts: [boltGroupEl.src]
+      }));
       setElements([]);
     }
   };
+  let btnView=
+    droppedEl.bodies.length> 0 &&
+    droppedEl.windows.length> 0 &&
+    droppedEl.glass.length> 0 &&
+    droppedEl.wings.length> 0 &&
+    droppedEl.bolts.length> 0;
   return (
     <DndProvider backend={TouchBackend}>
       <div className={showDrawing ? `${classes.dark} ${classes.jcC} ${classes.aiC}` : classes.background}>
@@ -85,9 +90,11 @@ export const Rocket: React.FC = () => {
             <img src={drawing} />
           </div>
         )}
-        <button className={classes.btnCheck}>
-          <img src={btnCheck} />
-        </button>
+        {btnView && (
+          <button className={classes.btnCheck}>
+            <img src={btnCheck} />
+          </button>
+        )}
       </div>
     </DndProvider>
   );
