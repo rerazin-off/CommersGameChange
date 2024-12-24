@@ -1,32 +1,49 @@
 import { useDrop } from 'react-dnd';
-import React, { useCallback, useState } from 'react';
+import { useCallback } from 'react';
+import { classNames } from '../../../helpers/classNames/classNames';
+import './musical.module.scss';
 
-export default function Area({ imageUrl, items, setItems }) {
-  const [droppedItemIds, setDroppedItemIds] = useState(items);
+interface DragAreaProps {
+  imageUrl: string;
+  items: number[];
+  setItems: (newItems: number[]) => void;
+  className?: string;
+}
+
+export default function Area(props: DragAreaProps) {
+  const { imageUrl, items, setItems, className } = props;
 
   const onDrop = useCallback(
-    item => {
-      setDroppedItemIds(prevItems => [...prevItems, item.id]); // обновляем список сброшенных элементов
-      setItems(droppedItemIds); // передаем изменения родительскому компоненту
+    (item: { index: number }) => {
+      // Добавляем перетащенный элемент в список
+      const updatedItems = [...items, item.index];
+      setItems(updatedItems); // Обновляем в родительском состоянии
     },
-    [setDroppedItemIds]
+    [items, setItems]
   );
 
   const [{ isOver, canDrop }, drop] = useDrop({
     accept: 'INSTR',
     drop: onDrop,
     collect: monitor => ({
-      isOver: monitor.isOver({ shallow: true }), // проверяем, находится ли курсор над элементом
+      isOver: monitor.isOver(),
       canDrop: monitor.canDrop(),
     }),
   });
 
   return (
-    <div ref={drop}>
+    <div
+      ref={drop}
+      className={classNames(
+        'drop-area',
+        { 'is-over': isOver, 'can-drop': canDrop },
+        [className]
+      )}
+    >
       <img src={imageUrl} alt="Область" />
       <ul>
-        {droppedItemIds.map((id, index) => (
-          <li key={index}>{id}</li>
+        {items.map((id, index) => (
+          <li key={index}>{`Инструмент ${id + 1}`}</li>
         ))}
       </ul>
     </div>

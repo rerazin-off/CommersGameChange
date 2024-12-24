@@ -1,8 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classes from './musical.module.scss';
-import { Button } from '../../../components/Button/Button';
-import { Link } from 'react-router-dom';
-import Instruments from './DragabbleInstr.tsx';
 import Area from './Droparea';
 import guitar from '@/assets/img/game_assets/musicalgame-categories/guitar.svg';
 import bayan from '../../../assets/img/game_assets/musicalgame-categories/bayan.svg';
@@ -23,6 +20,8 @@ import keyboard from '/src/assets/img/game_assets/musicalgame-categories/categor
 
 import { DndProvider } from 'react-dnd';
 import { TouchBackend } from 'react-dnd-touch-backend';
+import Instruments from './DragabbleInstr';
+import CustomDragLayer from './CustomDragLayer';
 
 const instrumentsImg = [
   guitar,
@@ -40,36 +39,37 @@ const instrumentsImg = [
 ];
 
 export const Musical = () => {
-  const areas = [
+  const [areas, setAreas] = useState([
     { title: 'string', imageUrl: string, items: [] },
     { title: 'hit', imageUrl: hit, items: [] },
     { title: 'wind', imageUrl: wind, items: [] },
     { title: 'keyboard', imageUrl: keyboard, items: [] },
-  ];
+  ]);
+
+  const updateAreaItems = (index: number, newItems: number[]) => {
+    const updatedAreas = [...areas];
+    updatedAreas[index].items = newItems;
+    setAreas(updatedAreas);
+  };
 
   return (
     <DndProvider backend={TouchBackend}>
+      <CustomDragLayer /> {/* Подключаем слой */}
       <div className={classes.container}>
         <div className={classes.object}>
           {instrumentsImg.map((asset, i) => (
             <Instruments key={i} asset={asset} index={i} />
           ))}
         </div>
-
         <div className={classes.categories}>
           {areas.map(({ imageUrl, items }, index) => (
-            <div key={index} className={`classes.category+${title}`}>
-              <Area imageUrl={imageUrl} items={items} setItems={items} />
-            </div>
+            <Area
+              key={index}
+              imageUrl={imageUrl}
+              items={items}
+              setItems={newItems => updateAreaItems(index, newItems)}
+            />
           ))}
-        </div>
-
-        <div className={classes.backButton}>
-          <Link to={'/music'}>
-            <Button bgColor={'pink'} type={'type1v2'}>
-              НАЗАД
-            </Button>
-          </Link>
         </div>
       </div>
     </DndProvider>

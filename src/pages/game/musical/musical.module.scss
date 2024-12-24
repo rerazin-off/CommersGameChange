@@ -5,25 +5,30 @@
   background-size: cover;
 }
 
-.categoryString{
+.category{
+  width: 40vh;
+  height: 60vh;
+}
+
+.drop-area:nth-child(1){
   position: absolute;
   left: 6vh;
   top: 16vh;
 }
 
-.categoryWind {
+.drop-area:nth-child(2) {
   position: absolute;
   left: 64vh;
   top: 6vh;
 }
 
-.categoryHit {
+.drop-area:nth-child(3){
   position: absolute;
   left: 64vh;
   bottom: 38vh;
 }
 
-.categoryKeyboard {
+.drop-area:nth-child(4) {
   position: absolute;
   right: 37vh;
   top: 16vh;
@@ -37,4 +42,21 @@
 
 .object {
   position: absolute;
+  width: 100vh;
+  height: 100vh;
 }
+
+.drop-area {
+  border: 2px dashed #ccc;
+  padding: 20px;
+  text-align: center;
+}
+
+.drop-area.is-over {
+  background-color: rgba(0, 255, 0, 0.1);
+}
+
+.drop-area.can-drop {
+  border-color: #0f0;
+}
+
