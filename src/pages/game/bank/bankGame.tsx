@@ -3,6 +3,8 @@ import classes from "./bankGame.module.scss";
 import { Button } from "../../../components/Button/Button";
 import { Link } from "react-router-dom";
 import Card from '../../../components/Card/Card';
+import { DndProvider } from 'react-dnd';
+import { TouchBackend } from 'react-dnd-touch-backend';
 
 const bags = [
   { id: 1, label: "Звонок в банк", image: "/src/assets/img/bag-call.png" },
@@ -20,7 +22,7 @@ export const BankGame: React.FC = () => {
   const [positions, setPositions] = useState<number[]>(Array(7).fill(0));
   const [shuffledBags, setShuffledBags] = useState<typeof bags>([]);
   const [openIsCard, setOpenIsCard] = useState(false);
-  const [attempts, setAttempts] = useState<number>(0); // Новый счетчик попыток
+  const [attempts, setAttempts] = useState<number>(0);
 
   useEffect(() => {
     const shuffled = [...bags].sort(() => Math.random() - 0.5);
@@ -42,9 +44,9 @@ export const BankGame: React.FC = () => {
   };
 
   const checkResults = () => {
-    setAttempts(prevAttempts => prevAttempts + 1); // Увеличиваем количество попыток на 1
+    setAttempts((prevAttempts) => prevAttempts + 1);
     if (JSON.stringify(positions) === JSON.stringify(correctOrder)) {
-      setOpenIsCard(true); // Показать модальное окно при полном успехе
+      setOpenIsCard(true);
     } else {
       const newPositions = positions.map((pos, idx) =>
         pos === correctOrder[idx] ? pos : 0
@@ -58,89 +60,92 @@ export const BankGame: React.FC = () => {
   }, []);
 
   const cardData = {
-    title: 'Поздравляем!',
-    body: <>Вы успешно завершили игру! <br/> Количество попыток: {attempts}</>,
-    url: 'bank',
+    title: "Поздравляем!",
+    body: <>Вы успешно завершили игру! <br /> Количество попыток: {attempts}</>,
+    url: "bank",
   };
 
-
   return (
-    <div className={classes.container}>
-      <div className={classes.grid}>
-        {positions.map((pos, i) => (
-          <div
-            key={i}
-            className={classes.circle}
-            onDragOver={(e) => e.preventDefault()}
-            onDrop={(e) => {
-              e.preventDefault();
-              const draggedBagId = Number(sessionStorage.getItem("draggedBagId"));
-              handleDrop(i, draggedBagId);
-            }}
-          >
-            <span className={classes.circleNumber}>{i + 1}</span>
-            {pos > 0 && (
-              <img
-                src={bags.find((bag) => bag.id === pos)?.image}
-                alt={bags[pos - 1].label}
-                draggable
-                onDragStart={() => handleDragStart(pos)}
-                onDragEnd={() => {
-                  const newPositions = [...positions];
-                  newPositions[i] = 0;
-                  setPositions(newPositions);
-                }}
-              />
-            )}
-          </div>
-        ))}
-      </div>
-
-      <div className={classes.bags}>
-        {shuffledBags.map(
-          (bag) =>
-            !positions.includes(bag.id) && (
-              <img
-                key={bag.id}
-                src={bag.image}
-                alt={bag.label}
-                draggable
-                onDragStart={() => handleDragStart(bag.id)}
-                onDragEnd={handleDragEnd}
-                className={classes.bag}
-              />
-            )
-        )}
-      </div>
-
-      {positions.every((pos) => pos > 0) && (
-        <div onClick={checkResults} className={classes.checkButton}>
-          <Button bgColor={"blue"} type={"type1v2"}>
-            ПРОВЕРИТЬ
-          </Button>
+    <DndProvider
+      backend={TouchBackend}
+      options={{ enableMouseEvents: true, enableTouchEvents: true }}
+    >
+      <div className={classes.container}>
+        <div className={classes.grid}>
+          {positions.map((pos, i) => (
+            <div
+              key={i}
+              className={classes.circle}
+              onDragOver={(e) => e.preventDefault()}
+              onDrop={(e) => {
+                e.preventDefault();
+                const draggedBagId = Number(sessionStorage.getItem("draggedBagId"));
+                handleDrop(i, draggedBagId);
+              }}
+            >
+              <span className={classes.circleNumber}>{i + 1}</span>
+              {pos > 0 && (
+                <img
+                  src={bags.find((bag) => bag.id === pos)?.image}
+                  alt={bags[pos - 1].label}
+                  draggable
+                  onDragStart={() => handleDragStart(pos)}
+                  onDragEnd={() => {
+                    const newPositions = [...positions];
+                    newPositions[i] = 0;
+                    setPositions(newPositions);
+                  }}
+                />
+              )}
+            </div>
+          ))}
         </div>
-      )}
 
 
-      <div className={classes.backButton}>
-        <Link to={"/bank"}>
-          <Button bgColor={"pink"} type={"type1v2"}>
-            НАЗАД
-          </Button>
-        </Link>
+        <div className={classes.bags}>
+          {shuffledBags.map(
+            (bag) =>
+              !positions.includes(bag.id) && (
+                <img
+                  key={bag.id}
+                  src={bag.image}
+                  alt={bag.label}
+                  draggable
+                  onDragStart={() => handleDragStart(bag.id)}
+                  onDragEnd={handleDragEnd}
+                  className={classes.bag}
+                />
+              )
+          )}
+        </div>
+
+        {positions.every((pos) => pos > 0) && (
+          <div onClick={checkResults} className={classes.checkButton}>
+            <Button bgColor={"blue"} type={"type1v2"}>
+              ПРОВЕРИТЬ
+            </Button>
+          </div>
+        )}
+
+        <div className={classes.backButton}>
+          <Link to={"/bank"}>
+            <Button bgColor={"pink"} type={"type1v2"}>
+              НАЗАД
+            </Button>
+          </Link>
+        </div>
+        <div className={classes.card}>
+          <Card
+            title={cardData.title}
+            body={cardData.body}
+            game={cardData.url}
+            backLink={"bank"}
+            isOpen={openIsCard}
+            onClose={closeCard}
+            type={"gameOver"}
+          />
+        </div>
       </div>
-      <div className={classes.card}>
-        <Card
-          title={cardData.title}
-          body={cardData.body}
-          game={cardData.url}
-          backLink={'bank'}
-          isOpen={openIsCard}
-          onClose={closeCard}
-          type={'gameOver'}
-        />
-      </div>
-
-    </div>
+    </DndProvider>
   );
 };
