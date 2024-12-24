@@ -5,7 +5,7 @@ import './musical.module.scss';
 
 interface DragAreaProps {
   imageUrl: string;
-  items: number[];
+  items: string[];
   setItems: (newItems: number[]) => void;
   className?: string;
 }
@@ -15,8 +15,11 @@ export default function Area(props: DragAreaProps) {
 
   const onDrop = useCallback(
     (item: { index: number }) => {
+      // Преобразуем индекс в строку
+      const itemString = String(item.index);
+
       // Добавляем перетащенный элемент в список
-      const updatedItems = [...items, item.index];
+      const updatedItems = [...items, itemString];
       setItems(updatedItems); // Обновляем в родительском состоянии
     },
     [items, setItems]
@@ -41,11 +44,20 @@ export default function Area(props: DragAreaProps) {
       )}
     >
       <img src={imageUrl} alt="Область" />
-      <ul>
-        {items.map((id, index) => (
-          <li key={index}>{`Инструмент ${id + 1}`}</li>
+
+      <div>
+        {items.map((item, index) => (
+          <img src={item} />
         ))}
-      </ul>
+      </div>
+
+      {/*<ul>*/}
+      {/*  {items.map(index => (*/}
+      {/*    <li key={index}>*/}
+      {/*      <img src={} />*/}
+      {/*    </li>*/}
+      {/*  ))}*/}
+      {/*</ul>*/}
     </div>
   );
 }

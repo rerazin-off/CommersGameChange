@@ -46,10 +46,12 @@ export const Musical = () => {
     { title: 'keyboard', imageUrl: keyboard, items: [] },
   ]);
 
-  const updateAreaItems = (index: number, newItems: number[]) => {
+  const updateAreaItems = (index: number, newItems) => {
     const updatedAreas = [...areas];
     updatedAreas[index].items = newItems;
     setAreas(updatedAreas);
+    console.log(newItems);
+    console.log(updatedAreas);
   };
 
   return (

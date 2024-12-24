@@ -29,7 +29,6 @@ export default function CustomDragLayer() {
         <img
           src={item.asset} // Передавайте asset через item
           alt="Перетаскиваемый инструмент"
-          // Задайте размер изображения
         />
       )}
     </div>
