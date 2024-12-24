@@ -1,0 +1,62 @@
+.container {
+  width: 1920px;
+  height: 1080px;
+  background-image: url("/src/assets/img/fon/musicalgame_categories.svg");
+  background-size: cover;
+}
+
+.category{
+  width: 40vh;
+  height: 60vh;
+}
+
+.drop-area:nth-child(1){
+  position: absolute;
+  left: 6vh;
+  top: 16vh;
+}
+
+.drop-area:nth-child(2) {
+  position: absolute;
+  left: 64vh;
+  top: 6vh;
+}
+
+.drop-area:nth-child(3){
+  position: absolute;
+  left: 64vh;
+  bottom: 38vh;
+}
+
+.drop-area:nth-child(4) {
+  position: absolute;
+  right: 37vh;
+  top: 16vh;
+}
+
+.backButton {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+}
+
+.object {
+  position: absolute;
+  width: 100vh;
+  height: 100vh;
+}
+
+.drop-area {
+  border: 2px dashed #ccc;
+  padding: 20px;
+  text-align: center;
+}
+
+.drop-area.is-over {
+  background-color: rgba(0, 255, 0, 0.1);
+}
+
+.drop-area.can-drop {
+  border-color: #0f0;
+}
+
