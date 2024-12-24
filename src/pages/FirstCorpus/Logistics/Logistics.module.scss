@@ -1,5 +1,5 @@
 .cont{
-  background: url("../../../assets/img/background.svg");
+  background: url("@/assets/img/background.svg");
   background-repeat: no-repeat;
   background-position: center;
   height: 1080px;
@@ -20,7 +20,7 @@
 
   .card{
     position: absolute;
-    margin-top: 300px;
+    margin-top: 500px;
   }
 
   .container{

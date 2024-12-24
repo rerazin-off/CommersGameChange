@@ -56,7 +56,7 @@ export const MusiciansRoom = () => {
           <div className={classes.xylophone} onClick={() => handleGameClick('xylophoneGame')}></div>
           <div className={classes.notes} onClick={() => handleGameClick('notesGame')}></div>
         </div>
-        <div className={classes.card}><Card title={cardData.title} body={cardData.body} game={cardData.url} backLink={'MusiciansRoom'}
+        <div className={classes.card}><Card type={'game'} title={cardData.title} body={cardData.body} game={cardData.url} backLink={'MusiciansRoom'}
                                             isOpen={openIsCard} onClose={closeCard} /></div>
 
       </div>
