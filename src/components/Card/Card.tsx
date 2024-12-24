@@ -1,13 +1,13 @@
 import classes from './Card.module.scss';
 import { Button } from '../Button/Button';
 import { Link } from 'react-router-dom';
-import { MutableRefObject, useCallback, useEffect, useRef, useState } from 'react';
+import { MutableRefObject, ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import lineImage from '../../assets/img/line.svg';
 
 
 interface CardProps {
   title: string;
-  body: string;
+  body: ReactNode;
   onClose?: () => void;
   isOpen?: boolean;
   game: string;

@@ -114,7 +114,7 @@ export const Doy: React.FC = () => {
 
       {positions.every((pos) => pos > 0) && (
         <div onClick={checkResults} className={classes.checkButton}>
-          <Button bgColor={"pink"} type={"type1v2"}>
+          <Button bgColor={"blue"} type={"type1v2"}>
             ПРОВЕРИТЬ
           </Button>
         </div>

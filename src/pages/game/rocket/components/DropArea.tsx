@@ -1,22 +1,35 @@
-import { useDrop } from 'react-dnd';
 import React from 'react';
-import classes from '../gameRocket.module.scss';
+import { useDrop } from 'react-dnd';
+import classes from '../../rocket/gameRocket.module.scss';
 
-export default function DropArea ({ droppedBodySrc, droppedWindowSrc }) {
+export default function DropArea({ droppedBodySrc, droppedWindowSrc, droppedGlassSrc, droppedWingsSrc, droppedBoltSrc}) {
   const [{ canDrop, isOver }, dropRef] = useDrop(() => ({
-    accept: ['BODY', 'WINDOW'], // Триггер для двух типов
+    accept: ['EL'],
     drop: () => {},
     canDrop: () => true,
-    collect: monitor => ({
-      isOver: !!monitor.isOver(),
-      canDrop: !!monitor.canDrop()
-    })
+    collect: (monitor) => ({
+      isOver: monitor.isOver(),
+      canDrop: monitor.canDrop(),
+    }),
   }));
-
   return (
     <div ref={dropRef} className={classes.dropArea}>
-      {droppedBodySrc && <img src={droppedBodySrc} alt="dropped-body" className={classes.rocketPart} />}
-      {droppedWindowSrc && <img src={droppedWindowSrc} alt="dropped-window" className={classes.rocketWindow} />}
+      {droppedBodySrc.map((src, i) => (
+        <img key={i} src={src} className={classes.rocketBody} />
+      ))}
+      {droppedWindowSrc.map((src, i) => (
+        <img key={i} src={src} className={classes.rocketWindow} />
+      ))}
+      {droppedGlassSrc.map((src, i) => (
+        <img key={i} src={src} className={classes.rocketGlass} />
+      ))}
+      {droppedWingsSrc.map((src, i) => (
+        <img key={i} src={src} className={classes.rocketWings} />
+      ))}
+      {droppedBoltSrc.map((src, i) => (
+        <img key={i} src={src} className={classes.rocketBolts}/>
+      ))}
     </div>
   );
 }
+

@@ -18,9 +18,11 @@ import { Psih } from '../../pages/MainPage/Psih/Psih';
 import Game from '../../components/Game/Game';
 import { Doy } from '../../pages/game/doy/doy';
 import {BankGame } from '../../pages/game/bank/bankGame';
-// import { Rocket } from '../../pages/game/rocket/gameRocket';
-import { Rocket } from '../../pages/game/rocket/gameRocket';
+import { Rocket } from '../../pages/game/rocket/Rocket';
 import {SorterGame } from '../../pages/game/buhgalter/buhGame';
+
+
+
 
 
 
@@ -53,7 +55,7 @@ export const router = createBrowserRouter([
   { path: '/doyGame', element: <Doy/> },
   { path: '/gbank', element: <BankGame /> },
   { path: '/game', element: <Game /> },
-  // { path: '/rocket', element: <Rocket /> },
+  { path: '/rocket', element: <Rocket /> },
   { path: '/gbuh', element: <SorterGame /> },
   { path: '/gbuh2', element: <ExpenseSorterGame /> },
 
