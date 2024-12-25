@@ -1,11 +1,10 @@
-import React from 'react';
 import { useDragLayer } from 'react-dnd';
-import classes from './Drag.module.scss';
 
 
 export default function Drag()  {
   const { item, currentOffset, isDragging } = useDragLayer((monitor) => ({
     item: monitor.getItem(),
+    type: monitor.getItemType(),
     currentOffset: monitor.getSourceClientOffset(),
     isDragging: monitor.isDragging(),
   }));
@@ -14,14 +13,14 @@ export default function Drag()  {
     return null;
   }
 
-  const style = {
+  const transform = {
     transform: `translate(${currentOffset.x}px, ${currentOffset.y}px)`,
   };
 
   return (
-    <div className={classes.dragLayer}>
-      <div style={style}>
-        <img src={item.image} alt="" className={classes.preview} />
+    <div style={{ pointerEvents: "none", position: "fixed", zIndex: 100 }}>
+      <div style={transform}>
+        <img src={item.image} alt=""   style={{ width: "200px", height: "200px" }}/>
       </div>
     </div>
   );

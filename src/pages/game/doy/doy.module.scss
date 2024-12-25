@@ -1,8 +1,8 @@
 .container {
-  //height: 100vh;
-  height: 1080px;
+  height: 100vh;
   background: url("/src/assets/img/fon/dou_game.svg") no-repeat center center;
   background-size: cover;
+  overflow: hidden;
   position: relative;
 }
 
@@ -10,60 +10,20 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr); // 3 колонки для кружков
   grid-template-rows: repeat(5, 1fr);
-  gap: 75px 150px;
+  gap: 7vh 14vh;
   position: absolute;
-  top: 9.5%;
+  top: 10vh;
   left: 6.3%;
   width: 50%;
   justify-content: center;
-
-  .circle {
-    width: 430px;
-    height: 100px;
-    //background-color: white;
-    display: flex;
-    justify-content: center;
-    align-items: end;
-
-    &:nth-child(9) {
-      grid-column: 1; //Лево 9 круг
-    }
-  }
 }
-
-.bags {
-  position: absolute;
-  top: 9.5%;
-  right: 2%;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); // 3 колонки для мешков
-  gap: 40px 40px; // Отступы между рядами и колонками
-  flex-wrap: wrap;
-
-  .bag {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    cursor: grab;
-    transition: transform 0.2s;
-
-
-    &:active {
-      cursor: grabbing;
-      transform: scale(0.95);
-    }
-  }
-}
-
 .checkButton {
   position: absolute;
-  bottom: 20px;
-  right:20px;
+  bottom: 3vh;
+  right: 3vh;
 }
-
 .backButton {
   position: absolute;
-  bottom: 20px;
-  left: 20px;
+  bottom: 3vh;
+  left: 3vh;
 }
