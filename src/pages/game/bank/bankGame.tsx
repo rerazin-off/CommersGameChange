@@ -5,6 +5,7 @@ import classes from "./bankGame.module.scss";
 import { Button } from "../../../components/Button/Button";
 import { Link } from "react-router-dom";
 import Card from '../../../components/Card/Card';
+import Drag from './Drag';
 
 const bags = [
   { id: 1, label: "Звонок в банк", image: "/src/assets/img/bag-call.png" },
@@ -32,11 +33,9 @@ export const BankGame: React.FC = () => {
   const handleDrop = (index: number | null, item: { id: number }) => {
     const newPositions = [...positions];
     if (index === null) {
-      // Перемещение обратно в мешки
       const currentIndex = newPositions.findIndex((id) => id === item.id);
       if (currentIndex !== -1) newPositions[currentIndex] = 0;
     } else {
-      // Перемещение в другую ячейку
       const currentIndex = newPositions.findIndex((id) => id === item.id);
       if (currentIndex !== -1) newPositions[currentIndex] = 0;
       newPositions[index] = item.id;
@@ -61,9 +60,12 @@ export const BankGame: React.FC = () => {
   };
 
   const DraggableBag = ({ bag }: { bag: typeof bags[number] }) => {
-    const [, drag] = useDrag({
+    const [{ isDragging }, drag, preview] = useDrag({
       type: 'bag',
-      item: { id: bag.id },
+      item: { id: bag.id, image: bag.image },
+      collect: (monitor) => ({
+        isDragging: monitor.isDragging(),
+      }),
     });
 
     return (
@@ -71,7 +73,7 @@ export const BankGame: React.FC = () => {
         ref={drag}
         src={bag.image}
         alt={bag.label}
-        className={classes.bag}
+        className={`${classes.bag} ${isDragging ? classes.dragging : ''}`}
         draggable={false}
       />
     );
@@ -94,6 +96,7 @@ export const BankGame: React.FC = () => {
     );
   };
 
+
   const checkResults = () => {
     setAttempts((prev) => prev + 1);
     if (JSON.stringify(positions) === JSON.stringify(correctOrder)) {
@@ -110,7 +113,6 @@ export const BankGame: React.FC = () => {
     setOpenIsCard(false);
   }, []);
 
-
   const cardData = {
     title: 'Поздравляем!',
     body: <>Вы успешно завершили игру! <br /> Количество попыток: {attempts}</>,
@@ -123,6 +125,7 @@ export const BankGame: React.FC = () => {
 
   return (
     <DndProvider backend={TouchBackend} options={touchBackendOptions}>
+      <Drag/>
       <div className={classes.container}>
         <div className={classes.grid}>
           {positions.map((_, i) => (
