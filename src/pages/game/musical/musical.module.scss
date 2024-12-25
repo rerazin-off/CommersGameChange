@@ -4,7 +4,7 @@
   background-size: cover;
 }
 
-.droparea img{
+.droparea .catname{
   width: 40vh;
   margin: auto;
 }
@@ -12,7 +12,7 @@
 .droparea{
   display: flex;
   flex-direction: column;
-  align-content: center;
+  justify-content: center;
 }
 
 .droparea:nth-child(1){
@@ -72,8 +72,8 @@
 
 .object {
   position: absolute;
-  top: 25vh;
-  left: 100vh;
+  top: 50vh;
+  left: 125vh;
 }
 
 

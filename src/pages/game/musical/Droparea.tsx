@@ -29,7 +29,7 @@ export default function Area(props: DragAreaProps) {
 
   return (
     <div ref={drop} className={classes.droparea}>
-      <img src={imageUrl} alt="Область" />
+      <img className={classes.catname} src={imageUrl} alt="Область" />
 
       <div className={classes.area}>
         {items.map(item => (
