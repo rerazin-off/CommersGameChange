@@ -22,7 +22,7 @@ import { Rocket } from '../../pages/game/rocket/Rocket';
 import { SorterGame } from '../../pages/game/buhgalter/buhGame';
 
 import { LogistCep } from '../../pages/game/logist/LogistCep';
-import { Musical } from '../../pages/game/musical/musical';
+import { MusicalGameCategories } from '../../pages/game/musical/MusicalGameCategories';
 import ExpenseSorterGame from '../../pages/game/buhgalter/buhgame2.0/BuhgalGame';
 
 export enum RoutesEnum {
@@ -59,5 +59,5 @@ export const router = createBrowserRouter([
   { path: '/gbuh2', element: <ExpenseSorterGame /> },
 
   { path: '/gamelogist', element: <LogistCep /> },
-  { path: '/musical', element: <Musical /> },
+  { path: '/musical', element: <MusicalGameCategories /> },
 ]);

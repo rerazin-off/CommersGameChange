@@ -26,10 +26,7 @@ export default function CustomDragLayer() {
   return (
     <div style={layerStyles}>
       {itemType === 'INSTR' && (
-        <img
-          src={item.asset} // Передавайте asset через item
-          alt="Перетаскиваемый инструмент"
-        />
+        <img src={item.asset} alt="Перетаскиваемый инструмент" />
       )}
     </div>
   );
