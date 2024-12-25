@@ -1,0 +1,12 @@
+.circle {
+  width: 430px;
+  height: 100px;
+  //background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+
+  &:nth-child(9) {
+    grid-column: 1; //Лево 9 круг
+  }
+}
