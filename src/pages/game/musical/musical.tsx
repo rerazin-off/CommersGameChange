@@ -24,18 +24,18 @@ import Instruments from './DragabbleInstr';
 import CustomDragLayer from './CustomDragLayer';
 
 const instrumentsImg = [
-  guitar,
-  bayan,
-  buben,
-  drums,
-  dudelka,
-  dudelka2,
-  acousic,
-  guitarpiano,
-  kselophone,
-  piano,
-  violonchel,
-  dudelochka,
+  { id: 0, url: guitar },
+  { id: 1, url: bayan },
+  { id: 2, url: buben },
+  { id: 3, url: drums },
+  { id: 4, url: dudelka },
+  { id: 5, url: dudelka2 },
+  { id: 6, url: acousic },
+  { id: 7, url: guitarpiano },
+  { id: 8, url: kselophone },
+  { id: 9, url: piano },
+  { id: 10, url: violonchel },
+  { id: 11, url: dudelochka },
 ];
 
 export const Musical = () => {
@@ -46,11 +46,29 @@ export const Musical = () => {
     { title: 'keyboard', imageUrl: keyboard, items: [] },
   ]);
 
-  const updateAreaItems = (index: number, newItems) => {
+  const [instruments, setInstruments] = useState(instrumentsImg);
+
+  const removeInstrumentFromList = id => {
+    setInstruments(prevInstruments =>
+      prevInstruments.filter(instrument => instrument.id !== id)
+    );
+  };
+
+  const updateAreaItems = (index: number, newItemId) => {
     const updatedAreas = [...areas];
-    updatedAreas[index].items = newItems;
+    const instrumentToMove = instruments.find(
+      instrument => instrument.id === newItemId
+    );
+
+    if (!instrumentToMove) return;
+
+    updatedAreas[index].items.push(instrumentToMove);
     setAreas(updatedAreas);
-    console.log(newItems);
+
+    // Удаляем инструмент из общего массива, чтобы он больше не мог быть использован
+    removeInstrumentFromList(newItemId);
+
+    console.log(newItemId);
     console.log(updatedAreas);
   };
 
@@ -59,8 +77,12 @@ export const Musical = () => {
       <CustomDragLayer /> {/* Подключаем слой */}
       <div className={classes.container}>
         <div className={classes.object}>
-          {instrumentsImg.map((asset, i) => (
-            <Instruments key={i} asset={asset} index={i} />
+          {instruments.map(instrument => (
+            <Instruments
+              key={instrument.id}
+              asset={instrument.url}
+              index={instrument.id}
+            />
           ))}
         </div>
         <div className={classes.categories}>

@@ -4,33 +4,65 @@
   background-size: cover;
 }
 
-.drop-area{
-  position: absolute;
+.droparea img{
+  width: 40vh;
+  margin: auto;
 }
 
-//.drop-area:nth-child(1){
-//  position: absolute;
-//  left: 6vh;
-//  top: 16vh;
-//}
-//
-//.drop-area:nth-child(2) {
-//  position: absolute;
-//  left: 64vh;
-//  top: 6vh;
-//}
-//
-//.drop-area:nth-child(3){
-//  position: absolute;
-//  left: 64vh;
-//  bottom: 38vh;
-//}
-//
-//.drop-area:nth-child(4) {
-//  position: absolute;
-//  right: 37vh;
-//  top: 16vh;
-//}
+.droparea{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
+.droparea:nth-child(1){
+  position: absolute;
+  left: 1vh;
+  top: 15vh;
+}
+
+.droparea:nth-child(3){
+  position: absolute;
+  left: 60vh;
+  bottom: 50vh;
+}
+
+.droparea:nth-child(2){
+  position: absolute;
+  left: 60vh;
+  top: 50vh;
+}
+
+.droparea:nth-child(4){
+  position: absolute;
+  right: 35vh;
+  top: 15vh;
+}
+
+.droparea .area{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.droparea:nth-child(1) .area{
+  width: 45vh;
+  height: 70vh;
+}
+
+.droparea:nth-child(3) .area{
+  width: 40vh;
+  height: 40vh;
+}
+
+.droparea:nth-child(2) .area{
+  width: 40vh;
+  height: 40vh;
+}
+
+.droparea:nth-child(4) .area{
+  width: 40vh;
+  height: 40vh;
+}
 
 .backButton {
   position: absolute;
@@ -40,7 +72,8 @@
 
 .object {
   position: absolute;
-  top: 50vh;
+  top: 25vh;
+  left: 100vh;
 }
 
 
