@@ -30,6 +30,7 @@ export enum RoutesEnum {
   FIRST_CORPUS = '/1',
   PROGRAMMERS = '/programmers',
   LOGISTICS = '/logistics',
+  ECONOMIST = '/economist'
 }
 
 export const router = createBrowserRouter([
@@ -43,7 +44,7 @@ export const router = createBrowserRouter([
   // { path: '/robotGame', element:  < />,},
   { path: '/Yur', element: <Yur /> },
   { path: '/SpecialKinder', element: <SpecialKidergarden /> },
-  { path: '/economist', element: <Economist /> },
+  { path: RoutesEnum.ECONOMIST, element: <Economist /> },
   { path: '/dou', element: <Dou /> },
   { path: '/bank', element: <Bank /> },
   { path: '/tovaroveds', element: <Torgashi /> },

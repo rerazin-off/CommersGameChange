@@ -1,10 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDrop } from "react-dnd";
 import Expense from "./Expense";
 import styles from "./BuhgalGame.module.scss";
 import Zone from './Zone';
+import { Button } from '../../../../components/Button/Button';
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
+import { TouchBackend } from "react-dnd-touch-backend";
+import CustomDragLayer from "./CustomDragLayer";
+import { RoutesEnum } from '../../../../app/routes';
+import { useNavigate } from 'react-router-dom';
+
 
 const expensesData = [
   { id: "1", name: "Транспортные затраты", image: 'src/assets/img/game_assets/buhsorter/transport.svg', correct: "star" },
@@ -16,7 +22,7 @@ const expensesData = [
   {id: "7", name: "Налоги", image: 'src/assets/img/game_assets/buhsorter/taxes.svg', correct: "star" },
   {id: "8", name: "Аренда офиса", image: 'src/assets/img/game_assets/buhsorter/office.svg', correct: "star" },
   {id: "9", name: "Зарплата", image: 'src/assets/img/game_assets/buhsorter/salary.svg', correct: "star" },
-  {id: "10", name: "Телефон", image: 'src/assets/img/game_assets/buhsorter/phone.svg', correct: "star" },
+  {id: "10", name: "Телефон", image: 'src/assets/img/game_assets/buhsorter/phone.svg', correct: "blackhole" },
   {id: "11", name: "Стоимость продукции", image: 'src/assets/img/game_assets/buhsorter/priceproduct.svg', correct: "star" }
 ];
 
@@ -29,7 +35,16 @@ const ExpenseSorterGame: React.FC = () => {
   const [expenses, setExpenses] = useState(
     expensesData.map((expense) => ({ ...expense, zone: undefined }))
   );
-  const [zones, setZones] = useState(zonesData);
+  const [zones] = useState(zonesData);
+  const [centerExpenses, setCenterExpenses] = useState<string[]>(
+    expensesData.map((expense) => expense.id) // Инициализируем всеми элементами
+  );
+  const [currentExpenseIndex, setCurrentExpenseIndex] = useState(0); // Индекс текущего элемента
+
+  useEffect(() => {
+    console.log("Текущее состояние centerExpenses:", centerExpenses);
+    console.log("Текущий индекс currentExpenseIndex:", currentExpenseIndex);
+  }, [centerExpenses, currentExpenseIndex]);
 
   const handleDrop = (id: string, targetZoneId: string) => {
     setExpenses((prevExpenses) =>
@@ -37,19 +52,56 @@ const ExpenseSorterGame: React.FC = () => {
         expense.id === id ? { ...expense, zone: targetZoneId } : expense
       )
     );
-  };
 
-  const handleCheck = () => {
-    setExpenses((prevExpenses) =>
-      prevExpenses.filter((expense) => {
-        const correctZone = zones.find((zone) => zone.id === expense.correct);
-        return expense.zone === correctZone?.id;
-      })
+    // Показываем следующий элемент, если он есть
+    setCenterExpenses((prevCenterExpenses) =>
+      prevCenterExpenses.filter((expenseId) => expenseId !== id)
+    );
+
+    setCurrentExpenseIndex((prevIndex) =>
+      prevIndex >= centerExpenses.length - 1 ? 0 : prevIndex
     );
   };
 
+  const handleCheck = () => {
+    const incorrectExpenses: string[] = [];
+
+    setExpenses((prevExpenses) =>
+      prevExpenses.map((expense) => {
+        const correctZone = zones.find((zone) => zone.id === expense.correct);
+        if (expense.zone !== correctZone?.id) {
+          incorrectExpenses.push(expense.id);
+          return { ...expense, zone: undefined };
+        }
+        return expense;
+      })
+    );
+
+    setCenterExpenses(incorrectExpenses); // Обновляем массив неправильных элементов
+    setCurrentExpenseIndex(0); // Сбрасываем индекс
+  };
+
+  const isTouchDevice = () => {
+    return "ontouchstart" in window || navigator.maxTouchPoints > 0;
+  };
+
+  // Получаем текущий элемент для отображения
+  const currentExpense =
+    centerExpenses.length > currentExpenseIndex && !expenses.every((expense) => expense.zone !== undefined)
+      ? expenses.find((expense) => expense.id === centerExpenses[currentExpenseIndex])
+      : null;
+
+  useEffect(() => {
+    console.log("Текущий элемент для отображения:", currentExpense);
+  }, [currentExpense]);
+
+  // Определяем, показывать ли кнопку "Проверить"
+  const allExpensesDistributed = expenses.every((expense) => expense.zone !== undefined);
+
+  const navigate = useNavigate();
+
   return (
-    <DndProvider backend={HTML5Backend}>
+    <DndProvider backend={isTouchDevice() ? TouchBackend : HTML5Backend}>
       <div className={styles.gameContainer}>
         <div className={styles.zonesContainer}>
           {zones.map((zone) => (
@@ -61,17 +113,34 @@ const ExpenseSorterGame: React.FC = () => {
             />
           ))}
         </div>
-        <button className={styles.checkButton} onClick={handleCheck}>
-          Проверить
-        </button>
+        {allExpensesDistributed && (
+          <Button className={styles.checkButton} onClick={handleCheck}
+                  bgColor="blue" type="type1v2">
+            ПРОВЕРИТЬ
+          </Button>
+        )}
         <div className={styles.expensesContainer}>
-          {expenses.filter((expense) => !expense.zone).map((expense) => (
-            <Expense key={expense.id} id={expense.id} name={expense.name} image={expense.image} />
-          ))}
+          {currentExpense && (
+            <Expense
+              key={currentExpense.id}
+              id={currentExpense.id}
+              // name={currentExpense.name}
+              image={currentExpense.image}
+            />
+          )}
         </div>
+        <div className={styles.backButton}>
+          <Button
+            bgColor="pink"
+            type="type1v2"
+            onClick={() => navigate(RoutesEnum.ECONOMIST)}
+          >
+            НАЗАД
+          </Button>
+        </div>
+        <CustomDragLayer />
       </div>
     </DndProvider>
-
   );
 };
 
