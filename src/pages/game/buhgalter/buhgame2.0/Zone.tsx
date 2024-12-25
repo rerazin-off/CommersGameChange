@@ -26,7 +26,7 @@ const Zone: React.FC<ZoneProps> = ({ zone, expenses, onDrop }) => {
 
   return (
     <div ref={drop} className={styles.zone}>
-      <h3 className={styles.zoneName}>{zone.name}</h3>
+      {/*<h3 className={styles.zoneName}>{zone.name}</h3>*/}
       <div className={styles.zoneExpenses}>
         {expenses.map((expense) => (
           <Expense key={expense.id} id={expense.id} name={expense.name} image={expense.image} />
