@@ -9,7 +9,8 @@ const gameData: Record<string, { title: string; body: string; url: string }> = {
   doskaGame: {
     title: 'Бухгалтерия',
     body: 'Вам необходимо распределить расходы на те, которые организация может произвести и на те, которые не может',
-    url: '../../../production/buhuchet/buh2/index.html'
+    // url: '../../../production/buhuchet/buh2/index.html',
+    url: 'gbuh'
   },
   stolGame: {
     title: 'Лото',

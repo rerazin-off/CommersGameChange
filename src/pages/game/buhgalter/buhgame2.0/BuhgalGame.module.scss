@@ -1,0 +1,55 @@
+.gameContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+.zonesContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  background-image: url('/src/assets/img/fon/buh_sort_game.svg'); // Фон
+  background-size: cover;
+}
+.checkButton {
+  margin: 20px 0;
+  padding: 10px 20px;
+  font-size: 16px;
+}
+.expensesContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.expense {
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+  cursor: grab;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.expenseImage {
+  max-width: 100%;
+  max-height: 100%;
+}
+.zone {
+  flex: 1;
+  margin: 0 10px;
+  padding: 10px;
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.zoneName {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+.zoneExpenses {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
