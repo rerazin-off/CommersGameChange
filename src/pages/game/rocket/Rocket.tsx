@@ -1,21 +1,29 @@
 import React, { useState } from 'react';
 import { DndProvider } from 'react-dnd';
 import { TouchBackend } from 'react-dnd-touch-backend';
-import DraggebleEl from './components/DraggebleEl';
-import DropArea from './components/DropArea';
-import { RocketElements } from './components/RocketElements';
+import DraggebleEl from '../rocket/components/DraggebleEl/DraggebleEl';
+import DropArea from '../rocket/components/DropArea/DropArea';
+import { RocketElements } from '../rocket/RocketElements';
 import btnCheck from '@/assets/img/game_assets/game-rocket-img/btn-check.svg';
 import icon from '@/assets/img/game_assets/game-rocket-img/icon.svg';
 import classes from './gameRocket.module.scss'
 
 export const Rocket: React.FC = () => {
   const [showDrawing, setShowDrawing] = useState(false);
-  const [elements, setElements] = useState(RocketElements.body);
-  const [droppedBodies, setDroppedBodies] = useState([]);
-  const [droppedWindows, setDroppedWindows] = useState([]);
-  const [droppedGlass, setDroppedGlass] = useState([]);
-  const [droppedWings, setDroppedWings] = useState([]);
-  const [droppedBolt, setDroppedBolt]=useState([]);
+  const [elements, setElements] = useState(RocketElements.window);
+  const [droppedEl, setDroppedEl] = useState({
+    bodies:[RocketElements.src],
+    windows: [],
+    glass: [],
+    wings:[],
+    bolts:[]
+  });
+  let elGroups=[
+    {index:'windows', el: RocketElements.window, next: RocketElements.glass},
+    {index:'glass', el: RocketElements.glass, next: RocketElements.wings},
+    {index:'wings', el: RocketElements.wings, next: RocketElements.bolt},
+    {index:'bolts', el: RocketElements.boltGroup, next: []}
+  ]
 
   let clickBtn = () => {
     setShowDrawing(true);
@@ -24,68 +32,85 @@ export const Rocket: React.FC = () => {
     setShowDrawing(false);
   };
   let moveElement = (id: string) => {
-    const bodyElement = RocketElements.body.find(element => element.id==id);
-    if (bodyElement) {
-      setDroppedBodies([bodyElement.src]);
-      setElements(RocketElements.window);
-    }
-    const windowElement = RocketElements.window.find(element => element.id==id);
-    if (windowElement) {
-      setDroppedWindows([windowElement.src]);
-      setElements(RocketElements.glass);
-    }
-    const glassElement = RocketElements.glass.find(element => element.id==id);
-    if (glassElement) {
-      setDroppedGlass([glassElement.src]);
-      setElements(RocketElements.wings);
-    }
-    const wingsElement = RocketElements.wings.find(element => element.id==id);
-    if (wingsElement) {
-      setDroppedWings([wingsElement.src]);
-      setElements(RocketElements.bolt);
-    }
-    const boltElement = RocketElements.bolt.find(element => element.id==id);
-    if (boltElement) {
-      const boltGroupEl=RocketElements.boltGroup.find(group=>group.id==boltElement.id);
-      setDroppedBolt(boltGroupEl.src);
-      setElements([]);
+    for (const { index, el, next } of elGroups) {
+      const foundElement = el.find(el => el.id==id);
+      if (foundElement) {
+        setDroppedEl(prev => ({
+          ...prev,
+          [index]: [foundElement.src],
+        }));
+        setElements(next);
+      }
     }
   };
-  let btnCheckView=
-    droppedBodies.length>0 &&
-    droppedWindows.length>0 &&
-    droppedGlass.length>0 &&
-    droppedWings.length>0 &&
-    droppedBolt.length>0;
-  let checkDroppedEl = () => {
-    const a=RocketElements.correctEl;
-    console.log(droppedBodies);
-    console.log(a);
-  }
+  let btnCheckView=Object.values(droppedEl).every((el)=>el.length>0);
+  let checkDroppedEl = (id :string) => {
+    if(droppedEl.windows!=RocketElements.correctEl[0]){
+      setDroppedEl(prev=>({
+        ...prev,
+        windows: [],
+        glass: [],
+        wings: [],
+        bolts:[]
+      }))
+      setElements(RocketElements.window);
+    }
+    else if(droppedEl.glass!=RocketElements.correctEl[1]){
+      setDroppedEl(prev=>({
+        ...prev,
+        ...prev,
+        glass: [],
+        wings: [],
+        bolts:[]
+      }))
+      setElements(RocketElements.glass);
+    }
+    else if(droppedEl.wings!=RocketElements.correctEl[2]){
+      setDroppedEl(prev=>({
+        ...prev,
+        ...prev,
+        ...prev,
+        wings: [],
+        bolts:[]
+      }))
+      setElements(RocketElements.wings);
+    }
+    else if(droppedEl.bolts!=RocketElements.correctEl[3]){
+      setDroppedEl(prev=>({
+        ...prev,
+        ...prev,
+        ...prev,
+        ...prev,
+        bolts:[]
+      }))
+      setElements(RocketElements.bolt);
+    }
+  };
   return (
     <DndProvider backend={TouchBackend}>
       <div className={showDrawing ? `${classes.dark} ${classes.jcC} ${classes.aiC}` : classes.background}>
-        {showDrawing === false && (
-          <div className={classes.rocketElements}>
-            {elements.map((el) => (
-              <DraggebleEl key={el.id} src={el.src} id={el.id} moveElement={moveElement} />
-            ))}
-          </div>
-        )}
+        {!showDrawing && (
+            <div className={classes.rocketElements}>
+              {elements.map((el) => (
+                <DraggebleEl key={el.id} src={el.src} id={el.id} moveElement={moveElement} />
+              ))}
+            </div>
+          )}
         {showDrawing === false && (
           <DropArea
-            droppedBodySrc={droppedBodies}
-            droppedWindowSrc={droppedWindows}
-            droppedGlassSrc={droppedGlass}
-            droppedWingsSrc={droppedWings}
-            droppedBoltSrc={[droppedBolt]}
+            droppedBodySrc={droppedEl.bodies}
+            droppedWindowSrc={droppedEl.windows}
+            droppedGlassSrc={droppedEl.glass}
+            droppedWingsSrc={droppedEl.wings}
+            droppedBoltSrc={[droppedEl.bolts]}
           />
         )}
         <button className={classes.btnDrawing} onClick={clickBtn}>
           <img src={icon} />
         </button>
         {showDrawing && (
-          <div className={classes.drawing} onClick={clickDrawing}></div>
+          <div className={classes.drawing} onClick={clickDrawing}>
+          </div>
         )}
         {btnCheckView && (
           <button className={classes.btnCheck} onClick={checkDroppedEl}>

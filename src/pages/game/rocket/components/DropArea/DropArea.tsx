@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDrop } from 'react-dnd';
-import classes from '../../rocket/gameRocket.module.scss';
+import classes from '../DropArea/DropArea.module.scss';
 
 export default function DropArea({ droppedBodySrc, droppedWindowSrc, droppedGlassSrc, droppedWingsSrc, droppedBoltSrc}) {
   const [{ canDrop, isOver }, dropRef] = useDrop(() => ({
