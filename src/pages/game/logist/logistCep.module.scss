@@ -30,34 +30,34 @@ html{
       font-weight: bold;
     }
     &:nth-child(1) {
-      transform: translate(-450px);
+      transform: translate(-450px, -30px);
     }
     &:nth-child(2) {
-      transform: translate(-90px, -220px);
+      transform: translate(-90px, -250px);
     }
     &:nth-child(3) {
-      transform: translate(270px, -440px);
+      transform: translate(270px, -470px);
     }
     &:nth-child(4) {
-      transform: translate(530px, -470px);
+      transform: translate(530px, -500px);
     }
     &:nth-child(5) {
-      transform: translate(240px, -550px);
+      transform: translate(240px, -570px);
     }
     &:nth-child(6) {
-      transform: translate(-110px, -600px);
+      transform: translate(-110px, -630px);
     }
     &:nth-child(7) {
-      transform: translate(200px, -625px);
+      transform: translate(200px, -655px);
     }
     &:nth-child(8) {
-      transform: translate(500px, -840px);
+      transform: translate(500px, -870px);
     }
     &:nth-child(9) {
-      transform: translate(815px, -1060px);
+      transform: translate(815px, -1090px);
     }
     &:nth-child(10) {
-      transform: translate(1100px, -1275px);
+      transform: translate(1100px, -1305px);
     }
   }
 }
