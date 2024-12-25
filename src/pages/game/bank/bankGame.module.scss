@@ -14,52 +14,7 @@
   left: 150px;
   width: 50%;
   justify-content: center;
-
-  .circle {
-    width: 250px;
-    height: 250px;
-    background-color: white;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 3px solid #fff;
-    filter: drop-shadow( 0 0 20px #4de4f2);
-    span {
-      font-size: 24px;
-      font-weight: bold;
-    }
-
-    &:nth-child(7) {
-      grid-column: 2;
-    }
-  }
 }
-
-.bags {
-  position: absolute;
-  top: 100px;
-  right: 50px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 40px 50px;
-
-  .bag {
-    width: 200px;
-    height: 250px;
-    cursor: pointer;
-    transition: transform 0.2s;
-    &:nth-child(7) {
-      grid-column: 2;
-
-    &:active {
-      cursor: grabbing;
-      transform: scale(0.95);
-    }
-    }
-  }
-}
-
 .checkButton {
   position: absolute;
   bottom: 20px;
