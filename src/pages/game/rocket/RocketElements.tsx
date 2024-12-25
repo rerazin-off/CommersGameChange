@@ -19,6 +19,10 @@ import boltGroup1 from '@/assets/img/game_assets/game-rocket-img/boltGroup1.svg'
 import boltGroup2 from '@/assets/img/game_assets/game-rocket-img/boltGroup2.svg';
 import boltGroup3 from '@/assets/img/game_assets/game-rocket-img/boltGroup3.svg';
 import boltGroup4 from '@/assets/img/game_assets/game-rocket-img/boltGroup4.svg';
+import reactor1 from '@/assets/img/game_assets/game-rocket-img/reactor1.svg';
+import reactor2 from '@/assets/img/game_assets/game-rocket-img/reactor2.svg';
+import reactor3 from '@/assets/img/game_assets/game-rocket-img/reactor3.svg';
+import reactor4 from '@/assets/img/game_assets/game-rocket-img/reactor4.svg';
 
 export const RocketElements = {
   src: body ,
@@ -52,5 +56,11 @@ export const RocketElements = {
     { id: 'bolt3', src: boltGroup3 },
     { id: 'bolt4', src: boltGroup4 }
   ],
-  correctEl:[window4, glass1, wings3, bolt4]
+  reactor: [
+    { id: 'reactor1', src: reactor1 },
+    { id: 'reactor2', src: reactor2 },
+    { id: 'reactor3', src: reactor3 },
+    { id: 'reactor4', src: reactor4 }
+  ],
+  correctEl:[body, window4, glass1, wings3, bolt4, reactor4]
 };
