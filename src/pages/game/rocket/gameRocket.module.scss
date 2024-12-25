@@ -10,16 +10,23 @@
   display: flex;
   justify-content: center;
 }
+h5{
+  color: #4DE4F2;
+  font-size: 1vw;
+}
 
 
 .background{
   background: url( "../../../assets/img/fon/bg-rocket.svg");
-  background-size: cover;
   height: 100vh;
+  background-position: center center;
+  background-size: cover;
 }
 .dark{
   background: linear-gradient(#00000080, #00000080), url("../../../assets/img/fon/bg-rocket.svg");
   height: 100vh;
+  background-position: center center;
+  background-size: cover;
 }
 .btnDrawing{
   background: none;
@@ -27,30 +34,48 @@
   top: 89vh;
   left: 3vw;
 }
+.btnDrawing img{
+  width:4vw;
+}
 .btnCheck{
   background: none;
   position: absolute;
-  top: 59vh;
-  right: 8vw;
+  top: 58vh;
+  right: 7vw;
+}
+.btnCheck img{
+  width: 3vw;
 }
 .rocketElements{
   position: absolute;
   top: 31vh;
-  left: 40vw;
+  left: 38vw;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 30px;
+  gap: 2.7vw;
 }
+.rocketElements img{
+  width: 8vw;
+}
+.drawing{
+  background: url('../../../assets/img/game_assets/game-rocket-img/drawing.svg');
+  width: 45vw;
+  height: 57vh;
+  background-size: cover;
+  background-position: center center;
+}
+
 /*стили для drop картинок*/
 .rocketBody{
   position: absolute;
   left: 2.2vw;
   height: 100%;
   z-index: 2;
+  width: 14vw;
 }
 .rocketWindow{
   position: absolute;
-  top: 10vh;
+  top: 14.5vh;
   left: 5vw;
   z-index: 3;
   width: 50%;
@@ -58,21 +83,22 @@
 .rocketGlass{
   position: absolute;
   z-index: 2;
-  top: 16.4vh;
+  top: 19vh;
   left: 6vw;
   width: 35%;
 }
 .rocketWings{
-  width: 91%;
+  width: 15vw;
   position: absolute;
   z-index: 1;
-  left: 1.5vw;
+  left: 1.6vw;
 }
 .rocketBolts{
   position: absolute;
   z-index: 3;
   top: 48vh;
   left: 10vh;
+  width: 6.4vw;
 }
 
 
@@ -82,6 +108,6 @@
   width: 17vw;
   position: absolute;
   top: 8vh;
-  left:12.5vw;
+  left:9vw;
 }
 

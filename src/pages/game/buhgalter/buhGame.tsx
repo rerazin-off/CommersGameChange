@@ -83,8 +83,9 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import styles from './buhGame.module.scss';
-// import {Button} from "../../../components/Button/Button"; // Компонент Button пока не нужен
-// import { Link } from 'react-router-dom'; // Компонент Link пока не нужен
+import { Link } from 'react-router-dom';
+import { Button } from '../../../components/Button/Button';
+
 
 // Тип для описания расхода
 type Expense = {
@@ -196,6 +197,9 @@ export const SorterGame: React.FC = () => {
       setStar(star.filter((e) => e.isCorrect));
       setBlackhole(blackhole.filter((e) => !e.isCorrect));
     }
+
+    // Сбрасываем текущий расход
+    setCurrentExpenseIndex(0);
   };
 
   // Закрытие модального окна
@@ -232,7 +236,7 @@ export const SorterGame: React.FC = () => {
           src={currentExpense.image}
           alt={currentExpense.name}
           className={styles.draggable}
-          style={{ left: position.x, top: position.y, cursor: dragging ? 'grabbing' : 'grab'}}
+          style={{ left: position.x, top: position.y, cursor: dragging ? 'grabbing' : 'grab' }}
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
@@ -258,15 +262,29 @@ export const SorterGame: React.FC = () => {
           ))}
         </div>
       </div>
+      <div className={styles.backButton}>
+        <Link to={'/economist'}>
+          <Button bgColor={'pink'} type={'type1v2'}>
+            НАЗАД
+          </Button>
+        </Link>
+      </div>
       {/* Кнопка "Проверить", которая отображается только после заполнения обеих зон */}
       {isGameFinished && (
-        <button onClick={handleCheck} className={styles.checkButton}>Проверить</button>
-      )}
-      {/* Модальное окно "Молодец!" */}
-      {showModal && (
-        <div className={styles.modal}>
-          <div className={styles.modalContent}>
-            <h2>Молодец!</h2>
+        <div onClick={handleCheck} className={styles.checkButton}>
+          <Button bgColor={'pink'} type={'type1v2'}>
+            ПРОВЕРИТЬ
+          </Button>
+        </div>
+  )
+}
+{/* Модальное окно "Молодец!" */
+}
+{
+  showModal && (
+    <div className={styles.modal}>
+      <div className={styles.modalContent}>
+        <h2>Молодец!</h2>
             <button onClick={handleCloseModal}>Играть заново</button>
           </div>
         </div>

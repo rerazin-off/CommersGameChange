@@ -6,19 +6,17 @@ import DropArea from './components/DropArea';
 import { RocketElements } from './components/RocketElements';
 import btnCheck from '@/assets/img/game_assets/game-rocket-img/btn-check.svg';
 import icon from '@/assets/img/game_assets/game-rocket-img/icon.svg';
-import drawing from '@/assets/img/game_assets/game-rocket-img/drawing.svg';
 import classes from './gameRocket.module.scss'
 
 export const Rocket: React.FC = () => {
   const [showDrawing, setShowDrawing] = useState(false);
   const [elements, setElements] = useState(RocketElements.body);
-  const [droppedEl, setDroppedEl]=useState({
-    bodies:[],
-    windows:[],
-    glass:[],
-    wings:[],
-    bolts:[],
-  })
+  const [droppedBodies, setDroppedBodies] = useState([]);
+  const [droppedWindows, setDroppedWindows] = useState([]);
+  const [droppedGlass, setDroppedGlass] = useState([]);
+  const [droppedWings, setDroppedWings] = useState([]);
+  const [droppedBolt, setDroppedBolt]=useState([]);
+
   let clickBtn = () => {
     setShowDrawing(true);
   };
@@ -26,73 +24,73 @@ export const Rocket: React.FC = () => {
     setShowDrawing(false);
   };
   let moveElement = (id: string) => {
-    const updateDroppesEl=(elements:any[], key: keyof typeof droppedEl)=>{
-      const element=elements.find((el)=>el.id==id);
-      if (element){
-        setDroppedEl((prev)=>({
-          ...prev,
-          [key]: [...prev[key], element.src]
-        }));
-        return true;
-      }
-    }
-    if (updateDroppesEl(RocketElements.body, 'bodies')){
+    const bodyElement = RocketElements.body.find(element => element.id==id);
+    if (bodyElement) {
+      setDroppedBodies([bodyElement.src]);
       setElements(RocketElements.window);
     }
-    if (updateDroppesEl(RocketElements.window, 'windows')){
+    const windowElement = RocketElements.window.find(element => element.id==id);
+    if (windowElement) {
+      setDroppedWindows([windowElement.src]);
       setElements(RocketElements.glass);
     }
-    if (updateDroppesEl(RocketElements.glass, 'glass')){
+    const glassElement = RocketElements.glass.find(element => element.id==id);
+    if (glassElement) {
+      setDroppedGlass([glassElement.src]);
       setElements(RocketElements.wings);
     }
-    if (updateDroppesEl(RocketElements.wings, 'wings')){
+    const wingsElement = RocketElements.wings.find(element => element.id==id);
+    if (wingsElement) {
+      setDroppedWings([wingsElement.src]);
       setElements(RocketElements.bolt);
     }
-    if (updateDroppesEl(RocketElements.bolt, 'bolts')){
-      let boltGroupEl=RocketElements.boltGroup.find((group)=>group.id==id);
-      setDroppedEl((prev)=>({
-        ...prev,
-        bolts: [boltGroupEl.src]
-      }));
+    const boltElement = RocketElements.bolt.find(element => element.id==id);
+    if (boltElement) {
+      const boltGroupEl=RocketElements.boltGroup.find(group=>group.id==boltElement.id);
+      setDroppedBolt(boltGroupEl.src);
       setElements([]);
     }
   };
-  let btnView=
-    droppedEl.bodies.length> 0 &&
-    droppedEl.windows.length> 0 &&
-    droppedEl.glass.length> 0 &&
-    droppedEl.wings.length> 0 &&
-    droppedEl.bolts.length> 0;
+  let btnCheckView=
+    droppedBodies.length>0 &&
+    droppedWindows.length>0 &&
+    droppedGlass.length>0 &&
+    droppedWings.length>0 &&
+    droppedBolt.length>0;
+  let checkDroppedEl = () => {
+    const a=RocketElements.correctEl;
+    console.log(droppedBodies);
+    console.log(a);
+  }
   return (
     <DndProvider backend={TouchBackend}>
       <div className={showDrawing ? `${classes.dark} ${classes.jcC} ${classes.aiC}` : classes.background}>
         {showDrawing === false && (
           <div className={classes.rocketElements}>
-            {elements.map((el, i) => (
+            {elements.map((el) => (
               <DraggebleEl key={el.id} src={el.src} id={el.id} moveElement={moveElement} />
             ))}
           </div>
         )}
         {showDrawing === false && (
           <DropArea
-            droppedBodySrc={[droppedEl.bodies]}
-            droppedWindowSrc={[droppedEl.windows]}
-            droppedGlassSrc={[droppedEl.glass]}
-            droppedWingsSrc={[droppedEl.wings]}
-            droppedBoltSrc={[droppedEl.bolts]}
+            droppedBodySrc={droppedBodies}
+            droppedWindowSrc={droppedWindows}
+            droppedGlassSrc={droppedGlass}
+            droppedWingsSrc={droppedWings}
+            droppedBoltSrc={[droppedBolt]}
           />
         )}
         <button className={classes.btnDrawing} onClick={clickBtn}>
           <img src={icon} />
         </button>
         {showDrawing && (
-          <div className={classes.drawing} onClick={clickDrawing}>
-            <img src={drawing} />
-          </div>
+          <div className={classes.drawing} onClick={clickDrawing}></div>
         )}
-        {btnView && (
-          <button className={classes.btnCheck}>
+        {btnCheckView && (
+          <button className={classes.btnCheck} onClick={checkDroppedEl}>
             <img src={btnCheck} />
+            <h5>ПРОВЕРИТЬ</h5>
           </button>
         )}
       </div>
