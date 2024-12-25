@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import classes from './musical.module.scss';
 import Area from './components/DropArea/Droparea';
 import InstrumentArr from './Instruments';
@@ -13,6 +13,10 @@ import Instruments from './components/DragabbleInstruments/DragabbleInstr';
 import CustomDragLayer from './components/CustomDragLayer/CustomDragLayer';
 
 export const MusicalGameCategories = () => {
+  const [sequence, setSequence] = useState([]);
+  const [currentInstrument, setCurrentInstrument] = useState(null);
+  const [instruments, setInstruments] = useState(InstrumentArr);
+
   const [areas, setAreas] = useState([
     { title: 'string', imageUrl: string, items: [] },
     { title: 'hit', imageUrl: hit, items: [] },
@@ -20,7 +24,38 @@ export const MusicalGameCategories = () => {
     { title: 'keyboard', imageUrl: keyboard, items: [] },
   ]);
 
-  const [instruments, setInstruments] = useState(InstrumentArr);
+  useEffect(() => {
+    const shuffledInstruments = InstrumentArr.sort(() => Math.random() - 0.5);
+    setSequence(shuffledInstruments);
+  }, []);
+
+  useEffect(() => {
+    if (sequence.length > 0) {
+      setCurrentInstrument(sequence[0]); // Устанавливаем первый объект в качестве текущего
+    } else {
+      setCurrentInstrument(null); // Если объектов больше нет, устанавливаем null
+    }
+  }, [sequence]);
+
+  const nextInstrument = () => {
+    if (sequence.length > 0) {
+      setSequence(prevSequence => prevSequence.slice(1)); // Убираем первый объект из массива
+    }
+  };
+
+  const renderObject = () => {
+    if (currentInstrument) {
+      return (
+        <Instruments
+          key={currentInstrument.id}
+          asset={currentInstrument.url}
+          index={currentInstrument.id}
+          onRemove={() => nextInstrument()}
+        />
+      );
+    }
+    return null;
+  };
 
   const removeInstrumentFromList = id => {
     setInstruments(prevInstruments =>
@@ -42,23 +77,18 @@ export const MusicalGameCategories = () => {
     // Удаляем инструмент из общего массива, чтобы он больше не мог быть использован
     removeInstrumentFromList(newItemId);
 
-    console.log(newItemId);
     console.log(updatedAreas);
   };
 
+  const touchBackendOptions = {
+    enableMouseEvents: true,
+  };
+
   return (
-    <DndProvider backend={TouchBackend}>
+    <DndProvider backend={TouchBackend} options={touchBackendOptions}>
       <CustomDragLayer /> {/* Подключаем слой */}
       <div className={classes.container}>
-        <div className={classes.object}>
-          {instruments.map(instrument => (
-            <Instruments
-              key={instrument.id}
-              asset={instrument.url}
-              index={instrument.id}
-            />
-          ))}
-        </div>
+        <div className={classes.object}>{renderObject()}</div>
         <div className={classes.categories}>
           {areas.map(({ imageUrl, items }, index) => (
             <Area
