@@ -10,6 +10,10 @@
   display: flex;
   justify-content: center;
 }
+.jcE{
+  display: flex;
+  justify-content: end;
+}
 h5{
   color: #4DE4F2;
   font-size: 1vw;
@@ -63,6 +67,10 @@ h5{
   height: 57vh;
   background-size: cover;
   background-position: center center;
+}
+.close{
+  width: 3vw;
+  margin: 0 1vw 50vh 0;
 }
 
 

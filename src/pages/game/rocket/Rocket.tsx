@@ -6,6 +6,7 @@ import DropArea from '../rocket/components/DropArea/DropArea';
 import { RocketElements } from '../rocket/RocketElements';
 import btnCheck from '@/assets/img/game_assets/game-rocket-img/btn-check.svg';
 import icon from '@/assets/img/game_assets/game-rocket-img/icon.svg';
+import btnClose from '@/assets/img/game_assets/game-rocket-img/btnClose.svg'
 import classes from './gameRocket.module.scss'
 
 export const Rocket: React.FC = () => {
@@ -16,15 +17,16 @@ export const Rocket: React.FC = () => {
     windows: [],
     glass: [],
     wings:[],
-    bolts:[]
+    bolts:[],
+    reactors: []
   });
   let elGroups=[
     {index:'windows', el: RocketElements.window, next: RocketElements.glass},
     {index:'glass', el: RocketElements.glass, next: RocketElements.wings},
     {index:'wings', el: RocketElements.wings, next: RocketElements.bolt},
-    {index:'bolts', el: RocketElements.boltGroup, next: []}
+    {index:'bolts', el: RocketElements.boltGroup, next: RocketElements.reactor},
+    {index:'reactors', el: RocketElements.reactor, next: []}
   ]
-
   let clickBtn = () => {
     setShowDrawing(true);
   };
@@ -43,47 +45,31 @@ export const Rocket: React.FC = () => {
       }
     }
   };
-  let btnCheckView=Object.values(droppedEl).every((el)=>el.length>0);
-  let checkDroppedEl = (id :string) => {
-    if(droppedEl.windows!=RocketElements.correctEl[0]){
-      setDroppedEl(prev=>({
-        ...prev,
-        windows: [],
-        glass: [],
-        wings: [],
-        bolts:[]
-      }))
-      setElements(RocketElements.window);
+  let btnCheckView=Object.values(droppedEl).every((el)=>el.length>0)
+  let checkDroppedEl = () => {
+    const filteredDroppedEl = {
+      bodies: droppedEl.bodies.filter(src => RocketElements.correctEl.includes(src)),
+      windows: droppedEl.windows.filter(src => RocketElements.correctEl.includes(src)),
+      glass: droppedEl.glass.filter(src => RocketElements.correctEl.includes(src)),
+      wings: droppedEl.wings.filter(src => RocketElements.correctEl.includes(src)),
+      bolts: droppedEl.bolts.filter(src => RocketElements.correctEl.includes(src)),
+      reactors: droppedEl.reactors.filter(src => RocketElements.correctEl.includes(src)),
+    };
+    setDroppedEl(filteredDroppedEl);
+    if (filteredDroppedEl.windows.length<1){
+      setElements(RocketElements.window)
     }
-    else if(droppedEl.glass!=RocketElements.correctEl[1]){
-      setDroppedEl(prev=>({
-        ...prev,
-        ...prev,
-        glass: [],
-        wings: [],
-        bolts:[]
-      }))
-      setElements(RocketElements.glass);
+    else if (filteredDroppedEl.glass.length<1){
+      setElements(RocketElements.glass)
     }
-    else if(droppedEl.wings!=RocketElements.correctEl[2]){
-      setDroppedEl(prev=>({
-        ...prev,
-        ...prev,
-        ...prev,
-        wings: [],
-        bolts:[]
-      }))
-      setElements(RocketElements.wings);
+    else if (filteredDroppedEl.wings.length<1){
+      setElements(RocketElements.wings)
     }
-    else if(droppedEl.bolts!=RocketElements.correctEl[3]){
-      setDroppedEl(prev=>({
-        ...prev,
-        ...prev,
-        ...prev,
-        ...prev,
-        bolts:[]
-      }))
-      setElements(RocketElements.bolt);
+    else if (filteredDroppedEl.bolts.length<1){
+      setElements(RocketElements.bolt)
+    }
+    else if (filteredDroppedEl.reactors.length<1){
+      setElements(RocketElements.reactor)
     }
   };
   return (
@@ -103,13 +89,15 @@ export const Rocket: React.FC = () => {
             droppedGlassSrc={droppedEl.glass}
             droppedWingsSrc={droppedEl.wings}
             droppedBoltSrc={[droppedEl.bolts]}
+            droppedReactorSrc={droppedEl.reactors}
           />
         )}
         <button className={classes.btnDrawing} onClick={clickBtn}>
           <img src={icon} />
         </button>
         {showDrawing && (
-          <div className={classes.drawing} onClick={clickDrawing}>
+          <div className={`${classes.drawing} ${classes.jcE}`} >
+            <img src={btnClose} className={classes.close} onClick={clickDrawing}/>
           </div>
         )}
         {btnCheckView && (
