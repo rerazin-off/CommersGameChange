@@ -1,37 +1,67 @@
 .container {
-  width: 1920px;
-  height: 1080px;
+  height: 100vh;
   background-image: url("/src/assets/img/fon/musicalgame_categories.svg");
   background-size: cover;
 }
 
-.category{
+.droparea .catname{
   width: 40vh;
-  height: 60vh;
+  margin: auto;
 }
 
-.drop-area:nth-child(1){
-  position: absolute;
-  left: 6vh;
-  top: 16vh;
+.droparea{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.drop-area:nth-child(2) {
+.droparea:nth-child(1){
   position: absolute;
-  left: 64vh;
-  top: 6vh;
+  left: 1vh;
+  top: 15vh;
 }
 
-.drop-area:nth-child(3){
+.droparea:nth-child(3){
   position: absolute;
-  left: 64vh;
-  bottom: 38vh;
+  left: 60vh;
+  bottom: 50vh;
 }
 
-.drop-area:nth-child(4) {
+.droparea:nth-child(2){
   position: absolute;
-  right: 37vh;
-  top: 16vh;
+  left: 60vh;
+  top: 50vh;
+}
+
+.droparea:nth-child(4){
+  position: absolute;
+  right: 35vh;
+  top: 15vh;
+}
+
+.droparea .area{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.droparea:nth-child(1) .area{
+  width: 45vh;
+  height: 70vh;
+}
+
+.droparea:nth-child(3) .area{
+  width: 40vh;
+  height: 40vh;
+}
+
+.droparea:nth-child(2) .area{
+  width: 40vh;
+  height: 40vh;
+}
+
+.droparea:nth-child(4) .area{
+  width: 40vh;
+  height: 40vh;
 }
 
 .backButton {
@@ -42,21 +72,8 @@
 
 .object {
   position: absolute;
-  width: 100vh;
-  height: 100vh;
+  top: 50vh;
+  left: 125vh;
 }
 
-.drop-area {
-  border: 2px dashed #ccc;
-  padding: 20px;
-  text-align: center;
-}
-
-.drop-area.is-over {
-  background-color: rgba(0, 255, 0, 0.1);
-}
-
-.drop-area.can-drop {
-  border-color: #0f0;
-}
 
