@@ -118,7 +118,7 @@ export const Doy: React.FC = () => {
   const cardData = {
     title: 'Поздравляем!',
     body: <>Вы успешно завершили игру! <br /> Количество попыток: {attempts}</>,
-    url: 'bank',
+    url: 'dou',
   };
 
   const touchBackendOptions = {
