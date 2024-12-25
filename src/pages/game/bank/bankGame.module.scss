@@ -1,6 +1,5 @@
 .container {
-  width: 1920px;
-  height: 1080px;
+  height: 100vh;
   background: url("/src/assets/img/bankbk.png") no-repeat center center;
   background-size: cover;
   position: relative;
@@ -48,7 +47,7 @@
   .bag {
     width: 200px;
     height: 250px;
-    cursor: grab;
+    cursor: pointer;
     transition: transform 0.2s;
     &:nth-child(7) {
       grid-column: 2;
