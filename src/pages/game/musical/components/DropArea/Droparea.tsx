@@ -1,6 +1,6 @@
 import { useDrop } from 'react-dnd';
 import { useCallback } from 'react';
-import classes from './musical.module.scss';
+import classes from './DropArea.module.scss';
 
 interface DragAreaProps {
   imageUrl: string;
@@ -13,7 +13,7 @@ export default function Area(props: DragAreaProps) {
 
   const onDrop = useCallback(
     (item: { id: number }) => {
-      setItems(item.id); // Передаем ID элемента
+      setItems(item.id);
     },
     [setItems]
   );
