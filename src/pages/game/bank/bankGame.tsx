@@ -17,22 +17,27 @@ const touchBackendOptions = {
 
 export const BankGame = () => {
   const [positions, setPositions] = useState<number[]>(Array(7).fill(0));
-
   const [openIsCard, setOpenIsCard] = useState(false);
   const [attempts, setAttempts] = useState(0);
 
   const handleDrop = (index: number | null, item: { id: number }) => {
     const newPositions = [...positions];
+
     if (index === null) {
-      // Перемещение обратно в мешки
+
       const currentIndex = newPositions.findIndex(id => id === item.id);
-      if (currentIndex !== -1) newPositions[currentIndex] = 0;
+      if (currentIndex !== -1) {
+        newPositions[currentIndex] = 0;
+      }
     } else {
-      // Перемещение в другую ячейку
+
       const currentIndex = newPositions.findIndex(id => id === item.id);
-      if (currentIndex !== -1) newPositions[currentIndex] = 0;
-      newPositions[index] = item.id;
+      if (currentIndex !== -1) {
+        newPositions[currentIndex] = 0;
+      }
+      newPositions[index] = item.id; //
     }
+
     setPositions(newPositions);
   };
 
@@ -53,7 +58,6 @@ export const BankGame = () => {
   };
 
   const isVisibleButton = positions.every(pos => pos > 0);
-
   const navigate = useNavigate();
 
   return (
@@ -71,13 +75,13 @@ export const BankGame = () => {
           ))}
         </div>
         <DropBagArea positions={positions} setPositions={setPositions} />
+
         {isVisibleButton && (
           <div onClick={checkResults} className={classes.checkButton}>
-            <Button bgColor="blue" type="type1v2">
-              ПРОВЕРИТЬ
-            </Button>
+            <Button bgColor="blue" type="type1v2">ПРОВЕРИТЬ</Button>
           </div>
         )}
+
         <div className={classes.backButton}>
           <Button
             bgColor="pink"
@@ -87,6 +91,7 @@ export const BankGame = () => {
             НАЗАД
           </Button>
         </div>
+
         <CardFinish
           attempts={attempts}
           isOpenCard={openIsCard}
