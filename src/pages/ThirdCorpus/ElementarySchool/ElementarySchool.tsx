@@ -4,24 +4,24 @@ import { Button } from '../../../components/Button/Button';
 import { Link } from 'react-router-dom';
 import React, { useCallback, useState } from 'react';
 import Card from '../../../components/Card/Card';
+import { Indicator } from '../../../components/Indicator/Indicator';
 
-const gameData: Record<string, { title: string; body: string; url: string  }> = {
+const gameData: Record<string, { title: string; body: string; url: string }> = {
   backpackGame: {
     title: '',
     body: '',
-    url: ''
+    url: '',
   },
   drumsGame: {
     title: '',
     body: '',
-    url: ''
+    url: '',
   },
 };
 
 export const ElementarySchool = () => {
-
   const [openIsCard, setOpenIsCard] = useState(false);
-  const [currentGame, setGame] = useState<string>('')
+  const [currentGame, setGame] = useState<string>('');
 
   const cardData = gameData[currentGame] || { title: '', body: '' };
 
@@ -37,51 +37,65 @@ export const ElementarySchool = () => {
   // const handleCloseTask = () => setOpenCard(null);
 
   return (
-
-    <div className={classes.cont}><Assistant
-      fon={'thirdPlanet3'} link={'3'}
-      cat={"-140px"}
-      mar={"-535px"}
-      title={'Добро пожаловать на специальность ' +
-        '44.02.02 Преподование в начальных классах!'} body={"Здесь происходит организация внеурочной деятельности и общения младших школьников" +
-      " по программе начального общего образования. Классное руководство, методическое обеспечение образовательного процесса."}>
-    </Assistant>
+    <div className={classes.cont}>
+      <Assistant
+        fon={'thirdPlanet3'}
+        link={'3'}
+        cat={'-140px'}
+        mar={'-535px'}
+        title={
+          'Добро пожаловать на специальность ' +
+          '44.02.02 Преподование в начальных классах!'
+        }
+        body={
+          'Здесь происходит организация внеурочной деятельности и общения младших школьников' +
+          ' по программе начального общего образования. Классное руководство, методическое обеспечение образовательного процесса.'
+        }
+      ></Assistant>
       <div className={classes.progs}>
         <div className={classes.container}>
-          <div className={classes.backpack} onClick={() => handleGameClick('backpackGame')}></div>
-          <div className={classes.glass} onClick={() => handleGameClick('glassGame')}></div>
+          <div
+            className={classes.backpack}
+            onClick={() => handleGameClick('backpackGame')}
+          >
+            <Indicator></Indicator>
+          </div>
+          <div
+            className={classes.glass}
+            onClick={() => handleGameClick('glassGame')}
+          >
+            <Indicator></Indicator>
+          </div>
         </div>
-        <div className={classes.card}><Card type={'game'} title={cardData.title} body={cardData.body} game={cardData.url} backLink={'ElementarySchool'}
-                                            isOpen={openIsCard} onClose={closeCard} /></div>
-
+        <div className={classes.card}>
+          <Card
+            type={'game'}
+            title={cardData.title}
+            body={cardData.body}
+            game={cardData.url}
+            backLink={'ElementarySchool'}
+            isOpen={openIsCard}
+            onClose={closeCard}
+          />
+        </div>
       </div>
       <div className={classes.button}>
         <div className={classes.arrow}>
           <Link to={'/3'}>
-            <Button
-              type='back_arrow'
-              bgColor='white'
-            />
+            <Button type="back_arrow" bgColor="white" />
           </Link>
         </div>
         <div className={classes.gallery}>
           <Link to={'/'}>
-            <Button
-              type='gallery'
-              bgColor='white'
-            />
+            <Button type="gallery" bgColor="white" />
           </Link>
         </div>
         <div className={classes.meditation}>
           <Link to={'/psih'}>
-            <Button
-              type='meditation'
-              bgColor='white'
-            />
+            <Button type="meditation" bgColor="white" />
           </Link>
         </div>
       </div>
     </div>
-  )
-    ;
+  );
 };

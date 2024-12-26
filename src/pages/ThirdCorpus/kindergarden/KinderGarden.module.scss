@@ -38,8 +38,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  img{
-    transform: translate(40px, 95px);
+  div{
+    position: absolute;
+    left: 150px;
+    top: 220px;
   }
 }
 .telescope{
@@ -62,8 +64,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  img{
-    transform: translate(-15px, 140px);
+  div{
+    position: absolute;
+    left: 75px;
+    top: 250px;
   }
 }
 //.telescope, .сrescent, .wheelchair {

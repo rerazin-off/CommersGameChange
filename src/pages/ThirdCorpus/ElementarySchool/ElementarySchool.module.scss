@@ -35,12 +35,28 @@
   height: 170px;
   transform: translate(243px, 230px);
   border-radius: 114px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  div{
+    position: absolute;
+    left: 45px;
+    top: 80px;
+  }
 }
 .glass{
   width: 110px;
   height: 150px;
   transform: translate(-450px, 260px);
   border-radius: 116.8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  div{
+    position: absolute;
+    left: 10px;
+    top: 110px;
+  }
 }
 //.guitar, .drums, .xylophone, .notes{
 //  animation: pulse 2s linear infinite;
