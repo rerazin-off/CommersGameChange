@@ -23,19 +23,20 @@ export const BankGame = () => {
   const handleDrop = (index: number | null, item: { id: number }) => {
     const newPositions = [...positions];
 
-    if (index === null) {
+    const currentIndex = newPositions.findIndex(id => id === item.id);
 
-      const currentIndex = newPositions.findIndex(id => id === item.id);
+    if (index === null) {
       if (currentIndex !== -1) {
         newPositions[currentIndex] = 0;
       }
     } else {
-
-      const currentIndex = newPositions.findIndex(id => id === item.id);
-      if (currentIndex !== -1) {
+      const targetBagId = newPositions[index];
+      if (targetBagId !== 0) {
+        newPositions[currentIndex] = targetBagId;
+      } else if (currentIndex !== -1) {
         newPositions[currentIndex] = 0;
       }
-      newPositions[index] = item.id; //
+      newPositions[index] = item.id;
     }
 
     setPositions(newPositions);
@@ -75,13 +76,13 @@ export const BankGame = () => {
           ))}
         </div>
         <DropBagArea positions={positions} setPositions={setPositions} />
-
         {isVisibleButton && (
           <div onClick={checkResults} className={classes.checkButton}>
-            <Button bgColor="blue" type="type1v2">ПРОВЕРИТЬ</Button>
+            <Button bgColor="blue" type="type1v2">
+              ПРОВЕРИТЬ
+            </Button>
           </div>
         )}
-
         <div className={classes.backButton}>
           <Button
             bgColor="pink"
@@ -91,7 +92,6 @@ export const BankGame = () => {
             НАЗАД
           </Button>
         </div>
-
         <CardFinish
           attempts={attempts}
           isOpenCard={openIsCard}

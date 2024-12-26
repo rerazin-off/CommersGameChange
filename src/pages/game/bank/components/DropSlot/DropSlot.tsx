@@ -14,10 +14,8 @@ const DropSlot = ({ index, handleDrop, positions }: DropSlotProps) => {
     accept: 'bag',
     drop: (item: { id: number }) => {
       if (positions[index] === item.id) {
-
         handleDrop(null, item);
       } else {
-
         handleDrop(index, item);
       }
     },
