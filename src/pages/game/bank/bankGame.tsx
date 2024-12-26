@@ -20,6 +20,7 @@ export const BankGame = () => {
   const [openIsCard, setOpenIsCard] = useState(false);
   const [attempts, setAttempts] = useState(0);
 
+
   const handleDrop = (index: number | null, item: { id: number }) => {
     const newPositions = [...positions];
 
@@ -41,6 +42,7 @@ export const BankGame = () => {
 
     setPositions(newPositions);
   };
+
 
   const checkResults = () => {
     setAttempts(prev => prev + 1);

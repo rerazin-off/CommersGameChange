@@ -4,6 +4,7 @@ import Card from '../../../components/Card/Card';
 import { Button } from '../../../components/Button/Button';
 import { Link } from 'react-router-dom';
 import { Assistant } from '../../../components/Assistant/Assistant';
+import { Indicator } from '../../../components/Indicator/Indicator';
 
 const gameData: Record<string, { title: string; body: string; url: string }> = {
   prilavokGame: {
@@ -41,8 +42,12 @@ export const Torgashi: React.FC = () => {
           <Assistant fon={'secondPlanet1'} link={'2'} cat={"-110px"} mar={"-490px"} title={"Добро пожаловать на специальность 38.02.08 Торговое дело!"} body={"Эта специальность  готовит специалистов для работы в сфере торговли. Студенты изучают экономику, маркетинг, товароведение и организацию торговых процессов."}></Assistant>
           <div className={classes.progs}>
             <div className={classes.container}>
-              <div className={classes.prilavok} onClick={() => handleGameClick('prilavokGame')}></div>
-              <div className={classes.teleska} onClick={() => handleGameClick('teleskaGame')}></div>
+              <div className={classes.prilavok} onClick={() => handleGameClick('prilavokGame')}>
+                <Indicator></Indicator>
+              </div>
+              <div className={classes.teleska} onClick={() => handleGameClick('teleskaGame')}>
+                <Indicator></Indicator>
+              </div>
             </div>
             <div className={classes.card}><Card type={'game'} title={cardData.title} body={cardData.body} game={cardData.url} backLink={'tovaroveds'}
                                                 isOpen={openIsCard} onClose={closeCard} /></div>

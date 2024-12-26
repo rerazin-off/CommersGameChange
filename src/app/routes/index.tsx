@@ -25,8 +25,8 @@ import { MusicalGameCategories } from '../../pages/game/musical/MusicalGameCateg
 
 import ExpenseSorterGame from '../../pages/game/buhgalter/buhgame2.0/components/BuhgalGame/BuhgalGame';
 
-// import ExpenseSorterGame from '../../pages/game/buhgalter/buhgame2.0/BuhgalGame';
 import { Suspense } from 'react';
+
 
 export enum RoutesEnum {
   HOME = '/',
