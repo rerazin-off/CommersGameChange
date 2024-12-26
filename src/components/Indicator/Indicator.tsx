@@ -9,8 +9,7 @@ export const Indicator = (props: IndicatorProps) => {
   const { onClick } = props;
   return (
     <div className={classes.indicator} onClick={onClick}>
-      <img src={indiano} width={'30px'} height={'30px'} />
+      <img src={indiano} width={'40px'} height={'40px'} />
     </div>
   );
 };
-
