@@ -18,6 +18,18 @@ const DropBagArea = ({positions, setPositions}: DropBagAreaProps) => {
     drop: (item: { id: number }) => handleDrop(null, item),
   });
 
+  const handleDrop = (index: number | null, item: { id: number }) => {
+    const newPositions = [...positions];
+
+    if (index === null) {
+      const currentIndex = newPositions.findIndex(id => id === item.id);
+      if (currentIndex !== -1) {
+        newPositions[currentIndex] = 0;
+      }
+    }
+    setPositions(newPositions);
+  };
+
   useEffect(() => {
     const shuffled = [...bags].sort(() => Math.random() - 0.5);
     setShuffledBags(shuffled);

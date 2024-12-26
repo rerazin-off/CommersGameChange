@@ -17,22 +17,28 @@ const touchBackendOptions = {
 
 export const Doy = () => {
   const [positions, setPositions] = useState<number[]>(Array(9).fill(0));
-
   const [openIsCard, setOpenIsCard] = useState(false);
   const [attempts, setAttempts] = useState(0);
 
   const handleDrop = (index: number | null, item: { id: number }) => {
     const newPositions = [...positions];
+
+    const currentIndex = newPositions.findIndex(id => id === item.id);
+
     if (index === null) {
-      // Перемещение обратно в мешки
-      const currentIndex = newPositions.findIndex(id => id === item.id);
-      if (currentIndex !== -1) newPositions[currentIndex] = 0;
+      if (currentIndex !== -1) {
+        newPositions[currentIndex] = 0;
+      }
     } else {
-      // Перемещение в другую ячейку
-      const currentIndex = newPositions.findIndex(id => id === item.id);
-      if (currentIndex !== -1) newPositions[currentIndex] = 0;
+      const targetBagId = newPositions[index];
+      if (targetBagId !== 0) {
+        newPositions[currentIndex] = targetBagId;
+      } else if (currentIndex !== -1) {
+        newPositions[currentIndex] = 0;
+      }
       newPositions[index] = item.id;
     }
+
     setPositions(newPositions);
   };
 
@@ -53,7 +59,6 @@ export const Doy = () => {
   };
 
   const isVisibleButton = positions.every(pos => pos > 0);
-
   const navigate = useNavigate();
 
   return (
