@@ -27,26 +27,34 @@
     width: 1500px;
     margin: 0;
     height: 973px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: start;
 
     .doska{
-      width: 836px;
-      height: 464px;
-      margin-top: 70px;
-      margin-right: 15px;
+      width: 845px;
+      height: 470px;
+      position: fixed;
+      top: 6%;
+      left: 27.5%;
       cursor: pointer;
-      border-radius: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      img{
+        transform: translate(0px,0px);
+      }
     }
     .stol{
-      margin-top: 150px;
-      margin-left: 1130px;
+      position: fixed;
+      top: 62%;
+      right: 9%;
       width: 431px;
-      height: 100px;
+      height: 120px;
       cursor: pointer;
-      border-radius: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      img{
+        transform: translate(0px,0px);
+      }
     }
   }
 }

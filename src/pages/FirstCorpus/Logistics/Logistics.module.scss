@@ -32,24 +32,33 @@
     .truck{
       width: 563px;
       height: 244px;
-      margin-top: 395px;
-      margin-left: 580px;
-      margin-right: 200px;
+      position: fixed;
+      top: 52%;
+      right: 13%;
       cursor: pointer;
       object-fit: contain;
-       border-radius: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      img{
+        transform: translate(0px,0px);
+      }
  }
     .hologram{
-      margin-left: 60px;
-      margin-bottom: 80px;
+      position: fixed;
+      top: 22%;
+      left: 5.7%;
       width: 420px;
       height: 420px;
       cursor: pointer;
       object-fit: contain;
-
-      //position: relative;
-      animation: pulse 2s infinite;
-      border-radius: 3000px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 1000px;
+      img{
+        transform: translate(0px,0px);
+      }
     }
   }
 }
