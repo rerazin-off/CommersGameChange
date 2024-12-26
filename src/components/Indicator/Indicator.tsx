@@ -14,4 +14,3 @@ export const Indicator = (props: IndicatorProps) => {
   );
 };
 
-export default Indicator;

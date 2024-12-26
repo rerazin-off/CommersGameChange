@@ -33,47 +33,51 @@
 
     .shelf {
       background-repeat: no-repeat;
-      position: absolute;
-      margin-top: -310px;
-      margin-left: 1350px;
+      position: fixed;
+      top: 23.5%;
+      right: 6%;
       width: 335px;
       height: 150px;
       display: flex;
       justify-content: center;
       align-items: center;
+      img{
+        transform: translate(0px,20px);
+      }
     }
 
     .piggyBank {
-      background-repeat: no-repeat;
-      margin-top: 125px;
-      margin-left: -280px;
-      width:110px;
-      height: 110px;
+      position: fixed;
+      top: 43.5%;
+      left: 38.5%;
+      width:150px;
+      height: 150px;
       display: flex;
       justify-content: center;
       align-items: center;
+      img{
+        transform: translate(0px,0px);
+      }
     }
 
     .sheet {
       background-repeat: no-repeat;
       position: fixed;
-      top: 500px;
-      left: 65vw;
-      width: 140px;
-      height: 120px;
+      top: 46%;
+      left: 60%;
+      width: 160px;
+      height: 180px;
       display: flex;
       justify-content: center;
       align-items: center;
     }
 
     .hammer {
-      background-repeat: no-repeat;
-      position: absolute;
-      margin-top: 5px;
-      margin-right: 1100px;
-      margin-bottom: 100px;
-      width: 150px;
-      height: 80px;
+      position: fixed;
+      top: 35%;
+      left: 17%;
+      width: 170px;
+      height: 130px;
       display: flex;
       justify-content: center;
       align-items: center;
