@@ -38,8 +38,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  img{
-    transform: translate(-10px, 65px);
+  div{
+    position: absolute;
+    left: 270px;
+    top: 235px;
   }
 }
 .xylophone{
@@ -50,8 +52,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  img{
-    transform: translate(-15px, -40px);
+  div{
+    position: absolute;
+    left: 25px;
+    top: -20px;
   }
 }
 .notes{
@@ -62,8 +66,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  img{
-    transform: translate(-40px, 100px);
+  div{
+    position: absolute;
+    left: 75px;
+    top: 145px;
   }
 }
 //.guitar, .drums, .xylophone, .notes{

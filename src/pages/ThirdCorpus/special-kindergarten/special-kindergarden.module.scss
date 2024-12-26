@@ -38,8 +38,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  img{
-    transform: translate(-72px, 105px);
+  div{
+    position: absolute;
+    left: 58px;
+    top: 265px;
   }
 }
 .tent{
@@ -50,8 +52,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  img{
-    transform: translate(-40px, 40px);
+  div{
+    position: absolute;
+    left: 255px;
+    top: 280px;
   }
 }
 //.flowers, .tent {
