@@ -82,7 +82,7 @@ export const Doy = () => {
           <Button
             bgColor="pink"
             type="type1v2"
-            onClick={() => navigate(RoutesEnum.LOGISTICS)}
+            onClick={() => navigate(RoutesEnum.DOU)}
           >
             НАЗАД
           </Button>

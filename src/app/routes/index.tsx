@@ -20,7 +20,6 @@ import { Doy } from '../../pages/game/doy/doy';
 import { BankGame } from '../../pages/game/bank/bankGame';
 import { Rocket } from '../../pages/game/rocket/Rocket';
 import { SorterGame } from '../../pages/game/buhgalter/buhGame';
-
 import { LogistCep } from '../../pages/game/logist/LogistCep';
 import { MusicalGameCategories } from '../../pages/game/musical/MusicalGameCategories';
 import ExpenseSorterGame from '../../pages/game/buhgalter/buhgame2.0/BuhgalGame';
@@ -30,6 +29,8 @@ export enum RoutesEnum {
   FIRST_CORPUS = '/1',
   PROGRAMMERS = '/programmers',
   LOGISTICS = '/logistics',
+  DOU = '/dou',
+  BANK = '/bank',
   ECONOMIST = '/economist'
 }
 
@@ -44,6 +45,9 @@ export const router = createBrowserRouter([
   // { path: '/robotGame', element:  < />,},
   { path: '/Yur', element: <Yur /> },
   { path: '/SpecialKinder', element: <SpecialKidergarden /> },
+  { path: '/economist', element: <Economist /> },
+  { path: RoutesEnum.DOU, element: <Dou /> },
+  { path: RoutesEnum.BANK, element: <Bank /> },
   { path: RoutesEnum.ECONOMIST, element: <Economist /> },
   { path: '/dou', element: <Dou /> },
   { path: '/bank', element: <Bank /> },
