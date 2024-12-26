@@ -1,6 +1,6 @@
 import React from "react";
 import { useDragLayer } from "react-dnd";
-import styles from "./BuhgalGame.module.scss";
+import styles from "../BuhgalGame/BuhgalGame.module.scss";
 
 const CustomDragLayer: React.FC = () => {
   const { item, isDragging, currentOffset } = useDragLayer((monitor) => ({
@@ -26,7 +26,7 @@ const CustomDragLayer: React.FC = () => {
               src={item.image}
               alt={item.name}
               className={styles.expenseImage}
-              style={{ width: "180px", height: "180px" }}
+              style={{ width: "320px", height: "180px" }}
             />
           </div>
         )}

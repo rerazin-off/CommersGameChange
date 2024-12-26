@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDrag } from "react-dnd";
-import styles from "./BuhgalGame.module.scss";
+import styles from "../BuhgalGame/BuhgalGame.module.scss";
 
 type ExpenseProps = {
   id: string;

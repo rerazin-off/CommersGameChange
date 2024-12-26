@@ -22,7 +22,7 @@ import { Rocket } from '../../pages/game/rocket/Rocket';
 import { SorterGame } from '../../pages/game/buhgalter/buhGame';
 import { LogistCep } from '../../pages/game/logist/LogistCep';
 import { MusicalGameCategories } from '../../pages/game/musical/MusicalGameCategories';
-import ExpenseSorterGame from '../../pages/game/buhgalter/buhgame2.0/BuhgalGame';
+import ExpenseSorterGame from '../../pages/game/buhgalter/buhgame2.0/components/BuhgalGame/BuhgalGame';
 
 export enum RoutesEnum {
   HOME = '/',
