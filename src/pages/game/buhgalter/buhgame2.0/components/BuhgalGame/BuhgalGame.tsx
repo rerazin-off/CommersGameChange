@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useDrop } from "react-dnd";
-import Expense from "./Expense";
+import Expense from "../Expense/Expense";
 import styles from "./BuhgalGame.module.scss";
-import Zone from './Zone';
-import { Button } from '../../../../components/Button/Button';
+import Zone from '../Zone/Zone';
+import { Button } from '../../../../../../components/Button/Button';
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { TouchBackend } from "react-dnd-touch-backend";
-import CustomDragLayer from "./CustomDragLayer";
-import { RoutesEnum } from '../../../../app/routes';
+import CustomDragLayer from "../CustomDragLayer/CustomDragLayer";
+import { RoutesEnum } from '../../../../../../app/routes';
 import { useNavigate } from 'react-router-dom';
+import CardFinish from '../CardFinish/CardFinish';
 
 
 const expensesData = [
@@ -40,6 +41,8 @@ const ExpenseSorterGame: React.FC = () => {
     expensesData.map((expense) => expense.id) // Инициализируем всеми элементами
   );
   const [currentExpenseIndex, setCurrentExpenseIndex] = useState(0); // Индекс текущего элемента
+  const [attempts, setAttempts] = useState(0); // Отслеживаем количество попыток
+  const [isCardOpen, setIsCardOpen] = useState(false); // Состояние для отображения карточки
 
   useEffect(() => {
     console.log("Текущее состояние centerExpenses:", centerExpenses);
@@ -66,6 +69,9 @@ const ExpenseSorterGame: React.FC = () => {
   const handleCheck = () => {
     const incorrectExpenses: string[] = [];
 
+    setAttempts((prevAttempts) => prevAttempts + 1); // Увеличиваем количество попыток
+
+
     setExpenses((prevExpenses) =>
       prevExpenses.map((expense) => {
         const correctZone = zones.find((zone) => zone.id === expense.correct);
@@ -77,9 +83,23 @@ const ExpenseSorterGame: React.FC = () => {
       })
     );
 
+    // Если все элементы распределены верно, открываем карточку
+    const allCorrect = expenses.every(
+      (expense) => expense.zone === expense.correct
+    );
+
     setCenterExpenses(incorrectExpenses); // Обновляем массив неправильных элементов
     setCurrentExpenseIndex(0); // Сбрасываем индекс
+
+    if (allCorrect) {
+      setIsCardOpen(true);
+    }
   };
+
+  const handleCloseCard = () => {
+    setIsCardOpen(false); // Закрываем карточку
+  };
+
 
   const isTouchDevice = () => {
     return "ontouchstart" in window || navigator.maxTouchPoints > 0;
@@ -140,6 +160,11 @@ const ExpenseSorterGame: React.FC = () => {
         </div>
         <CustomDragLayer />
       </div>
+      <CardFinish
+        attempts={attempts}
+        isOpenCard={isCardOpen}
+        onClose={handleCloseCard}
+      />
     </DndProvider>
   );
 };
