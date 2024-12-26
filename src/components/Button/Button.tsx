@@ -5,8 +5,16 @@ import classes from './Button.module.scss';
 interface ButtonProps {
   className?: string;
   colorText?: string;
-  bgColor: 'blue' | 'pink' | 'purple'| 'white';
-  type: 'type1'| 'type1v2' | 'type2' | 'marker'| 'back_arrow'| 'gallery'| 'meditation';
+  bgColor: 'blue' | 'pink' | 'purple' | 'white';
+  type:
+    | 'type1'
+    | 'type1v2'
+    | 'type2'
+    | 'marker'
+    | 'marker2'
+    | 'back_arrow'
+    | 'gallery'
+    | 'meditation';
   children?: ReactNode;
   imageSrc?: string;
   width?: number;
@@ -32,17 +40,16 @@ export const Button = memo((props: ButtonProps) => {
   return (
     <button
       onClick={onClick}
-      className={classNames(
-        classes.Button,
-        { [classes.marker]: isMarker },
-        [className, classes[type], classes[bgColor]]
-      )}
+      className={classNames(classes.Button, { [classes.marker]: isMarker }, [
+        className,
+        classes[type],
+        classes[bgColor],
+      ])}
       style={{
         color: colorText,
         width: isMarker ? undefined : width,
         height: isMarker ? undefined : height,
       }}
-
     >
       {isMarker ? (
         <>
@@ -66,4 +73,3 @@ export const Button = memo((props: ButtonProps) => {
     </button>
   );
 });
-

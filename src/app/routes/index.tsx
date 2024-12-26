@@ -25,9 +25,8 @@ import { MusicalGameCategories } from '../../pages/game/musical/MusicalGameCateg
 
 import ExpenseSorterGame from '../../pages/game/buhgalter/buhgame2.0/components/BuhgalGame/BuhgalGame';
 
-import ExpenseSorterGame from '../../pages/game/buhgalter/buhgame2.0/BuhgalGame';
+// import ExpenseSorterGame from '../../pages/game/buhgalter/buhgame2.0/BuhgalGame';
 import { Suspense } from 'react';
-
 
 export enum RoutesEnum {
   HOME = '/',
@@ -36,7 +35,7 @@ export enum RoutesEnum {
   LOGISTICS = '/logistics',
   DOU = '/dou',
   BANK = '/bank',
-  ECONOMIST = '/economist'
+  ECONOMIST = '/economist',
 }
 
 export const router = createBrowserRouter([
@@ -54,7 +53,14 @@ export const router = createBrowserRouter([
   { path: RoutesEnum.DOU, element: <Dou /> },
   { path: RoutesEnum.BANK, element: <Bank /> },
   { path: RoutesEnum.ECONOMIST, element: <Economist /> },
-  { path: '/dou', element: <Suspense fallback={<>ЗАГРУЗКА..................</>}><Dou /></Suspense> },
+  {
+    path: '/dou',
+    element: (
+      <Suspense fallback={<>ЗАГРУЗКА..................</>}>
+        <Dou />
+      </Suspense>
+    ),
+  },
   { path: '/bank', element: <Bank /> },
   { path: '/tovaroveds', element: <Torgashi /> },
   { path: '/music', element: <MusiciansRoom /> },
