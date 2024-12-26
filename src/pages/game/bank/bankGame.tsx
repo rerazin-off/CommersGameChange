@@ -87,7 +87,11 @@ export const BankGame = () => {
           <Button
             bgColor="pink"
             type="type1v2"
-            onClick={() => navigate(RoutesEnum.BANK)}
+            // onClick={() => navigate(RoutesEnum.BANK)}
+            onClick={() => {
+              localStorage.setItem('fromGame', 'true'); // Устанавливаем флаг
+              navigate(RoutesEnum.BANK); // Возвращаемся назад
+            }}
           >
             НАЗАД
           </Button>

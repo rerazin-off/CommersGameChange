@@ -87,7 +87,11 @@ export const Doy = () => {
           <Button
             bgColor="pink"
             type="type1v2"
-            onClick={() => navigate(RoutesEnum.DOU)}
+            // onClick={() => navigate(RoutesEnum.DOU)}
+            onClick={() => {
+              localStorage.setItem('fromGame', 'true'); // Устанавливаем флаг
+              navigate(RoutesEnum.DOU); // Возвращаемся назад
+            }}
           >
             НАЗАД
           </Button>
