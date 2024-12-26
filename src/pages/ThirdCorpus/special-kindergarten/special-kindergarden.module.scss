@@ -35,12 +35,24 @@
   height: 360px;
   transform: translate(-388px, 175px);
   border-radius: 114px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img{
+    transform: translate(-72px, 105px);
+  }
 }
 .tent{
   width: 650px;
   height: 520px;
   transform: translate(210px, 180px);
   border-radius: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img{
+    transform: translate(-40px, 40px);
+  }
 }
 //.flowers, .tent {
 //  animation: pulse 2s linear infinite;

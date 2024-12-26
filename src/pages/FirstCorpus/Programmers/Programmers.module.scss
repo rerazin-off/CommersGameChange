@@ -39,8 +39,10 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      img{
-        transform: translate(55px,-50px);
+      div{
+        position: absolute;
+        right: 125px;
+        top: 80px;
       }
     }
     .robot{
@@ -53,8 +55,10 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      img{
-        transform: translate(0px,20px);
+
+      div{
+        position: absolute;
+        top: 280px;
       }
     }
   }
