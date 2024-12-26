@@ -6,12 +6,27 @@ import DropArea from '../rocket/components/DropArea/DropArea';
 import { RocketElements } from '../rocket/RocketElements';
 import btnCheck from '@/assets/img/game_assets/game-rocket-img/btn-check.svg';
 import icon from '@/assets/img/game_assets/game-rocket-img/icon.svg';
-import btnClose from '@/assets/img/game_assets/game-rocket-img/btnClose.svg'
-import classes from './gameRocket.module.scss'
+import btnClose from '@/assets/img/game_assets/game-rocket-img/btnClose.svg';
+import fire from '@/assets/img/game_assets/game-rocket-img/fire.svg';
+import confetti from '@/assets/img/game_assets/game-rocket-img/confetti.svg';
+import classes from './gameRocket.module.scss';
 
+type ElementsRocket = {
+  index: string,
+  el:  Array<{ id: string, src: any }>
+}
+const initialState = [
+  {index:'windows', el: RocketElements.window},
+  {index:'glass', el: RocketElements.glass},
+  {index:'wings', el: RocketElements.wings},
+  {index:'bolts', el: RocketElements.bolt},
+  {index:'reactors', el: RocketElements.reactor},
+  {index:'last', el:[]}
+]
 export const Rocket: React.FC = () => {
   const [showDrawing, setShowDrawing] = useState(false);
-  const [elements, setElements] = useState(RocketElements.window);
+  const [elements1, setElements1] = useState<Array<ElementsRocket>>(initialState);
+  const [answer, setAnswer] = useState<Array<string>>([]);
   const [droppedEl, setDroppedEl] = useState({
     bodies:[RocketElements.src],
     windows: [],
@@ -20,64 +35,55 @@ export const Rocket: React.FC = () => {
     bolts:[],
     reactors: []
   });
-  let elGroups=[
-    {index:'windows', el: RocketElements.window, next: RocketElements.glass},
-    {index:'glass', el: RocketElements.glass, next: RocketElements.wings},
-    {index:'wings', el: RocketElements.wings, next: RocketElements.bolt},
-    {index:'bolts', el: RocketElements.boltGroup, next: RocketElements.reactor},
-    {index:'reactors', el: RocketElements.reactor, next: []}
-  ]
-  let clickBtn = () => {
+  const clickBtn = () => {
     setShowDrawing(true);
   };
-  let clickDrawing = () => {
+  const  clickDrawing = () => {
     setShowDrawing(false);
   };
-  let moveElement = (id: string) => {
-    for (const { index, el, next } of elGroups) {
-      const foundElement = el.find(el => el.id==id);
+
+  const moveElement = (id: string) => {
+    for (const { index, el } of initialState) {
+      const foundElement = el.find(item => item.id === id);
       if (foundElement) {
+        const boltDroppedImg = /bolt.*\d+/.test(foundElement.id);
+        const arrayItem=RocketElements.boltGroup.map((el)=>el.src);
+        const itemArrayId = Number(foundElement.id[foundElement.id.length - 1]) - 1;
+        const srcImg = boltDroppedImg ?  arrayItem[itemArrayId] : foundElement.src;
         setDroppedEl(prev => ({
           ...prev,
-          [index]: [foundElement.src],
+          [index]: [...prev[index], srcImg],
         }));
-        setElements(next);
+        setElements1(prevState => {
+          const updatedElements = [...prevState];
+          const deletedEl=updatedElements.shift();
+          return updatedElements;
+        });
+        setAnswer(prev => [...prev, srcImg]);
       }
     }
   };
-  let btnCheckView=Object.values(droppedEl).every((el)=>el.length>0)
-  let checkDroppedEl = () => {
-    const filteredDroppedEl = {
-      bodies: droppedEl.bodies.filter(src => RocketElements.correctEl.includes(src)),
-      windows: droppedEl.windows.filter(src => RocketElements.correctEl.includes(src)),
-      glass: droppedEl.glass.filter(src => RocketElements.correctEl.includes(src)),
-      wings: droppedEl.wings.filter(src => RocketElements.correctEl.includes(src)),
-      bolts: droppedEl.bolts.filter(src => RocketElements.correctEl.includes(src)),
-      reactors: droppedEl.reactors.filter(src => RocketElements.correctEl.includes(src)),
-    };
-    setDroppedEl(filteredDroppedEl);
-    if (filteredDroppedEl.windows.length<1){
-      setElements(RocketElements.window)
-    }
-    else if (filteredDroppedEl.glass.length<1){
-      setElements(RocketElements.glass)
-    }
-    else if (filteredDroppedEl.wings.length<1){
-      setElements(RocketElements.wings)
-    }
-    else if (filteredDroppedEl.bolts.length<1){
-      setElements(RocketElements.bolt)
-    }
-    else if (filteredDroppedEl.reactors.length<1){
-      setElements(RocketElements.reactor)
+  const btnCheckView=Object.values(droppedEl).every((el)=>el.length>0);
+
+  const checkDroppedEl = () => {
+    for (const { index, el } of initialState) {
+      setDroppedEl(prevState => {
+        const updatedDroppedEl = Object.keys(prevState).reduce((acc, index) => {
+          const el = prevState[index];
+          acc[index] = RocketElements.correctEl.includes(el[0]) ? el : [];
+          return acc;
+        }, {});
+        return updatedDroppedEl;
+      });
     }
   };
+
   return (
     <DndProvider backend={TouchBackend}>
       <div className={showDrawing ? `${classes.dark} ${classes.jcC} ${classes.aiC}` : classes.background}>
         {!showDrawing && (
             <div className={classes.rocketElements}>
-              {elements.map((el) => (
+              {elements1[0].el.map((el) => (
                 <DraggebleEl key={el.id} src={el.src} id={el.id} moveElement={moveElement} />
               ))}
             </div>
@@ -106,6 +112,8 @@ export const Rocket: React.FC = () => {
             <h5>ПРОВЕРИТЬ</h5>
           </button>
         )}
+          {/*<img src={fire} className={classes.fire}/>*/}
+          {/*<img src={confetti} className={classes.confetti}/>*/}
       </div>
     </DndProvider>
   );
