@@ -25,7 +25,7 @@ import reactor3 from '@/assets/img/game_assets/game-rocket-img/reactor3.svg';
 import reactor4 from '@/assets/img/game_assets/game-rocket-img/reactor4.svg';
 
 export const RocketElements = {
-  src: body ,
+  src: body,
   window: [
     { id: 'window1', src: window1 },
     { id: 'window2', src: window2 },
@@ -62,5 +62,5 @@ export const RocketElements = {
     { id: 'reactor3', src: reactor3 },
     { id: 'reactor4', src: reactor4 }
   ],
-  correctEl:[body, window4, glass1, wings3, bolt4, reactor4]
+  correctEl:[body, window4, glass1, wings3, boltGroup4, reactor4]
 };
