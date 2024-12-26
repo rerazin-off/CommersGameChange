@@ -4,12 +4,13 @@ import classes from './DropArea.module.scss';
 
 interface DragAreaProps {
   imageUrl: string;
-  items: { id: number; url: string }[];
+  items: { id: number; url: string; category: string }[];
   setItems: (newItems: number[]) => void;
+  category: string;
 }
 
 export default function Area(props: DragAreaProps) {
-  const { imageUrl, items, setItems } = props;
+  const { imageUrl, items, setItems, category } = props;
 
   const onDrop = useCallback(
     (item: { id: number }) => {
@@ -30,8 +31,10 @@ export default function Area(props: DragAreaProps) {
   return (
     <div ref={drop} className={classes.droparea}>
       <img className={classes.catname} src={imageUrl} alt="Область" />
-
       <div className={classes.area}>
+        <div></div>
+        <div></div>
+        <div></div>
         {items.map(item => (
           <img key={item.id} src={item.url} alt={`Инструмент ${item.id}`} />
         ))}

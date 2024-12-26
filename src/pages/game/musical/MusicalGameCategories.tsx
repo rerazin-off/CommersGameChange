@@ -31,15 +31,21 @@ export const MusicalGameCategories = () => {
 
   useEffect(() => {
     if (sequence.length > 0) {
-      setCurrentInstrument(sequence[0]); // Устанавливаем первый объект в качестве текущего
+      setCurrentInstrument(sequence[0]);
     } else {
-      setCurrentInstrument(null); // Если объектов больше нет, устанавливаем null
+      setCurrentInstrument(null);
     }
   }, [sequence]);
 
   const nextInstrument = () => {
     if (sequence.length > 0) {
-      setSequence(prevSequence => prevSequence.slice(1)); // Убираем первый объект из массива
+      const removedInstrument = sequence.shift();
+      setSequence([...sequence]);
+      setInstruments(prevInstruments =>
+        prevInstruments.filter(
+          instrument => instrument.id !== removedInstrument.id
+        )
+      );
     }
   };
 
@@ -50,7 +56,7 @@ export const MusicalGameCategories = () => {
           key={currentInstrument.id}
           asset={currentInstrument.url}
           index={currentInstrument.id}
-          onRemove={() => nextInstrument()}
+          onRemove={nextInstrument}
         />
       );
     }
@@ -73,8 +79,6 @@ export const MusicalGameCategories = () => {
 
     updatedAreas[index].items.push(instrumentToMove);
     setAreas(updatedAreas);
-
-    // Удаляем инструмент из общего массива, чтобы он больше не мог быть использован
     removeInstrumentFromList(newItemId);
 
     console.log(updatedAreas);
@@ -83,6 +87,18 @@ export const MusicalGameCategories = () => {
   const touchBackendOptions = {
     enableMouseEvents: true,
   };
+
+  useEffect(() => {
+    console.log('Sequence:', sequence);
+  }, [sequence]);
+
+  useEffect(() => {
+    console.log('Instruments:', instruments);
+  }, [instruments]);
+
+  useEffect(() => {
+    console.log('Current Instrument:', currentInstrument);
+  }, [currentInstrument]);
 
   return (
     <DndProvider backend={TouchBackend} options={touchBackendOptions}>

@@ -59,5 +59,5 @@ export const router = createBrowserRouter([
   { path: '/gbuh2', element: <ExpenseSorterGame /> },
 
   { path: '/gamelogist', element: <LogistCep /> },
-  { path: '/musical', element: <MusicalGameCategories /> },
+  { path: '/musicalcategories', element: <MusicalGameCategories /> },
 ]);
