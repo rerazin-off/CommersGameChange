@@ -4,7 +4,7 @@ import Card from '../../../components/Card/Card';
 import { Button } from '../../../components/Button/Button';
 import { Link } from 'react-router-dom';
 import { Assistant } from '../../../components/Assistant/Assistant';
-import Indicator from '../../../components/Indicator/Indicator';
+import { Indicator } from '../../../components/Indicator/Indicator';
 
 const gameData: Record<string, { title: string; body: string; url: string }> = {
   shelfGame: {
@@ -92,16 +92,6 @@ export const Yur: React.FC = () => {
           >
             <Indicator></Indicator>
           </div>
-        </div>
-
-        <div className={classes.card}>
-          <Card
-            title={cardData.title}
-            body={cardData.body}
-            game={cardData.url}
-            isOpen={openIsCard}
-            onClose={closeCard}
-          />
         </div>
 
         <div className={classes.card}>
