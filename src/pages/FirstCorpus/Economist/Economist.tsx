@@ -4,6 +4,7 @@ import Card from '../../../components/Card/Card';
 import { Button } from '../../../components/Button/Button';
 import { Link } from 'react-router-dom';
 import { Assistant } from '../../../components/Assistant/Assistant';
+import { Indicator } from '../../../components/Indicator/Indicator';
 
 const gameData: Record<string, { title: string; body: string; url: string }> = {
   doskaGame: {
@@ -60,11 +61,11 @@ export const Economist: React.FC = () => {
           <div
             className={classes.doska}
             onClick={() => handleGameClick('doskaGame')}
-          ></div>
+          > <Indicator></Indicator> </div>
           <div
             className={classes.stol}
             onClick={() => handleGameClick('stolGame')}
-          ></div>
+          > <Indicator></Indicator> </div>
         </div>
         <div className={classes.card}>
           <Card

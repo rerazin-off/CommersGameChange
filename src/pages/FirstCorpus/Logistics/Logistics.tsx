@@ -4,6 +4,7 @@ import Card from '../../../components/Card/Card';
 import { Button } from '../../../components/Button/Button';
 import { Link } from 'react-router-dom';
 import { Assistant } from '../../../components/Assistant/Assistant';
+import { Indicator } from '../../../components/Indicator/Indicator';
 
 const gameData: Record<string, { title: string; body: string; url: string }> = {
   truckGame: {
@@ -44,8 +45,8 @@ export const Logistics: React.FC = () => {
       <Assistant fon={'firstPlanet2'} link={'1'} cat={"-130px"} title={" Добро пожаловать на специальность 38.02.03 Операционная деятельность в логистике! "} body={"Эта специальность готовит специалистов для организации и управления материальными потоками, включая транспортировку, складирование и управление запасами."} mar={"-490px"}></Assistant>
       <div className={classes.progs}>
         <div className={classes.container}>
-          <div className={classes.hologram} onClick={() => handleGameClick('hologramGame')}></div>
-          <div className={classes.truck} onClick={() => handleGameClick('truckGame')}></div>
+          <div className={classes.hologram} onClick={() => handleGameClick('hologramGame')}><Indicator></Indicator></div>
+          <div className={classes.truck} onClick={() => handleGameClick('truckGame')}><Indicator></Indicator></div>
 
         </div>
         <div className={classes.card}><Card type={'game'} title={cardData.title} body={cardData.body} game={cardData.url} backLink={'logistics'}

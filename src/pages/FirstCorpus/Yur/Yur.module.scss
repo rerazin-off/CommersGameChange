@@ -70,6 +70,9 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      img{
+        transform: translate(0px,0px);
+      }
     }
 
     .hammer {
@@ -81,6 +84,9 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      img{
+        transform: translate(0px,0px);
+      }
     }
   }
 }
