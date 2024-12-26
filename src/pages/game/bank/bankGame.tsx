@@ -86,7 +86,7 @@ export const BankGame = () => {
           <Button
             bgColor="pink"
             type="type1v2"
-            onClick={() => navigate(RoutesEnum.LOGISTICS)}
+            onClick={() => navigate(RoutesEnum.BANK)}
           >
             НАЗАД
           </Button>

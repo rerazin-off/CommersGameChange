@@ -7,14 +7,11 @@ import { bags } from '../../contstans';
 
 type DropBagAreaProps = {
   positions: number[],
-  setPositions:  React.Dispatch<React.SetStateAction<number[]>>
+  setPositions:  React.Dispatch<React.SetStateAction<number[]>>,
 }
 
 const DropBagArea = ({positions, setPositions}: DropBagAreaProps) => {
   const [shuffledBags, setShuffledBags] = useState<BagsList>([]);
-
-
-
 
   const [, drop] = useDrop({
     accept: 'bag',
