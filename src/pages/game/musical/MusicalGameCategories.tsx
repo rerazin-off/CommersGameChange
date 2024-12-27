@@ -18,10 +18,34 @@ export const MusicalGameCategories = () => {
   const [instruments, setInstruments] = useState(InstrumentArr);
 
   const [areas, setAreas] = useState([
-    { title: 'string', imageUrl: string, items: [] },
-    { title: 'hit', imageUrl: hit, items: [] },
-    { title: 'wind', imageUrl: wind, items: [] },
-    { title: 'keyboard', imageUrl: keyboard, items: [] },
+    { title: 'string', imageUrl: string, items: [
+        {
+          zone1: [],
+          zone2: [],
+          zone3: [],
+        }
+      ] },
+    { title: 'hit', imageUrl: hit, items: [
+        {
+          zone1: [],
+          zone2: [],
+          zone3: [],
+        }
+      ] },
+    { title: 'wind', imageUrl: wind, items: [
+        {
+          zone1: [],
+          zone2: [],
+          zone3: [],
+        }
+      ] },
+    { title: 'keyboard', imageUrl: keyboard, items: [
+        {
+          zone1: [],
+          zone2: [],
+          zone3: [],
+        }
+      ] },
   ]);
 
   useEffect(() => {
@@ -88,21 +112,9 @@ export const MusicalGameCategories = () => {
     enableMouseEvents: true,
   };
 
-  useEffect(() => {
-    console.log('Sequence:', sequence);
-  }, [sequence]);
-
-  useEffect(() => {
-    console.log('Instruments:', instruments);
-  }, [instruments]);
-
-  useEffect(() => {
-    console.log('Current Instrument:', currentInstrument);
-  }, [currentInstrument]);
-
   return (
     <DndProvider backend={TouchBackend} options={touchBackendOptions}>
-      <CustomDragLayer /> {/* Подключаем слой */}
+      <CustomDragLayer />
       <div className={classes.container}>
         <div className={classes.object}>{renderObject()}</div>
         <div className={classes.categories}>

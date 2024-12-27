@@ -2,9 +2,13 @@
   background: url("../../../assets/img/fon/fon_dou.png");
   background-repeat: no-repeat;
   background-position: center;
-  height: 1080px;
+  //height: 1080px;
+  height: 100vh;
 }
 .buttons{
+  position: fixed;
+  bottom: 1.1%;
+
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -13,30 +17,17 @@
   padding-left: 30px;
 }
 .progs{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-
-  .card{
-    position: absolute;
-    margin-top: 500px;
-  }
 
   .container{
-    margin: 0;
-    height: 973px;
-    display: flex;
-    align-items: center;
 
     .laptop{
-      margin-bottom: -170px;
-      margin-left: 205px;
+      position: fixed;
+      top: 48%;
+      left: 51.25%;
       width: 163px;
-      height: 95px;
+      height: 110px;
       cursor: pointer;
       object-fit: contain;
-      background-repeat: no-repeat;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -45,14 +36,13 @@
       }
     }
     .shelfs{
-      background-repeat: no-repeat;
-      position: absolute;
-      transform: translate(780px,-175px);
+      position: fixed;
+      top: 24%;
+      right: 11.7%;
       width: 130px;
       height: 99px;
       cursor: pointer;
       object-fit: contain;
-      border-radius: 40px;
       display: flex;
       justify-content: center;
       align-items: center;

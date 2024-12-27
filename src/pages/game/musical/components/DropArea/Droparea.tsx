@@ -32,11 +32,10 @@ export default function Area(props: DragAreaProps) {
     <div ref={drop} className={classes.droparea}>
       <img className={classes.catname} src={imageUrl} alt="Область" />
       <div className={classes.area}>
-        <div></div>
-        <div></div>
-        <div></div>
         {items.map(item => (
-          <img key={item.id} src={item.url} alt={`Инструмент ${item.id}`} />
+          <div className={classes.instrImage}>
+            <img key={item.id} src={item.url} alt={`Инструмент ${item.id}`} />
+          </div>
         ))}
       </div>
     </div>
