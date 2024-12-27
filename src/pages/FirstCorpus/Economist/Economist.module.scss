@@ -2,9 +2,13 @@
   background: url("../../../assets/img/fon/economic2.svg");
   background-repeat: no-repeat;
   background-position: center;
-  height: 1080px;
+  //height: 1080px;
+  height: 100vh;
 }
 .buttons{
+  position: fixed;
+  bottom: 1.1%;
+
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -13,20 +17,8 @@
   padding-left: 30px;
 }
 .progs{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-
-  .card{
-    position: absolute;
-    margin-top: 500px;
-  }
 
   .container{
-    width: 1500px;
-    margin: 0;
-    height: 973px;
 
     .doska{
       width: 845px;

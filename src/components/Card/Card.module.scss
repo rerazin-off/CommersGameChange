@@ -5,9 +5,11 @@
   right: 0;
   bottom: 0;
   backdrop-filter: blur(10px);
+  z-index: 2;
 }
 
 .var{
+  z-index: 3;
   position: absolute;
   top: 50%;
   left: 50%;

@@ -12,18 +12,18 @@ import violonchel from '@/assets/img/game_assets/musicalgame-categories/violonch
 import dudelochka from '@/assets/img/game_assets/musicalgame-categories/dudelochks.svg';
 
 const InstrumentArr = [
-  { id: 0, url: guitar },
-  { id: 1, url: bayan },
-  { id: 2, url: buben },
-  { id: 3, url: drums },
-  { id: 4, url: dudelka },
-  { id: 5, url: dudelka2 },
-  { id: 6, url: acousic },
-  { id: 7, url: guitarpiano },
-  { id: 8, url: kselophone },
-  { id: 9, url: piano },
-  { id: 10, url: violonchel },
-  { id: 11, url: dudelochka },
+  { id: 0, url: guitar, category: 'string' },
+  { id: 1, url: bayan, category: 'keyboard' },
+  { id: 2, url: buben, category: 'hit' },
+  { id: 3, url: drums, category: 'hit' },
+  { id: 4, url: dudelka, category: 'wind' },
+  { id: 5, url: dudelka2, category: 'wind' },
+  { id: 6, url: acousic, category: 'string' },
+  { id: 7, url: guitarpiano, category: 'keyboard' },
+  { id: 8, url: kselophone, category: 'hit' },
+  { id: 9, url: piano, category: 'keyboard' },
+  { id: 10, url: violonchel, category: 'string' },
+  { id: 11, url: dudelochka, category: 'wind' },
 ];
 
 export default InstrumentArr;
