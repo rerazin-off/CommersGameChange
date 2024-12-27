@@ -10,6 +10,10 @@
   display: flex;
   justify-content: center;
 }
+.jcE{
+  display: flex;
+  justify-content: end;
+}
 h5{
   color: #4DE4F2;
   font-size: 1vw;
@@ -49,10 +53,10 @@ h5{
 .rocketElements{
   position: absolute;
   top: 31vh;
-  left: 38vw;
+  left: 39vw;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 2.7vw;
+  gap: 1.9vw;
 }
 .rocketElements img{
   width: 8vw;
@@ -64,50 +68,20 @@ h5{
   background-size: cover;
   background-position: center center;
 }
-
-/*стили для drop картинок*/
-.rocketBody{
-  position: absolute;
-  left: 2.2vw;
-  height: 100%;
-  z-index: 2;
-  width: 14vw;
+.close{
+  width: 3vw;
+  margin: 0 1vw 50vh 0;
 }
-.rocketWindow{
+.fire{
   position: absolute;
-  top: 14.5vh;
-  left: 5vw;
-  z-index: 3;
-  width: 50%;
-}
-.rocketGlass{
-  position: absolute;
-  z-index: 2;
-  top: 19vh;
-  left: 6vw;
-  width: 35%;
-}
-.rocketWings{
-  width: 15vw;
-  position: absolute;
+  top: 68vh;
+  left: 16.5vw;
   z-index: 1;
-  left: 1.6vw;
 }
-.rocketBolts{
+.confetti{
   position: absolute;
-  z-index: 3;
-  top: 48vh;
-  left: 10vh;
-  width: 6.4vw;
+  right: 50vw
 }
 
 
-/*стили компонента DropArea*/
-.dropArea{
-  height: 59vh;
-  width: 17vw;
-  position: absolute;
-  top: 8vh;
-  left:9vw;
-}
 

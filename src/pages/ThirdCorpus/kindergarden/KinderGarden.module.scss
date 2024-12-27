@@ -35,18 +35,40 @@
   height: 280px;
   transform: translate(915px, 186px);
   border-radius: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  div{
+    position: absolute;
+    left: 150px;
+    top: 220px;
+  }
 }
 .telescope{
   width: 373.5px;
   height: 408.95px;
   transform: translate(212px, 143px);
   border-radius: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img{
+    transform: translate(-18px, 0px);
+  }
 }
 .сrescent{
   width: 219px;
   height: 220px;
   transform: translate(-855px, 125px);
   border-radius: 1000px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  div{
+    position: absolute;
+    left: 75px;
+    top: 250px;
+  }
 }
 //.telescope, .сrescent, .wheelchair {
 //  animation: pulse 2s linear infinite;

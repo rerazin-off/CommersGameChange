@@ -12,18 +12,18 @@
   padding-top: 30px;
   padding-left: 30px;
 }
-.progs{
+.progs {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
 
-  .card{
+  .card {
     position: absolute;
     margin-top: 500px;
   }
 
-  .container{
+  .container {
     width: 1700px;
     margin: 0;
     height: 973px;
@@ -31,39 +31,75 @@
     flex-direction: row;
     align-items: center;
 
-    .papka{
+    .papka {
       width: 134px;
       height: 196px;
       margin-top: 320px;
       margin-left: 173px;
       cursor: pointer;
       border-radius: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      div {
+        position: absolute;
+        right: 1530px;
+        top: 640px;
+      }
     }
-    .list{
+
+    .list {
       margin-top: 370px;
       width: 116px;
       height: 100px;
       margin-left: 160px;
       cursor: pointer;
       border-radius: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      div {
+        position: absolute;
+        right: 1260px;
+        top: 650px;
+      }
     }
-    .ekran{
+
+    .ekran {
       margin-top: 40px;
       width: 233px;
       height: 127px;
       margin-left: 170px;
       cursor: pointer;
       border-radius: 20px;
-      //transform: rotate(-5deg);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      div {
+        position: absolute;
+        right: 910px;
+        top: 480px;
+      }
     }
-    .koshel{
+
+    .koshel {
       margin-top: 450px;
       width: 90px;
       height: 130px;
       margin-left: 480px;
       cursor: pointer;
       border-radius: 20px;
-      //transform: rotate(-5deg);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      div {
+        position: absolute;
+        right: 280px;
+        top: 690px;
+      }
     }
   }
 }

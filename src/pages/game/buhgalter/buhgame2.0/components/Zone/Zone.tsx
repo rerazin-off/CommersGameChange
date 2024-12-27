@@ -1,7 +1,7 @@
 import React from "react";
 import { useDrop } from "react-dnd";
-import Expense from "./Expense";
-import styles from "./BuhgalGame.module.scss";
+import Expense from "../Expense/Expense";
+import styles from "../BuhgalGame/BuhgalGame.module.scss";
 
 type ZoneProps = {
   zone: {
@@ -26,7 +26,7 @@ const Zone: React.FC<ZoneProps> = ({ zone, expenses, onDrop }) => {
 
   return (
     <div ref={drop} className={styles.zone}>
-      <h3 className={styles.zoneName}>{zone.name}</h3>
+      {/*<h3 className={styles.zoneName}>{zone.name}</h3>*/}
       <div className={styles.zoneExpenses}>
         {expenses.map((expense) => (
           <Expense key={expense.id} id={expense.id} name={expense.name} image={expense.image} />

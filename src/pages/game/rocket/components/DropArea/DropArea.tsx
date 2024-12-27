@@ -1,8 +1,8 @@
 import React from 'react';
 import { useDrop } from 'react-dnd';
-import classes from '../../rocket/gameRocket.module.scss';
+import classes from '../DropArea/DropArea.module.scss';
 
-export default function DropArea({ droppedBodySrc, droppedWindowSrc, droppedGlassSrc, droppedWingsSrc, droppedBoltSrc}) {
+export default function DropArea({ droppedBodySrc, droppedWindowSrc, droppedGlassSrc, droppedWingsSrc, droppedBoltSrc, droppedReactorSrc}) {
   const [{ canDrop, isOver }, dropRef] = useDrop(() => ({
     accept: ['EL'],
     drop: () => {},
@@ -28,6 +28,9 @@ export default function DropArea({ droppedBodySrc, droppedWindowSrc, droppedGlas
       ))}
       {droppedBoltSrc.map((src, i) => (
         <img key={i} src={src} className={classes.rocketBolts}/>
+      ))}
+      {droppedReactorSrc.map((src, i) => (
+        <img key={i} src={src} className={classes.rocketReactor}/>
       ))}
     </div>
   );

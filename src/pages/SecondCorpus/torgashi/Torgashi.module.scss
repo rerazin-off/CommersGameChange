@@ -12,18 +12,18 @@
   padding-top: 30px;
   padding-left: 30px;
 }
-.progs{
+.progs {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
 
-  .card{
+  .card {
     position: absolute;
     margin-top: 500px;
   }
 
-  .container{
+  .container {
     width: 1700px;
     margin: 0;
     height: 973px;
@@ -31,21 +31,40 @@
     flex-direction: row;
     align-items: center;
 
-    .prilavok{
+    .prilavok {
       width: 750px;
       height: 200px;
       margin-top: 320px;
       margin-left: 300px;
       cursor: pointer;
       border-radius: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      div {
+        position: absolute;
+        right: 1000px;
+        top: 730px;
+      }
     }
-    .teleska{
+
+    .teleska {
       margin-top: 500px;
       width: 400px;
       height: 400px;
       margin-left: 120px;
       cursor: pointer;
       border-radius: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      div {
+        position: absolute;
+        right: 560px;
+        top: 780px;
+      }
     }
   }
 }

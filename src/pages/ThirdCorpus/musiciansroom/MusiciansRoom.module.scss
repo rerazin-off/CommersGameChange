@@ -35,18 +35,42 @@
   height: 374px;
   transform: translate(-175px, 280px);
   border-radius: 116.8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  div{
+    position: absolute;
+    left: 270px;
+    top: 235px;
+  }
 }
 .xylophone{
   width: 175px;
   height: 99.24px;
   transform: translate(225px, 190px);
   border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  div{
+    position: absolute;
+    left: 25px;
+    top: -20px;
+  }
 }
 .notes{
   width: 270px;
   height: 186.11px;
   transform: translate(380px, 50px);
   border-radius: 114px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  div{
+    position: absolute;
+    left: 75px;
+    top: 145px;
+  }
 }
 //.guitar, .drums, .xylophone, .notes{
 //  animation: pulse 2s linear infinite;

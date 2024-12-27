@@ -4,6 +4,7 @@ import Card from '../../../components/Card/Card';
 import { Button } from '../../../components/Button/Button';
 import { Link } from 'react-router-dom';
 import { Assistant } from '../../../components/Assistant/Assistant';
+import { Indicator } from '../../../components/Indicator/Indicator';
 
 
 const gameData: Record<string, { title: string; body: string; url: string }> = {
@@ -41,10 +42,14 @@ export const Dou: React.FC = () => {
   return (
     <div className={classes.cont}>
       <div className={classes.progs}>
-        <Assistant fon={'secondPlanet1'} link={'2'} cat={"-170px"} title={"Добро пожаловать на специальность 46.02.01 Документационное обеспечение упраленияя и архивоведение!"} body={"Эта специальность обучает работе с документацией и архивами. Студенты изучают оформление документов, документооборот и использование IT-технологий."} mar={"-535px"}></Assistant>
+        <Assistant fon={'secondPlanet1'} link={'2'} cat={"-170px"} title={"Добро пожаловать на специальность 46.02.01 Документационное обеспечение управления и архивоведение!"} body={"Эта специальность обучает работе с документацией и архивами. Студенты изучают оформление документов, документооборот и использование IT-технологий."} mar={"-535px"}></Assistant>
         <div className={classes.container}>
-          <div className={classes.laptop} onClick={() => handleGameClick('laptopGame')}></div>
-          <div className={classes.shelfs} onClick={() => handleGameClick('shelfsGame')}></div>
+          <div className={classes.laptop} onClick={() => handleGameClick('laptopGame')}>
+            <Indicator></Indicator>
+          </div>
+          <div className={classes.shelfs} onClick={() => handleGameClick('shelfsGame')}>
+            <Indicator></Indicator>
+          </div>
         </div>
         <div className={classes.card}><Card type={'game'} title={cardData.title} body={cardData.body} game={cardData.url} backLink={'dou'} isOpen={openIsCard} onClose={closeCard}/></div>
       </div>

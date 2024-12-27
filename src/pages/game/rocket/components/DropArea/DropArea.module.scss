@@ -1,0 +1,54 @@
+* {
+  user-select: none;
+}
+
+.dropArea{
+  height: 59vh;
+  width: 17vw;
+  position: absolute;
+  top: 8vh;
+  left:11vw;
+}
+.rocketBody{
+  position: absolute;
+  left: 3.8vw;
+  height: 100%;
+  z-index: 2;
+  width: 10vw;
+  top: 5vh;
+}
+.rocketWindow{
+  position: absolute;
+  top: 14.5vh;
+  left: 5vw;
+  z-index: 3;
+  width: 50%;
+}
+.rocketGlass{
+  position: absolute;
+  z-index: 2;
+  top: 19.4vh;
+  left: 6.3vw;
+  width: 6vw;
+}
+.rocketWings{
+  width: 15vw;
+  position: absolute;
+  z-index: 1;
+  left: 1.7vw;
+  top:10vh;
+}
+.rocketBolts{
+  position: absolute;
+  z-index: 3;
+  top: 48vh;
+  left: 10.7vh;
+  width: 6vw;
+}
+.rocketReactor{
+  position: absolute;
+  width: 9vw;
+  top: 41vh;
+  z-index: 2;
+  left: 4.78vw
+}
