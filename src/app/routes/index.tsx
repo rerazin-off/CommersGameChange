@@ -33,9 +33,13 @@ export enum RoutesEnum {
   FIRST_CORPUS = '/1',
   PROGRAMMERS = '/programmers',
   LOGISTICS = '/logistics',
+ 38-fix-roket-game
+  ECONOMIST = '/economist',
+  SPECIALKINDERGARDEN='/SpecialKinder'
   DOU = '/dou',
   BANK = '/bank',
   ECONOMIST = '/economist',
+ main
 }
 
 export const router = createBrowserRouter([
