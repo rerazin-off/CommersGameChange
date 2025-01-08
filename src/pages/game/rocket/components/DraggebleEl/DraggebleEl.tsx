@@ -1,9 +1,11 @@
 import { useDrag } from 'react-dnd';
+
 type Props = {
   src: string,
   id: string,
   moveElement: (id: string) => void,
 };
+
 export default function DraggebleEl({ src, id, moveElement }: Props) {
   const [{ isDragging }, dragRef] = useDrag(() => ({
       type: 'EL',
@@ -19,5 +21,6 @@ export default function DraggebleEl({ src, id, moveElement }: Props) {
       },
     }),
   );
-  return <img ref={dragRef} src={src} />;
+
+  return <img ref={dragRef} src={src} />
 }

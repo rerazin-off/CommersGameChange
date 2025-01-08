@@ -85,13 +85,9 @@ export const Rocket: React.FC = () => {
         return acc;
       }, {});
 
-      const removedElements = Object.keys(updatedDroppedEl).reduce((acc, key) => {
-        if (updatedDroppedEl[key].length==0){
-          const foundDeleted=initialState.find((el) => el.index==key);
-          acc.push(foundDeleted);
-        }
-        return acc;
-      }, []);
+      const removedElements =initialState.filter((item)=>
+        updatedDroppedEl[item.index].length==0
+      );
 
       if (removedElements.length>0) {
         setElements1(removedElements);
@@ -99,6 +95,7 @@ export const Rocket: React.FC = () => {
       else{
         setShowWinning(true);
       }
+
       return updatedDroppedEl;
     });
   };
@@ -123,8 +120,8 @@ export const Rocket: React.FC = () => {
   // };
 
   return (
-    <DndProvider backend={TouchBackend}>
-      <Custom />
+    <DndProvider backend={TouchBackend} >
+      <Custom/>
       <div
         className={
           showDrawing

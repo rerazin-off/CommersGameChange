@@ -18,8 +18,8 @@ export default function Custom()  {
 
   return (
     <div className={classes.dragLayer}>
-      <div style={style}>
-        <img src={item.image} alt=""/>
+      <div style={style} className={classes.draggingEl}>
+        <img src={item.src} alt=""/>
       </div>
     </div>
   );
