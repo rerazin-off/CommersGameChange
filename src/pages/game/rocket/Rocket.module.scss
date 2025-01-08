@@ -20,6 +20,7 @@ h5{
 }
 
 
+//стили фона
 .background{
   background: url( "../../../assets/img/fon/bg-rocket.svg");
   height: 100vh;
@@ -32,11 +33,14 @@ h5{
   background-position: center center;
   background-size: cover;
 }
+
+
+//стили кнопок
 .btnDrawing{
   background: none;
   position: absolute;
-  top: 89vh;
-  left: 3vw;
+  bottom: 2vh;
+  left: 12vw;
 }
 .btnDrawing img{
   width:4vw;
@@ -50,6 +54,13 @@ h5{
 .btnCheck img{
   width: 3vw;
 }
+.backButton {
+  position: absolute;
+  bottom: 3vh;
+  left: 1vh;
+}
+
+
 .rocketElements{
   position: absolute;
   top: 31vh;
@@ -74,9 +85,10 @@ h5{
 }
 .fire{
   position: absolute;
-  top: 68vh;
-  left: 16.5vw;
+  top: 72vh;
+  left: 16.4vw;
   z-index: 1;
+  width: 8vw;
 }
 .confetti{
   position: absolute;

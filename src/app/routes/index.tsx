@@ -30,7 +30,8 @@ export enum RoutesEnum {
   FIRST_CORPUS = '/1',
   PROGRAMMERS = '/programmers',
   LOGISTICS = '/logistics',
-  ECONOMIST = '/economist'
+  ECONOMIST = '/economist',
+  SPECIALKINDERGARDEN='/SpecialKinder'
 }
 
 export const router = createBrowserRouter([

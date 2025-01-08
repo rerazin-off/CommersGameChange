@@ -6,7 +6,7 @@
   height: 59vh;
   width: 17vw;
   position: absolute;
-  top: 8vh;
+  top: 12vh;
   left:11vw;
 }
 .rocketBody{
@@ -16,6 +16,13 @@
   z-index: 2;
   width: 10vw;
   top: 5vh;
+}
+.rocketUpPart{
+  position: absolute;
+  left: 4.1vw;
+  z-index: 2;
+  width: 10.2vw;
+  bottom: 29.2vh;
 }
 .rocketWindow{
   position: absolute;
