@@ -1,7 +1,7 @@
 import React from "react";
 import { useDrop } from "react-dnd";
-import Expense from "./Expense";
-import styles from "./BuhgalGame.module.scss";
+import Expense from "../Expense/Expense";
+import styles from "../BuhgalGame/BuhgalGame.module.scss";
 
 type ZoneProps = {
   zone: {

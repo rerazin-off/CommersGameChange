@@ -10,10 +10,10 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr); // 3 колонки для кружков
   grid-template-rows: repeat(5, 1fr);
-  gap: 7vh 14vh;
+  gap: 7vh 16vh;
   position: absolute;
   top: 10vh;
-  left: 6.3%;
+  left: 5.5%;
   width: 50%;
   justify-content: center;
 }

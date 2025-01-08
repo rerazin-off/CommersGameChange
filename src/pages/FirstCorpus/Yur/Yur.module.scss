@@ -1,10 +1,14 @@
 .cont{
-  background: url("../../../assets/img/backgrounds.svg");
+  background: url("../../../assets/img/fon/yur_bg.png");
   background-repeat: no-repeat;
   background-position: center;
-  height: 1080px;
+  //height: 1080px;
+  height: 100vh;
 }
 .buttons{
+  position: fixed;
+  bottom: 1.1%;
+
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -13,65 +17,66 @@
   padding-left: 30px;
 }
 .progs {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-
-  .card {
-    position: absolute;
-    margin-top: 500px;
-  }
 
   .container {
-    width: 1500px;
-    margin: 0;
-    height: 973px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 
     .shelf {
       background-repeat: no-repeat;
-      position: absolute;
-      margin-top: -310px;
-      margin-left: 1350px;
+      position: fixed;
+      top: 23.5%;
+      right: 6%;
       width: 335px;
       height: 150px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      img{
+        transform: translate(0px,20px);
+      }
     }
 
     .piggyBank {
-      background-repeat: no-repeat;
-      margin-top: 125px;
-      margin-left: -280px;
-      width:110px;
-      height: 110px;
-      border-radius: 50px;
-
+      position: fixed;
+      top: 43.5%;
+      left: 38.5%;
+      width:150px;
+      height: 150px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      img{
+        transform: translate(0px,0px);
+      }
     }
 
     .sheet {
       background-repeat: no-repeat;
-      position: absolute;
-      margin-top: 190px;
-      margin-left: 550px;
-      width: 140px;
-      height: 120px;
-      border-radius: 45px;
-      transform: rotate(135deg);
+      position: fixed;
+      top: 46%;
+      left: 60%;
+      width: 160px;
+      height: 180px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      img{
+        transform: translate(0px,0px);
+      }
     }
 
     .hammer {
-      background-repeat: no-repeat;
-      position: absolute;
-      margin-top: 5px;
-      margin-right: 1100px;
-      margin-bottom: 100px;
-      width: 150px;
-      height: 80px;
-      border-radius: 30px;
-      transform: rotate(10deg);
-    }
+      position: fixed;
+      top: 35%;
+      left: 17%;
+      width: 170px;
+      height: 130px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      img{
+        transform: translate(0px,0px);
+      }
     }
   }
+}
 

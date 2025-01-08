@@ -2,9 +2,13 @@
   background: url("../../../assets/img/fon/bank.svg");
   background-repeat: no-repeat;
   background-position: center;
-  height: 1080px;
+  //height: 1080px;
+  height: 100vh;
 }
 .buttons{
+  position: fixed;
+  bottom: 1.1%;
+
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -12,58 +16,80 @@
   padding-top: 30px;
   padding-left: 30px;
 }
-.progs{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+.progs {
 
-  .card{
-    position: absolute;
-    margin-top: 500px;
-  }
 
-  .container{
-    width: 1700px;
-    margin: 0;
-    height: 973px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+  .container {
 
-    .papka{
+    .papka {
+      position: fixed;
+      top: 51%;
+      left: 14.8%;
       width: 134px;
       height: 196px;
-      margin-top: 320px;
-      margin-left: 173px;
       cursor: pointer;
-      border-radius: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      div {
+        position: absolute;
+        right: 25px;
+        top: 95px;
+      }
     }
-    .list{
-      margin-top: 370px;
+
+    .list {
+      position: fixed;
+      top: 58%;
+      left: 30.2%;
       width: 116px;
       height: 100px;
-      margin-left: 160px;
       cursor: pointer;
-      border-radius: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      div {
+        position: absolute;
+        right: 35px;
+        top: 20px;
+      }
     }
-    .ekran{
-      margin-top: 40px;
+
+    .ekran {
+      position: fixed;
+      top: 41%;
+      left: 45%;
       width: 233px;
       height: 127px;
-      margin-left: 170px;
       cursor: pointer;
-      border-radius: 20px;
-      //transform: rotate(-5deg);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      div {
+        position: absolute;
+        right: 86.51px;
+        top: 37px;
+      }
     }
-    .koshel{
-      margin-top: 450px;
+
+    .koshel {
+      position: fixed;
+      top: 59%;
+      right: 13%;
       width: 90px;
       height: 130px;
-      margin-left: 480px;
       cursor: pointer;
-      border-radius: 20px;
-      //transform: rotate(-5deg);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      div {
+        position: absolute;
+        right: 32px;
+        top: 50px;
+      }
     }
   }
 }

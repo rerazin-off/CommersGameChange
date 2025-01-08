@@ -18,10 +18,34 @@ export const MusicalGameCategories = () => {
   const [instruments, setInstruments] = useState(InstrumentArr);
 
   const [areas, setAreas] = useState([
-    { title: 'string', imageUrl: string, items: [] },
-    { title: 'hit', imageUrl: hit, items: [] },
-    { title: 'wind', imageUrl: wind, items: [] },
-    { title: 'keyboard', imageUrl: keyboard, items: [] },
+    { title: 'string', imageUrl: string, items: [
+        {
+          zone1: [],
+          zone2: [],
+          zone3: [],
+        }
+      ] },
+    { title: 'hit', imageUrl: hit, items: [
+        {
+          zone1: [],
+          zone2: [],
+          zone3: [],
+        }
+      ] },
+    { title: 'wind', imageUrl: wind, items: [
+        {
+          zone1: [],
+          zone2: [],
+          zone3: [],
+        }
+      ] },
+    { title: 'keyboard', imageUrl: keyboard, items: [
+        {
+          zone1: [],
+          zone2: [],
+          zone3: [],
+        }
+      ] },
   ]);
 
   useEffect(() => {
@@ -31,15 +55,21 @@ export const MusicalGameCategories = () => {
 
   useEffect(() => {
     if (sequence.length > 0) {
-      setCurrentInstrument(sequence[0]); // Устанавливаем первый объект в качестве текущего
+      setCurrentInstrument(sequence[0]);
     } else {
-      setCurrentInstrument(null); // Если объектов больше нет, устанавливаем null
+      setCurrentInstrument(null);
     }
   }, [sequence]);
 
   const nextInstrument = () => {
     if (sequence.length > 0) {
-      setSequence(prevSequence => prevSequence.slice(1)); // Убираем первый объект из массива
+      const removedInstrument = sequence.shift();
+      setSequence([...sequence]);
+      setInstruments(prevInstruments =>
+        prevInstruments.filter(
+          instrument => instrument.id !== removedInstrument.id
+        )
+      );
     }
   };
 
@@ -50,7 +80,7 @@ export const MusicalGameCategories = () => {
           key={currentInstrument.id}
           asset={currentInstrument.url}
           index={currentInstrument.id}
-          onRemove={() => nextInstrument()}
+          onRemove={nextInstrument}
         />
       );
     }
@@ -73,8 +103,6 @@ export const MusicalGameCategories = () => {
 
     updatedAreas[index].items.push(instrumentToMove);
     setAreas(updatedAreas);
-
-    // Удаляем инструмент из общего массива, чтобы он больше не мог быть использован
     removeInstrumentFromList(newItemId);
 
     console.log(updatedAreas);
@@ -86,7 +114,7 @@ export const MusicalGameCategories = () => {
 
   return (
     <DndProvider backend={TouchBackend} options={touchBackendOptions}>
-      <CustomDragLayer /> {/* Подключаем слой */}
+      <CustomDragLayer />
       <div className={classes.container}>
         <div className={classes.object}>{renderObject()}</div>
         <div className={classes.categories}>
