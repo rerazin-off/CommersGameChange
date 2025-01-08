@@ -4,6 +4,7 @@ import Card from '../../../components/Card/Card';
 import { Button } from '../../../components/Button/Button';
 import { Link } from 'react-router-dom';
 import { Assistant } from '../../../components/Assistant/Assistant';
+import { Indicator } from '../../../components/Indicator/Indicator';
 
 const gameData: Record<string, { title: string; body: string; url: string }> = {
   computerGame: {
@@ -41,8 +42,8 @@ export const Programmers: React.FC = () => {
     <Assistant fon={'firstPlanet1'} link={'1'} cat={"-140px"} mar={"-530px"} title={"Добро пожаловать на специальность 09.02.07 Информационные системы и программирование!"} body={"Эта специальность готовит специалистов по разработке, внедрению и сопровождению информационных систем и ПО. Студенты осваивают программирование, базы данных, сети, информационную безопасность и тестирование."}></Assistant>
     <div className={classes.progs}>
       <div className={classes.container}>
-        <div className={classes.comp} onClick={() => handleGameClick('computerGame')}></div>
-        <div className={classes.robot} onClick={() => handleGameClick('robotGame')}></div>
+        <div className={classes.comp} onClick={() => handleGameClick('computerGame')}><Indicator></Indicator></div>
+        <div className={classes.robot} onClick={() => handleGameClick('robotGame')}><Indicator></Indicator></div>
       </div>
       <div className={classes.card}><Card type={'game'} title={cardData.title} body={cardData.body} game={cardData.url} backLink={'programmers'}
                                           isOpen={openIsCard} onClose={closeCard} /></div>

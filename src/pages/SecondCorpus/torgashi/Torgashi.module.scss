@@ -2,9 +2,13 @@
   background: url("../../../assets/img/fon/commerceRoom.svg");
   background-repeat: no-repeat;
   background-position: center;
-  height: 1080px;
+  //height: 1080px;
+  height: 100vh;
 }
 .buttons{
+  position: fixed;
+  bottom: 1.1%;
+
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -12,40 +16,43 @@
   padding-top: 30px;
   padding-left: 30px;
 }
-.progs{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+.progs {
+  .container {
 
-  .card{
-    position: absolute;
-    margin-top: 500px;
-  }
-
-  .container{
-    width: 1700px;
-    margin: 0;
-    height: 973px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-
-    .prilavok{
+    .prilavok {
+      position: fixed;
+      top: 50%;
+      left: 20%;
       width: 750px;
       height: 200px;
-      margin-top: 320px;
-      margin-left: 300px;
       cursor: pointer;
-      border-radius: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      div {
+        position: absolute;
+        right: 200px;
+        top: 150px;
+      }
     }
-    .teleska{
-      margin-top: 500px;
+
+    .teleska {
+      position: fixed;
+      top: 53%;
+      right: 12%;
       width: 400px;
       height: 400px;
-      margin-left: 120px;
       cursor: pointer;
-      border-radius: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      div {
+        position: absolute;
+        right: 325px;
+        top: 210px;
+      }
     }
   }
 }

@@ -20,26 +20,29 @@ export const BankGame = () => {
   const [openIsCard, setOpenIsCard] = useState(false);
   const [attempts, setAttempts] = useState(0);
 
+
   const handleDrop = (index: number | null, item: { id: number }) => {
     const newPositions = [...positions];
 
-    if (index === null) {
+    const currentIndex = newPositions.findIndex(id => id === item.id);
 
-      const currentIndex = newPositions.findIndex(id => id === item.id);
+    if (index === null) {
       if (currentIndex !== -1) {
         newPositions[currentIndex] = 0;
       }
     } else {
-
-      const currentIndex = newPositions.findIndex(id => id === item.id);
-      if (currentIndex !== -1) {
+      const targetBagId = newPositions[index];
+      if (targetBagId !== 0) {
+        newPositions[currentIndex] = targetBagId;
+      } else if (currentIndex !== -1) {
         newPositions[currentIndex] = 0;
       }
-      newPositions[index] = item.id; //
+      newPositions[index] = item.id;
     }
 
     setPositions(newPositions);
   };
+
 
   const checkResults = () => {
     setAttempts(prev => prev + 1);
@@ -75,23 +78,26 @@ export const BankGame = () => {
           ))}
         </div>
         <DropBagArea positions={positions} setPositions={setPositions} />
-
         {isVisibleButton && (
           <div onClick={checkResults} className={classes.checkButton}>
-            <Button bgColor="blue" type="type1v2">ПРОВЕРИТЬ</Button>
+            <Button bgColor="blue" type="type1v2">
+              ПРОВЕРИТЬ
+            </Button>
           </div>
         )}
-
         <div className={classes.backButton}>
           <Button
             bgColor="pink"
             type="type1v2"
-            onClick={() => navigate(RoutesEnum.LOGISTICS)}
+            // onClick={() => navigate(RoutesEnum.BANK)}
+            onClick={() => {
+              localStorage.setItem('fromGame', 'true'); // Устанавливаем флаг
+              navigate(RoutesEnum.BANK); // Возвращаемся назад
+            }}
           >
             НАЗАД
           </Button>
         </div>
-
         <CardFinish
           attempts={attempts}
           isOpenCard={openIsCard}

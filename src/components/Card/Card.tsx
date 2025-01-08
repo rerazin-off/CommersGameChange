@@ -76,7 +76,7 @@ const Card = (props: CardProps) => {
         </div>
         {isMarker? (
           <div className={classes.knopki}>
-            <Link to={`/${(game)}`}><Button bgColor={'pink'} type={'type1v2'}>НАЗАД</Button></Link>
+            <Link to={`/${game}?hideAssistant=true`}><Button bgColor={'pink'} type={'type1v2'}>НАЗАД</Button></Link>
             <Button onClick={handleReloadPage} bgColor={'blue'} type={'type1v2'}>ЗАНОВО</Button>
           </div>
         ) : (

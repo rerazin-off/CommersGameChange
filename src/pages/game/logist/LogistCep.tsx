@@ -82,7 +82,11 @@ export const LogistCep = () => {
           <Button
             bgColor="pink"
             type="type1v2"
-            onClick={() => navigate(RoutesEnum.LOGISTICS)}
+            // onClick={() => navigate(RoutesEnum.LOGISTICS)}
+            onClick={() => {
+              localStorage.setItem('fromGame', 'true'); // Устанавливаем флаг
+              navigate(RoutesEnum.LOGISTICS); // Возвращаемся назад
+            }}
           >
             НАЗАД
           </Button>

@@ -1,10 +1,14 @@
 .cont{
-  background: url("@/assets/img/background.svg");
+  background: url("@/assets/img/fon/logist_bg.png");
   background-repeat: no-repeat;
   background-position: center;
-  height: 1080px;
+  //height: 1080px;
+  height: 100vh;
 }
 .buttons{
+  position: fixed;
+  bottom: 1.1%;
+
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -13,43 +17,38 @@
   padding-left: 30px;
 }
 .progs{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-
-  .card{
-    position: absolute;
-    margin-top: 500px;
-  }
 
   .container{
-    margin: 0;
-    height: 973px;
-    display: flex;
-    align-items: center;
-
     .truck{
       width: 563px;
       height: 244px;
-      margin-top: 395px;
-      margin-left: 580px;
-      margin-right: 200px;
+      position: fixed;
+      top: 52%;
+      right: 13%;
       cursor: pointer;
       object-fit: contain;
-       border-radius: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      img{
+        transform: translate(0px,0px);
+      }
  }
     .hologram{
-      margin-left: 60px;
-      margin-bottom: 80px;
+      position: fixed;
+      top: 22%;
+      left: 5.7%;
       width: 420px;
       height: 420px;
       cursor: pointer;
       object-fit: contain;
-
-      //position: relative;
-      animation: pulse 2s infinite;
-      border-radius: 3000px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 1000px;
+      img{
+        transform: translate(0px,0px);
+      }
     }
   }
 }

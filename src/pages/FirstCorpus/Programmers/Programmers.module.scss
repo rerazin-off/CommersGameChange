@@ -1,11 +1,15 @@
 
 .cont{
-  background: url("../../../assets/img/fon/programmers_s_knopkoy.svg");
+  background: url("../../../assets/img/fon/programmers_s_knopkoy.png");
   background-repeat: no-repeat;
   background-position: center;
-  height: 1080px;
+  //height: 1080px;
+  height: 100vh;
 }
 .buttons{
+  position: fixed;
+  bottom: 1.1%;
+
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -14,39 +18,40 @@
   padding-left: 30px;
 }
 .progs{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-
-  .card{
-    position: absolute;
-    margin-top: 500px;
-  }
 
   .container{
-    width: 1500px;
-    margin: 0;
-    height: 973px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 
     .comp{
-      margin-top: 200px;
-      margin-right: 250px;
-      width: 436px;
-      height: 300px;
+      position: fixed;
+      top: 39%;
+      left: 22.5%;
+      width: 450px;
+      height: 320px;
       cursor: pointer;
-      border-radius: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      div{
+        position: absolute;
+        right: 125px;
+        top: 80px;
+      }
     }
     .robot{
-      margin-top: 370px;
-      margin-right: 50px;
-      width: 300px;
-      height: 510px;
+      position: fixed;
+      top: 38%;
+      right: 25%;
+      width: 320px;
+      height: 540px;
       cursor: pointer;
-      border-radius: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      div{
+        position: absolute;
+        top: 280px;
+      }
     }
   }
 }

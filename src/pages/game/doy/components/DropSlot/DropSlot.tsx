@@ -13,7 +13,15 @@ type DropSlotProps = {
 const DropSlot = ({ index, handleDrop, positions }: DropSlotProps) => {
   const [, drop] = useDrop({
     accept: 'bag',
-    drop: (item: { id: number }) => handleDrop(index, item),
+    drop: (item: { id: number }) => {
+      if (positions[index] === item.id) {
+
+        handleDrop(null, item);
+      } else {
+
+        handleDrop(index, item);
+      }
+    },
   });
 
   const currentBag = bags.find((bag) => bag.id === positions[index]);
