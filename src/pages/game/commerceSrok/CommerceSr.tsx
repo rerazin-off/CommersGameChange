@@ -31,32 +31,32 @@ const shuffleArray = (array: any[]) => {
 export const CommerceSr = () => {
   const initialPairs: ImagePair[] = [
     {
-      top: { src: '/src/assets/img/время.svg', alt: 'Бизнес', id: 1 },
-      bottom: { src: '/src/assets/img/карта5.svg', alt: 'Финансы', id: 1 }
+      top: { src: '/src/assets/img/время.svg', alt: 'время', id: 1 },
+      bottom: { src: '/src/assets/img/карта5.svg', alt: 'карта', id: 1 }
     },
     {
-      top: { src: '/src/assets/img/время2.svg', alt: 'Прогресс', id: 2 },
-      bottom: { src: '/src/assets/img/карта9.svg', alt: 'Рост', id: 2 }
+      top: { src: '/src/assets/img/время2.svg', alt: 'время', id: 2 },
+      bottom: { src: '/src/assets/img/карта9.svg', alt: 'карта', id: 2 }
     },
     {
-      top: { src: '/src/assets/img/время3.svg', alt: 'Прогресс', id: 3 },
-      bottom: { src: '/src/assets/img/карта7.svg', alt: 'Рост', id: 3 }
+      top: { src: '/src/assets/img/время3.svg', alt: 'время', id: 3 },
+      bottom: { src: '/src/assets/img/карта7.svg', alt: 'карта', id: 3 }
     },
     {
-      top: { src: '/src/assets/img/время4.svg', alt: 'Прогресс', id: 4 },
-      bottom: { src: '/src/assets/img/карта3.svg', alt: 'Рост', id: 4 }
+      top: { src: '/src/assets/img/время4.svg', alt: 'время', id: 4 },
+      bottom: { src: '/src/assets/img/картасал.svg', alt: 'карта', id: 4 }
     },
     {
-      top: { src: '/src/assets/img/время5.svg', alt: 'Прогресс', id: 5 },
-      bottom: { src: '/src/assets/img/карта2.svg', alt: 'Рост', id: 5 }
+      top: { src: '/src/assets/img/время5.svg', alt: 'время', id: 5 },
+      bottom: { src: '/src/assets/img/картасуб.svg', alt: 'карта', id: 5 }
     },
     {
-      top: { src: '/src/assets/img/время6.svg', alt: 'Прогресс', id: 6 },
-      bottom: { src: '/src/assets/img/карта4.svg', alt: 'Рост', id: 6 }
+      top: { src: '/src/assets/img/время6.svg', alt: 'время', id: 6 },
+      bottom: { src: '/src/assets/img/карта4.svg', alt: 'карта', id: 6 }
     },
     {
-      top: { src: '/src/assets/img/время7.svg', alt: 'Прогресс', id: 7 },
-      bottom: { src: '/src/assets/img/карта6.svg', alt: 'Рост', id: 7 }
+      top: { src: '/src/assets/img/время7.svg', alt: 'время', id: 7 },
+      bottom: { src: '/src/assets/img/карта6.svg', alt: 'карта', id: 7 }
     }
   ];
 
@@ -66,10 +66,10 @@ export const CommerceSr = () => {
   const [attempts, setAttempts] = useState(0);
   const [openIsCard, setOpenIsCard] = useState(false);
   const [activeCard, setActiveCard] = useState<number | null>(null);
-  const [touchStartPos, setTouchStartPos] = useState({ x: 0, y: 0 });
   const draggedCardRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
+  const touchStartPosRef = useRef<{ x: number; y: number } | null>(null);
 
   useEffect(() => {
     const shuffled = shuffleArray([...initialPairs]);
@@ -82,33 +82,31 @@ export const CommerceSr = () => {
 
   const handleTouchStart = (id: number) => (e: React.TouchEvent) => {
     const touch = e.touches[0];
-    const target = e.currentTarget as HTMLElement;
-    const rect = target.getBoundingClientRect();
-    
-    setTouchStartPos({ 
-      x: touch.clientX - rect.left, 
-      y: touch.clientY - rect.top 
-    });
+    touchStartPosRef.current = { x: touch.clientX, y: touch.clientY };
     setActiveCard(id);
     
-    if (draggedCardRef.current && target.firstChild) {
+    if (draggedCardRef.current) {
+      const target = e.currentTarget as HTMLElement;
       const cardElement = target.firstChild as HTMLElement;
       const cardRect = cardElement.getBoundingClientRect();
       
+      // Сразу устанавливаем карточку под палец
       draggedCardRef.current.style.width = `${cardRect.width}px`;
       draggedCardRef.current.style.height = `${cardRect.height}px`;
       draggedCardRef.current.style.position = 'fixed';
       draggedCardRef.current.style.left = `${touch.clientX}px`;
       draggedCardRef.current.style.top = `${touch.clientY}px`;
+      draggedCardRef.current.style.transform = 'translate(-50%, -50%)';
       draggedCardRef.current.style.opacity = '0.8';
       draggedCardRef.current.style.zIndex = '1000';
       draggedCardRef.current.style.pointerEvents = 'none';
-      draggedCardRef.current.style.transform = 'translate(-50%, -50%)';
+      draggedCardRef.current.style.transition = 'none';
+      draggedCardRef.current.style.display = 'block';
     }
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
-    if (!activeCard || !draggedCardRef.current) return;
+    if (!activeCard || !draggedCardRef.current || !touchStartPosRef.current) return;
     e.preventDefault();
     
     const touch = e.touches[0];
@@ -116,17 +114,16 @@ export const CommerceSr = () => {
     draggedCardRef.current.style.top = `${touch.clientY}px`;
   };
 
-  const handleTouchEnd = (targetIndex: number) => (e: React.TouchEvent) => {
+  const handleTouchEnd = (e: React.TouchEvent) => {
     if (!activeCard) return;
     
     const touch = e.changedTouches[0];
     const endPos = { x: touch.clientX, y: touch.clientY };
     
-    // Находим все target контейнеры
+    // Находим целевой контейнер
     const targetContainers = document.querySelectorAll(`.${classes.targetContainer}`);
-    
-    // Проверяем, над каким контейнером отпустили карточку
     let targetContainerIndex = -1;
+    
     targetContainers.forEach((container, index) => {
       const rect = container.getBoundingClientRect();
       if (
@@ -139,18 +136,38 @@ export const CommerceSr = () => {
       }
     });
     
-    // Если нашли контейнер, куда можно положить карточку
     if (targetContainerIndex !== -1) {
       const newPositions = [...positions];
-      // Проверяем, что слот пустой или карточка уже там
-      if (newPositions[targetContainerIndex] === 0 || newPositions[targetContainerIndex] !== activeCard) {
+      const currentPositionIndex = newPositions.findIndex(pos => pos === activeCard);
+      
+      // Если на целевом месте уже есть карточка, меняем их местами
+      if (newPositions[targetContainerIndex] !== 0) {
+        // Если карточка перемещается с верхнего ряда
+        if (currentPositionIndex === -1) {
+          newPositions[targetContainerIndex] = activeCard;
+        } 
+        // Если карточка перемещается с другого нижнего места
+        else {
+          const temp = newPositions[targetContainerIndex];
+          newPositions[targetContainerIndex] = activeCard;
+          newPositions[currentPositionIndex] = temp;
+        }
+      } 
+      // Если целевое место пустое
+      else {
+        // Если карточка перемещается с другого нижнего места
+        if (currentPositionIndex !== -1) {
+          newPositions[currentPositionIndex] = 0;
+        }
         newPositions[targetContainerIndex] = activeCard;
-        setPositions(newPositions);
       }
+      
+      setPositions(newPositions);
     }
     
-    // Сбрасываем стили перетаскиваемой карточки
+    // Скрываем перетаскиваемую карточку
     if (draggedCardRef.current) {
+      draggedCardRef.current.style.display = 'none';
       draggedCardRef.current.style.position = '';
       draggedCardRef.current.style.left = '';
       draggedCardRef.current.style.top = '';
@@ -158,9 +175,11 @@ export const CommerceSr = () => {
       draggedCardRef.current.style.zIndex = '';
       draggedCardRef.current.style.pointerEvents = '';
       draggedCardRef.current.style.transform = '';
+      draggedCardRef.current.style.transition = '';
     }
     
     setActiveCard(null);
+    touchStartPosRef.current = null;
   };
 
   const checkResults = () => {
@@ -177,6 +196,7 @@ export const CommerceSr = () => {
 
   const handleDragStart = (id: number) => (e: React.DragEvent) => {
     e.dataTransfer.setData('cardId', id.toString());
+    setActiveCard(id);
   };
 
   const handleDrop = (targetIndex: number) => (e: React.DragEvent) => {
@@ -184,18 +204,35 @@ export const CommerceSr = () => {
     const cardId = Number(e.dataTransfer.getData('cardId'));
     
     const newPositions = [...positions];
-    newPositions[targetIndex] = cardId;
+    const currentPositionIndex = newPositions.findIndex(pos => pos === cardId);
+    
+    // Если на целевом месте уже есть карточка, меняем их местами
+    if (newPositions[targetIndex] !== 0) {
+      // Если карточка перемещается с верхнего ряда
+      if (currentPositionIndex === -1) {
+        newPositions[targetIndex] = cardId;
+      } 
+      // Если карточка перемещается с другого нижнего места
+      else {
+        const temp = newPositions[targetIndex];
+        newPositions[targetIndex] = cardId;
+        newPositions[currentPositionIndex] = temp;
+      }
+    } 
+    // Если целевое место пустое
+    else {
+      // Если карточка перемещается с другого нижнего места
+      if (currentPositionIndex !== -1) {
+        newPositions[currentPositionIndex] = 0;
+      }
+      newPositions[targetIndex] = cardId;
+    }
+    
     setPositions(newPositions);
   };
 
   const handleDragEnd = (e: React.DragEvent) => {
-    // Логика при завершении перетаскивания
-  };
-
-  const resetPosition = (index: number) => {
-    const newPositions = [...positions];
-    newPositions[index] = 0;
-    setPositions(newPositions);
+    setActiveCard(null);
   };
 
   const handleCloseCard = () => {
@@ -215,10 +252,20 @@ export const CommerceSr = () => {
         {shuffledPairs.map((pair) => (
           <div 
             key={`top-${pair.top.id}`}
-            style={{ opacity: draggedCardIds.includes(pair.top.id) ? 0.5 : 1 }}
+            style={{ display: draggedCardIds.includes(pair.top.id) ? 'none' : 'block' }}
             onTouchStart={handleTouchStart(pair.top.id)}
             onTouchMove={handleTouchMove}
-            onTouchEnd={handleTouchEnd(-1)} // Передаем -1 как индекс, чтобы не помещать карточку
+            onTouchEnd={handleTouchEnd}
+            onTouchCancel={() => {
+              if (draggedCardRef.current) {
+                draggedCardRef.current.style.display = 'none';
+              }
+              setActiveCard(null);
+              touchStartPosRef.current = null;
+            }}
+            draggable={true}
+            onDragStart={handleDragStart(pair.top.id)}
+            onDragEnd={handleDragEnd}
           >
             <ImageCard
               src={pair.top.src}
@@ -244,34 +291,42 @@ export const CommerceSr = () => {
             <div 
               key={`bottom-${index}`} 
               className={classes.targetContainer}
-              onTouchEnd={handleTouchEnd(index)}
-              onTouchMove={handleTouchMove}
-              onTouchCancel={() => setActiveCard(null)}
+              onDrop={handleDrop(index)}
+              onDragOver={(e: React.DragEvent) => e.preventDefault()}
             >
               <ImageCard
                 src={pair.bottom.src}
                 alt={pair.bottom.alt}
                 number={pair.bottom.id}
-                onDrop={handleDrop(index)}
-                onDragOver={(e: React.DragEvent) => e.preventDefault()}
                 className={classes.baseCard}
                 style={{ opacity: positions[index] !== 0 ? 0.5 : 1 }}
               />
               
               {positions[index] !== 0 && (
-                <div className={classes.overlayCard}>
+                <div 
+                  className={classes.overlayCard}
+                  onTouchStart={handleTouchStart(positions[index])}
+                  onTouchMove={handleTouchMove}
+                  onTouchEnd={handleTouchEnd}
+                  onTouchCancel={() => {
+                    if (draggedCardRef.current) {
+                      draggedCardRef.current.style.display = 'none';
+                    }
+                    setActiveCard(null);
+                    touchStartPosRef.current = null;
+                  }}
+                  draggable={true}
+                  onDragStart={handleDragStart(positions[index])}
+                  onDragEnd={handleDragEnd}
+                >
                   <ImageCard
                     src={matchedTopCard!.top.src}
                     alt={matchedTopCard!.top.alt}
                     number={matchedTopCard!.top.id}
+                    draggable={true}
+                    onDragStart={handleDragStart(matchedTopCard!.top.id)}
                     onDragEnd={handleDragEnd}
                   />
-                  <button 
-                    onClick={() => resetPosition(index)}
-                    className={classes.resetButton}
-                  >
-                    ×
-                  </button>
                 </div>
               )}
             </div>
@@ -280,23 +335,24 @@ export const CommerceSr = () => {
       </div>
 
       {/* Перетаскиваемая карточка для touch-устройств */}
-      {activeCard && (
-        <div 
-          ref={draggedCardRef}
-          className={classes.draggedCard}
-          style={{
-            touchAction: 'none',
-            willChange: 'transform'
-          }}
-        >
+      <div 
+        ref={draggedCardRef}
+        className={classes.draggedCard}
+        style={{
+          display: 'none',
+          touchAction: 'none',
+          willChange: 'transform'
+        }}
+      >
+        {activeCard && (
           <ImageCard
             src={shuffledPairs.find(p => p.top.id === activeCard)!.top.src}
             alt={shuffledPairs.find(p => p.top.id === activeCard)!.top.alt}
             number={activeCard}
             style={{ pointerEvents: 'none' }}
           />
-        </div>
-      )}
+        )}
+      </div>
 
       {/* Кнопка проверки */}
       {allCardsPlaced && (

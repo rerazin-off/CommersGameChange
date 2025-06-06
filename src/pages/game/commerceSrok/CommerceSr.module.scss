@@ -9,7 +9,7 @@
   align-items: center;
   justify-content: center;
   height: 1150px;
-  background: url(/src/assets/img/фон.svg);
+  background: url(/src/assets/img/фонт.svg);
   overflow: hidden;
 }
 
@@ -21,7 +21,7 @@
  align-items: center;
  margin-bottom: 20px;
  position: absolute;
-  transform: translateY(-400px);
+  transform: translateY(-460px);
 }
 
 .bottomRow {
@@ -31,7 +31,7 @@
   flex-wrap: wrap;
  align-items: center;
  position: absolute;
- transform: translateY(60px);
+ transform: translateY(30px);
 }
 
 .targetContainer {
