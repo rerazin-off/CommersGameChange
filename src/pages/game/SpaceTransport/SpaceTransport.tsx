@@ -24,7 +24,8 @@ type Transport= {
   cost: number,
   numPerson: number,
   active: boolean,
-  rangeDays: [number, number]
+  rangeDays: [number, number],
+  currentPlanetId: number,
 }
 type Planet={
   id: number,
@@ -37,10 +38,10 @@ type Planet={
 }
 
 const transports=[
-  {img: transport1, capacity: 20, amountFuel: 20, cost: 50, numPerson:0, active:true, rangeDays:[1,6]},
-  {img: transport2, capacity: 30, amountFuel: 20, cost: 40, numPerson:0, active:true, rangeDays:[3,8]},
-  {img: transport3, capacity: 50, amountFuel: 20, cost: 30, numPerson:0, active:true, rangeDays:[4,10]},
-  {img: transport4, capacity: 100, amountFuel: 20, cost: 100, numPerson:0, active:false}
+  {img: transport1, capacity: 20, amountFuel: 20, cost: 50, numPerson:0, active:true, rangeDays:[1,6], currentPlanetId: null},
+  {img: transport2, capacity: 30, amountFuel: 20, cost: 40, numPerson:0, active:true, rangeDays:[3,8], currentPlanetId: null},
+  {img: transport3, capacity: 50, amountFuel: 20, cost: 30, numPerson:0, active:true, rangeDays:[4,10], currentPlanetId: null},
+  {img: transport4, capacity: 100, amountFuel: 20, cost: 100, numPerson:0, active:false, currentPlanetId: null}
 ]
 const mainParameters=[
   {name:'Баланс:', value:120},
@@ -48,25 +49,27 @@ const mainParameters=[
   {name:'Дни:', value:0},
   {name:'Количество человек:', value:100},
 ]
-const planets=[
+const dataPlanets=[
   {id:1, img:planet1, countPerson:10, paths:[], pathsPlanet2:[], pathsPlanet3:[]},
   {id:2, img:planet2, countPerson:30, paths:[], pathsPlanet1:[], pathsPlanet3:[]},
   {id:3, img:planet3, countPerson:60, paths:[], pathsPlanet1:[], pathsPlanet2:[]},
 ]
 
 export const SpaceTransport: React.FC = () => {
+  const [planets, setPlanets] = useState<Planet[]>(dataPlanets);
   const [selectedImg, setSelectedImg]=useState<string>(slot);
   const [selectedTransport, setSelectedTransport]=useState<Transport | null>(null);
   const [selectedPlanet, setSelectedPlanet]=useState<Planet | null>()
   const [days, setDays]=useState<number[]>([])
-  const transportRef = useRef();
   const [positionTransport, setPositionTransport]=useState({x:'', y:''})
+  const transportRef = useRef();
+
 
   const generateRandomDays=(max:number, min:number)=>{
     return Math.floor(Math.random()*(max-min)+min)
   }
 
-  const buy=(transport: Transport)=>{
+  const buyTransport=(transport: Transport)=>{
     const balance = mainParameters[0].value;
 
     if (balance>0 && transport.active){
@@ -109,40 +112,53 @@ export const SpaceTransport: React.FC = () => {
   }
 
   const sendTransport=(event: React.MouseEvent, planet: Planet)=>{
-    setSelectedPlanet(planet)
     const notify = () => toast.error('Заполните корабль полностью');
 
     if (!setPositionTransport) return;
 
-    if (selectedTransport.numPerson !== selectedTransport.capacity) {
-      notify();
-      return;
+    if (selectedTransport.currentPlanetId === null) {
+      if (selectedTransport.numPerson !== selectedTransport.capacity) {
+        notify();
+        return;
+      }
     }
-    if (selectedPlanet?.countPerson>0 && selectedTransport?.numPerson>0){
-      setSelectedPlanet({
-        ...selectedPlanet,
-        countPerson: Math.max(0, selectedPlanet?.countPerson-selectedTransport?.numPerson)
+
+    setSelectedPlanet(planet)
+    if (selectedTransport){
+      const updatePlanets=planets.map(p=>{
+        if (p.id===planet.id){
+          return{
+            ...p,
+            countPerson: Math.max(0, p.countPerson-selectedTransport.numPerson)
+          }
+        }
+        return p;
       })
-      planets.map((el)=>(
-        el.id===selectedPlanet?.id ? el.countPerson = Math.max(0, el.countPerson - selectedTransport?.numPerson) : ''
-      ))
-      setSelectedTransport({
-        ...selectedTransport,
-        numPerson: Math.max(0, selectedTransport?.numPerson-selectedPlanet?.countPerson)
-      })
+      setPlanets(updatePlanets)
+      setSelectedTransport(prev=>({
+        ...prev,
+        numPerson: Math.max(0, selectedTransport?.numPerson-planet.countPerson),
+        currentPlanetId: planet.id
+      }))
     }
-    else{
-      setPositionTransport({x: transportRef.current.getBoundingClientRect().x, y: transportRef.current.getBoundingClientRect().y})
-      let x=event.target.x-positionTransport.x+50
-      let y=event.target.y-positionTransport.y+20
-      setSelectedPlanet(null)
-      transportRef.current.style.transform = `translate(${x}px, ${y}px)`;
-      transportRef.current.style.transition = `1.5s`;
-    }
-    if (selectedPlanet && selectedTransport.numPerson===0){
-      transportRef.current.style.display='none'
-    }
+    let x=event.target.x-positionTransport.x+50
+    let y=event.target.y-positionTransport.y+20
+    transportRef.current.style.transform = `translate(${x}px, ${y}px)`;
+    transportRef.current.style.transition = `1.5s`;
   }
+
+  useEffect(() => {
+    if (selectedTransport?.numPerson === 0 && selectedTransport.currentPlanetId !== null){
+      const timer=setTimeout(()=>{
+        transportRef.current.style.transform = `translate(0px, 0px)`
+        setTimeout(()=>{
+          setSelectedTransport(null);
+          setSelectedImg(slot);
+          setSelectedPlanet(null)
+        }, 2000)
+      }, 1000)
+    }
+  }, [selectedTransport?.numPerson]);
 
 
   const changeSelectedTransportNumPerson = (operator: string)=> {
@@ -193,7 +209,7 @@ export const SpaceTransport: React.FC = () => {
             <TransportCard
               key={id}
               transport={el}
-              onBuy={buy}
+              onBuy={buyTransport}
               active={el.active}
             />
           ))}
