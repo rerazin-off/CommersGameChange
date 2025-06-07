@@ -1,0 +1,43 @@
+.card{
+  background: rgba(60,161,190, 0.2);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 2vh;
+  width: 13vw;
+  color: #fff;
+  border-radius: 1vh;
+  position: relative;
+}
+p{
+  margin: 0px;
+}
+button{
+  background: linear-gradient(#3CA1BE, #3DB7A4);
+  font-family: "AA Spaceman";
+  font-size: 10px;
+  border-radius: 5px;
+  padding: 0.5vh 2vw;
+  margin-top: 2vh;
+}
+.inactiveCard{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 100;
+  border-radius: 1vh;
+}
+.windowCard{
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: url('@/assets/img/game_assets/space-transport-img/windowCard.svg');
+  background-size: 100% 100%;
+  padding: 4vh;
+}
