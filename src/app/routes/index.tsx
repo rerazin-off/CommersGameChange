@@ -23,7 +23,7 @@ import { SorterGame } from '../../pages/game/buhgalter/buhGame';
 import { LogistCep } from '../../pages/game/logist/LogistCep';
 import { MusicalGameCategories } from '../../pages/game/musical/MusicalGameCategories';
 import { CommerceSr } from '../../pages/game/commerceSrok/CommerceSr.tsx';
-
+import { SpaceTransport } from '../../pages/game/SpaceTransport/SpaceTransport';
 
 import ExpenseSorterGame from '../../pages/game/buhgalter/buhgame2.0/components/BuhgalGame/BuhgalGame';
 
@@ -84,4 +84,5 @@ export const router = createBrowserRouter([
   { path: '/gamelogist', element: <LogistCep /> },
   { path: '/musicalcategories', element: <MusicalGameCategories /> },
   { path: '/commerceSr', element: <CommerceSr /> },
+  {path: '/SpaceTransport', element: <SpaceTransport/>},
 ]);
