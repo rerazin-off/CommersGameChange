@@ -1,8 +1,8 @@
 import { BagsList } from './types';
 
 export const bags: BagsList = [
-  { id: 1, label: "Дрожжи", image: "src/assets/img/game_assets/commerceTovary/drozhi.svg" },
-  { id: 2, label: "Сайра", image: "src/assets/img/game_assets/commerceTovary/saira.svg" },
+  { id: 1, label: "Дрожжи", image: "src/assets/img/game_assets/commerceTovary/drozhi.svg"},
+  { id: 2, label: "Сайра", image: "src/assets/img/game_assets/commerceTovary/Снимок экрана 2025-06-09 132352-no-bg-preview (carve.photos).png" },
   { id: 3, label: "Копчёная свинина", image: "src/assets/img/game_assets/commerceTovary/svinina.svg" },
   { id: 4, label: "Шоколадка", image: "src/assets/img/game_assets/commerceTovary/chokolate.svg" },
   { id: 5, label: "Макороны", image: "src/assets/img/game_assets/commerceTovary/mocoroni.svg" },
@@ -15,7 +15,7 @@ export const bags: BagsList = [
   { id: 12, label: "Молоко", image: "src/assets/img/game_assets/commerceTovary/milk.svg"},
   { id: 13, label: "Масло", image: "src/assets/img/game_assets/commerceTovary/maslo.svg"},
   { id: 14, label: "Сыр", image: "src/assets/img/game_assets/commerceTovary/syr.svg"},
-  { id: 15, label: "Колбаса", image: "src/assets/img/game_assets/commerceTovary/kolbosa.svg"},
+  { id: 15, label: "Колбаса", image: "src/assets/img/game_assets/commerceTovary/kolbosa.png"},
   { id: 16, label: "Чай", image: "src/assets/img/game_assets/commerceTovary/tea.svg"},
 ];
 

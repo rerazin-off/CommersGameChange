@@ -19,24 +19,24 @@ html{
 //
 .circle {
   width: 486px;
-  height: 402px;
+  height: 437.2px;
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
-  padding: auto;
+  align-content: flex-start; // Добавлено для плотного расположения строк
+  row-gap: 10px; // Вертикальное расстояние между строками
+  column-gap: 10px; // Горизонтальное расстояние между элементами
   justify-content: center;
-  align-items: center;
 
 
 
   &:nth-child(1) {
-    transform: translate(1290px, 50px);
-    background: url("src/assets/img/game_assets/commerceTovary/bakoleay.svg");
+    transform: translate(1290px, 40px);
+    background: url("src/assets/img/game_assets/commerceTovary/bakolleay.svg");
   }
 
   &:nth-child(2) {
-    transform: translate(1290px, 200px);
-    background: url("src/assets/img/game_assets/commerceTovary/gastronomiay.svg");
+    transform: translate(1290px, 180px);
+    background: url("src/assets/img/game_assets/commerceTovary/gostronomiay.svg");
   }
 }
 
@@ -106,7 +106,7 @@ html{
 //}
 
 .container {
-  height: 100vh;
+  height: 100%;
   background: url("../../../assets/img/fon/fon_game_tovary.svg") no-repeat center center;
   background-size: cover;
   position: relative;
@@ -123,8 +123,6 @@ html{
   grid-template-rows: repeat(4, 1fr);    // 4 строки
   gap: 100px; // Равные отступы
   .bag {
-    width: 100px;  // Фиксированный размер
-    height: 100px; // Квадратные элементы
     object-fit: contain; // Сохранение пропорций
     cursor: grab;
     transition: transform 0.2s;
