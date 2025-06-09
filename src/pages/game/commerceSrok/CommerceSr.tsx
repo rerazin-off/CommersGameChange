@@ -360,7 +360,7 @@ export const CommerceSr = () => {
                     onDragStart={handleDragStart(matchedTopCard!.top.id)}
                     onDragEnd={handleDragEnd}
                     style={{
-                      opacity: isCardLocked(positions[index]) ? 0.7 : 1
+                      opacity: isCardLocked(positions[index]) ? 1 : 1
                     }}
                   />
                 </div>
