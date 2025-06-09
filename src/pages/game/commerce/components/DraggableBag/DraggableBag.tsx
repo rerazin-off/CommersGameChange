@@ -12,10 +12,8 @@ type DraggableBagProps = {
 const DraggableBag = ({ bag, onRemove, isInSlot = false }: DraggableBagProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isDraggingTouch, setIsDraggingTouch] = useState(false);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
   const [touchOffset, setTouchOffset] = useState({ x: 0, y: 0 });
 
-  // Настройка drag-and-drop для мыши
   const [{ isDragging }, drag] = useDrag(() => ({
     type: 'bag',
     item: { id: bag?.id },
@@ -27,13 +25,25 @@ const DraggableBag = ({ bag, onRemove, isInSlot = false }: DraggableBagProps) =>
   drag(containerRef);
 
   const handleTouchStart = (e: React.TouchEvent) => {
+    if (!containerRef.current) return;
+
     const touch = e.touches[0];
-    const rect = e.currentTarget.getBoundingClientRect();
+    const rect = containerRef.current.getBoundingClientRect();
+
     setTouchOffset({
       x: touch.clientX - rect.left,
       y: touch.clientY - rect.top,
     });
     setIsDraggingTouch(true);
+
+    // Фиксируем начальную позицию
+    containerRef.current.style.position = 'fixed';
+    containerRef.current.style.left = `${rect.left}px`;
+    containerRef.current.style.top = `${rect.top}px`;
+    containerRef.current.style.zIndex = '1000';
+    containerRef.current.style.width = `${rect.width}px`;
+    containerRef.current.style.height = `${rect.height}px`;
+
     e.preventDefault();
   };
 
@@ -44,15 +54,20 @@ const DraggableBag = ({ bag, onRemove, isInSlot = false }: DraggableBagProps) =>
     const newX = touch.clientX - touchOffset.x;
     const newY = touch.clientY - touchOffset.y;
 
-    setPosition({ x: newX, y: newY });
-    containerRef.current.style.transform = `translate(${newX}px, ${newY}px)`;
+    containerRef.current.style.left = `${newX}px`;
+    containerRef.current.style.top = `${newY}px`;
     e.preventDefault();
   };
 
   const handleTouchEnd = () => {
     setIsDraggingTouch(false);
     if (containerRef.current) {
-      containerRef.current.style.transform = 'none';
+      containerRef.current.style.position = '';
+      containerRef.current.style.left = '';
+      containerRef.current.style.top = '';
+      containerRef.current.style.zIndex = '';
+      containerRef.current.style.width = '';
+      containerRef.current.style.height = '';
     }
   };
 
@@ -64,11 +79,6 @@ const DraggableBag = ({ bag, onRemove, isInSlot = false }: DraggableBagProps) =>
       className={`${classes.draggableContainer} ${isInSlot ? classes.inSlot : ''}`}
       style={{
         opacity: isDragging || isDraggingTouch ? 0.8 : 1,
-        position: isDraggingTouch ? 'fixed' : 'relative',
-        zIndex: isDraggingTouch ? 1000 : 'auto',
-        left: isDraggingTouch ? `${position.x}px` : 'auto',
-        top: isDraggingTouch ? `${position.y}px` : 'auto',
-        touchAction: 'none',
       }}
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
