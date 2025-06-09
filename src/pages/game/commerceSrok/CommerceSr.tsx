@@ -77,13 +77,17 @@ export const CommerceSr = () => {
     setShuffledPairs(shuffled);
     setPositions(Array(shuffled.length).fill(0));
     setCorrectOrder(shuffled.map(pair => pair.top.id));
+    setLockedCards([]);
   }, []);
 
   const allCardsPlaced = positions.every(pos => pos !== 0);
 
+  const isCardLocked = (cardId: number) => {
+    return lockedCards.includes(cardId);
+  };
+
   const handleTouchStart = (id: number) => (e: React.TouchEvent) => {
-    // Не позволяем перемещать заблокированные карточки
-    if (lockedCards.includes(id)) return;
+    if (isCardLocked(id)) return;
     
     const touch = e.touches[0];
     touchStartPosRef.current = { x: touch.clientX, y: touch.clientY };
@@ -109,7 +113,7 @@ export const CommerceSr = () => {
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
-    if (!activeCard || !draggedCardRef.current || !touchStartPosRef.current || lockedCards.includes(activeCard)) return;
+    if (!activeCard || !draggedCardRef.current || !touchStartPosRef.current || isCardLocked(activeCard)) return;
     e.preventDefault();
     
     const touch = e.touches[0];
@@ -118,7 +122,7 @@ export const CommerceSr = () => {
   };
 
   const handleTouchEnd = (e: React.TouchEvent) => {
-    if (!activeCard || lockedCards.includes(activeCard)) return;
+    if (!activeCard || isCardLocked(activeCard)) return;
     
     const touch = e.changedTouches[0];
     const endPos = { x: touch.clientX, y: touch.clientY };
@@ -142,15 +146,32 @@ export const CommerceSr = () => {
       const newPositions = [...positions];
       const currentPositionIndex = newPositions.findIndex(pos => pos === activeCard);
       
+      // Если целевое место уже заблокировано, ничего не делаем
+      if (lockedCards.includes(newPositions[targetContainerIndex])) {
+        if (draggedCardRef.current) {
+          draggedCardRef.current.style.display = 'none';
+        }
+        setActiveCard(null);
+        touchStartPosRef.current = null;
+        return;
+      }
+      
+      // Если на целевом месте уже есть карточка, меняем их местами
       if (newPositions[targetContainerIndex] !== 0) {
+        // Если карточка перемещается с верхнего ряда
         if (currentPositionIndex === -1) {
           newPositions[targetContainerIndex] = activeCard;
-        } else {
+        } 
+        // Если карточка перемещается с другого нижнего места
+        else {
           const temp = newPositions[targetContainerIndex];
           newPositions[targetContainerIndex] = activeCard;
           newPositions[currentPositionIndex] = temp;
         }
-      } else {
+      } 
+      // Если целевое место пустое
+      else {
+        // Если карточка перемещается с другого нижнего места
         if (currentPositionIndex !== -1) {
           newPositions[currentPositionIndex] = 0;
         }
@@ -178,26 +199,29 @@ export const CommerceSr = () => {
 
   const checkResults = () => {
     setAttempts(prev => prev + 1);
+    const newLockedCards = [...lockedCards];
+    
+    // Блокируем правильно размещенные карточки
+    positions.forEach((pos, idx) => {
+      if (pos === correctOrder[idx] && !lockedCards.includes(pos)) {
+        newLockedCards.push(pos);
+      }
+    });
+    
+    setLockedCards(newLockedCards);
+    
     if (JSON.stringify(positions) === JSON.stringify(correctOrder)) {
       setOpenIsCard(true);
-      // Блокируем все карточки при правильном ответе
-      setLockedCards([...correctOrder]);
     } else {
-      const newLockedCards: number[] = [];
-      const newPositions = positions.map((pos, idx) => {
-        if (pos === correctOrder[idx]) {
-          newLockedCards.push(pos); // Добавляем правильные карточки в заблокированные
-          return pos;
-        }
-        return 0;
-      });
+      const newPositions = positions.map((pos, idx) =>
+        pos === correctOrder[idx] ? pos : 0
+      );
       setPositions(newPositions);
-      setLockedCards(newLockedCards); // Обновляем список заблокированных карточек
     }
   };
 
   const handleDragStart = (id: number) => (e: React.DragEvent) => {
-    if (lockedCards.includes(id)) {
+    if (isCardLocked(id)) {
       e.preventDefault();
       return;
     }
@@ -209,8 +233,7 @@ export const CommerceSr = () => {
     e.preventDefault();
     const cardId = Number(e.dataTransfer.getData('cardId'));
     
-    // Не позволяем перемещать карточки на заблокированные позиции
-    if (lockedCards.includes(cardId) || lockedCards.includes(positions[targetIndex])) {
+    if (isCardLocked(cardId) || lockedCards.includes(positions[targetIndex])) {
       return;
     }
     
@@ -257,10 +280,10 @@ export const CommerceSr = () => {
           <div 
             key={`top-${pair.top.id}`}
             style={{ 
-              display: draggedCardIds.includes(pair.top.id) || lockedCards.includes(pair.top.id) ? 'none' : 'block',
-              cursor: lockedCards.includes(pair.top.id) ? 'not-allowed' : 'pointer'
+              display: draggedCardIds.includes(pair.top.id) ? 'none' : 'block',
+              opacity: isCardLocked(pair.top.id) ? 0.5 : 1
             }}
-            onTouchStart={lockedCards.includes(pair.top.id) ? undefined : handleTouchStart(pair.top.id)}
+            onTouchStart={handleTouchStart(pair.top.id)}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
             onTouchCancel={() => {
@@ -270,7 +293,7 @@ export const CommerceSr = () => {
               setActiveCard(null);
               touchStartPosRef.current = null;
             }}
-            draggable={!lockedCards.includes(pair.top.id)}
+            draggable={!isCardLocked(pair.top.id)}
             onDragStart={handleDragStart(pair.top.id)}
             onDragEnd={handleDragEnd}
           >
@@ -278,7 +301,7 @@ export const CommerceSr = () => {
               src={pair.top.src}
               alt={pair.top.alt}
               number={pair.top.id}
-              draggable={!lockedCards.includes(pair.top.id)}
+              draggable={!isCardLocked(pair.top.id)}
               onDragStart={handleDragStart(pair.top.id)}
               onDragEnd={handleDragEnd}
               className={classes.draggableCard}
@@ -293,35 +316,26 @@ export const CommerceSr = () => {
           const matchedTopCard = positions[index] 
             ? shuffledPairs.find(p => p.top.id === positions[index])
             : null;
-          const isLocked = lockedCards.includes(positions[index]);
 
           return (
             <div 
               key={`bottom-${index}`} 
               className={classes.targetContainer}
-              onDrop={isLocked ? undefined : handleDrop(index)}
-              onDragOver={(e: React.DragEvent) => {
-                if (!isLocked) e.preventDefault();
-              }}
+              onDrop={handleDrop(index)}
+              onDragOver={(e: React.DragEvent) => e.preventDefault()}
             >
               <ImageCard
                 src={pair.bottom.src}
                 alt={pair.bottom.alt}
                 number={pair.bottom.id}
                 className={classes.baseCard}
-                style={{ 
-                  opacity: positions[index] !== 0 ? 0.5 : 1,
-                  cursor: isLocked ? 'not-allowed' : 'pointer'
-                }}
+                style={{ opacity: positions[index] !== 0 ? 0.5 : 1 }}
               />
               
               {positions[index] !== 0 && (
                 <div 
                   className={classes.overlayCard}
-                  style={{
-                    cursor: isLocked ? 'not-allowed' : 'pointer'
-                  }}
-                  onTouchStart={isLocked ? undefined : handleTouchStart(positions[index])}
+                  onTouchStart={handleTouchStart(positions[index])}
                   onTouchMove={handleTouchMove}
                   onTouchEnd={handleTouchEnd}
                   onTouchCancel={() => {
@@ -331,17 +345,23 @@ export const CommerceSr = () => {
                     setActiveCard(null);
                     touchStartPosRef.current = null;
                   }}
-                  draggable={!isLocked}
+                  draggable={!isCardLocked(positions[index])}
                   onDragStart={handleDragStart(positions[index])}
                   onDragEnd={handleDragEnd}
+                  style={{
+                    cursor: isCardLocked(positions[index]) ? 'not-allowed' : 'move'
+                  }}
                 >
                   <ImageCard
                     src={matchedTopCard!.top.src}
                     alt={matchedTopCard!.top.alt}
                     number={matchedTopCard!.top.id}
-                    draggable={!isLocked}
+                    draggable={!isCardLocked(positions[index])}
                     onDragStart={handleDragStart(matchedTopCard!.top.id)}
                     onDragEnd={handleDragEnd}
+                    style={{
+                      opacity: isCardLocked(positions[index]) ? 0.7 : 1
+                    }}
                   />
                 </div>
               )}
@@ -360,7 +380,7 @@ export const CommerceSr = () => {
           willChange: 'transform'
         }}
       >
-        {activeCard && (
+        {activeCard && !isCardLocked(activeCard) && (
           <ImageCard
             src={shuffledPairs.find(p => p.top.id === activeCard)!.top.src}
             alt={shuffledPairs.find(p => p.top.id === activeCard)!.top.alt}
