@@ -15,7 +15,8 @@ const gameData: Record<string, { title: string; body: string; url: string }> = {
   teleskaGame: {
     title: 'Оборудование',
     body: 'Распределите оборудование по отдулам магазина правильно!',
-    url: '../../../production/komercia/index.html'
+    url:'tovary'
+    // url: '../../../production/komercia/index.html'
   },
 };
 
