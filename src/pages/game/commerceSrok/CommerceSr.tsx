@@ -31,31 +31,31 @@ const shuffleArray = (array: any[]) => {
 export const CommerceSr = () => {
   const initialPairs: ImagePair[] = [
     {
-      top: { src: '/src/assets/img/время.svg', alt: 'время', id: 1 },
+      top: { src: '/src/assets/img/6.svg', alt: 'время', id: 1 },
       bottom: { src: '/src/assets/img/карта5.svg', alt: 'карта', id: 1 }
     },
     {
-      top: { src: '/src/assets/img/время2.svg', alt: 'время', id: 2 },
+      top: { src: '/src/assets/img/24.svg', alt: 'время', id: 2 },
       bottom: { src: '/src/assets/img/карта9.svg', alt: 'карта', id: 2 }
     },
     {
-      top: { src: '/src/assets/img/время3.svg', alt: 'время', id: 3 },
+      top: { src: '/src/assets/img/36.svg', alt: 'время', id: 3 },
       bottom: { src: '/src/assets/img/карта7.svg', alt: 'карта', id: 3 }
     },
     {
-      top: { src: '/src/assets/img/время4.svg', alt: 'время', id: 4 },
+      top: { src: '/src/assets/img/12.svg', alt: 'время', id: 4 },
       bottom: { src: '/src/assets/img/картасал.svg', alt: 'карта', id: 4 }
     },
     {
-      top: { src: '/src/assets/img/время5.svg', alt: 'время', id: 5 },
+      top: { src: '/src/assets/img/18.svg', alt: 'время', id: 5 },
       bottom: { src: '/src/assets/img/картасуб.svg', alt: 'карта', id: 5 }
     },
     {
-      top: { src: '/src/assets/img/время6.svg', alt: 'время', id: 6 },
+      top: { src: '/src/assets/img/72.svg', alt: 'время', id: 6 },
       bottom: { src: '/src/assets/img/карта4.svg', alt: 'карта', id: 6 }
     },
     {
-      top: { src: '/src/assets/img/время7.svg', alt: 'время', id: 7 },
+      top: { src: '/src/assets/img/48.svg', alt: 'время', id: 7 },
       bottom: { src: '/src/assets/img/карта6.svg', alt: 'карта', id: 7 }
     }
   ];
