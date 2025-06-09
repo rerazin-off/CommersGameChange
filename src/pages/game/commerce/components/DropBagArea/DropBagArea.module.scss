@@ -110,7 +110,7 @@ html{
 .bags {
   position: absolute;
   left: 100px; // Отступ слева
-  top: 50%; // Центрирование по вертикали
+  top: 55%; // Центрирование по вертикали
   transform: translateY(-60%); // Точное центрирование
   display: grid;
   grid-template-columns: repeat(4, 1fr); // 4 колонки
@@ -157,5 +157,5 @@ html{
   height: 100%;
   pointer-events: none;
   user-select: none;
-  gap: 100px;
+  gap: 300px;
 }
