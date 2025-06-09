@@ -111,6 +111,7 @@ html{
   position: absolute;
   left: 100px; // Отступ слева
   top: 50%; // Центрирование по вертикали
+  transform: translateY(-30%); // Точное центрирование
   transform: translateY(-60%); // Точное центрирование
   display: grid;
   grid-template-columns: repeat(4, 1fr); // 4 колонки
@@ -131,6 +132,8 @@ html{
 }
 
 .inSlot {
+  width: 90px !important;
+  height: 90px !important;
   width: 80px !important;
   height: 80px !important;
 
@@ -156,6 +159,10 @@ html{
   width: 100px;
   height: 100px;
   cursor: grab;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translate(30px, 30px);
 
   &:active {
     cursor: grabbing;
@@ -163,6 +170,11 @@ html{
 }
 
 .bagImage {
+  width: 150%;
+  height: 150%;
+  pointer-events: none;
+  user-select: none;
+  gap: 20px;
   width: 200%;
   height: 200%;
   pointer-events: none;

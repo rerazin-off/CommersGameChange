@@ -13,6 +13,10 @@ import { RoutesEnum } from '../../../app/routes';
 
 const touchBackendOptions = {
   enableMouseEvents: true,
+  delayTouchStart: 0,  // Убираем задержку
+  delay: 0,           // Мгновенный отклик
+  ignoreContextMenu: true,  // Игнорировать контекстное меню
+  enableTouchEvents: true,  // Включить touch-события
 };
 
 export const CommerceTovary = () => {
