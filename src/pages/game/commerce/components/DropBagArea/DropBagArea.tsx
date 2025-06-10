@@ -27,11 +27,14 @@ const DropBagArea = ({ positions, setPositions }: DropBagAreaProps) => {
 
   return (
     <div ref={drop} className={classes.bags}>
-      {shuffledBags
-        .filter(bag => !positions.flat().includes(bag.id))
-        .map(bag => (
+      {shuffledBags.map(bag => {
+        const isPlaced = positions.flat().includes(bag.id);
+        return isPlaced ? (
+          <div key={bag.id} className={classes.placeholder} /> // Пустой placeholder
+        ) : (
           <DraggableBag key={bag.id} bag={bag} />
-        ))}
+        );
+      })}
     </div>
   );
 };
