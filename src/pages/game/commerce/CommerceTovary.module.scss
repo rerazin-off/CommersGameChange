@@ -118,8 +118,6 @@ html{
   gap: 100px; // Равные отступы
 
   .bag {
-    width: 100px;  // Фиксированный размер
-    height: 100px; // Квадратные элементы
     object-fit: contain; // Сохранение пропорций
     cursor: grab;
     transition: transform 0.2s;

@@ -19,6 +19,7 @@ const touchBackendOptions = {
   enableTouchEvents: true,  // Включить touch-события
 };
 
+
 export const CommerceTovary = () => {
   // Теперь positions хранит массивы ID для каждого слота
   const [positions, setPositions] = useState<number[][]>(Array(2).fill([]));

@@ -111,14 +111,12 @@ html{
   position: absolute;
   left: 100px; // Отступ слева
   top: 50%; // Центрирование по вертикали
-  transform: translateY(-30%); // Точное центрирование
+  transform: translateY(-20%); // Точное центрирование
   display: grid;
   grid-template-columns: repeat(4, 1fr); // 4 колонки
   grid-template-rows: repeat(4, 1fr);    // 4 строки
   gap: 100px; // Равные отступы
   .bag {
-    width: 100px;  // Фиксированный размер
-    height: 100px; // Квадратные элементы
     object-fit: contain; // Сохранение пропорций
     cursor: grab;
     transition: transform 0.2s;
@@ -163,6 +161,7 @@ html{
 
   &:active {
     cursor: grabbing;
+    transform: none !important;
   }
 }
 
@@ -171,5 +170,6 @@ html{
   height: 150%;
   pointer-events: none;
   user-select: none;
+  object-fit: contain;
   gap: 20px;
 }
