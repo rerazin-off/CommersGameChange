@@ -107,24 +107,37 @@ html{
   overflow: hidden;
 }
 
+//.bags {
+//  position: absolute;
+//  left: 100px; // Отступ слева
+//  top: 55%; // Центрирование по вертикали
+//  transform: translateY(-60%); // Точное центрирование
+//  display: grid;
+//  grid-template-columns: repeat(4, 1fr); // 4 колонки
+//  grid-template-rows: repeat(4, 1fr);    // 4 строки
+//  gap: 150px; // Равные отступы
+//  .bag {
+//    object-fit: contain; // Сохранение пропорций
+//    cursor: grab;
+//    transition: transform 0.2s;
 .bags {
   position: absolute;
-  left: 100px; // Отступ слева
-  top: 55%; // Центрирование по вертикали
-  transform: translateY(-60%); // Точное центрирование
+  left: 100px;
+  top: 55%;
+  transform: translateY(-60%);
   display: grid;
-  grid-template-columns: repeat(4, 1fr); // 4 колонки
-  grid-template-rows: repeat(4, 1fr);    // 4 строки
-  gap: 150px; // Равные отступы
-  .bag {
-    object-fit: contain; // Сохранение пропорций
-    cursor: grab;
-    transition: transform 0.2s;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 150px;
 
-    &:active {
-      cursor: grabbing;
-      transform: scale(0.95);
-    }
+  .bag, .placeholder {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .placeholder {
+    visibility: hidden; // Делает placeholder невидимым, но сохраняет место
   }
 }
 

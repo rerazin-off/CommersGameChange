@@ -18,8 +18,8 @@ html{
 //  justify-content: center;
 //
 .circle {
-  width: 486px;
-  height: 437.2px;
+  width: 450px;
+  height: 435px;
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start; // Добавлено для плотного расположения строк
@@ -33,12 +33,14 @@ html{
     transform: translate(1290px, 40px);
     background: url("src/assets/img/game_assets/commerceTovary/bakaleay.svg");
     background-size: contain;
+    background-repeat: no-repeat;
   }
 
   &:nth-child(2) {
     transform: translate(1290px, 180px);
     background: url("src/assets/img/game_assets/commerceTovary/gastronom.svg");
     background-size: contain;
+    background-repeat: no-repeat;
   }
 }
 
