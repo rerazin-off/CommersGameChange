@@ -22,6 +22,9 @@ import { Rocket } from '../../pages/game/rocket/Rocket';
 import { SorterGame } from '../../pages/game/buhgalter/buhGame';
 import { LogistCep } from '../../pages/game/logist/LogistCep';
 import { MusicalGameCategories } from '../../pages/game/musical/MusicalGameCategories';
+import { CommerceSr } from '../../pages/game/commerceSrok/CommerceSr.tsx';
+import { CommerceMat } from '../../pages/game/commerceMat/CommerceMat.tsx';
+
 
 import ExpenseSorterGame from '../../pages/game/buhgalter/buhgame2.0/components/BuhgalGame/BuhgalGame';
 
@@ -37,6 +40,7 @@ export enum RoutesEnum {
   SPECIALKINDERGARDEN='/SpecialKinder',
   DOU = '/dou',
   BANK = '/bank',
+  TORGASHI = '/tovaroveds'
  //  ECONOMIST = '/economist',
  // main
 }
@@ -56,6 +60,7 @@ export const router = createBrowserRouter([
   { path: RoutesEnum.DOU, element: <Dou /> },
   { path: RoutesEnum.BANK, element: <Bank /> },
   { path: RoutesEnum.ECONOMIST, element: <Economist /> },
+  { path: RoutesEnum.TORGASHI, element: <Torgashi /> },
   {
     path: '/dou',
     element: (
@@ -79,4 +84,6 @@ export const router = createBrowserRouter([
 
   { path: '/gamelogist', element: <LogistCep /> },
   { path: '/musicalcategories', element: <MusicalGameCategories /> },
+  { path: '/commerceSr', element: <CommerceSr /> },
+   { path: '/commerceMat', element: <CommerceMat /> },
 ]);
