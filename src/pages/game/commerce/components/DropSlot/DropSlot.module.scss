@@ -31,12 +31,14 @@ html{
 
   &:nth-child(1) {
     transform: translate(1290px, 40px);
-    background: url("src/assets/img/game_assets/commerceTovary/bakolleay.svg");
+    background: url("src/assets/img/game_assets/commerceTovary/bakaleay.svg");
+    background-size: contain;
   }
 
   &:nth-child(2) {
     transform: translate(1290px, 180px);
-    background: url("src/assets/img/game_assets/commerceTovary/gostronomiay.svg");
+    background: url("src/assets/img/game_assets/commerceTovary/gastronom.svg");
+    background-size: contain;
   }
 }
 
@@ -44,6 +46,8 @@ html{
 .inSlot {
   width: 80px !important; // Уменьшенный размер
   height: 80px !important;
+  position: static !important;
+  transform: none !important;
 }
 //    &:nth-child(3) {
 //      transform: translate(270px, -470px);
@@ -144,4 +148,12 @@ html{
   position: absolute;
   bottom: 20px;
   left: 20px;
+}
+
+.bagWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 80px;
 }
