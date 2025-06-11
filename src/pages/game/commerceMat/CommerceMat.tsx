@@ -71,11 +71,11 @@ export const CommerceMat = () => {
       bottom: { src: '/src/assets/img/commerceMat/200y.svg', alt: 'карта', id:11 }
     },
      {
-      top: { src: '/src/assets/img/commerceMat/greenbox.svg', alt: 'время', id: 12 },
+      top: { src: '/src/assets/img/commerceMat/plastic.svg', alt: 'время', id: 12 },
       bottom: { src: '/src/assets/img/commerceMat/180200y.svg', alt: 'карта', id: 12 }
     },
      {
-      top: { src: '/src/assets/img/commerceMat/alum.svg', alt: 'время', id: 13 },
+      top: { src: '/src/assets/img/commerceMat/alumin.svg', alt: 'время', id: 13 },
       bottom: { src: '/src/assets/img/commerceMat/500y.svg', alt: 'карта', id: 13 }
     }
   ];
@@ -350,8 +350,12 @@ export const CommerceMat = () => {
   number={pair.bottom.id}
   className={classes.baseCard}
   style={{ 
-    opacity: lockedCards.includes(positions[index]) ? 0.7 : positions[index] !== 0 ? 0.5 : 1,
-    transition: 'opacity 0.3s ease'
+    filter: lockedCards.includes(positions[index]) 
+      ? 'blur(1px)' 
+      : positions[index] !== 0 
+        ? 'blur(5px)' 
+        : 'none',
+    transition: 'filter 0.3s ease'
   }}
 />
               

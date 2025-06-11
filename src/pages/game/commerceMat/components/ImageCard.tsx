@@ -46,7 +46,7 @@ const ImageCard: React.FC<ImageCardProps> = ({
       aria-dropeffect={draggable ? "move" : undefined}
       aria-grabbed={draggable ? "false" : undefined}
     >
-    <img 
+   <img 
   src={src} 
   alt={alt}
   id={number?.toString()}
@@ -56,7 +56,8 @@ const ImageCard: React.FC<ImageCardProps> = ({
     height: '190px',
     objectFit: 'contain',
     pointerEvents: 'none',
-    opacity: style.opacity || '1' // Добавьте эту строку
+    filter: style?.filter || 'none', // Добавляем поддержку filter
+    transition: 'filter 0.3s ease'
   }} 
 />
     </div>
