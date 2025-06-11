@@ -55,10 +55,6 @@ export const CommerceMat = () => {
       bottom: { src: '/src/assets/img/commerceMat/13m.svg', alt: 'карта', id: 6 }
     },
     {
-      top: { src: '/src/assets/img/commerceMat/ban.svg', alt: 'время', id: 7 },
-      bottom: { src: '/src/assets/img/commerceMat/10yy.svg', alt: 'карта', id: 7 }
-    },
-    {
       top: { src: '/src/assets/img/commerceMat/bata.svg', alt: 'время', id: 8 },
       bottom: { src: '/src/assets/img/commerceMat/110y.svg', alt: 'карта', id: 8 }
     },

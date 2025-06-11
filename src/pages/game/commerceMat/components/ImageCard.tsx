@@ -39,7 +39,8 @@ const ImageCard: React.FC<ImageCardProps> = ({
       style={{
         cursor: draggable ? 'grab' : 'default',
         position: 'relative',
-        ...style
+        width: '95%',
+        height: '95%',
       }}
       className={className}
       aria-dropeffect={draggable ? "move" : undefined}
@@ -51,8 +52,8 @@ const ImageCard: React.FC<ImageCardProps> = ({
         id={number?.toString()}
         draggable="false"
         style={{ 
-          maxWidth: '85%',
-          maxHeight: '85%',
+          width: '235px',
+          height: '190px',
           objectFit: 'contain',
           pointerEvents: 'none'
         }} 
