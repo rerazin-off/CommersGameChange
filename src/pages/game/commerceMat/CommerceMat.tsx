@@ -351,7 +351,7 @@ export const CommerceMat = () => {
   className={classes.baseCard}
   style={{ 
     filter: lockedCards.includes(positions[index]) 
-      ? 'blur(1px)' 
+      ? 'blur(5px)' 
       : positions[index] !== 0 
         ? 'blur(5px)' 
         : 'none',
