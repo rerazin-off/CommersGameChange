@@ -164,6 +164,14 @@ html{
     transform: none !important;
   }
 }
+.dragPreview {
+  position: fixed !important;
+  z-index: 1000;
+  pointer-events: none;
+  width: 80px !important;
+  height: 80px !important;
+  opacity: 0.8;
+  transform: translate(-50%, -50%); }
 
 .bagImage {
   width: 150%;

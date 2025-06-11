@@ -13,6 +13,7 @@ const DraggableBag = ({ bag, onRemove, isInSlot = false }: DraggableBagProps) =>
   const containerRef = useRef<HTMLDivElement>(null);
   const [isDraggingTouch, setIsDraggingTouch] = useState(false);
   const [touchOffset, setTouchOffset] = useState({ x: 0, y: 0 });
+  const [dragPreview, setDragPreview] = useState<HTMLDivElement | null>(null);
 
   const [{ isDragging }, drag] = useDrag(() => ({
     type: 'bag',
@@ -25,7 +26,7 @@ const DraggableBag = ({ bag, onRemove, isInSlot = false }: DraggableBagProps) =>
   drag(containerRef);
 
   const handleTouchStart = (e: React.TouchEvent) => {
-    if (!containerRef.current) return;
+    if (!containerRef.current || isInSlot) return;
 
     const touch = e.touches[0];
     const rect = containerRef.current.getBoundingClientRect();
@@ -36,39 +37,42 @@ const DraggableBag = ({ bag, onRemove, isInSlot = false }: DraggableBagProps) =>
     });
     setIsDraggingTouch(true);
 
-    // Фиксируем начальную позицию
-    containerRef.current.style.position = 'fixed';
-    containerRef.current.style.left = `${rect.left}px`;
-    containerRef.current.style.top = `${rect.top}px`;
-    containerRef.current.style.zIndex = '1000';
-    containerRef.current.style.width = `${rect.width}px`;
-    containerRef.current.style.height = `${rect.height}px`;
+    // Создаем уменьшенное превью для перетаскивания
+    const preview = document.createElement('div');
+    const img = document.createElement('img');
+    img.src = bag?.image || '';
+    img.alt = bag?.label || '';
+    img.style.width = '50px'; // Уменьшенный размер
+    img.style.height = '50px';
+    img.style.objectFit = 'contain';
+    preview.appendChild(img);
 
-    e.preventDefault();
+    preview.style.position = 'fixed';
+    preview.style.left = `${touch.clientX - 25}px`; // Центрируем превью
+    preview.style.top = `${touch.clientY - 25}px`;
+    preview.style.zIndex = '1000';
+    preview.style.pointerEvents = 'none';
+    preview.style.transform = 'scale(1.2)'; // Небольшое увеличение для видимости
+
+    document.body.appendChild(preview);
+    setDragPreview(preview);
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
-    if (!isDraggingTouch || !containerRef.current) return;
+    if (!isDraggingTouch || !dragPreview || isInSlot) return;
 
     const touch = e.touches[0];
-    const newX = touch.clientX - touchOffset.x;
-    const newY = touch.clientY - touchOffset.y;
-
-    containerRef.current.style.left = `${newX}px`;
-    containerRef.current.style.top = `${newY}px`;
+    dragPreview.style.left = `${touch.clientX - 25}px`;
+    dragPreview.style.top = `${touch.clientY - 25}px`;
     e.preventDefault();
   };
 
   const handleTouchEnd = () => {
-    setIsDraggingTouch(false);
-    if (containerRef.current) {
-      containerRef.current.style.position = '';
-      containerRef.current.style.left = '';
-      containerRef.current.style.top = '';
-      containerRef.current.style.zIndex = '';
-      containerRef.current.style.width = '';
-      containerRef.current.style.height = '';
+    if (dragPreview) {
+      document.body.removeChild(dragPreview);
+      setDragPreview(null);
     }
+    setIsDraggingTouch(false);
   };
 
   if (!bag) return null;
@@ -78,7 +82,7 @@ const DraggableBag = ({ bag, onRemove, isInSlot = false }: DraggableBagProps) =>
       ref={containerRef}
       className={`${classes.draggableContainer} ${isInSlot ? classes.inSlot : ''}`}
       style={{
-        opacity: isDragging || isDraggingTouch ? 0.8 : 1,
+        opacity: isDragging || isDraggingTouch ? 0 : 1, // Полностью скрываем оригинал при перетаскивании
       }}
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}

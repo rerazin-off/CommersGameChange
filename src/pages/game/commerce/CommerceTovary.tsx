@@ -45,7 +45,6 @@ export const CommerceTovary = () => {
       return newPositions;
     });
   };
-
   const checkResults = () => {
     setAttempts(prev => prev + 1);
 
