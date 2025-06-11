@@ -39,24 +39,26 @@ const ImageCard: React.FC<ImageCardProps> = ({
       style={{
         cursor: draggable ? 'grab' : 'default',
         position: 'relative',
-        ...style
+        width: '95%',
+        height: '95%',
       }}
       className={className}
       aria-dropeffect={draggable ? "move" : undefined}
       aria-grabbed={draggable ? "false" : undefined}
     >
-      <img 
-        src={src} 
-        alt={alt}
-        id={number?.toString()}
-        draggable="false"
-        style={{ 
-          maxWidth: '85%',
-          maxHeight: '85%',
-          objectFit: 'contain',
-          pointerEvents: 'none'
-        }} 
-      />
+    <img 
+  src={src} 
+  alt={alt}
+  id={number?.toString()}
+  draggable="false"
+  style={{ 
+    width: '235px',
+    height: '190px',
+    objectFit: 'contain',
+    pointerEvents: 'none',
+    opacity: style.opacity || '1' // Добавьте эту строку
+  }} 
+/>
     </div>
   );
 };

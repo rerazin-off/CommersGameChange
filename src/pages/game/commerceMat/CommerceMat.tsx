@@ -55,10 +55,6 @@ export const CommerceMat = () => {
       bottom: { src: '/src/assets/img/commerceMat/13m.svg', alt: 'карта', id: 6 }
     },
     {
-      top: { src: '/src/assets/img/commerceMat/ban.svg', alt: 'время', id: 7 },
-      bottom: { src: '/src/assets/img/commerceMat/10yy.svg', alt: 'карта', id: 7 }
-    },
-    {
       top: { src: '/src/assets/img/commerceMat/bata.svg', alt: 'время', id: 8 },
       bottom: { src: '/src/assets/img/commerceMat/110y.svg', alt: 'карта', id: 8 }
     },
@@ -348,13 +344,16 @@ export const CommerceMat = () => {
               onDrop={handleDrop(index)}
               onDragOver={(e: React.DragEvent) => e.preventDefault()}
             >
-              <ImageCard
-                src={pair.bottom.src}
-                alt={pair.bottom.alt}
-                number={pair.bottom.id}
-                className={classes.baseCard}
-                style={{ opacity: positions[index] !== 0 ? 0.5 : 1 }}
-              />
+           <ImageCard
+  src={pair.bottom.src}
+  alt={pair.bottom.alt}
+  number={pair.bottom.id}
+  className={classes.baseCard}
+  style={{ 
+    opacity: lockedCards.includes(positions[index]) ? 0.7 : positions[index] !== 0 ? 0.5 : 1,
+    transition: 'opacity 0.3s ease'
+  }}
+/>
               
               {positions[index] !== 0 && (
                 <div 
