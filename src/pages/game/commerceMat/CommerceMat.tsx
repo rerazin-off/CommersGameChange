@@ -344,13 +344,16 @@ export const CommerceMat = () => {
               onDrop={handleDrop(index)}
               onDragOver={(e: React.DragEvent) => e.preventDefault()}
             >
-              <ImageCard
-                src={pair.bottom.src}
-                alt={pair.bottom.alt}
-                number={pair.bottom.id}
-                className={classes.baseCard}
-                style={{ opacity: positions[index] !== 0 ? 0.5 : 1 }}
-              />
+           <ImageCard
+  src={pair.bottom.src}
+  alt={pair.bottom.alt}
+  number={pair.bottom.id}
+  className={classes.baseCard}
+  style={{ 
+    opacity: lockedCards.includes(positions[index]) ? 0.7 : positions[index] !== 0 ? 0.5 : 1,
+    transition: 'opacity 0.3s ease'
+  }}
+/>
               
               {positions[index] !== 0 && (
                 <div 
