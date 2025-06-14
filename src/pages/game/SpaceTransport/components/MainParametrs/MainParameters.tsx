@@ -5,7 +5,7 @@ const MainParameters = ({parameters}) => {
     <nav>
       {parameters.map(parameter => (
         <p key={parameter.name}>
-          {parameter.name}:{parameter.value}
+          {parameter.name}: {parameter.value}
         </p>
       ))}
     </nav>
