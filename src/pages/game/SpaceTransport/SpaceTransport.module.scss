@@ -11,7 +11,8 @@
   flex-direction: column;
 }
 nav p{
-  font-family: "AA Spaceman";
+  font-family: "Comfortaa";
+  font-weight: 700;
   color: #fff;
   font-size: 16px;
 }
@@ -52,10 +53,15 @@ nav{
 .count{
   border: 1px solid #fff;
   color: #fff;
-  padding: 0.5vh 3vh;
+  padding: 0.5vh 1vh;
   background: linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0.2), rgba(255,255,255,0.4));
+  display: flex;
+  align-items: center;
+  gap: 1vh;
 }
 .planet{
+  position: relative;
+  z-index: 2;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -70,6 +76,8 @@ nav{
   padding: 1vh;
 }
 .slot{
+  position: relative;
+  z-index: 100;
   display: flex;
   flex-direction: column;
   width: 20vh;
@@ -90,4 +98,24 @@ nav{
 .slotParameters{
   display: flex;
   flex-direction: row;
+}
+.icon{
+  width: 1vw !important;
+}
+.checkButton{
+  position: absolute;
+  bottom: 1vh;
+  right: 5vh;
+  z-index: 100;
+}
+.backButton{
+  position: absolute;
+  bottom: 1vh;
+  left: 5vh;
+  z-index: 100;
+}
+.canvasClass{
+  position: absolute;
+  width: 100%;
+  height: 100%;
 }
