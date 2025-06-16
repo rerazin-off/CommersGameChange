@@ -88,7 +88,6 @@ const ImageCard: React.FC<ImageCardProps> = ({
           objectFit: 'contain',
           borderRadius: '12px',
           userSelect: 'none',
-          WebkitUserDrag: 'none'
         }}
       />
     </div>
@@ -428,7 +427,7 @@ const CommercePlayGame: React.FC = () => {
         display: 'flex',
         justifyContent: 'space-between',
         gap: '30px',
-        marginTop: '30px',
+        marginTop: '-30px',
         height: '600px'
       }}>
         {/* Products section (Purple zone) */}
@@ -439,7 +438,7 @@ const CommercePlayGame: React.FC = () => {
             padding: '20px',
             borderRadius: '15px',
             maxWidth: '700px',
-            height: '650px',
+            height: '750px',
             display: 'flex',
             flexDirection: 'column',
             overflow: 'hidden',
