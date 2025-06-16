@@ -18,7 +18,7 @@ const gameData: Record<string, { title: string; body: string; url: string }> = {
   hologramGame: {
     title: 'Королевство',
     body: 'Ваша задача спасти королевство за минимальное время и минимальные расходы.',
-    url: '../../../production/logic/index.html',
+    url: 'SpaceTransport'
   },
 };
 

@@ -24,6 +24,8 @@ import { LogistCep } from '../../pages/game/logist/LogistCep';
 import { MusicalGameCategories } from '../../pages/game/musical/MusicalGameCategories';
 import { CommerceSr } from '../../pages/game/commerceSrok/CommerceSr.tsx';
 import { SpaceTransport } from '../../pages/game/SpaceTransport/SpaceTransport';
+import { CommerceMat } from '../../pages/game/commerceMat/CommerceMat';
+import CommercePlayGame from '../../pages/game/commerce_2/CommercePlayGame'
 
 import ExpenseSorterGame from '../../pages/game/buhgalter/buhgame2.0/components/BuhgalGame/BuhgalGame';
 
