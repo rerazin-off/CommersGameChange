@@ -128,15 +128,15 @@ html{
   }
 }
 
-.inSlot {
-  width: 90px !important;
-  height: 90px !important;
-
-  .bagImage {
-    width: 100% !important;
-    height: 100% !important;
-  }
-}
+//.inSlot {
+//  width: 90px !important;
+//  height: 90px !important;
+//
+//  .bagImage {
+//    width: 100% !important;
+//    height: 100% !important;
+//  }
+//}
 
 .checkButton {
   position: absolute;
@@ -149,29 +149,78 @@ html{
   bottom: 20px;
   left: 20px;
 }
-.draggableContainer {
-  position: relative;
-  width: 100px;
-  height: 100px;
-  cursor: grab;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transform: translate(30px, 30px);
+//.draggableContainer {
+//  position: relative;
+//  width: 100px;
+//  height: 100px;
+//  cursor: grab;
+//  display: flex;
+//  justify-content: center;
+//  align-items: center;
+//  transform: translate(30px, 30px);
+//
+//  &:active {
+//    cursor: grabbing;
+//    transform: none !important;
+//  }
+//}
+//.dragPreview {
+//  position: fixed !important;
+//  z-index: 1000;
+//  pointer-events: none;
+//  width: 80px !important;
+//  height: 80px !important;
+//  opacity: 0.8;
+//  transform: translate(-50%, -50%); }
+//
+//.bagImage {
+//  width: 150%;
+//  height: 150%;
+//  pointer-events: none;
+//  user-select: none;
+//  object-fit: contain;
+//  gap: 20px;
+//}
 
-  &:active {
-    cursor: grabbing;
-    transform: none !important;
-  }
-}
 .dragPreview {
   position: fixed !important;
   z-index: 1000;
   pointer-events: none;
   width: 80px !important;
   height: 80px !important;
-  opacity: 0.8;
-  transform: translate(-50%, -50%); }
+  transform: translate(-50%, -50%);
+  transition: transform 0.05s ease-out;
+  will-change: transform;
+  border-radius: 8px;
+  padding: 4px;
+
+  img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain;
+    pointer-events: none;
+    user-select: none;
+  }
+}
+
+.draggableContainer {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  cursor: grab;
+  transform: translate(50px, 30px);
+
+  &:active {
+    cursor: grabbing;
+  }
+}
+
+.inSlot {
+  width: 50px !important;
+  height: 50px !important;
+  cursor: default !important;
+  transform: translate(0px, 110px);
+}
 
 .bagImage {
   width: 150%;
@@ -179,5 +228,5 @@ html{
   pointer-events: none;
   user-select: none;
   object-fit: contain;
-  gap: 20px;
 }
+

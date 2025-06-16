@@ -18,13 +18,13 @@ html{
 //  justify-content: center;
 //
 .circle {
-  width: 450px;
+  width: 440px;
   height: 435px;
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
-  row-gap: 10px;
-  column-gap: 10px;
+  row-gap: 30px;
+  column-gap: 30px;
   justify-content: center;
 
   // Добавляем стиль для скрытия превью при перетаскивании

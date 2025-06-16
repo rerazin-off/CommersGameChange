@@ -13,10 +13,13 @@ import { RoutesEnum } from '../../../app/routes';
 
 const touchBackendOptions = {
   enableMouseEvents: true,
-  delayTouchStart: 0,  // Убираем задержку
-  delay: 0,           // Мгновенный отклик
-  ignoreContextMenu: true,  // Игнорировать контекстное меню
-  enableTouchEvents: true,  // Включить touch-события
+  enableTouchEvents: true,
+  delayTouchStart: 0,
+  delay: 0,
+  ignoreContextMenu: true,
+  getDropTargetElements: (element: HTMLElement) => {
+    return Array.from(document.querySelectorAll('[data-drop-target="true"]'));
+  }
 };
 
 
@@ -35,10 +38,12 @@ export const CommerceTovary = () => {
   const handleDrop = (index: number | null, item: { id: number }) => {
     setPositions(prev => {
       // Сначала удаляем элемент из всех слотов
-      const newPositions = prev.map(slot => slot.filter(id => id !== item.id));
+      const newPositions = prev.map(slot =>
+        slot.filter(id => id !== item.id)
+      );
 
-      // Если index не null, добавляем элемент в указанный слот
-      if (index !== null) {
+      // Если index указан и элемент еще не в этом слоте
+      if (index !== null && !newPositions[index].includes(item.id)) {
         newPositions[index] = [...newPositions[index], item.id];
       }
 

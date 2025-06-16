@@ -12,14 +12,13 @@ type DropSlotProps = {
 
 const DropSlot = ({ index, handleDrop, positions }: DropSlotProps) => {
   const dropRef = useRef<HTMLDivElement>(null);
-  // Убедимся, что currentItems всегда является массивом
   const currentItems = positions[index] || [];
 
   const [, drop] = useDrop({
     accept: 'bag',
     drop: (item: { id: number }) => handleDrop(index, item),
-    // Добавляем canDrop для проверки, не содержится ли элемент уже в этом слоте
     canDrop: (item: { id: number }) => {
+      // Запрещаем дроп, если элемент уже есть в этом слоте
       return !currentItems.includes(item.id);
     },
   });
@@ -30,16 +29,20 @@ const DropSlot = ({ index, handleDrop, positions }: DropSlotProps) => {
     }
   }, [drop]);
 
-  // Уникализируем элементы в слоте
-  const uniqueItems = [...new Set(currentItems)];
+  // Убираем дубликаты
+  const uniqueItems = Array.from(new Set(currentItems));
 
   return (
-    <div ref={dropRef} className={classes.circle}>
+    <div
+      ref={dropRef}
+      className={classes.circle}
+      data-drop-target="true" // Для улучшенного определения drop-целей
+    >
       {uniqueItems.map(bagId => {
         const bag = bags.find(b => b.id === bagId);
         return bag ? (
           <DraggableBag
-            key={`${bag.id}-${index}`} // Добавляем индекс слота в ключ
+            key={`${bag.id}-${index}`}
             bag={bag}
             isInSlot={true}
           />

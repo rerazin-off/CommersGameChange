@@ -42,19 +42,19 @@ interface ImageCardProps {
 }
 
 const ImageCard: React.FC<ImageCardProps> = ({
-  src,
-  alt,
-  draggable = false,
-  onDragStart = () => {},
-  onDrop = () => {},
-  onDragOver = () => {},
-  onTouchStart = () => {},
-  onTouchMove = () => {},
-  onTouchEnd = () => {},
-  isMatched = false,
-  isCorrect = true,
-  style = {}
-}) => {
+                                               src,
+                                               alt,
+                                               draggable = false,
+                                               onDragStart = () => {},
+                                               onDrop = () => {},
+                                               onDragOver = () => {},
+                                               onTouchStart = () => {},
+                                               onTouchMove = () => {},
+                                               onTouchEnd = () => {},
+                                               isMatched = false,
+                                               isCorrect = true,
+                                               style = {}
+                                             }) => {
   return (
     <div
       draggable={draggable}
@@ -65,10 +65,10 @@ const ImageCard: React.FC<ImageCardProps> = ({
       onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}
       style={{
-        height: '120px',
-        width: '120px',
+        height: '110px',
+        width: '110px',
         position: 'relative',
-        margin: '10px',
+        margin: '7px',
         cursor: draggable ? 'grab' : 'default',
         opacity: isMatched ? 0.5 : 1,
         display: 'flex',
@@ -88,6 +88,8 @@ const ImageCard: React.FC<ImageCardProps> = ({
           objectFit: 'contain',
           borderRadius: '12px',
           userSelect: 'none',
+          WebkitUserDrag: 'none',
+          marginRight: '0px'
         }}
       />
     </div>
@@ -110,7 +112,7 @@ const CommercePlayGame: React.FC = () => {
     offsetX: number;
     offsetY: number;
   } | null>(null);
-  
+
   const products: Product[] = [
     { src: '/src/assets/img/commerce_img/sok (1).png', alt: 'сок1', category: 'drinks' },
     { src: '/src/assets/img/commerce_img/meal (4).png', alt: 'мука 4', category: 'grocery' },
@@ -154,7 +156,7 @@ const CommercePlayGame: React.FC = () => {
   const [productsInPurpleZone, setProductsInPurpleZone] = useState<number[]>([]);
 
   useEffect(() => {
-    const allFilled = refrigerators.every((_, index) => 
+    const allFilled = refrigerators.every((_, index) =>
       matchedItems.filter(item => item.refrigeratorIndex === index).length >= 4
     );
     const allPlaced = matchedItems.length + productsInPurpleZone.length === products.length;
@@ -165,12 +167,12 @@ const CommercePlayGame: React.FC = () => {
   const handleDragStart = (productIndex: number) => {
     const isMatched = matchedItems.some(item => item.productIndex === productIndex);
     const isInPurpleZone = productsInPurpleZone.includes(productIndex);
-    
+
     // Разрешаем перетаскивание, даже если товар уже в фиолетовой зоне
     if (!isMatched) {
       setDraggedItem({ productIndex });
       setErrorMessage(null);
-      
+
       // Если товар в фиолетовой зоне, удаляем его оттуда
       if (isInPurpleZone) {
         setProductsInPurpleZone(productsInPurpleZone.filter(index => index !== productIndex));
@@ -181,12 +183,12 @@ const CommercePlayGame: React.FC = () => {
   const handleTouchStart = (productIndex: number, e: React.TouchEvent) => {
     const isMatched = matchedItems.some(item => item.productIndex === productIndex);
     const isInPurpleZone = productsInPurpleZone.includes(productIndex);
-    
+
     if (!isMatched) {
       const touch = e.touches[0];
       const element = e.currentTarget as HTMLElement;
       const rect = element.getBoundingClientRect();
-      
+
       const clone = element.cloneNode(true) as HTMLElement;
       clone.style.position = 'fixed';
       clone.style.zIndex = '1000';
@@ -197,9 +199,9 @@ const CommercePlayGame: React.FC = () => {
       clone.style.top = `${rect.top}px`;
       clone.style.width = `${rect.width}px`;
       clone.style.height = `${rect.height}px`;
-      
+
       document.body.appendChild(clone);
-      
+
       setTouchActive({
         productIndex,
         element: clone,
@@ -208,10 +210,10 @@ const CommercePlayGame: React.FC = () => {
         offsetX: touch.clientX - rect.left,
         offsetY: touch.clientY - rect.top
       });
-      
+
       setDraggedItem({ productIndex });
       setErrorMessage(null);
-      
+
       // Если товар в фиолетовой зоне, удаляем его оттуда
       if (isInPurpleZone) {
         setProductsInPurpleZone(productsInPurpleZone.filter(index => index !== productIndex));
@@ -223,7 +225,7 @@ const CommercePlayGame: React.FC = () => {
     if (touchActive) {
       const touch = e.touches[0];
       const { element, offsetX, offsetY } = touchActive;
-      
+
       element.style.left = `${touch.clientX - offsetX}px`;
       element.style.top = `${touch.clientY - offsetY}px`;
     }
@@ -233,9 +235,9 @@ const CommercePlayGame: React.FC = () => {
     if (touchActive) {
       const { element, productIndex } = touchActive;
       const touch = e.changedTouches[0];
-      
+
       const dropTarget = document.elementFromPoint(touch.clientX, touch.clientY);
-      
+
       if (dropTarget) {
         const refrigeratorElement = dropTarget.closest('[data-refrigerator]');
         if (refrigeratorElement) {
@@ -250,7 +252,7 @@ const CommercePlayGame: React.FC = () => {
           return;
         }
       }
-      
+
       element.remove();
       setTouchActive(null);
       setDraggedItem(null);
@@ -260,32 +262,32 @@ const CommercePlayGame: React.FC = () => {
   const handleDropOnRefrigerator = (refrigeratorIndex: number) => {
     if (draggedItem) {
       const itemsInRefrigerator = matchedItems.filter(item => item.refrigeratorIndex === refrigeratorIndex);
-      
+
       if (itemsInRefrigerator.length >= 4) {
         setErrorMessage('Этот холодильник уже заполнен!');
         setDraggedItem(null);
         return;
       }
-  
+
       const isAlreadyMatched = matchedItems.some(
         item => item.productIndex === draggedItem.productIndex
       );
-  
+
       if (!isAlreadyMatched) {
         const product = products[draggedItem.productIndex];
         const refrigerator = refrigerators[refrigeratorIndex];
-        
+
         if (refrigeratorIndex === 3) {
           if (itemsInRefrigerator.length > 0) {
             const firstProductCategory = products[itemsInRefrigerator[0].productIndex].category;
-            
-            const isSameSubgroup = 
+
+            const isSameSubgroup =
               (firstProductCategory.startsWith('grocery') && product.category.startsWith('grocery')) &&
-              (firstProductCategory === product.category || 
-               (firstProductCategory === 'grocery' && product.category === 'grocery') ||
-               (firstProductCategory !== 'grocery' && product.category !== 'grocery' && 
-                firstProductCategory.replace('grocery', '') === product.category.replace('grocery', '')));
-            
+              (firstProductCategory === product.category ||
+                (firstProductCategory === 'grocery' && product.category === 'grocery') ||
+                (firstProductCategory !== 'grocery' && product.category !== 'grocery' &&
+                  firstProductCategory.replace('grocery', '') === product.category.replace('grocery', '')));
+
             if (!isSameSubgroup) {
               setErrorMessage('Нельзя смешивать разные подкатегории бакалеи в одном холодильнике!');
               setDraggedItem(null);
@@ -293,15 +295,15 @@ const CommercePlayGame: React.FC = () => {
             }
           }
         }
-        
+
         const isCorrectPlacement = refrigerator.categories.includes(product.category);
-        
+
         if (!isCorrectPlacement) {
           setErrorMessage('Неверный температурный режим для этого продукта!');
           setDraggedItem(null);
           return;
         }
-        
+
         setMatchedItems([...matchedItems, {
           productIndex: draggedItem.productIndex,
           refrigeratorIndex: refrigeratorIndex,
@@ -356,14 +358,14 @@ const CommercePlayGame: React.FC = () => {
 
   const handleDropOnRefrigeratorsArea = (e: React.DragEvent) => {
     e.preventDefault();
-    
+
     const refrigeratorElements = document.querySelectorAll('[data-refrigerator]');
     const dropX = e.clientX;
     const dropY = e.clientY;
-    
+
     let closestRefrigerator = null;
     let minDistance = Infinity;
-    
+
     refrigeratorElements.forEach(el => {
       const rect = el.getBoundingClientRect();
       const centerX = rect.left + rect.width / 2;
@@ -371,13 +373,13 @@ const CommercePlayGame: React.FC = () => {
       const distance = Math.sqrt(
         Math.pow(dropX - centerX, 2) + Math.pow(dropY - centerY, 2)
       );
-      
+
       if (distance < minDistance) {
         minDistance = distance;
         closestRefrigerator = el.getAttribute('data-refrigerator');
       }
     });
-    
+
     if (closestRefrigerator !== null) {
       handleDropOnRefrigerator(parseInt(closestRefrigerator));
     }
@@ -389,7 +391,7 @@ const CommercePlayGame: React.FC = () => {
     return { correct, incorrect };
   };
 
-  const allRefrigeratorsFilled = refrigerators.every((_, index) => 
+  const allRefrigeratorsFilled = refrigerators.every((_, index) =>
     matchedItems.filter(item => item.refrigeratorIndex === index).length >= 4
   );
 
@@ -427,23 +429,24 @@ const CommercePlayGame: React.FC = () => {
         display: 'flex',
         justifyContent: 'space-between',
         gap: '30px',
-        marginTop: '-30px',
+        marginTop: '30px',
         height: '600px'
       }}>
         {/* Products section (Purple zone) */}
-        <div 
+        <div
           style={{
             flex: '1',
             backgroundColor: '#c0adc3',
             padding: '20px',
             borderRadius: '15px',
-            maxWidth: '700px',
-            height: '750px',
+            maxWidth: '790px',
+            height: '850px',
             display: 'flex',
             flexDirection: 'column',
             overflow: 'hidden',
             alignItems: 'center',
-            marginLeft: '30px'
+            marginLeft: '30px',
+            transform: 'translate(0px, -70px)'
           }}
           onDrop={handleDropOnPurpleZone}
           onDragOver={handleDragOver}
@@ -503,12 +506,11 @@ const CommercePlayGame: React.FC = () => {
         </div>
 
         {/* Refrigerators section */}
-        <div 
+        <div
           style={{
             flex: '1',
             maxWidth: '700px',
             position: 'relative',
-            marginRight: '30px'
           }}
           onDrop={handleDropOnRefrigeratorsArea}
           onDragOver={handleDragOver}
@@ -521,7 +523,7 @@ const CommercePlayGame: React.FC = () => {
             height: '100%'
           }}>
             {refrigerators.map((refrigerator, refrigeratorIndex) => {
-              const itemsInRefrigerator = matchedItems.filter(item => 
+              const itemsInRefrigerator = matchedItems.filter(item =>
                 item.refrigeratorIndex === refrigeratorIndex
               );
               const isFull = itemsInRefrigerator.length >= 4;
@@ -537,14 +539,15 @@ const CommercePlayGame: React.FC = () => {
                     alignItems: 'center',
                     backgroundColor: '#c0adc3',
                     height: '400px',
-                    width: "300px",
+                    width: "400px",
                     borderRadius: '15px',
                     position: 'relative',
                     zIndex: 1,
                     border: allCorrect ? '4px solid #4DE4F2' : 'none',
                     boxShadow: allCorrect ? '0 0 20px #4DE4F2' : '0 4px 12px rgba(0,0,0,0.2)',
                     transition: 'all 0.3s ease',
-                    padding: '15px'
+                    padding: '15px',
+                    transform: 'translate(-255px, -70px)',
                   }}
                 >
                   {allCorrect && (
@@ -596,13 +599,13 @@ const CommercePlayGame: React.FC = () => {
         </div>
       </div>
       {isVisibleButton && (
-          <div onClick={checkResults} className={classes.checkButton} style={{ marginTop: '30px' }}>
-            <Button bgColor="blue" type="type1v2" style={{ fontSize: '20px', padding: '15px 30px' }}>
-              ПРОВЕРИТЬ
-            </Button>
-          </div>
-        )}
-      <div className={classes.backButton} style={{ 
+        <div onClick={checkResults} className={classes.checkButton} style={{ marginTop: '30px' }}>
+          <Button bgColor="blue" type="type1v2" style={{ fontSize: '20px', padding: '15px 30px' }}>
+            Завершить
+          </Button>
+        </div>
+      )}
+      <div className={classes.backButton} style={{
         marginTop: '40px',
         marginBottom: '40px'
       }}>
@@ -618,7 +621,7 @@ const CommercePlayGame: React.FC = () => {
           НАЗАД
         </Button>
       </div>
-      
+
       <CardFinish
         attempts={attempts}
         isOpenCard={openIsCard}
