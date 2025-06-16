@@ -1,0 +1,31 @@
+.currentItem{
+    width: fit-content;
+    height: fit-content;
+    width: 20%;
+    height: 30%;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    top: 0;
+    left: 0;
+    margin-right: 100px;
+}
+
+.whiteSpace{
+    width: 100%;
+    height: 100%;
+    border-radius: 200px 0px 0px 0px;
+    background-color: white;
+}
+
+.Boards img{
+    width: 40%;
+    height: 40%;
+    margin: -10px;
+}

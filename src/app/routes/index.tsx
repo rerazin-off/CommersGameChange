@@ -21,7 +21,7 @@ import { BankGame } from '../../pages/game/bank/bankGame';
 import { Rocket } from '../../pages/game/rocket/Rocket';
 import { SorterGame } from '../../pages/game/buhgalter/buhGame';
 import { LogistCep } from '../../pages/game/logist/LogistCep';
-import { MusicalGameCategories } from '../../pages/game/musical/MusicalGameCategories';
+import  MusicalGameCategories from '../../pages/game/musical/MusicalGameCategories.tsx';
 import { CommerceSr } from '../../pages/game/commerceSrok/CommerceSr.tsx';
 import { CommerceMat } from '../../pages/game/commerceMat/CommerceMat.tsx';
 import CommercePlayGame from '../../pages/game/commerce_2/CommercePlayGame'
