@@ -42,19 +42,19 @@ interface ImageCardProps {
 }
 
 const ImageCard: React.FC<ImageCardProps> = ({
-  src,
-  alt,
-  draggable = false,
-  onDragStart = () => {},
-  onDrop = () => {},
-  onDragOver = () => {},
-  onTouchStart = () => {},
-  onTouchMove = () => {},
-  onTouchEnd = () => {},
-  isMatched = false,
-  isCorrect = true,
-  style = {}
-}) => {
+                                               src,
+                                               alt,
+                                               draggable = false,
+                                               onDragStart = () => {},
+                                               onDrop = () => {},
+                                               onDragOver = () => {},
+                                               onTouchStart = () => {},
+                                               onTouchMove = () => {},
+                                               onTouchEnd = () => {},
+                                               isMatched = false,
+                                               isCorrect = true,
+                                               style = {}
+                                             }) => {
   return (
     <div
       draggable={draggable}
@@ -65,16 +65,16 @@ const ImageCard: React.FC<ImageCardProps> = ({
       onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}
       style={{
-        width: '90px',
-        height: '90px',
+        height: '110px',
+        width: '110px',
         position: 'relative',
-        margin: '5px',
+        margin: '7px',
         cursor: draggable ? 'grab' : 'default',
         opacity: isMatched ? 0.5 : 1,
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        border: !isCorrect ? '2px solid red' : 'none',
+        border: !isCorrect ? '3px solid red' : 'none',
         touchAction: 'none',
         ...style
       }}
@@ -86,9 +86,10 @@ const ImageCard: React.FC<ImageCardProps> = ({
           maxWidth: '100%',
           maxHeight: '100%',
           objectFit: 'contain',
-          borderRadius: '6px',
+          borderRadius: '12px',
           userSelect: 'none',
-          WebkitUserDrag: 'none'
+          WebkitUserDrag: 'none',
+          marginRight: '0px'
         }}
       />
     </div>
@@ -108,8 +109,10 @@ const CommercePlayGame: React.FC = () => {
     element: HTMLElement;
     startX: number;
     startY: number;
+    offsetX: number;
+    offsetY: number;
   } | null>(null);
-  
+
   const products: Product[] = [
     { src: '/src/assets/img/commerce_img/sok (1).png', alt: 'сок1', category: 'drinks' },
     { src: '/src/assets/img/commerce_img/meal (4).png', alt: 'мука 4', category: 'grocery' },
@@ -153,7 +156,7 @@ const CommercePlayGame: React.FC = () => {
   const [productsInPurpleZone, setProductsInPurpleZone] = useState<number[]>([]);
 
   useEffect(() => {
-    const allFilled = refrigerators.every((_, index) => 
+    const allFilled = refrigerators.every((_, index) =>
       matchedItems.filter(item => item.refrigeratorIndex === index).length >= 4
     );
     const allPlaced = matchedItems.length + productsInPurpleZone.length === products.length;
@@ -164,59 +167,67 @@ const CommercePlayGame: React.FC = () => {
   const handleDragStart = (productIndex: number) => {
     const isMatched = matchedItems.some(item => item.productIndex === productIndex);
     const isInPurpleZone = productsInPurpleZone.includes(productIndex);
-    
-    if (!isMatched && !isInPurpleZone) {
+
+    // Разрешаем перетаскивание, даже если товар уже в фиолетовой зоне
+    if (!isMatched) {
       setDraggedItem({ productIndex });
       setErrorMessage(null);
+
+      // Если товар в фиолетовой зоне, удаляем его оттуда
+      if (isInPurpleZone) {
+        setProductsInPurpleZone(productsInPurpleZone.filter(index => index !== productIndex));
+      }
     }
   };
 
   const handleTouchStart = (productIndex: number, e: React.TouchEvent) => {
     const isMatched = matchedItems.some(item => item.productIndex === productIndex);
     const isInPurpleZone = productsInPurpleZone.includes(productIndex);
-    
-    if (!isMatched && !isInPurpleZone) {
-      setDraggedItem({ productIndex });
-      setErrorMessage(null);
-      
+
+    if (!isMatched) {
       const touch = e.touches[0];
       const element = e.currentTarget as HTMLElement;
-      
-      // Create a clone for dragging visual
+      const rect = element.getBoundingClientRect();
+
       const clone = element.cloneNode(true) as HTMLElement;
       clone.style.position = 'fixed';
       clone.style.zIndex = '1000';
       clone.style.pointerEvents = 'none';
-      clone.style.transform = 'scale(1.2)';
-      clone.style.transition = 'transform 0.2s';
-      
-      document.body.appendChild(clone);
-      
-      setTouchActive({
-        productIndex,
-        element: clone,
-        startX: touch.clientX,
-        startY: touch.clientY
-      });
-      
-      // Update clone position
-      const rect = element.getBoundingClientRect();
+      clone.style.transform = 'scale(1.1)';
+      clone.style.transition = 'transform 0.1s';
       clone.style.left = `${rect.left}px`;
       clone.style.top = `${rect.top}px`;
       clone.style.width = `${rect.width}px`;
       clone.style.height = `${rect.height}px`;
+
+      document.body.appendChild(clone);
+
+      setTouchActive({
+        productIndex,
+        element: clone,
+        startX: touch.clientX,
+        startY: touch.clientY,
+        offsetX: touch.clientX - rect.left,
+        offsetY: touch.clientY - rect.top
+      });
+
+      setDraggedItem({ productIndex });
+      setErrorMessage(null);
+
+      // Если товар в фиолетовой зоне, удаляем его оттуда
+      if (isInPurpleZone) {
+        setProductsInPurpleZone(productsInPurpleZone.filter(index => index !== productIndex));
+      }
     }
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
     if (touchActive) {
       const touch = e.touches[0];
-      const { element, startX, startY } = touchActive;
-      
-      const deltaX = touch.clientX - startX;
-      const deltaY = touch.clientY - startY;
-      
-      element.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(1.2)`;
+      const { element, offsetX, offsetY } = touchActive;
+
+      element.style.left = `${touch.clientX - offsetX}px`;
+      element.style.top = `${touch.clientY - offsetY}px`;
     }
   };
 
@@ -224,22 +235,24 @@ const CommercePlayGame: React.FC = () => {
     if (touchActive) {
       const { element, productIndex } = touchActive;
       const touch = e.changedTouches[0];
-      
-      // Find drop target
+
       const dropTarget = document.elementFromPoint(touch.clientX, touch.clientY);
-      
-      // Check if dropped on a refrigerator
+
       if (dropTarget) {
         const refrigeratorElement = dropTarget.closest('[data-refrigerator]');
         if (refrigeratorElement) {
           const refrigeratorIndex = parseInt(refrigeratorElement.getAttribute('data-refrigerator') || '0');
           handleDropOnRefrigerator(refrigeratorIndex);
         } else if (dropTarget.closest('[data-purple-zone]')) {
-          handleDropOnPurpleZone();
+          // Если отпустили в фиолетовой зоне, но не перемещали продукт
+          // Просто удаляем клон и сбрасываем состояние
+          element.remove();
+          setTouchActive(null);
+          setDraggedItem(null);
+          return;
         }
       }
-      
-      // Clean up
+
       element.remove();
       setTouchActive(null);
       setDraggedItem(null);
@@ -249,32 +262,32 @@ const CommercePlayGame: React.FC = () => {
   const handleDropOnRefrigerator = (refrigeratorIndex: number) => {
     if (draggedItem) {
       const itemsInRefrigerator = matchedItems.filter(item => item.refrigeratorIndex === refrigeratorIndex);
-      
+
       if (itemsInRefrigerator.length >= 4) {
         setErrorMessage('Этот холодильник уже заполнен!');
         setDraggedItem(null);
         return;
       }
-  
+
       const isAlreadyMatched = matchedItems.some(
         item => item.productIndex === draggedItem.productIndex
       );
-  
-      if (!isAlreadyMatched && !productsInPurpleZone.includes(draggedItem.productIndex)) {
+
+      if (!isAlreadyMatched) {
         const product = products[draggedItem.productIndex];
         const refrigerator = refrigerators[refrigeratorIndex];
-        
+
         if (refrigeratorIndex === 3) {
           if (itemsInRefrigerator.length > 0) {
             const firstProductCategory = products[itemsInRefrigerator[0].productIndex].category;
-            
-            const isSameSubgroup = 
+
+            const isSameSubgroup =
               (firstProductCategory.startsWith('grocery') && product.category.startsWith('grocery')) &&
-              (firstProductCategory === product.category || 
-               (firstProductCategory === 'grocery' && product.category === 'grocery') ||
-               (firstProductCategory !== 'grocery' && product.category !== 'grocery' && 
-                firstProductCategory.replace('grocery', '') === product.category.replace('grocery', '')));
-            
+              (firstProductCategory === product.category ||
+                (firstProductCategory === 'grocery' && product.category === 'grocery') ||
+                (firstProductCategory !== 'grocery' && product.category !== 'grocery' &&
+                  firstProductCategory.replace('grocery', '') === product.category.replace('grocery', '')));
+
             if (!isSameSubgroup) {
               setErrorMessage('Нельзя смешивать разные подкатегории бакалеи в одном холодильнике!');
               setDraggedItem(null);
@@ -282,15 +295,15 @@ const CommercePlayGame: React.FC = () => {
             }
           }
         }
-        
+
         const isCorrectPlacement = refrigerator.categories.includes(product.category);
-        
+
         if (!isCorrectPlacement) {
           setErrorMessage('Неверный температурный режим для этого продукта!');
           setDraggedItem(null);
           return;
         }
-        
+
         setMatchedItems([...matchedItems, {
           productIndex: draggedItem.productIndex,
           refrigeratorIndex: refrigeratorIndex,
@@ -328,8 +341,7 @@ const CommercePlayGame: React.FC = () => {
   };
 
   const isProductMatched = (productIndex: number) => {
-    return matchedItems.some(item => item.productIndex === productIndex) || 
-           productsInPurpleZone.includes(productIndex);
+    return matchedItems.some(item => item.productIndex === productIndex);
   };
 
   const handleCloseCard = () => {
@@ -346,14 +358,14 @@ const CommercePlayGame: React.FC = () => {
 
   const handleDropOnRefrigeratorsArea = (e: React.DragEvent) => {
     e.preventDefault();
-    
+
     const refrigeratorElements = document.querySelectorAll('[data-refrigerator]');
     const dropX = e.clientX;
     const dropY = e.clientY;
-    
+
     let closestRefrigerator = null;
     let minDistance = Infinity;
-    
+
     refrigeratorElements.forEach(el => {
       const rect = el.getBoundingClientRect();
       const centerX = rect.left + rect.width / 2;
@@ -361,13 +373,13 @@ const CommercePlayGame: React.FC = () => {
       const distance = Math.sqrt(
         Math.pow(dropX - centerX, 2) + Math.pow(dropY - centerY, 2)
       );
-      
+
       if (distance < minDistance) {
         minDistance = distance;
         closestRefrigerator = el.getAttribute('data-refrigerator');
       }
     });
-    
+
     if (closestRefrigerator !== null) {
       handleDropOnRefrigerator(parseInt(closestRefrigerator));
     }
@@ -379,12 +391,13 @@ const CommercePlayGame: React.FC = () => {
     return { correct, incorrect };
   };
 
-  const allRefrigeratorsFilled = refrigerators.every((_, index) => 
+  const allRefrigeratorsFilled = refrigerators.every((_, index) =>
     matchedItems.filter(item => item.refrigeratorIndex === index).length >= 4
   );
 
   return (
     <div style={{
+      overflow: 'hidden',
       backgroundImage: 'url(/src/assets/img/commerce_img/фон.svg)',
       backgroundPosition: 'center',
       backgroundAttachment: 'fixed',
@@ -392,8 +405,8 @@ const CommercePlayGame: React.FC = () => {
       position: 'relative',
       width: '100%',
       minHeight: '100vh',
-      paddingTop: '100px',
-      paddingBottom: '100px'
+      paddingTop: '80px',
+      paddingBottom: '80px'
     }}>
       {errorMessage && (
         <div style={{
@@ -409,38 +422,38 @@ const CommercePlayGame: React.FC = () => {
           animation: 'fadeIn 0.3s'
         }}>
           {errorMessage}
-          
         </div>
       )}
 
       <div style={{
         display: 'flex',
         justifyContent: 'space-between',
-        gap: '20px',
-        marginTop: '20px',
-        height: '500px'
+        gap: '30px',
+        marginTop: '30px',
+        height: '600px'
       }}>
         {/* Products section (Purple zone) */}
-        <div 
+        <div
           style={{
             flex: '1',
             backgroundColor: '#c0adc3',
-            padding: '15px',
-            borderRadius: '12px',
-            maxWidth: '750px',
-            height: '610px',
-            overflowY: 'auto',
+            padding: '20px',
+            borderRadius: '15px',
+            maxWidth: '790px',
+            height: '850px',
             display: 'flex',
             flexDirection: 'column',
+            overflow: 'hidden',
             alignItems: 'center',
-            marginLeft: '20px'
+            marginLeft: '30px',
+            transform: 'translate(0px, -70px)'
           }}
           onDrop={handleDropOnPurpleZone}
           onDragOver={handleDragOver}
           data-purple-zone="true"
         >
           <div className={classes.texts} style={{ textAlign: 'center', width: '100%' }}>
-            <h2>Продукты</h2>
+            <h2 style={{ fontSize: '28px', marginBottom: '20px' }}>Продукты</h2>
           </div>
           <div style={{
             fontFamily: 'Cruinn Regular',
@@ -448,8 +461,10 @@ const CommercePlayGame: React.FC = () => {
             display: 'flex',
             flexWrap: 'wrap',
             justifyContent: 'center',
-            maxHeight: '400px',
-            overflowY: 'auto'
+            height: '100%',
+            overflow: 'auto',
+            width: '100%',
+            padding: '10px'
           }}>
             {products.map((product, productIndex) => (
               !isProductMatched(productIndex) ? (
@@ -463,9 +478,8 @@ const CommercePlayGame: React.FC = () => {
                   onTouchMove={handleTouchMove}
                   onTouchEnd={handleTouchEnd}
                   style={{
-                    transform: draggedItem?.productIndex === productIndex ? 'scale(1.1)' : 'none',
+                    transform: draggedItem?.productIndex === productIndex ? 'scale(1.05)' : 'none',
                     transition: 'transform 0.2s',
-                    boxShadow: 'none'
                   }}
                 />
               ) : productsInPurpleZone.includes(productIndex) ? (
@@ -473,10 +487,17 @@ const CommercePlayGame: React.FC = () => {
                   key={`product-purple-${productIndex}`}
                   src={product.src}
                   alt={product.alt}
+                  draggable={true}
+                  onDragStart={() => handleDragStart(productIndex)}
+                  onTouchStart={(e) => handleTouchStart(productIndex, e)}
+                  onTouchMove={handleTouchMove}
+                  onTouchEnd={handleTouchEnd}
                   style={{
-                    width: '50px',
-                    height: '50px',
-                    pointerEvents: 'none'
+                    width: '100px',
+                    height: '100px',
+                    margin: '8px',
+                    transform: draggedItem?.productIndex === productIndex ? 'scale(1.05)' : 'none',
+                    transition: 'transform 0.2s',
                   }}
                 />
               ) : null
@@ -485,11 +506,11 @@ const CommercePlayGame: React.FC = () => {
         </div>
 
         {/* Refrigerators section */}
-        <div 
+        <div
           style={{
             flex: '1',
-            maxWidth: '600px',
-            position: 'relative'
+            maxWidth: '700px',
+            position: 'relative',
           }}
           onDrop={handleDropOnRefrigeratorsArea}
           onDragOver={handleDragOver}
@@ -498,11 +519,11 @@ const CommercePlayGame: React.FC = () => {
           <div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(2, 1fr)',
-            gap: '40px',
+            gap: '30px',
             height: '100%'
           }}>
             {refrigerators.map((refrigerator, refrigeratorIndex) => {
-              const itemsInRefrigerator = matchedItems.filter(item => 
+              const itemsInRefrigerator = matchedItems.filter(item =>
                 item.refrigeratorIndex === refrigeratorIndex
               );
               const isFull = itemsInRefrigerator.length >= 4;
@@ -517,26 +538,27 @@ const CommercePlayGame: React.FC = () => {
                     flexDirection: 'column',
                     alignItems: 'center',
                     backgroundColor: '#c0adc3',
-                    height: '300px',
-                    width: "250px",
-                    borderRadius: '12px',
-                    marginLeft: '-50px',
+                    height: '400px',
+                    width: "400px",
+                    borderRadius: '15px',
                     position: 'relative',
                     zIndex: 1,
-                    border: allCorrect ? '3px solid #4DE4F2' : 'none',
-                    boxShadow: allCorrect ? '0 0 20px #4DE4F2' : 'none',
-                    transition: 'all 0.3s ease'
+                    border: allCorrect ? '4px solid #4DE4F2' : 'none',
+                    boxShadow: allCorrect ? '0 0 20px #4DE4F2' : '0 4px 12px rgba(0,0,0,0.2)',
+                    transition: 'all 0.3s ease',
+                    padding: '15px',
+                    transform: 'translate(-255px, -70px)',
                   }}
                 >
                   {allCorrect && (
                     <div style={{
                       position: 'absolute',
-                      top: '-15px',
+                      top: '-20px',
                       backgroundColor: '#4DE4F2',
                       color: 'white',
-                      padding: '2px 10px',
-                      borderRadius: '10px',
-                      fontSize: '12px',
+                      padding: '5px 15px',
+                      borderRadius: '15px',
+                      fontSize: '16px',
                       fontWeight: 'bold'
                     }}>
                       Заполнен
@@ -546,14 +568,14 @@ const CommercePlayGame: React.FC = () => {
                     src={refrigerator.src}
                     alt={refrigerator.alt}
                     onDragOver={handleDragOver}
-                    style={{ width: '150px', height: '150px' }}
+                    style={{ width: '180px', height: '180px' }}
                   />
                   <div style={{
                     display: 'flex',
                     flexWrap: 'wrap',
                     justifyContent: 'center',
-                    marginTop: '10px',
-                    gap: '5px'
+                    marginTop: '15px',
+                    gap: '10px'
                   }}>
                     {itemsInRefrigerator
                       .map((item, idx) => (
@@ -563,8 +585,8 @@ const CommercePlayGame: React.FC = () => {
                           alt={products[item.productIndex].alt}
                           isCorrect={item.isCorrect}
                           style={{
-                            width: '50px',
-                            height: '50px',
+                            width: '80px',
+                            height: '80px',
                             pointerEvents: 'none'
                           }}
                         />
@@ -577,17 +599,16 @@ const CommercePlayGame: React.FC = () => {
         </div>
       </div>
       {isVisibleButton && (
-          <div onClick={checkResults} className={classes.checkButton}>
-            <Button bgColor="blue" type="type1v2">
-              ПРОВЕРИТЬ
-            </Button>
-          </div>
-        )}
-      <div className={classes.backButton} style={{ 
-        marginTop: '180px',
-        marginBottom: '150px'
+        <div onClick={checkResults} className={classes.checkButton} style={{ marginTop: '30px' }}>
+          <Button bgColor="blue" type="type1v2" style={{ fontSize: '20px', padding: '15px 30px' }}>
+            Завершить
+          </Button>
+        </div>
+      )}
+      <div className={classes.backButton} style={{
+        marginTop: '40px',
+        marginBottom: '40px'
       }}>
-        
         <Button
           bgColor="pink"
           type="type1v2"
@@ -595,65 +616,12 @@ const CommercePlayGame: React.FC = () => {
             localStorage.setItem('fromGame', 'true');
             navigate(RoutesEnum.TORGASHI);
           }}
+          style={{ fontSize: '20px', padding: '15px 30px' }}
         >
           НАЗАД
         </Button>
       </div>
-      
-      {/* Game completion button and results display */}
-      <div style={{
-        position: 'fixed',
-        bottom: '20px',
-        right: '20px',
-        zIndex: 100
-      }}>
-      
 
-        {showResults && (
-          <div style={{
-            position: 'absolute',
-            bottom: '60px',
-            right: '0',
-            backgroundColor: 'white',
-            padding: '15px',
-            borderRadius: '8px',
-            boxShadow: '0 4px 8px rgba(0,0,0,0.2)',
-            minWidth: '200px',
-            textAlign: 'center'
-          }}>
-            <h3 style={{ marginTop: 0, color: '#333' }}>Результаты</h3>
-            <div style={{ 
-              display: 'flex', 
-              justifyContent: 'space-between',
-              marginBottom: '10px'
-            }}>
-              <span>Правильно:</span>
-              <span style={{ color: 'green', fontWeight: 'bold' }}>
-                {calculateResults().correct}
-              </span>
-            </div>
-            <div style={{ 
-              display: 'flex', 
-              justifyContent: 'space-between',
-              marginBottom: '10px'
-            }}>
-              <span>Неправильно:</span>
-              <span style={{ color: 'red', fontWeight: 'bold' }}>
-                {calculateResults().incorrect}
-              </span>
-            </div>
-            <div style={{ 
-              display: 'flex', 
-              justifyContent: 'space-between',
-              fontWeight: 'bold'
-            }}>
-              <span>Всего:</span>
-              <span>{matchedItems.length}</span>
-            </div>
-          </div>
-        )}
-      </div>
-      
       <CardFinish
         attempts={attempts}
         isOpenCard={openIsCard}
