@@ -65,10 +65,10 @@ const ImageCard: React.FC<ImageCardProps> = ({
       onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}
       style={{
-        width: '90px',
-        height: '90px',
+        height: '95px',
+        width: '95px',
         position: 'relative',
-        margin: '5px',
+        margin: '10px',
         cursor: draggable ? 'grab' : 'default',
         opacity: isMatched ? 0.5 : 1,
         display: 'flex',
@@ -86,7 +86,7 @@ const ImageCard: React.FC<ImageCardProps> = ({
           maxWidth: '100%',
           maxHeight: '100%',
           objectFit: 'contain',
-          borderRadius: '6px',
+          borderRadius: '8px',
           userSelect: 'none',
           WebkitUserDrag: 'none'
         }}
@@ -182,7 +182,6 @@ const CommercePlayGame: React.FC = () => {
       const touch = e.touches[0];
       const element = e.currentTarget as HTMLElement;
       
-      // Create a clone for dragging visual
       const clone = element.cloneNode(true) as HTMLElement;
       clone.style.position = 'fixed';
       clone.style.zIndex = '1000';
@@ -199,7 +198,6 @@ const CommercePlayGame: React.FC = () => {
         startY: touch.clientY
       });
       
-      // Update clone position
       const rect = element.getBoundingClientRect();
       clone.style.left = `${rect.left}px`;
       clone.style.top = `${rect.top}px`;
@@ -225,10 +223,8 @@ const CommercePlayGame: React.FC = () => {
       const { element, productIndex } = touchActive;
       const touch = e.changedTouches[0];
       
-      // Find drop target
       const dropTarget = document.elementFromPoint(touch.clientX, touch.clientY);
       
-      // Check if dropped on a refrigerator
       if (dropTarget) {
         const refrigeratorElement = dropTarget.closest('[data-refrigerator]');
         if (refrigeratorElement) {
@@ -239,7 +235,6 @@ const CommercePlayGame: React.FC = () => {
         }
       }
       
-      // Clean up
       element.remove();
       setTouchActive(null);
       setDraggedItem(null);
@@ -385,6 +380,7 @@ const CommercePlayGame: React.FC = () => {
 
   return (
     <div style={{
+      overflow: 'hidden',
       backgroundImage: 'url(/src/assets/img/commerce_img/фон.svg)',
       backgroundPosition: 'center',
       backgroundAttachment: 'fixed',
@@ -409,47 +405,48 @@ const CommercePlayGame: React.FC = () => {
           animation: 'fadeIn 0.3s'
         }}>
           {errorMessage}
-          
         </div>
       )}
 
       <div style={{
         display: 'flex',
         justifyContent: 'space-between',
-        gap: '20px',
-        marginTop: '20px',
-        height: '500px'
+        gap: '40px',
+        marginTop: '40px',
+        height: '700px'
       }}>
         {/* Products section (Purple zone) */}
         <div 
           style={{
             flex: '1',
             backgroundColor: '#c0adc3',
-            padding: '15px',
-            borderRadius: '12px',
-            maxWidth: '750px',
-            height: '610px',
+            padding: '25px',
+            borderRadius: '15px',
+            maxWidth: '900px',
+            height: '750px',
             overflowY: 'auto',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            marginLeft: '20px'
+            marginLeft: '30px'
           }}
           onDrop={handleDropOnPurpleZone}
           onDragOver={handleDragOver}
           data-purple-zone="true"
         >
           <div className={classes.texts} style={{ textAlign: 'center', width: '100%' }}>
-            <h2>Продукты</h2>
+            <h2 style={{ fontSize: '28px', marginBottom: '20px' }}>Продукты</h2>
           </div>
           <div style={{
             fontFamily: 'Cruinn Regular',
             color: 'while',
             display: 'flex',
             flexWrap: 'wrap',
-            justifyContent: 'center',
-            maxHeight: '400px',
-            overflowY: 'auto'
+            justifyContent: 'space-around',
+            maxHeight: '600px',
+            overflowY: 'auto',
+            width: '100%',
+            padding: '10px'
           }}>
             {products.map((product, productIndex) => (
               !isProductMatched(productIndex) ? (
@@ -465,7 +462,7 @@ const CommercePlayGame: React.FC = () => {
                   style={{
                     transform: draggedItem?.productIndex === productIndex ? 'scale(1.1)' : 'none',
                     transition: 'transform 0.2s',
-                    boxShadow: 'none'
+                    boxShadow: '0 4px 8px rgba(0,0,0,0.2),none'
                   }}
                 />
               ) : productsInPurpleZone.includes(productIndex) ? (
@@ -474,9 +471,10 @@ const CommercePlayGame: React.FC = () => {
                   src={product.src}
                   alt={product.alt}
                   style={{
-                    width: '50px',
-                    height: '50px',
-                    pointerEvents: 'none'
+                    width: '80px',
+                    height: '80px',
+                    pointerEvents: 'none',
+                    margin: '8px'
                   }}
                 />
               ) : null
@@ -488,8 +486,9 @@ const CommercePlayGame: React.FC = () => {
         <div 
           style={{
             flex: '1',
-            maxWidth: '600px',
-            position: 'relative'
+            maxWidth: '800px',
+            position: 'relative',
+            marginRight: '30px'
           }}
           onDrop={handleDropOnRefrigeratorsArea}
           onDragOver={handleDragOver}
@@ -498,7 +497,7 @@ const CommercePlayGame: React.FC = () => {
           <div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(2, 1fr)',
-            gap: '40px',
+            gap: '60px',
             height: '100%'
           }}>
             {refrigerators.map((refrigerator, refrigeratorIndex) => {
@@ -517,26 +516,26 @@ const CommercePlayGame: React.FC = () => {
                     flexDirection: 'column',
                     alignItems: 'center',
                     backgroundColor: '#c0adc3',
-                    height: '300px',
-                    width: "250px",
-                    borderRadius: '12px',
-                    marginLeft: '-50px',
+                    height: '375px',
+                    width: "330px",
+                    borderRadius: '15px',
                     position: 'relative',
                     zIndex: 1,
-                    border: allCorrect ? '3px solid #4DE4F2' : 'none',
-                    boxShadow: allCorrect ? '0 0 20px #4DE4F2' : 'none',
-                    transition: 'all 0.3s ease'
+                    border: allCorrect ? '4px solid #4DE4F2' : 'none',
+                    boxShadow: allCorrect ? '0 0 25px #4DE4F2' : '0 4px 12px rgba(0,0,0,0.2)',
+                    transition: 'all 0.3s ease',
+                    padding: '15px'
                   }}
                 >
                   {allCorrect && (
                     <div style={{
                       position: 'absolute',
-                      top: '-15px',
+                      top: '-20px',
                       backgroundColor: '#4DE4F2',
                       color: 'white',
-                      padding: '2px 10px',
-                      borderRadius: '10px',
-                      fontSize: '12px',
+                      padding: '5px 15px',
+                      borderRadius: '15px',
+                      fontSize: '16px',
                       fontWeight: 'bold'
                     }}>
                       Заполнен
@@ -552,8 +551,8 @@ const CommercePlayGame: React.FC = () => {
                     display: 'flex',
                     flexWrap: 'wrap',
                     justifyContent: 'center',
-                    marginTop: '10px',
-                    gap: '5px'
+                    marginTop: '20px',
+                    gap: '10px'
                   }}>
                     {itemsInRefrigerator
                       .map((item, idx) => (
@@ -563,8 +562,8 @@ const CommercePlayGame: React.FC = () => {
                           alt={products[item.productIndex].alt}
                           isCorrect={item.isCorrect}
                           style={{
-                            width: '50px',
-                            height: '50px',
+                            width: '80px',
+                            height: '80px',
                             pointerEvents: 'none'
                           }}
                         />
@@ -577,17 +576,16 @@ const CommercePlayGame: React.FC = () => {
         </div>
       </div>
       {isVisibleButton && (
-          <div onClick={checkResults} className={classes.checkButton}>
-            <Button bgColor="blue" type="type1v2">
+          <div onClick={checkResults} className={classes.checkButton} style={{ marginTop: '30px' }}>
+            <Button bgColor="blue" type="type1v2" style={{ fontSize: '20px', padding: '15px 30px' }}>
               ПРОВЕРИТЬ
             </Button>
           </div>
         )}
       <div className={classes.backButton} style={{ 
-        marginTop: '180px',
-        marginBottom: '150px'
+        marginTop: '50px',
+        marginBottom: '50px'
       }}>
-        
         <Button
           bgColor="pink"
           type="type1v2"
@@ -595,63 +593,10 @@ const CommercePlayGame: React.FC = () => {
             localStorage.setItem('fromGame', 'true');
             navigate(RoutesEnum.TORGASHI);
           }}
+          style={{ fontSize: '20px', padding: '15px 30px' }}
         >
           НАЗАД
         </Button>
-      </div>
-      
-      {/* Game completion button and results display */}
-      <div style={{
-        position: 'fixed',
-        bottom: '20px',
-        right: '20px',
-        zIndex: 100
-      }}>
-      
-
-        {showResults && (
-          <div style={{
-            position: 'absolute',
-            bottom: '60px',
-            right: '0',
-            backgroundColor: 'white',
-            padding: '15px',
-            borderRadius: '8px',
-            boxShadow: '0 4px 8px rgba(0,0,0,0.2)',
-            minWidth: '200px',
-            textAlign: 'center'
-          }}>
-            <h3 style={{ marginTop: 0, color: '#333' }}>Результаты</h3>
-            <div style={{ 
-              display: 'flex', 
-              justifyContent: 'space-between',
-              marginBottom: '10px'
-            }}>
-              <span>Правильно:</span>
-              <span style={{ color: 'green', fontWeight: 'bold' }}>
-                {calculateResults().correct}
-              </span>
-            </div>
-            <div style={{ 
-              display: 'flex', 
-              justifyContent: 'space-between',
-              marginBottom: '10px'
-            }}>
-              <span>Неправильно:</span>
-              <span style={{ color: 'red', fontWeight: 'bold' }}>
-                {calculateResults().incorrect}
-              </span>
-            </div>
-            <div style={{ 
-              display: 'flex', 
-              justifyContent: 'space-between',
-              fontWeight: 'bold'
-            }}>
-              <span>Всего:</span>
-              <span>{matchedItems.length}</span>
-            </div>
-          </div>
-        )}
       </div>
       
       <CardFinish
