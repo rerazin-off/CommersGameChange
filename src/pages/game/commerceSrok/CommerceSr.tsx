@@ -31,31 +31,31 @@ const shuffleArray = (array: any[]) => {
 export const CommerceSr = () => {
   const initialPairs: ImagePair[] = [
     {
-      top: { src: '/src/assets/img/время.svg', alt: 'время', id: 1 },
+      top: { src: '/src/assets/img/6.svg', alt: 'время', id: 1 },
       bottom: { src: '/src/assets/img/карта5.svg', alt: 'карта', id: 1 }
     },
     {
-      top: { src: '/src/assets/img/время2.svg', alt: 'время', id: 2 },
+      top: { src: '/src/assets/img/24.svg', alt: 'время', id: 2 },
       bottom: { src: '/src/assets/img/карта9.svg', alt: 'карта', id: 2 }
     },
     {
-      top: { src: '/src/assets/img/время3.svg', alt: 'время', id: 3 },
+      top: { src: '/src/assets/img/36.svg', alt: 'время', id: 3 },
       bottom: { src: '/src/assets/img/карта7.svg', alt: 'карта', id: 3 }
     },
     {
-      top: { src: '/src/assets/img/время4.svg', alt: 'время', id: 4 },
+      top: { src: '/src/assets/img/12.svg', alt: 'время', id: 4 },
       bottom: { src: '/src/assets/img/картасал.svg', alt: 'карта', id: 4 }
     },
     {
-      top: { src: '/src/assets/img/время5.svg', alt: 'время', id: 5 },
+      top: { src: '/src/assets/img/18.svg', alt: 'время', id: 5 },
       bottom: { src: '/src/assets/img/картасуб.svg', alt: 'карта', id: 5 }
     },
     {
-      top: { src: '/src/assets/img/время6.svg', alt: 'время', id: 6 },
+      top: { src: '/src/assets/img/72.svg', alt: 'время', id: 6 },
       bottom: { src: '/src/assets/img/карта4.svg', alt: 'карта', id: 6 }
     },
     {
-      top: { src: '/src/assets/img/время7.svg', alt: 'время', id: 7 },
+      top: { src: '/src/assets/img/48.svg', alt: 'время', id: 7 },
       bottom: { src: '/src/assets/img/карта6.svg', alt: 'карта', id: 7 }
     }
   ];
@@ -66,6 +66,7 @@ export const CommerceSr = () => {
   const [attempts, setAttempts] = useState(0);
   const [openIsCard, setOpenIsCard] = useState(false);
   const [activeCard, setActiveCard] = useState<number | null>(null);
+  const [lockedCards, setLockedCards] = useState<number[]>([]); // Новое состояние для заблокированных карточек
   const draggedCardRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
@@ -76,11 +77,18 @@ export const CommerceSr = () => {
     setShuffledPairs(shuffled);
     setPositions(Array(shuffled.length).fill(0));
     setCorrectOrder(shuffled.map(pair => pair.top.id));
+    setLockedCards([]);
   }, []);
 
   const allCardsPlaced = positions.every(pos => pos !== 0);
 
+  const isCardLocked = (cardId: number) => {
+    return lockedCards.includes(cardId);
+  };
+
   const handleTouchStart = (id: number) => (e: React.TouchEvent) => {
+    if (isCardLocked(id)) return;
+    
     const touch = e.touches[0];
     touchStartPosRef.current = { x: touch.clientX, y: touch.clientY };
     setActiveCard(id);
@@ -90,7 +98,6 @@ export const CommerceSr = () => {
       const cardElement = target.firstChild as HTMLElement;
       const cardRect = cardElement.getBoundingClientRect();
       
-      // Сразу устанавливаем карточку под палец
       draggedCardRef.current.style.width = `${cardRect.width}px`;
       draggedCardRef.current.style.height = `${cardRect.height}px`;
       draggedCardRef.current.style.position = 'fixed';
@@ -106,7 +113,7 @@ export const CommerceSr = () => {
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
-    if (!activeCard || !draggedCardRef.current || !touchStartPosRef.current) return;
+    if (!activeCard || !draggedCardRef.current || !touchStartPosRef.current || isCardLocked(activeCard)) return;
     e.preventDefault();
     
     const touch = e.touches[0];
@@ -115,12 +122,11 @@ export const CommerceSr = () => {
   };
 
   const handleTouchEnd = (e: React.TouchEvent) => {
-    if (!activeCard) return;
+    if (!activeCard || isCardLocked(activeCard)) return;
     
     const touch = e.changedTouches[0];
     const endPos = { x: touch.clientX, y: touch.clientY };
     
-    // Находим целевой контейнер
     const targetContainers = document.querySelectorAll(`.${classes.targetContainer}`);
     let targetContainerIndex = -1;
     
@@ -139,6 +145,16 @@ export const CommerceSr = () => {
     if (targetContainerIndex !== -1) {
       const newPositions = [...positions];
       const currentPositionIndex = newPositions.findIndex(pos => pos === activeCard);
+      
+      // Если целевое место уже заблокировано, ничего не делаем
+      if (lockedCards.includes(newPositions[targetContainerIndex])) {
+        if (draggedCardRef.current) {
+          draggedCardRef.current.style.display = 'none';
+        }
+        setActiveCard(null);
+        touchStartPosRef.current = null;
+        return;
+      }
       
       // Если на целевом месте уже есть карточка, меняем их местами
       if (newPositions[targetContainerIndex] !== 0) {
@@ -165,7 +181,6 @@ export const CommerceSr = () => {
       setPositions(newPositions);
     }
     
-    // Скрываем перетаскиваемую карточку
     if (draggedCardRef.current) {
       draggedCardRef.current.style.display = 'none';
       draggedCardRef.current.style.position = '';
@@ -184,6 +199,17 @@ export const CommerceSr = () => {
 
   const checkResults = () => {
     setAttempts(prev => prev + 1);
+    const newLockedCards = [...lockedCards];
+    
+    // Блокируем правильно размещенные карточки
+    positions.forEach((pos, idx) => {
+      if (pos === correctOrder[idx] && !lockedCards.includes(pos)) {
+        newLockedCards.push(pos);
+      }
+    });
+    
+    setLockedCards(newLockedCards);
+    
     if (JSON.stringify(positions) === JSON.stringify(correctOrder)) {
       setOpenIsCard(true);
     } else {
@@ -195,6 +221,10 @@ export const CommerceSr = () => {
   };
 
   const handleDragStart = (id: number) => (e: React.DragEvent) => {
+    if (isCardLocked(id)) {
+      e.preventDefault();
+      return;
+    }
     e.dataTransfer.setData('cardId', id.toString());
     setActiveCard(id);
   };
@@ -203,25 +233,22 @@ export const CommerceSr = () => {
     e.preventDefault();
     const cardId = Number(e.dataTransfer.getData('cardId'));
     
+    if (isCardLocked(cardId) || lockedCards.includes(positions[targetIndex])) {
+      return;
+    }
+    
     const newPositions = [...positions];
     const currentPositionIndex = newPositions.findIndex(pos => pos === cardId);
     
-    // Если на целевом месте уже есть карточка, меняем их местами
     if (newPositions[targetIndex] !== 0) {
-      // Если карточка перемещается с верхнего ряда
       if (currentPositionIndex === -1) {
         newPositions[targetIndex] = cardId;
-      } 
-      // Если карточка перемещается с другого нижнего места
-      else {
+      } else {
         const temp = newPositions[targetIndex];
         newPositions[targetIndex] = cardId;
         newPositions[currentPositionIndex] = temp;
       }
-    } 
-    // Если целевое место пустое
-    else {
-      // Если карточка перемещается с другого нижнего места
+    } else {
       if (currentPositionIndex !== -1) {
         newPositions[currentPositionIndex] = 0;
       }
@@ -252,7 +279,10 @@ export const CommerceSr = () => {
         {shuffledPairs.map((pair) => (
           <div 
             key={`top-${pair.top.id}`}
-            style={{ display: draggedCardIds.includes(pair.top.id) ? 'none' : 'block' }}
+            style={{ 
+              display: draggedCardIds.includes(pair.top.id) ? 'none' : 'block',
+              opacity: isCardLocked(pair.top.id) ? 0.5 : 1
+            }}
             onTouchStart={handleTouchStart(pair.top.id)}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
@@ -263,7 +293,7 @@ export const CommerceSr = () => {
               setActiveCard(null);
               touchStartPosRef.current = null;
             }}
-            draggable={true}
+            draggable={!isCardLocked(pair.top.id)}
             onDragStart={handleDragStart(pair.top.id)}
             onDragEnd={handleDragEnd}
           >
@@ -271,7 +301,7 @@ export const CommerceSr = () => {
               src={pair.top.src}
               alt={pair.top.alt}
               number={pair.top.id}
-              draggable={true}
+              draggable={!isCardLocked(pair.top.id)}
               onDragStart={handleDragStart(pair.top.id)}
               onDragEnd={handleDragEnd}
               className={classes.draggableCard}
@@ -315,17 +345,23 @@ export const CommerceSr = () => {
                     setActiveCard(null);
                     touchStartPosRef.current = null;
                   }}
-                  draggable={true}
+                  draggable={!isCardLocked(positions[index])}
                   onDragStart={handleDragStart(positions[index])}
                   onDragEnd={handleDragEnd}
+                  style={{
+                    cursor: isCardLocked(positions[index]) ? 'not-allowed' : 'move'
+                  }}
                 >
                   <ImageCard
                     src={matchedTopCard!.top.src}
                     alt={matchedTopCard!.top.alt}
                     number={matchedTopCard!.top.id}
-                    draggable={true}
+                    draggable={!isCardLocked(positions[index])}
                     onDragStart={handleDragStart(matchedTopCard!.top.id)}
                     onDragEnd={handleDragEnd}
+                    style={{
+                      opacity: isCardLocked(positions[index]) ? 1 : 1
+                    }}
                   />
                 </div>
               )}
@@ -344,7 +380,7 @@ export const CommerceSr = () => {
           willChange: 'transform'
         }}
       >
-        {activeCard && (
+        {activeCard && !isCardLocked(activeCard) && (
           <ImageCard
             src={shuffledPairs.find(p => p.top.id === activeCard)!.top.src}
             alt={shuffledPairs.find(p => p.top.id === activeCard)!.top.alt}
