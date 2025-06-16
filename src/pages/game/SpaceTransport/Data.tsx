@@ -16,7 +16,6 @@ export const transports=[
 
 export const mainParameters=[
   {name:'Баланс:', value:120},
-  {name:'Выполнено заказов:', value:0},
   {name:'Дни:', value:0},
   {name:'Количество человек:', value:100},
 ]
@@ -26,12 +25,6 @@ export const dataPlanets=[
   {id:3, img:planet3, countPerson:60, paths:[], pathsPlanet1:[], pathsPlanet2:[]},
 ]
 
-export const daysPositions = [
-  {x: 0, y: 0},
-  {x: 0, y: 0},
-  {x: 0, y: 0},
-  {x: 0, y: 0},
-  {x: 0, y: 0},
-  {x: 0, y: 0},
-]
+
+
 

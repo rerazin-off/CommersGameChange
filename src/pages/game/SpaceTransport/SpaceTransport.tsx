@@ -8,10 +8,11 @@ import TransportCard from './components/TransportCard/TransportCard';
 import Planet from './components/Planet/Planet';
 import TransportSlot from './components/TransportSlot/TransportSlot';
 import MainParameters from './components/MainParametrs/MainParameters';
-import { transports, mainParameters, dataPlanets, daysPositions } from './Data';
+import GameCanvas from './components/GameCanvas/GameCanvas';
+import GameResults from './components/GameResults/GameResults';
+import { transports, mainParameters, dataPlanets} from './Data';
 
 import slot from '@/assets/img/game_assets/space-transport-img/slot.svg';
-import Card from '../../../components/Card/Card';
 
 type Transport= {
   id: number,
@@ -41,6 +42,7 @@ type PositionTransport={
 }
 
 export const SpaceTransport: React.FC = () => {
+  const navigate = useNavigate()
   const [planets, setPlanets] = useState<Planet[]>(dataPlanets);
   const [selectedImg, setSelectedImg] = useState<string>(slot);
   const [selectedTransport, setSelectedTransport] = useState<Transport | null>(null);
@@ -68,6 +70,7 @@ export const SpaceTransport: React.FC = () => {
   }
 
   function buyTransport(transport: Transport){
+    if (selectedImg !== slot) return
     const balance = mainParameters[0].value;
     if (balance>0 && transport.active){
       transport.active=false;
@@ -75,7 +78,6 @@ export const SpaceTransport: React.FC = () => {
       setSelectedTransport(transport)
       mainParameters[0].value=balance-transport.cost;
     }
-    console.log('Транспорт куплен');
   }
 
 
@@ -142,7 +144,7 @@ export const SpaceTransport: React.FC = () => {
         if (p.id===planet.id){
           return{
             ...p,
-            countPerson: Math.max(0, p.countPerson-selectedTransport.numPerson)
+            countPerson: p.countPerson -  Math.min(p.countPerson, selectedTransport.numPerson)
           }
         }
         return p;
@@ -150,9 +152,10 @@ export const SpaceTransport: React.FC = () => {
       setPlanets(updatePlanets)
       setSelectedTransport(prev=>({
         ...prev,
-        numPerson: Math.max(0, selectedTransport?.numPerson-planet.countPerson),
+        numPerson: selectedTransport?.numPerson-Math.min(selectedTransport?.numPerson, planet.countPerson),
         currentPlanetId: planet.id
       }))
+      mainParameters[2].value = mainParameters[2].value - Math.min(selectedTransport?.numPerson, planet.countPerson)
     }
     let transportCoord= transportRef.current?.getBoundingClientRect()
     let x = event.target.x-positionTransport.x + transportCoord.width/2;
@@ -195,6 +198,7 @@ export const SpaceTransport: React.FC = () => {
       }
     }
     setPreviousPlanet(selectedPlanet);
+    mainParameters[1].value = userRouteLength
   };
 
   useEffect(() => {
@@ -302,92 +306,16 @@ export const SpaceTransport: React.FC = () => {
 
   console.log(minRoute);
 
-  function drawConnections(start, end, straight, dayIndex){
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d')
-    ctx.strokeStyle = 'white';
-    ctx.lineWidth = 1;
-    const canvasRec = canvas.getBoundingClientRect()
-
-    const x0 = start.left + start.width/2;
-    const y0 = start.top + start.height/2 - canvasRec.top;
-    const x1 = end.left + end.width/2;
-    const y1 = end.top + end.height/2 - canvasRec.top;
-
-    const midX = (x0 + x1) / 2;
-    const midY = (y0 + y1) / 2;
-    let offsetX=0;
-    let offsetY =0;
-    if (dayIndex ===0){
-      offsetY = -200
-    }
-    else if(dayIndex ===4){
-      offsetX = +100;
-      offsetY =-10
-    }
-
-    daysPositions[dayIndex] = {
-      x: midX + offsetX,
-      y: midY + offsetY
-    };
-
-    const controlPoints = calcControlPoints(x0, x1, y0, y1)
-    ctx.beginPath()
-    ctx.moveTo(x0, y0)
-    if (straight){
-      ctx.lineTo(x1, y1)
-    }
-    else{
-      ctx.bezierCurveTo(controlPoints.controlP1.x, controlPoints.controlP1.y, controlPoints.controlP2.x, controlPoints.controlP2.y, x1, y1)
-    }
-    ctx.stroke()
-  }
-
-  function calcControlPoints(x0, x1, y0, y1){
-    return {
-      controlP1:{
-        x: x0+(x1-x0)*0.2,
-        y: y0
-      },
-      controlP2:{
-        x: x1 + (x1 - x0) * 2,
-        y: y1 + (y1- y0) *(-0.3)
-      }
-    }
-  }
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    canvas.width = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
-    const ctx = canvas.getContext('2d')
-
-    const planets = planetRefs.map(p => p.current?.getBoundingClientRect()).filter(Boolean)
-    const transport = transportRef.current?.getBoundingClientRect()
-    drawConnections(planets[0], planets[1], false, 3)
-    drawConnections(planets[0], planets[2], false, 5)
-    drawConnections(planets[1], planets[2], true, 4)
-
-    ctx.fillStyle = 'white';
-    ctx.font = '16px Arial';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-
-    for (let i = 0; i < days.length && i < daysPositions.length; i++) {
-      if (days[i] && daysPositions[i]) {
-        ctx.fillText(`${days[i]} дня`, daysPositions[i].x, daysPositions[i].y);
-      }
-    }
-
-    planets.forEach((p, index)=>{
-      drawConnections(transport, p, false, index)
-    })
-  }, [days]);
 
   return (
     <div className={classes.container}>
       <ToastContainer />
-      <canvas ref={canvasRef} className={classes.canvasClass}/>
+      <GameCanvas
+        canvasRef={canvasRef}
+        transportRef={transportRef}
+        planetRefs={planetRefs}
+        days={days}
+      />
       <MainParameters parameters={mainParameters} />
 
       <div className={classes.gameField}>
@@ -436,20 +364,11 @@ export const SpaceTransport: React.FC = () => {
       >
         НАЗАД
       </Button>
-      <Card
-        title={'Неверный путь'}
-        body={'Существует путь короче вашего. Попробуйте ещё раз. Обратите внимание что последовательность покупок также влияет на длину пути!'}
-        isOpen={visibleErrorCard}
-        onClose={()=>setVisibleErrorCard(false)}
-        type={'gameOver'}
-        error={true}
-      />
-      <Card
-        title={'Поздравляем!'}
-        body={'Вы отлично справились с задачей логиста!'}
-        isOpen={visibleFinishCard}
-        omClose={()=>setVisibleFinishCard(false)}
-        type={'gameOver'}
+      <GameResults
+        showErrorCard={visibleErrorCard}
+        showFinishCard={visibleFinishCard}
+        closeErrorCard={()=>setVisibleErrorCard(false)}
+        closeFinishCard={()=>setVisibleFinishCard(false)}
       />
     </div>
   );

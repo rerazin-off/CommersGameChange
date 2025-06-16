@@ -24,10 +24,13 @@ import { LogistCep } from '../../pages/game/logist/LogistCep';
 import { MusicalGameCategories } from '../../pages/game/musical/MusicalGameCategories';
 import { CommerceSr } from '../../pages/game/commerceSrok/CommerceSr.tsx';
 import { SpaceTransport } from '../../pages/game/SpaceTransport/SpaceTransport';
+import { CommerceMat } from '../../pages/game/commerceMat/CommerceMat';
+import CommercePlayGame from '../../pages/game/commerce_2/CommercePlayGame'
 
 import ExpenseSorterGame from '../../pages/game/buhgalter/buhgame2.0/components/BuhgalGame/BuhgalGame';
 
 import { Suspense } from 'react';
+import { CommerceTovary } from '../../pages/game/commerce/CommerceTovary';
 
 
 export enum RoutesEnum {
@@ -85,4 +88,7 @@ export const router = createBrowserRouter([
   { path: '/musicalcategories', element: <MusicalGameCategories /> },
   { path: '/commerceSr', element: <CommerceSr /> },
   {path: '/SpaceTransport', element: <SpaceTransport/>},
+   { path: '/commerceMat', element: <CommerceMat /> },
+  { path: '/CommercePlayGame', element: <CommercePlayGame /> },
+  { path: '/tovary', element: <CommerceTovary /> },
 ]);
