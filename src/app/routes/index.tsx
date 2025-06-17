@@ -24,6 +24,7 @@ import { LogistCep } from '../../pages/game/logist/LogistCep';
 import  MusicalGameCategories from '../../pages/game/musical/MusicalGameCategories.tsx';
 import { CommerceSr } from '../../pages/game/commerceSrok/CommerceSr.tsx';
 import { CommerceMat } from '../../pages/game/commerceMat/CommerceMat.tsx';
+import { Upbringing } from '../../pages/game/upbringing/Upbringing.tsx';
 import CommercePlayGame from '../../pages/game/commerce_2/CommercePlayGame'
 
 
