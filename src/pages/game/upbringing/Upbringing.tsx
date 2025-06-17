@@ -6,18 +6,14 @@ import { useNavigate } from 'react-router-dom';
 import { RoutesEnum } from '../../../app/routes';
 import CardFinish from './components/CardFinish';
 
-interface ImagePair {
-  top: {
-    src: string;
-    alt: string;
-    id: number;
-  };
-  bottom: {
-    src: string;
-    alt: string;
-    id: number;
-    matches: number[]; // IDs of top images that match this bottom image
-  };
+interface ImageCard {
+  src: string;
+  alt: string;
+  id: number;
+}
+
+interface BottomCard extends ImageCard {
+  matches: number[]; // IDs of top images that match this bottom image
 }
 
 const shuffleArray = (array: any[]) => {
@@ -30,93 +26,43 @@ const shuffleArray = (array: any[]) => {
 };
 
 export const Upbringing = () => {
-  const initialPairs: ImagePair[] = [
-    {
-      top: { src: '/src/assets/img/upbring/pogrem.svg', alt: 'машинка', id: 1 },
-      bottom: { 
-        src: '/src/assets/img/upbring/frst.svg', 
-        alt: 'первая категория', 
-        id: 1,
-        matches: [1, 2, 3] // машинка, игра, коврик
-      }
+  // Нижние карточки (не перемешиваются)
+  const bottomCards: BottomCard[] = [
+    { 
+      src: '/src/assets/img/upbring/frst.svg', 
+      alt: 'первая категория', 
+      id: 1,
+      matches: [1, 2, 3] // машинка, игра, коврик
     },
-    {
-      top: { src: '/src/assets/img/upbring/vis.svg', alt: 'игра', id: 2 },
-      bottom: { 
-        src: '/src/assets/img/upbring/frst.svg', 
-        alt: 'первая категория', 
-        id: 1,
-        matches: [1, 2, 3]
-      }
+    { 
+      src: '/src/assets/img/upbring/scnd.svg', 
+      alt: 'вторая категория', 
+      id: 2,
+      matches: [4, 5, 6] // кубики, лего, настольная игра
     },
-    {
-      top: { src: '/src/assets/img/upbring/kov.svg', alt: 'коврик', id: 3 },
-      bottom: { 
-        src: '/src/assets/img/upbring/frst.svg', 
-        alt: 'первая категория', 
-        id: 1,
-        matches: [1, 2, 3]
-      }
-    },
-    {
-      top: { src: '/src/assets/img/upbring/kub.svg', alt: 'кубики', id: 4 },
-      bottom: { 
-        src: '/src/assets/img/upbring/scnd.svg', 
-        alt: 'вторая категория', 
-        id: 2,
-        matches: [4, 5, 6] // кубики, лего, настольная игра
-      }
-    },
-    {
-      top: { src: '/src/assets/img/upbring/car.svg', alt: 'лего', id: 5 },
-      bottom: { 
-        src: '/src/assets/img/upbring/scnd.svg', 
-        alt: 'вторая категория', 
-        id: 2,
-        matches: [4, 5, 6]
-      }
-    },
-    {
-      top: { src: '/src/assets/img/upbring/skaz.svg', alt: 'настольная игра', id: 6 },
-      bottom: { 
-        src: '/src/assets/img/upbring/scnd.svg', 
-        alt: 'вторая категория', 
-        id: 2,
-        matches: [4, 5, 6]
-      }
-    },
-    {
-      top: { src: '/src/assets/img/upbring/lego.svg', alt: 'погремушка', id: 7 },
-      bottom: { 
-        src: '/src/assets/img/upbring/thd.svg', 
-        alt: 'третья категория', 
-        id: 3,
-        matches: [7, 8, 9] // погремушка, сказка, вишня
-      }
-    },
-    {
-      top: { src: '/src/assets/img/upbring/nast.svg', alt: 'сказка', id: 8 },
-      bottom: { 
-        src: '/src/assets/img/upbring/thd.svg', 
-        alt: 'третья категория', 
-        id: 3,
-        matches: [7, 8, 9]
-      }
-    },
-    {
-      top: { src: '/src/assets/img/upbring/game.svg', alt: 'вишня', id: 9 },
-      bottom: { 
-        src: '/src/assets/img/upbring/thd.svg', 
-        alt: 'третья категория', 
-        id: 3,
-        matches: [7, 8, 9]
-      }
+    { 
+      src: '/src/assets/img/upbring/thd.svg', 
+      alt: 'третья категория', 
+      id: 3,
+      matches: [7, 8, 9] // погремушка, сказка, вишня
     }
   ];
 
-  const [shuffledPairs, setShuffledPairs] = useState<ImagePair[]>([]);
+  // Верхние карточки (будут перемешиваться)
+  const initialTopCards: ImageCard[] = [
+    { src: '/src/assets/img/upbring/pogrem.svg', alt: 'машинка', id: 1 },
+    { src: '/src/assets/img/upbring/vis.svg', alt: 'игра', id: 2 },
+    { src: '/src/assets/img/upbring/kov.svg', alt: 'коврик', id: 3 },
+    { src: '/src/assets/img/upbring/kub.svg', alt: 'кубики', id: 4 },
+    { src: '/src/assets/img/upbring/car.svg', alt: 'лего', id: 5 },
+    { src: '/src/assets/img/upbring/skaz.svg', alt: 'настольная игра', id: 6 },
+    { src: '/src/assets/img/upbring/lego.svg', alt: 'погремушка', id: 7 },
+    { src: '/src/assets/img/upbring/nast.svg', alt: 'сказка', id: 8 },
+    { src: '/src/assets/img/upbring/game.svg', alt: 'вишня', id: 9 }
+  ];
+
+  const [shuffledTopCards, setShuffledTopCards] = useState<ImageCard[]>([]);
   const [positions, setPositions] = useState<number[][]>([[], [], []]);
-  const [correctMatches, setCorrectMatches] = useState<{[key: number]: number[]}>({});
   const [attempts, setAttempts] = useState(0);
   const [openIsCard, setOpenIsCard] = useState(false);
   const [activeCard, setActiveCard] = useState<number | null>(null);
@@ -127,18 +73,9 @@ export const Upbringing = () => {
   const touchStartPosRef = useRef<{ x: number; y: number } | null>(null);
 
   useEffect(() => {
-    const shuffled = shuffleArray([...initialPairs]);
-    setShuffledPairs(shuffled);
+    // Перемешиваем только верхние карточки при загрузке
+    setShuffledTopCards(shuffleArray([...initialTopCards]));
     setPositions([[], [], []]);
-    
-    const matches: {[key: number]: number[]} = {};
-    initialPairs.forEach(pair => {
-      if (!matches[pair.bottom.id]) {
-        matches[pair.bottom.id] = pair.bottom.matches;
-      }
-    });
-    setCorrectMatches(matches);
-    
     setLockedCards([]);
   }, []);
 
@@ -207,7 +144,6 @@ export const Upbringing = () => {
     if (targetContainerIndex !== -1) {
       const newPositions = [...positions];
       
-      // Check if target position already has 3 cards
       if (newPositions[targetContainerIndex].length >= 3) {
         if (draggedCardRef.current) {
           draggedCardRef.current.style.display = 'none';
@@ -217,7 +153,6 @@ export const Upbringing = () => {
         return;
       }
       
-      // Remove card from its current position
       for (let i = 0; i < newPositions.length; i++) {
         const index = newPositions[i].indexOf(activeCard);
         if (index !== -1) {
@@ -253,9 +188,10 @@ export const Upbringing = () => {
     
     positions.forEach((posArray, idx) => {
       const bottomId = idx + 1;
+      const correctMatches = bottomCards.find(b => b.id === bottomId)?.matches || [];
       
       const allCorrectForPosition = posArray.every(pos => 
-        correctMatches[bottomId]?.includes(pos)
+        correctMatches.includes(pos)
       );
       
       if (allCorrectForPosition) {
@@ -276,9 +212,8 @@ export const Upbringing = () => {
     } else {
       const newPositions = positions.map((posArray, idx) => {
         const bottomId = idx + 1;
-        return posArray.filter(pos => 
-          correctMatches[bottomId]?.includes(pos)
-        );
+        const correctMatches = bottomCards.find(b => b.id === bottomId)?.matches || [];
+        return posArray.filter(pos => correctMatches.includes(pos));
       });
       setPositions(newPositions);
     }
@@ -303,12 +238,10 @@ export const Upbringing = () => {
     
     const newPositions = [...positions];
     
-    // Check if target position already has 3 cards
     if (newPositions[targetIndex].length >= 3) {
       return;
     }
     
-    // Remove card from its current position
     for (let i = 0; i < newPositions.length; i++) {
       const index = newPositions[i].indexOf(cardId);
       if (index !== -1) {
@@ -331,29 +264,22 @@ export const Upbringing = () => {
   
   const draggedCardIds = positions.flat();
 
-  if (shuffledPairs.length === 0) {
+  if (shuffledTopCards.length === 0) {
     return <div>Загрузка...</div>;
   }
 
-  const bottomImages = shuffledPairs.reduce((acc, pair) => {
-    if (!acc.find(item => item.id === pair.bottom.id)) {
-      acc.push(pair.bottom);
-    }
-    return acc;
-  }, [] as {src: string; alt: string; id: number; matches: number[]}[]);
-
   return (
     <div className={classes.container} ref={containerRef}>
-      {/* Верхний ряд */}
+      {/* Верхний ряд - перемешанные карточки */}
       <div className={classes.topRow}>
-        {shuffledPairs.map((pair) => (
+        {shuffledTopCards.map((card) => (
           <div 
-            key={`top-${pair.top.id}`}
+            key={`top-${card.id}`}
             style={{ 
-              display: draggedCardIds.includes(pair.top.id) ? 'none' : 'block',
-              opacity: isCardLocked(pair.top.id) ? 0.5 : 1
+              display: draggedCardIds.includes(card.id) ? 'none' : 'block',
+              opacity: isCardLocked(card.id) ? 0.5 : 1
             }}
-            onTouchStart={handleTouchStart(pair.top.id)}
+            onTouchStart={handleTouchStart(card.id)}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
             onTouchCancel={() => {
@@ -363,16 +289,16 @@ export const Upbringing = () => {
               setActiveCard(null);
               touchStartPosRef.current = null;
             }}
-            draggable={!isCardLocked(pair.top.id)}
-            onDragStart={handleDragStart(pair.top.id)}
+            draggable={!isCardLocked(card.id)}
+            onDragStart={handleDragStart(card.id)}
             onDragEnd={handleDragEnd}
           >
             <ImageCard
-              src={pair.top.src}
-              alt={pair.top.alt}
-              number={pair.top.id}
-              draggable={!isCardLocked(pair.top.id)}
-              onDragStart={handleDragStart(pair.top.id)}
+              src={card.src}
+              alt={card.alt}
+              number={card.id}
+              draggable={!isCardLocked(card.id)}
+              onDragStart={handleDragStart(card.id)}
               onDragEnd={handleDragEnd}
               className={classes.draggableCard}
             />
@@ -380,9 +306,9 @@ export const Upbringing = () => {
         ))}
       </div>
 
-      {/* Нижний ряд */}
+      {/* Нижний ряд - фиксированные категории */}
       <div className={classes.bottomRow}>
-        {bottomImages.map((bottom, index) => {
+        {bottomCards.map((bottom, index) => {
           const positionCards = positions[index] || [];
           const isPositionFull = positionCards.length >= 3;
           
@@ -407,13 +333,11 @@ export const Upbringing = () => {
                 }}
               />
               
-              {/* Render all cards in this position */}
               <div className={classes.overlayCardsContainer}>
                 {positionCards.map((cardId, cardIndex) => {
-                  const matchedTopCard = shuffledPairs.find(p => p.top.id === cardId);
+                  const matchedTopCard = shuffledTopCards.find(p => p.id === cardId);
                   if (!matchedTopCard) return null;
                   
-                  // Calculate position for each card (3 cards in a row)
                   const cardStyle = {
                     position: 'absolute' as const,
                     left: `${(cardIndex % 3) * 33.33 + 1.66}%`,
@@ -446,14 +370,13 @@ export const Upbringing = () => {
                       }}
                     >
                       <ImageCard
-                        src={matchedTopCard.top.src}
-                        alt={matchedTopCard.top.alt}
-                        number={matchedTopCard.top.id}
+                        src={matchedTopCard.src}
+                        alt={matchedTopCard.alt}
+                        number={matchedTopCard.id}
                         draggable={!isCardLocked(cardId)}
-                        onDragStart={handleDragStart(matchedTopCard.top.id)}
+                        onDragStart={handleDragStart(matchedTopCard.id)}
                         onDragEnd={handleDragEnd}
                         style={{
-                          
                           opacity: isCardLocked(cardId) ? 1 : 1,
                           transform: isCardLocked(cardId) ? 'scale(0.7)' : 'scale(0.7)'
                         }}
@@ -463,7 +386,6 @@ export const Upbringing = () => {
                 })}
               </div>
               
-              {/* Show message when position is full */}
               {isPositionFull && (
                 <div style={{
                   position: 'absolute',
@@ -483,7 +405,6 @@ export const Upbringing = () => {
         })}
       </div>
 
-      {/* Перетаскиваемая карточка для touch-устройств */}
       <div 
         ref={draggedCardRef}
         className={classes.draggedCard}
@@ -495,22 +416,21 @@ export const Upbringing = () => {
       >
         {activeCard && !isCardLocked(activeCard) && (
           <ImageCard
-            src={shuffledPairs.find(p => p.top.id === activeCard)!.top.src}
-            alt={shuffledPairs.find(p => p.top.id === activeCard)!.top.alt}
+            src={shuffledTopCards.find(p => p.id === activeCard)!.src}
+            alt={shuffledTopCards.find(p => p.id === activeCard)!.alt}
             number={activeCard}
             style={{ pointerEvents: 'none' }}
           />
         )}
       </div>
 
-      {/* Кнопка проверки */}
-    {allCategoriesFilled && (
-  <div onClick={checkResults} className={classes.checkButton}>
-    <Button bgColor="blue" type="type1v2">
-      ПРОВЕРИТЬ
-    </Button>
-  </div>
-)}
+      {allCategoriesFilled && (
+        <div onClick={checkResults} className={classes.checkButton}>
+          <Button bgColor="blue" type="type1v2">
+            ПРОВЕРИТЬ
+          </Button>
+        </div>
+      )}
       
       <div className={classes.backButton}>
         <Button
