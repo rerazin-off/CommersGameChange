@@ -47,8 +47,12 @@ const itemArr: ItemType[] = [
 import Item from './Item.tsx'
 import Container from './Container.tsx';
 import CustomDragPreview from './CustomDragPreview.tsx';
+import { Button } from '../../../../components/Button/Button.tsx';
+import { useNavigate } from 'react-router-dom';
+import { RoutesEnum } from '../../../../app/routes';
 
 export default function ItemsList(){
+    const navigate = useNavigate()
     const [dropItem, setDropItem] = useState(itemArr)
     const [areas, setAreas] = useState({
         1:[],
@@ -63,6 +67,13 @@ export default function ItemsList(){
         3:{top: '56vh', left: '8vh'},
         4:{top: '56vh', left: '80vh'}
     }
+
+    const answers = [
+        [{id: 9}, {id:10}, {id:12}],
+        [{id: 1}, {id:5}, {id:7}],
+        [{id: 2}, {id:4}, {id:6}],
+        [{id: 3}, {id:8}, {id:11}]
+    ]
 
     const addItem = (droppedItem, areaID, position) => {
     const newPosition = position || droppedItem.position;
@@ -99,12 +110,27 @@ export default function ItemsList(){
         console.log(areas)
     }, [areas])
 
+    // const checkResults = () => {
+    //     const resultFlag = false;
+    //     for (let i = 0; i<12; i++){
+            
+    //     }
+    // }
+
     return(
         <div>
+            <Button bgColor="blue" type="type1v2" className={dropItem.length===0 ? classes.checkButtonD : classes.checkButton}>ПРОВЕРИТЬ</Button>
+
+            <Button className={classes.backButton} bgColor="pink" type="type1v2" 
+                onClick={() => {
+                    localStorage.setItem('fromGame', 'true');
+                    navigate(RoutesEnum.MUSIC);
+                }}>НАЗАД</Button>
+
             <CustomDragPreview/>
             <div className={classes.currentItem}>
-                <div className={classes.whiteSpace}>
-                    <Item url={dropItem[0].url} id={dropItem[0].id} key={dropItem[0].id} positions={{top: '50px', left: '50px'}}/>
+                <div className={classes.whiteSpace} style={{opacity: dropItem.length===0 ? '0' : '1'}}>
+                    <Item url={dropItem[0]?.url} id={dropItem[0]?.id} key={dropItem[0]?.id} positions={{top: '50px', left: '50px'}}/>
                 </div>
             </div>
 
