@@ -15,7 +15,7 @@ const CardFinish = (props: CardFinishProps) => {
         title="'Поздравляем!"
         body={
           <>
-            Вы успешно завершили игру! <br /> Количество попыток: {attempts}
+            Вы успешно завершили игру! <br/> Количество попыток: {attempts}
           </>
         }
         

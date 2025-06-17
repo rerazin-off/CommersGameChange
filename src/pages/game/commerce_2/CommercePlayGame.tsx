@@ -430,7 +430,7 @@ const CommercePlayGame: React.FC = () => {
         marginTop: '-30px',
         height: '600px'
       }}>
-        {/* Products section (Purple zone) */}
+        
         <div 
           style={{
             flex: '1',
@@ -502,7 +502,7 @@ const CommercePlayGame: React.FC = () => {
           </div>
         </div>
 
-        {/* Refrigerators section */}
+        
         <div 
           style={{
             flex: '1',

@@ -23,6 +23,7 @@ import { SorterGame } from '../../pages/game/buhgalter/buhGame';
 import { LogistCep } from '../../pages/game/logist/LogistCep';
 import { MusicalGameCategories } from '../../pages/game/musical/MusicalGameCategories';
 import CommercePlayGame  from '../../pages/game/commerce_2/CommercePlayGame.js';
+import Commerce  from '../../pages/game/commerce/Commerce.js';
 
 import ExpenseSorterGame from '../../pages/game/buhgalter/buhgame2.0/components/BuhgalGame/BuhgalGame';
 
@@ -83,4 +84,5 @@ export const router = createBrowserRouter([
   { path: '/gamelogist', element: <LogistCep /> },
   { path: '/musicalcategories', element: <MusicalGameCategories /> },
   { path: '/commerce', element: <CommercePlayGame/> },
+  { path: '/commerce_2', element: <Commerce/> },
 ]);
