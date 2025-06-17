@@ -51,7 +51,7 @@ export const Upbringing = () => {
   // Верхние карточки (будут перемешиваться)
   const initialTopCards: ImageCard[] = [
     { src: '/src/assets/img/upbring/pogrem.svg', alt: 'машинка', id: 1 },
-    { src: '/src/assets/img/upbring/vis.svg', alt: 'игра', id: 2 },
+    { src: '/src/assets/img/upbring/sos.svg', alt: 'игра', id: 2 },
     { src: '/src/assets/img/upbring/kov.svg', alt: 'коврик', id: 3 },
     { src: '/src/assets/img/upbring/kub.svg', alt: 'кубики', id: 4 },
     { src: '/src/assets/img/upbring/car.svg', alt: 'лего', id: 5 },
