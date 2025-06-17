@@ -21,7 +21,7 @@ import { BankGame } from '../../pages/game/bank/bankGame';
 import { Rocket } from '../../pages/game/rocket/Rocket';
 import { SorterGame } from '../../pages/game/buhgalter/buhGame';
 import { LogistCep } from '../../pages/game/logist/LogistCep';
-import  MusicalGameCategories from '../../pages/game/musical/MusicalGameCategories.tsx';
+import { Musical } from '../../pages/game/musical/musical';
 import { CommerceSr } from '../../pages/game/commerceSrok/CommerceSr.tsx';
 import { SpaceTransport } from '../../pages/game/SpaceTransport/SpaceTransport';
 import { CommerceMat } from '../../pages/game/commerceMat/CommerceMat';
@@ -42,7 +42,8 @@ export enum RoutesEnum {
   SPECIALKINDERGARDEN='/SpecialKinder',
   DOU = '/dou',
   BANK = '/bank',
-  TORGASHI = '/tovaroveds'
+  TORGASHI = '/tovaroveds',
+  MUSIC = '/music'
  //  ECONOMIST = '/economist',
  // main
 }
@@ -73,7 +74,7 @@ export const router = createBrowserRouter([
   },
   { path: '/bank', element: <Bank /> },
   { path: '/tovaroveds', element: <Torgashi /> },
-  { path: '/music', element: <MusiciansRoom /> },
+  { path: RoutesEnum.MUSIC, element: <MusiciansRoom /> },
   { path: '/ElemShool', element: <ElementarySchool /> },
   { path: '/Psih', element: <Psih /> },
   // { path: '/game/:gameId', element: <Game /> },
@@ -85,7 +86,7 @@ export const router = createBrowserRouter([
   { path: '/gbuh2', element: <ExpenseSorterGame /> },
 
   { path: '/gamelogist', element: <LogistCep /> },
-  { path: '/musicalcategories', element: <MusicalGameCategories /> },
+  { path: '/musicalcategories', element: <Musical /> },
   { path: '/commerceSr', element: <CommerceSr /> },
   {path: '/SpaceTransport', element: <SpaceTransport/>},
    { path: '/commerceMat', element: <CommerceMat /> },

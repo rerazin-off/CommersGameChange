@@ -8,9 +8,9 @@ import { Indicator } from '../../../components/Indicator/Indicator';
 
 const gameData: Record<string, { title: string; body: string; url: string }> = {
   drumsGame: {
-    title: '',
+    title: 'Классификатор инструментов',
     body: '',
-    url: '',
+    url: 'musicalcategories',
   },
   xylophoneGame: {
     title: '',
