@@ -18,16 +18,21 @@ html{
 //  justify-content: center;
 //
 .circle {
-  width: 450px;
+  width: 440px;
   height: 435px;
   display: flex;
   flex-wrap: wrap;
-  align-content: flex-start; // Добавлено для плотного расположения строк
-  row-gap: 10px; // Вертикальное расстояние между строками
-  column-gap: 10px; // Горизонтальное расстояние между элементами
+  align-content: flex-start;
+  row-gap: 30px;
+  column-gap: 30px;
   justify-content: center;
 
-
+  // Добавляем стиль для скрытия превью при перетаскивании
+  .react-draggable-transparent-selection & {
+    * {
+      visibility: hidden !important;
+    }
+  }
 
   &:nth-child(1) {
     transform: translate(1290px, 40px);
@@ -44,9 +49,8 @@ html{
   }
 }
 
-// Стили для элементов внутри слота
 .inSlot {
-  width: 80px !important; // Уменьшенный размер
+  width: 80px !important;
   height: 80px !important;
   position: static !important;
   transform: none !important;

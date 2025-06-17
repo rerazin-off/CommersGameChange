@@ -18,7 +18,7 @@ const CardFinish = (props: CardFinishProps) => {
             Вы успешно завершили игру! <br /> Количество попыток: {attempts}
           </>
         }
-        game="logistics"
+        game="tovaroveds"
         backLink=""
         isOpen={isOpenCard}
         onClose={onClose}
