@@ -11,6 +11,7 @@ const GameResults = ({showErrorCard, showFinishCard, closeErrorCard, closeFinish
         onClose={closeErrorCard}
         type={'gameOver'}
         error={true}
+        game='Logistics'
       />
       <Card
         title={'Поздравляем!'}
@@ -18,6 +19,7 @@ const GameResults = ({showErrorCard, showFinishCard, closeErrorCard, closeFinish
         isOpen={showFinishCard}
         omClose={closeFinishCard}
         type={'gameOver'}
+        game = 'Logistics'
       />
     </>
   );
