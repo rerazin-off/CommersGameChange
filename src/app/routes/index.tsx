@@ -21,13 +21,17 @@ import { BankGame } from '../../pages/game/bank/bankGame';
 import { Rocket } from '../../pages/game/rocket/Rocket';
 import { SorterGame } from '../../pages/game/buhgalter/buhGame';
 import { LogistCep } from '../../pages/game/logist/LogistCep';
-import { MusicalGameCategories } from '../../pages/game/musical/MusicalGameCategories';
-import CommercePlayGame  from '../../pages/game/commerce_2/CommercePlayGame.js';
+import { Musical } from '../../pages/game/musical/musical.js';
+import CommercePlayGame  from '../../pages/game/commerce_2/CommercePlayGame';
 import Commerce  from '../../pages/game/commerce/Commerce.js';
-
+import {Upbringing}  from '../../pages/game/upbringing/Upbringing';
+import {CommerceTovary}  from '../../pages/game/commerce/CommerceTovary';
+import {CommerceMat}  from '../../pages/game/commerceMat/CommerceMat';
+import {CommerceSr}  from '../../pages/game/commerceSrok/CommerceSr';
 import ExpenseSorterGame from '../../pages/game/buhgalter/buhgame2.0/components/BuhgalGame/BuhgalGame';
 
 import { Suspense } from 'react';
+import { SpaceTransport } from '../../pages/game/SpaceTransport/SpaceTransport';
 
 
 export enum RoutesEnum {
@@ -81,9 +85,13 @@ export const router = createBrowserRouter([
   { path: '/rocket', element: <Rocket /> },
   { path: '/gbuh', element: <SorterGame /> },
   { path: '/gbuh2', element: <ExpenseSorterGame /> },
-
+  { path: '/tovary', element: <CommerceTovary /> },
   { path: '/gamelogist', element: <LogistCep /> },
-  { path: '/musicalcategories', element: <MusicalGameCategories /> },
+  { path: '/musicalcategories', element: <Musical /> },
   { path: '/commerce', element: <CommercePlayGame/> },
   { path: '/commerce_2', element: <Commerce/> },
+  { path: '/Upbringing', element: <Upbringing/> },
+  { path: '/CommerceMat', element: <CommerceMat/> },
+  { path: '/CommerceSr', element: <CommerceSr/> },
+  { path: '/SpaceTransport', element: <SpaceTransport/> },
 ]);
