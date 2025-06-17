@@ -25,9 +25,14 @@
   border: 1px solid #4DE4F2;
   width: 622px;
   height: 421px;
+  &.error {
+    background: linear-gradient(to right, rgba(179, 20, 20, 0.09), rgba(179, 20, 20, 0.16));
+    border: 1px solid #b31414;
+  }
   .text{
     width: 622px;
   }
+
 
   h1{
     font-family:"AA Spaceman";
