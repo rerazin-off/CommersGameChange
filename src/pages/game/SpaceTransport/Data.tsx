@@ -8,23 +8,26 @@ import planet3 from '@/assets/img/game_assets/space-transport-img/planet-corpus3
 
 
 export const transports=[
-  {id: 1, img: transport1, capacity: 20, amountFuel: 20, cost: 50, numPerson:0, active:true, currentPlanetId: null},
-  {id: 2, img: transport2, capacity: 30, amountFuel: 20, cost: 40, numPerson:0, active:true, currentPlanetId: null},
-  {id: 3, img: transport3, capacity: 50, amountFuel: 20, cost: 30, numPerson:0, active:true, currentPlanetId: null},
-  {id: 4, img: transport4, capacity: 100, amountFuel: 20, cost: 100, numPerson:0, active:false, currentPlanetId: null}
+  {id: 1, img: transport1, capacity: 20, amountFuel: 10, cost: 50, numPerson:0, active:true, currentPlanetId: null},
+  {id: 2, img: transport2, capacity: 30, amountFuel: 10, cost: 40, numPerson:0, active:true, currentPlanetId: null},
+  {id: 3, img: transport3, capacity: 50, amountFuel: 10, cost: 30, numPerson:0, active:true, currentPlanetId: null},
+  {id: 4, img: transport4, capacity: 100, amountFuel: 10, cost: 100, numPerson:0, active:false, currentPlanetId: null}
 ]
 
 export const mainParameters=[
-  {name:'Баланс', value:120},
+  {name:'Баланс', value:200},
   {name:'Дни', value:0},
   {name:'Количество человек', value:100},
+  {name: 'Расход топлива', value: 0}
 ]
 export const dataPlanets=[
-  {id:1, img:planet1, countPerson:10, paths:[], pathsPlanet2:[], pathsPlanet3:[]},
-  {id:2, img:planet2, countPerson:30, paths:[], pathsPlanet1:[], pathsPlanet3:[]},
-  {id:3, img:planet3, countPerson:60, paths:[], pathsPlanet1:[], pathsPlanet2:[]},
+  {id:1, img:planet1, countPerson:15, paths:[5], pathsPlanet2:[4], pathsPlanet3:[1]},
+  {id:2, img:planet2, countPerson:25, paths:[2], pathsPlanet1:[4], pathsPlanet3:[4]},
+  {id:3, img:planet3, countPerson:60, paths:[1], pathsPlanet1:[1], pathsPlanet2:[4]},
 ]
-export const days = [5,2,1,4,2,1]
+export const days = [5,2,1,4,4,1]
+
+
 
 
 
