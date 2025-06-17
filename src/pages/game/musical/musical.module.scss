@@ -1,4 +1,6 @@
-body{
-    background-image: url('./assets/sprites/gameBackground.svg');
+.mainBG{
+    width: 100%;
+    height: 100vh;
+    background-image: url('../../../assets/img/game_assets/musicalgame-categories/gameBackground.svg');
     background-size: cover;
 }
