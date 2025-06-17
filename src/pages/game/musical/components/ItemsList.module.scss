@@ -25,3 +25,24 @@
     height: 40%;
     margin: -10px;
 }
+
+.checkButton {
+    display: none;
+    position: absolute;
+    bottom: 5vh;
+    right: 5vh;
+    z-index: 100;
+}
+
+.checkButtonD{
+    position: absolute;
+    bottom: 3vh;
+    right: 5vh;
+    z-index: 100;
+}
+
+.backButton{
+    position: absolute;
+    bottom: 3vh;
+    left: 5vh
+}
