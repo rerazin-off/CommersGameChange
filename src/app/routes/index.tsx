@@ -23,8 +23,8 @@ import { SorterGame } from '../../pages/game/buhgalter/buhGame';
 import { LogistCep } from '../../pages/game/logist/LogistCep';
 import  MusicalGameCategories from '../../pages/game/musical/MusicalGameCategories.tsx';
 import { CommerceSr } from '../../pages/game/commerceSrok/CommerceSr.tsx';
-import { CommerceMat } from '../../pages/game/commerceMat/CommerceMat.tsx';
-import { Upbringing } from '../../pages/game/upbringing/Upbringing.tsx';
+import { SpaceTransport } from '../../pages/game/SpaceTransport/SpaceTransport';
+import { CommerceMat } from '../../pages/game/commerceMat/CommerceMat';
 import CommercePlayGame from '../../pages/game/commerce_2/CommercePlayGame'
 
 
@@ -88,6 +88,7 @@ export const router = createBrowserRouter([
   { path: '/gamelogist', element: <LogistCep /> },
   { path: '/musicalcategories', element: <MusicalGameCategories /> },
   { path: '/commerceSr', element: <CommerceSr /> },
+  {path: '/SpaceTransport', element: <SpaceTransport/>},
    { path: '/commerceMat', element: <CommerceMat /> },
   { path: '/CommercePlayGame', element: <CommercePlayGame /> },
   { path: '/tovary', element: <CommerceTovary /> },
