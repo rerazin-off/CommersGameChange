@@ -71,9 +71,9 @@ export const Upbringing = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
   const touchStartPosRef = useRef<{ x: number; y: number } | null>(null);
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
   useEffect(() => {
-    // Перемешиваем только верхние карточки при загрузке
     setShuffledTopCards(shuffleArray([...initialTopCards]));
     setPositions([[], [], []]);
     setLockedCards([]);
@@ -118,6 +118,16 @@ export const Upbringing = () => {
     const touch = e.touches[0];
     draggedCardRef.current.style.left = `${touch.clientX}px`;
     draggedCardRef.current.style.top = `${touch.clientY}px`;
+    
+    // Определяем, над какой карточкой сейчас перемещение
+    const elements = document.elementsFromPoint(touch.clientX, touch.clientY);
+    const overlayCard = elements.find(el => el.classList.contains(classes.overlayCard));
+    if (overlayCard) {
+      const cardId = parseInt(overlayCard.getAttribute('data-card-id') || '0');
+      setHoveredCard(cardId);
+    } else {
+      setHoveredCard(null);
+    }
   };
 
   const handleTouchEnd = (e: React.TouchEvent) => {
@@ -144,40 +154,61 @@ export const Upbringing = () => {
     if (targetContainerIndex !== -1) {
       const newPositions = [...positions];
       
-      if (newPositions[targetContainerIndex].length >= 3) {
-        if (draggedCardRef.current) {
-          draggedCardRef.current.style.display = 'none';
-        }
-        setActiveCard(null);
-        touchStartPosRef.current = null;
-        return;
-      }
-      
+      // Находим текущую позицию активной карточки
+      let sourceContainerIndex = -1;
+      let sourceCardIndex = -1;
       for (let i = 0; i < newPositions.length; i++) {
         const index = newPositions[i].indexOf(activeCard);
         if (index !== -1) {
-          newPositions[i].splice(index, 1);
+          sourceContainerIndex = i;
+          sourceCardIndex = index;
           break;
         }
       }
       
-      newPositions[targetContainerIndex].push(activeCard);
+      // Если карточка перемещается в другую категорию
+      if (sourceContainerIndex !== targetContainerIndex) {
+        // Удаляем карточку из исходной позиции
+        if (sourceContainerIndex !== -1) {
+          newPositions[sourceContainerIndex].splice(sourceCardIndex, 1);
+        }
+        
+        // Если в целевой категории уже 3 карточки, заменяем hovered карточку
+        if (newPositions[targetContainerIndex].length >= 3 && hoveredCard) {
+          const hoveredIndex = newPositions[targetContainerIndex].indexOf(hoveredCard);
+          if (hoveredIndex !== -1) {
+            // Возвращаем hovered карточку в исходную категорию
+            if (sourceContainerIndex !== -1) {
+              newPositions[sourceContainerIndex].push(hoveredCard);
+            }
+            // Заменяем hovered карточку на активную
+            newPositions[targetContainerIndex][hoveredIndex] = activeCard;
+          }
+        } else {
+          // Просто добавляем карточку в целевую категорию
+          newPositions[targetContainerIndex].push(activeCard);
+        }
+      } else {
+        // Если карточка перемещается внутри той же категории
+        if (hoveredCard) {
+          const hoveredIndex = newPositions[targetContainerIndex].indexOf(hoveredCard);
+          if (hoveredIndex !== -1 && sourceCardIndex !== -1) {
+            // Меняем местами карточки
+            [newPositions[targetContainerIndex][sourceCardIndex], newPositions[targetContainerIndex][hoveredIndex]] = 
+            [newPositions[targetContainerIndex][hoveredIndex], newPositions[targetContainerIndex][sourceCardIndex]];
+          }
+        }
+      }
+      
       setPositions(newPositions);
     }
     
     if (draggedCardRef.current) {
       draggedCardRef.current.style.display = 'none';
-      draggedCardRef.current.style.position = '';
-      draggedCardRef.current.style.left = '';
-      draggedCardRef.current.style.top = '';
-      draggedCardRef.current.style.opacity = '';
-      draggedCardRef.current.style.zIndex = '';
-      draggedCardRef.current.style.pointerEvents = '';
-      draggedCardRef.current.style.transform = '';
-      draggedCardRef.current.style.transition = '';
     }
     
     setActiveCard(null);
+    setHoveredCard(null);
     touchStartPosRef.current = null;
   };
 
@@ -228,6 +259,17 @@ export const Upbringing = () => {
     setActiveCard(id);
   };
 
+  const handleDragOver = (e: React.DragEvent, cardId: number) => {
+    e.preventDefault();
+    if (activeCard !== cardId) {
+      setHoveredCard(cardId);
+    }
+  };
+
+  const handleDragLeave = () => {
+    setHoveredCard(null);
+  };
+
   const handleDrop = (targetIndex: number) => (e: React.DragEvent) => {
     e.preventDefault();
     const cardId = Number(e.dataTransfer.getData('cardId'));
@@ -238,24 +280,59 @@ export const Upbringing = () => {
     
     const newPositions = [...positions];
     
-    if (newPositions[targetIndex].length >= 3) {
-      return;
-    }
-    
+    // Находим текущую позицию активной карточки
+    let sourceContainerIndex = -1;
+    let sourceCardIndex = -1;
     for (let i = 0; i < newPositions.length; i++) {
       const index = newPositions[i].indexOf(cardId);
       if (index !== -1) {
-        newPositions[i].splice(index, 1);
+        sourceContainerIndex = i;
+        sourceCardIndex = index;
         break;
       }
     }
     
-    newPositions[targetIndex].push(cardId);
+    // Если карточка перемещается в другую категорию
+    if (sourceContainerIndex !== targetIndex) {
+      // Удаляем карточку из исходной позиции
+      if (sourceContainerIndex !== -1) {
+        newPositions[sourceContainerIndex].splice(sourceCardIndex, 1);
+      }
+      
+      // Если в целевой категории уже 3 карточки, заменяем hovered карточку
+      if (newPositions[targetIndex].length >= 3 && hoveredCard) {
+        const hoveredIndex = newPositions[targetIndex].indexOf(hoveredCard);
+        if (hoveredIndex !== -1) {
+          // Возвращаем hovered карточку в исходную категорию
+          if (sourceContainerIndex !== -1) {
+            newPositions[sourceContainerIndex].push(hoveredCard);
+          }
+          // Заменяем hovered карточку на активную
+          newPositions[targetIndex][hoveredIndex] = cardId;
+        }
+      } else {
+        // Просто добавляем карточку в целевую категорию
+        newPositions[targetIndex].push(cardId);
+      }
+    } else {
+      // Если карточка перемещается внутри той же категории
+      if (hoveredCard) {
+        const hoveredIndex = newPositions[targetIndex].indexOf(hoveredCard);
+        if (hoveredIndex !== -1 && sourceCardIndex !== -1) {
+          // Меняем местами карточки
+          [newPositions[targetIndex][sourceCardIndex], newPositions[targetIndex][hoveredIndex]] = 
+          [newPositions[targetIndex][hoveredIndex], newPositions[targetIndex][sourceCardIndex]];
+        }
+      }
+    }
+    
     setPositions(newPositions);
+    setHoveredCard(null);
   };
 
   const handleDragEnd = (e: React.DragEvent) => {
     setActiveCard(null);
+    setHoveredCard(null);
   };
 
   const handleCloseCard = () => {
@@ -287,6 +364,7 @@ export const Upbringing = () => {
                 draggedCardRef.current.style.display = 'none';
               }
               setActiveCard(null);
+              setHoveredCard(null);
               touchStartPosRef.current = null;
             }}
             draggable={!isCardLocked(card.id)}
@@ -310,7 +388,6 @@ export const Upbringing = () => {
       <div className={classes.bottomRow}>
         {bottomCards.map((bottom, index) => {
           const positionCards = positions[index] || [];
-          const isPositionFull = positionCards.length >= 3;
           
           return (
             <div 
@@ -338,19 +415,21 @@ export const Upbringing = () => {
                   const matchedTopCard = shuffledTopCards.find(p => p.id === cardId);
                   if (!matchedTopCard) return null;
                   
-                  const cardStyle = {
-                    position: 'absolute' as const,
-                    left: `${(cardIndex % 3) * 33.33 + 1.66}%`,
-                    top: cardIndex < 3 ? '45%' : '65%',
-                    transform: 'translate(0%, -30%)',
-                    zIndex: 2,
-                    transition: 'all 0.3s ease',
-                  };
+                const cardStyle = {
+  position: 'absolute' as const,
+  left: `${(cardIndex % 3) * 33.33 + 1.66}%`,
+  top: cardIndex < 3 ? '45%' : '65%',
+  transform: hoveredCard === cardId ? 'translate(0%, -30%) scale(1)' : 'translate(0%, -30%) scale(1)',
+  zIndex: 2,
+  transition: 'all 0.3s ease',
+  opacity: hoveredCard === cardId ? 0.7 : 1
+};
                   
                   return (
                     <div 
                       key={`overlay-${index}-${cardId}`}
                       className={classes.overlayCard}
+                      data-card-id={cardId}
                       onTouchStart={handleTouchStart(cardId)}
                       onTouchMove={handleTouchMove}
                       onTouchEnd={handleTouchEnd}
@@ -359,10 +438,13 @@ export const Upbringing = () => {
                           draggedCardRef.current.style.display = 'none';
                         }
                         setActiveCard(null);
+                        setHoveredCard(null);
                         touchStartPosRef.current = null;
                       }}
                       draggable={!isCardLocked(cardId)}
                       onDragStart={handleDragStart(cardId)}
+                      onDragOver={(e) => handleDragOver(e, cardId)}
+                      onDragLeave={handleDragLeave}
                       onDragEnd={handleDragEnd}
                       style={{
                         ...cardStyle,
@@ -378,28 +460,12 @@ export const Upbringing = () => {
                         onDragEnd={handleDragEnd}
                         style={{
                           opacity: isCardLocked(cardId) ? 1 : 1,
-                          transform: isCardLocked(cardId) ? 'scale(0.7)' : 'scale(0.7)'
                         }}
                       />
                     </div>
                   );
                 })}
               </div>
-              
-              {isPositionFull && (
-                <div style={{
-                  position: 'absolute',
-                  bottom: '5px',
-                  left: '50%',
-                  transform: 'translateX(-50%)',
-                  color: 'red',
-                  fontSize: '12px',
-                  fontWeight: 'bold',
-                  zIndex: 3
-                }}>
-                  Максимум 3 карточки
-                </div>
-              )}
             </div>
           );
         })}
