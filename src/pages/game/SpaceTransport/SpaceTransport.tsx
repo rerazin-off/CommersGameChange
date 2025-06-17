@@ -10,7 +10,7 @@ import TransportSlot from './components/TransportSlot/TransportSlot';
 import MainParameters from './components/MainParametrs/MainParameters';
 import GameCanvas from './components/GameCanvas/GameCanvas';
 import GameResults from './components/GameResults/GameResults';
-import { transports, mainParameters, dataPlanets} from './Data';
+import { transports, mainParameters, dataPlanets, days} from './Data';
 
 import slot from '@/assets/img/game_assets/space-transport-img/slot.svg';
 
@@ -47,7 +47,6 @@ export const SpaceTransport: React.FC = () => {
   const [selectedImg, setSelectedImg] = useState<string>(slot);
   const [selectedTransport, setSelectedTransport] = useState<Transport | null>(null);
   const [selectedPlanet, setSelectedPlanet] = useState<Planet | null>();
-  const [days, setDays] = useState<number[]>([]);
   const [positionTransport, setPositionTransport] = useState<PositionTransport>({x: 0, y: 0});
   const [allPaths, setAllPaths] = useState([]);
   const [previousPlanet, setPreviousPlanet] = useState<Planet[] | null>(null);
@@ -65,10 +64,6 @@ export const SpaceTransport: React.FC = () => {
   ];
 
 
-  const generateRandomDays=(max:number, min:number)=>{
-    return Math.floor(Math.random()*(max-min)+min)
-  }
-
   function buyTransport(transport: Transport){
     if (selectedImg !== slot) return
     const balance = mainParameters[0].value;
@@ -80,12 +75,6 @@ export const SpaceTransport: React.FC = () => {
     }
   }
 
-
-  useEffect(() => {
-    setDays(Array.from({length: 6}, ()=>
-      generateRandomDays(1,6)
-    ))
-  }, []);
 
   function changeSelectedTransportNumPerson  (operator: string) {
     setSelectedTransport(prev=>{
@@ -129,7 +118,7 @@ export const SpaceTransport: React.FC = () => {
 
   function sendTransport(event: React.MouseEvent, planet: Planet){
     const notify = () => toast.error('Заполните корабль полностью');
-    if (!setPositionTransport) return;
+    if (!positionTransport) return;
 
     if (selectedTransport.currentPlanetId === null) {
       if (selectedTransport.numPerson !== selectedTransport.capacity) {
@@ -157,9 +146,10 @@ export const SpaceTransport: React.FC = () => {
       }))
       mainParameters[2].value = mainParameters[2].value - Math.min(selectedTransport?.numPerson, planet.countPerson)
     }
-    let transportCoord= transportRef.current?.getBoundingClientRect()
-    let x = event.target.x-positionTransport.x + transportCoord.width/2;
-    let y = event.target.y-positionTransport.y + transportCoord.height/2;
+    const transportCoord= transportRef.current?.getBoundingClientRect()
+    const planetCoord = planetRefs[planet.id - 1].current?.getBoundingClientRect()
+    const x = planetCoord.x-positionTransport.x + transportCoord.width/2;
+    const y = planetCoord.y-positionTransport.y + transportCoord.height/2;
     transportRef.current.style.transform = `translate(${x}px, ${y}px)`;
     transportRef.current.style.transition = `1.5s`;
   }
