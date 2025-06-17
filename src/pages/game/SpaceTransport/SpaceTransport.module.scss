@@ -11,7 +11,6 @@
   flex-direction: column;
 }
 nav p{
-  font-family: "Comfortaa";
   font-weight: 700;
   color: #fff;
   font-size: 16px;
@@ -57,6 +56,7 @@ nav{
   background: linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0.2), rgba(255,255,255,0.4));
   display: flex;
   align-items: center;
+  margin-top: -5vh;
   gap: 1vh;
 }
 .planet{
@@ -67,7 +67,7 @@ nav{
   flex-direction: column;
 }
 .planet img{
-  width: 20vw;
+  width: 27vw;
 }
 .game button{
   color: #fff;
@@ -77,7 +77,7 @@ nav{
 }
 .slot{
   position: relative;
-  z-index: 100;
+  z-index:2;
   display: flex;
   flex-direction: column;
   width: 20vh;

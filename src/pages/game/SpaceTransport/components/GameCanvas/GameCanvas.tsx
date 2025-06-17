@@ -29,7 +29,23 @@ const GameCanvas = ({canvasRef, transportRef, planetRefs, days}: CanvasProps) =>
     let offsetY =0;
 
     if (dayIndex ===0){
-      offsetY = -200
+      offsetY = -150
+    }
+    else if (dayIndex === 1){
+      offsetX = -80
+      offsetY = +150
+    }
+    else if (dayIndex === 2){
+      offsetX = +80
+      offsetY = +150
+    }
+    else if (dayIndex === 3){
+      offsetX = -80
+      offsetY = -160
+    }
+    else if (dayIndex === 5){
+      offsetX = +80
+      offsetY = -160
     }
     else if(dayIndex ===4){
       offsetX = +100;
@@ -84,6 +100,10 @@ const GameCanvas = ({canvasRef, transportRef, planetRefs, days}: CanvasProps) =>
     }
   }
 
+  const animateTransport = () =>{
+
+  }
+
   useEffect(() => {
     const canvas = canvasRef.current;
     canvas.width = canvas.offsetWidth;
@@ -101,6 +121,7 @@ const GameCanvas = ({canvasRef, transportRef, planetRefs, days}: CanvasProps) =>
     })
     drawDayMarks()
   }, [days]);
+
   return (
     <canvas ref={canvasRef} className={classes.canvasClass}/>
   );

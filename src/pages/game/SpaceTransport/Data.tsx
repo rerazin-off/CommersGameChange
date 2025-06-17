@@ -15,15 +15,16 @@ export const transports=[
 ]
 
 export const mainParameters=[
-  {name:'Баланс:', value:120},
-  {name:'Дни:', value:0},
-  {name:'Количество человек:', value:100},
+  {name:'Баланс', value:120},
+  {name:'Дни', value:0},
+  {name:'Количество человек', value:100},
 ]
 export const dataPlanets=[
   {id:1, img:planet1, countPerson:10, paths:[], pathsPlanet2:[], pathsPlanet3:[]},
   {id:2, img:planet2, countPerson:30, paths:[], pathsPlanet1:[], pathsPlanet3:[]},
   {id:3, img:planet3, countPerson:60, paths:[], pathsPlanet1:[], pathsPlanet2:[]},
 ]
+export const days = [5,2,1,4,2,1]
 
 
 
