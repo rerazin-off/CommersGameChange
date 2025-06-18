@@ -3,10 +3,10 @@ html {
 }
 
 .container {
-  
+
   background-size: cover;
   position: relative;
-  height: 100vh;
+  height: 852px !important;
   margin: 0 auto;
   text-align: center;
   background-image: url('/src/assets/img/commerce_img/commerce room.svg')  no-repeat center center;
@@ -23,11 +23,11 @@ html {
 
 .checkButton {
   position: absolute;
-  transform: translate(1250px, 175px);
-  z-index: 999;
+  bottom: 210px;
+  right: 70px;
 }
 .backButton {
   position: absolute;
-  bottom: 70px;
+  bottom: 160px;
   left: 40px;
 }

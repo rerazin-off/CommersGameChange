@@ -1,19 +1,6 @@
-.container {
-  height: 100vh;
-  background-image: url("/src/assets/img/fon/musicalgame_categories.svg");
-  background-size: cover;
+.mainBG{
+    width: 100%;
+    height: 100vh;
+    background-image: url('../../../assets/img/game_assets/musicalgame-categories/gameBackground.svg');
+    background-size: cover;
 }
-
-.backButton {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-}
-
-.object {
-  position: absolute;
-  top: 55vh;
-  left: 150vh;
-}
-
-
