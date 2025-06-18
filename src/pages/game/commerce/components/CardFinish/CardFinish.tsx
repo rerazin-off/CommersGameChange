@@ -1,5 +1,7 @@
 import Card from '@/components/Card/Card';
 
+import classes from './CardFinish.module.scss';
+
 
 
 type CardFinishProps = {
@@ -16,11 +18,12 @@ const CardFinish = (props: CardFinishProps) => {
         title="'Поздравляем!"
         body={
           <>
+
             Вы успешно завершили игру! <br/> Количество попыток: {attempts}
           </>
         }
-
-        game="tovaroveds"
+        
+        game="logistics"
         backLink=""
         isOpen={isOpenCard}
         onClose={onClose}
