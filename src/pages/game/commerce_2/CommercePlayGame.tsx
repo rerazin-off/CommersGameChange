@@ -42,19 +42,19 @@ interface ImageCardProps {
 }
 
 const ImageCard: React.FC<ImageCardProps> = ({
-                                               src,
-                                               alt,
-                                               draggable = false,
-                                               onDragStart = () => {},
-                                               onDrop = () => {},
-                                               onDragOver = () => {},
-                                               onTouchStart = () => {},
-                                               onTouchMove = () => {},
-                                               onTouchEnd = () => {},
-                                               isMatched = false,
-                                               isCorrect = true,
-                                               style = {}
-                                             }) => {
+  src,
+  alt,
+  draggable = false,
+  onDragStart = () => {},
+  onDrop = () => {},
+  onDragOver = () => {},
+  onTouchStart = () => {},
+  onTouchMove = () => {},
+  onTouchEnd = () => {},
+  isMatched = false,
+  isCorrect = true,
+  style = {}
+}) => {
   return (
     <div
       draggable={draggable}
@@ -65,10 +65,10 @@ const ImageCard: React.FC<ImageCardProps> = ({
       onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}
       style={{
-        height: '110px',
-        width: '110px',
+        height: '120px',
+        width: '120px',
         position: 'relative',
-        margin: '7px',
+        margin: '10px',
         cursor: draggable ? 'grab' : 'default',
         opacity: isMatched ? 0.5 : 1,
         display: 'flex',
@@ -430,7 +430,7 @@ const CommercePlayGame: React.FC = () => {
         marginTop: '-30px',
         height: '600px'
       }}>
-        {/* Products section (Purple zone) */}
+        
         <div 
           style={{
             flex: '1',
@@ -502,7 +502,7 @@ const CommercePlayGame: React.FC = () => {
           </div>
         </div>
 
-        {/* Refrigerators section */}
+        
         <div 
           style={{
             flex: '1',
