@@ -9,10 +9,12 @@ export default function Container({ areaID, items, onDrop, position }) {
     const [{isOver}, dropRef] = useDrop(() => ({
         accept: 'image',
         drop: (item, monitor) => {
-            const offset = monitor.getClientOffset();
+            const offset = monitor.getSourceClientOffset();
             const containerRect = containerRef.current.getBoundingClientRect();
-            const top = (offset.y - containerRect.top)/6;
-            const left = (offset.x - containerRect.left)/1.5;
+
+            let top = (offset.y - containerRect.top);
+            let left = (offset.x - containerRect.left);
+
             onDrop(item, areaID, {top, left});
             return {top, left, containerID: areaID}; 
         },
@@ -26,8 +28,8 @@ export default function Container({ areaID, items, onDrop, position }) {
         position: 'absolute',
         top: position.top,
         left: position.left,
-        width: '65vh',
-        height: '37vh',
+        width: '60vh',
+        height: '30vh',
     }
 
     return (

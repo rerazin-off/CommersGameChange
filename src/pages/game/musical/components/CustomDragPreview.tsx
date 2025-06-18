@@ -3,7 +3,7 @@ import { useDragLayer } from 'react-dnd';
 export default function CustomDragPreview() {
     const { isDragging, item, currentOffset } = useDragLayer((monitor) => ({
         item: monitor.getItem(),
-        currentOffset: monitor.getSourceClientOffset(),
+        currentOffset: monitor.getClientOffset(),
         isDragging: monitor.isDragging(),
     }));
 
@@ -19,10 +19,9 @@ export default function CustomDragPreview() {
                 pointerEvents: 'none',
                 left: currentOffset.x,
                 top: currentOffset.y,
-                //transform: 'translate(-50%, -50%)',
+                transform: 'translate(-50%, -50%)',
                 zIndex: 1000,
-                opacity: 0.8,
-                scale: '1.2',
+                scale: '0.7'
             }}
         />
     );

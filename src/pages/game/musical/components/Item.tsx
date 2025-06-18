@@ -1,10 +1,6 @@
 import { useDrag } from "react-dnd"
 import { useState } from "react";
 
-type DropResult = {
-    element: HTMLElement
-}
-
 type ItemProps = {
     id: any, 
     url: any,
@@ -18,7 +14,10 @@ export default function Item({id, url, positions} : ItemProps){
 
         end: (item, monitor) => {
             const dropResult = monitor.getDropResult();
-            item.position = {top: `${dropResult?.top}px`, left: `${dropResult?.left}px`};
+            console.log(dropResult)
+            if (dropResult){
+                item.position = {top: `${dropResult.top}`, left: `${dropResult.left}`};
+            }
         },
 
         collect: (monitor) => ({
@@ -32,7 +31,7 @@ export default function Item({id, url, positions} : ItemProps){
             src={url}
             id={id}
             style={{ 
-                opacity: isDragging ? 0.5 : 1,
+                opacity: isDragging ? 0 : 1,
             position: 'absolute',
             top:positions.top,
             left: positions.left,
