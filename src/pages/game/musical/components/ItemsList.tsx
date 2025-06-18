@@ -47,6 +47,7 @@ const itemArr: ItemType[] = [
 import Item from './Item.tsx'
 import Container from './Container.tsx';
 import CustomDragPreview from './CustomDragPreview.tsx';
+import { GameResult } from './GameResult.tsx';
 import { Button } from '../../../../components/Button/Button.tsx';
 import { useNavigate } from 'react-router-dom';
 import { RoutesEnum } from '../../../../app/routes';
@@ -54,6 +55,8 @@ import { RoutesEnum } from '../../../../app/routes';
 export default function ItemsList(){
     const navigate = useNavigate()
     const [dropItem, setDropItem] = useState(itemArr)
+    const [errorCardVisability, setErrorCardV] = useState<Boolean>(false);
+    const [correctCardVisability, setCorrectCardV] = useState<Boolean>(false);
     const [areas, setAreas] = useState({
         1:[],
         2:[],
@@ -62,18 +65,18 @@ export default function ItemsList(){
     })
 
     const areaPositions:AreaPositions = {
-        1:{top:'10vh', left: '24vh'},
-        2:{top: '10vh', left: '98vh'},
-        3:{top: '56vh', left: '8vh'},
-        4:{top: '56vh', left: '80vh'}
+        1:{top:'8vh', left: '24vh'},
+        2:{top: '8vh', left: '98vh'},
+        3:{top: '54vh', left: '8vh'},
+        4:{top: '54vh', left: '80vh'}
     }
 
-    const answers = [
-        [{id: 9}, {id:10}, {id:12}],
-        [{id: 1}, {id:5}, {id:7}],
-        [{id: 2}, {id:4}, {id:6}],
-        [{id: 3}, {id:8}, {id:11}]
-    ]
+    const answers = {
+        1:[{id: 9}, {id:10}, {id:12}],
+        2:[{id: 1}, {id:5}, {id:7}],
+        3:[{id: 2}, {id:4}, {id:6}],
+        4:[{id: 3}, {id:8}, {id:11}]
+    }
 
     const addItem = (droppedItem, areaID, position) => {
     const newPosition = position || droppedItem.position;
@@ -110,16 +113,24 @@ export default function ItemsList(){
         console.log(areas)
     }, [areas])
 
-    // const checkResults = () => {
-    //     const resultFlag = false;
-    //     for (let i = 0; i<12; i++){
-            
-    //     }
-    // }
+    const checkResults = () => {
+        let answersID = [];
+        let usersID = [];
+        for (const key in answers) {
+            answersID.push(answers[key].map(item => item.id).sort());
+            usersID.push(areas[key].map(item => item.id).sort());
+        }
+
+        if (JSON.stringify(answersID) === JSON.stringify(usersID)) {
+            setCorrectCardV(true)
+        } else {
+             setErrorCardV(true)
+        }
+    }
 
     return(
         <div>
-            <Button bgColor="blue" type="type1v2" className={dropItem.length===0 ? classes.checkButtonD : classes.checkButton}>ПРОВЕРИТЬ</Button>
+            <Button bgColor="blue" type="type1v2" onClick={checkResults} className={dropItem.length===0 ? classes.checkButtonD : classes.checkButton}>ПРОВЕРИТЬ</Button>
 
             <Button className={classes.backButton} bgColor="pink" type="type1v2" 
                 onClick={() => {
@@ -140,6 +151,8 @@ export default function ItemsList(){
                 <Container key = {3} areaID={3} items={areas[3]} onDrop={addItem} position={areaPositions[3]}/>
                 <Container key = {4} areaID={4} items={areas[4]} onDrop={addItem} position={areaPositions[4]}/>
             </div>
+
+            <GameResult wrongResCard={errorCardVisability} rightResCard={correctCardVisability} closeW={()=>setErrorCardV(false)} closeR={()=>setCorrectCardV(false)}/>
         </div>
     )
 }

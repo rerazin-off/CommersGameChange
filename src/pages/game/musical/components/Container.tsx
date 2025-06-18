@@ -5,12 +5,13 @@ import { useRef } from 'react'
 
 export default function Container({ areaID, items, onDrop, position }) {
     const containerRef = useRef(null)
+
     const [{isOver}, dropRef] = useDrop(() => ({
         accept: 'image',
         drop: (item, monitor) => {
             const offset = monitor.getClientOffset();
             const containerRect = containerRef.current.getBoundingClientRect();
-            const top = (offset.y - containerRect.top)/2;
+            const top = (offset.y - containerRect.top)/6;
             const left = (offset.x - containerRect.left)/1.5;
             onDrop(item, areaID, {top, left});
             return {top, left, containerID: areaID}; 
@@ -26,8 +27,7 @@ export default function Container({ areaID, items, onDrop, position }) {
         top: position.top,
         left: position.left,
         width: '65vh',
-        height: '35vh',
-        border: 'solid red'
+        height: '37vh',
     }
 
     return (
@@ -40,7 +40,6 @@ export default function Container({ areaID, items, onDrop, position }) {
                     positions = {el.position}
                 />
             ))}
-
         </div>
     );
 }

@@ -19,10 +19,10 @@ export default function CustomDragPreview() {
                 pointerEvents: 'none',
                 left: currentOffset.x,
                 top: currentOffset.y,
-                transform: 'translate(-50%, -50%)',
+                //transform: 'translate(-50%, -50%)',
                 zIndex: 1000,
                 opacity: 0.8,
-                scale: 1.2,
+                scale: '1.2',
             }}
         />
     );
