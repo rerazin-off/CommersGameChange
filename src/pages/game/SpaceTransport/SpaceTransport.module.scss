@@ -3,7 +3,7 @@
   grid-template-columns: 1fr 1fr;
   gap: 5vh 2vh;
   background: linear-gradient(#0C0D2E, #02495E);
-  padding: 10vh 3vw;
+  padding: 7vh 3vw;
 }
 .container{
   display: flex;
@@ -49,10 +49,16 @@ nav{
   display: flex;
   flex-direction: row;
 }
+.row{
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
 .count{
+  font-size: 18px;
   border: 1px solid #fff;
   color: #fff;
-  padding: 0.5vh 1vh;
+  padding: 1vh 2vh;
   background: linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0.2), rgba(255,255,255,0.4));
   display: flex;
   align-items: center;

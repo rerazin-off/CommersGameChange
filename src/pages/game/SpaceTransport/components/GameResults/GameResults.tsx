@@ -17,7 +17,7 @@ const GameResults = ({showErrorCard, showFinishCard, closeErrorCard, closeFinish
         title={'Поздравляем!'}
         body={'Вы отлично справились с задачей логиста!'}
         isOpen={showFinishCard}
-        omClose={closeFinishCard}
+        onClose={closeFinishCard}
         type={'gameOver'}
         game = 'Logistics'
       />

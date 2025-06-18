@@ -18,7 +18,7 @@ export default function Item({id, url, positions} : ItemProps){
 
         end: (item, monitor) => {
             const dropResult = monitor.getDropResult();
-            item.position = {top: `${dropResult.top}px`, left: `${dropResult.left}px`};
+            item.position = {top: `${dropResult?.top}px`, left: `${dropResult?.left}px`};
         },
 
         collect: (monitor) => ({
@@ -36,7 +36,7 @@ export default function Item({id, url, positions} : ItemProps){
             position: 'absolute',
             top:positions.top,
             left: positions.left,
-            cursor: 'move'
+            cursor: 'move',
         }} />
     )
 }
