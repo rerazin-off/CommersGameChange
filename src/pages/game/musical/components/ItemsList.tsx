@@ -17,7 +17,7 @@ import item12 from '../../../../assets/img/game_assets/musicalgame-categories/it
 type ItemType = {
   id: number;
   url: string;
-  position: {left:string, top:string}
+  position: {left, top}
 };
 
 type Position = {
@@ -30,18 +30,18 @@ type AreaPositions = {
 };
 
 const itemArr: ItemType[] = [
-    {id: 1, url: item1, position: {left: '0px', top: '0px'}},
-    {id: 2, url: item2, position: {left: '0px', top: '0px'}},
-    {id: 3, url: item3, position: {left: '0px', top: '0px'}},
-    {id: 4, url: item4, position: {left: '0px', top: '0px'}},
-    {id: 5, url: item5, position: {left: '0px', top: '0px'}},
-    {id: 6, url: item6, position: {left: '0px', top: '0px'}},
-    {id: 7, url: item7, position: {left: '0px', top: '0px'}},
-    {id: 8, url: item8, position: {left: '0px', top: '0px'}},
-    {id: 9, url: item9, position: {left: '0px', top: '0px'}},
-    {id: 10, url: item10, position: {left: '0px', top: '0px'}},
-    {id: 11, url: item11, position: {left: '0px', top: '0px'}},
-    {id: 12, url: item12, position: {left: '0px', top: '0px'}},
+    {id: 1, url: item1, position: {left: 0, top: 0}},
+    {id: 2, url: item2, position: {left: 0, top: 0}},
+    {id: 3, url: item3, position: {left: 0, top: 0}},
+    {id: 4, url: item4, position: {left: 0, top: 0}},
+    {id: 5, url: item5, position: {left: 0, top: 0}},
+    {id: 6, url: item6, position: {left: 0, top: 0}},
+    {id: 7, url: item7, position: {left: 0, top: 0}},
+    {id: 8, url: item8, position: {left: 0, top: 0}},
+    {id: 9, url: item9, position: {left: 0, top: 0}},
+    {id: 10, url: item10, position: {left: 0, top: 0}},
+    {id: 11, url: item11, position: {left: 0, top: 0}},
+    {id: 12, url: item12, position: {left: 0, top: 0}},
 ]
 
 import Item from './Item.tsx'
@@ -53,10 +53,19 @@ import { useNavigate } from 'react-router-dom';
 import { RoutesEnum } from '../../../../app/routes';
 
 export default function ItemsList(){
+    const shuffleArray = (array: ItemType[]): ItemType[] => {
+        const newArray = [...array];
+        for (let i = newArray.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+        }
+        return newArray;
+    };
     const navigate = useNavigate()
-    const [dropItem, setDropItem] = useState(itemArr)
+    const [dropItem, setDropItem] = useState(shuffleArray(itemArr))
     const [errorCardVisability, setErrorCardV] = useState<Boolean>(false);
     const [correctCardVisability, setCorrectCardV] = useState<Boolean>(false);
+
     const [areas, setAreas] = useState({
         1:[],
         2:[],
@@ -65,10 +74,10 @@ export default function ItemsList(){
     })
 
     const areaPositions:AreaPositions = {
-        1:{top:'8vh', left: '24vh'},
-        2:{top: '8vh', left: '98vh'},
-        3:{top: '54vh', left: '8vh'},
-        4:{top: '54vh', left: '80vh'}
+        1:{top:'11vh', left: '26vh'},
+        2:{top: '11vh', left: '100vh'},
+        3:{top: '57vh', left: '9vh'},
+        4:{top: '57vh', left: '83vh'}
     }
 
     const answers = {
@@ -79,7 +88,8 @@ export default function ItemsList(){
     }
 
     const addItem = (droppedItem, areaID, position) => {
-    const newPosition = position || droppedItem.position;
+    const newPosition = position;
+    console.log(droppedItem.position)
 
     const isInAnyArea = Object.values(areas).some(area => 
         area.some(el => el.id === droppedItem.id)
@@ -107,11 +117,6 @@ export default function ItemsList(){
         }
     });
 };
-
-
-    useEffect(()=>{
-        console.log(areas)
-    }, [areas])
 
     const checkResults = () => {
         let answersID = [];
