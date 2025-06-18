@@ -24,9 +24,15 @@ const DropSlot = ({ index, handleDrop, positions }: DropSlotProps) => {
   const currentBag = bags.find((bag) => bag.id === positions[index]);
 
   return (
-    <div ref={drop} className={classes.circle}>
-      <span className={classes.circleNumber}>{index + 1}</span>
-      {currentBag && <DraggableBag bag={currentBag} />}
+    <div 
+      ref={drop} 
+      className={`${classes.circle} ${positions[index] !== 0 ? classes.blurred : ''}`}
+    >
+      <div className={classes.circle__background} />
+      <span className={classes.circle__number}>{index + 1}</span>
+      <div className={classes.circle__bagContainer}>
+        {currentBag && <DraggableBag bag={currentBag} />}
+      </div>
     </div>
   );
 };
