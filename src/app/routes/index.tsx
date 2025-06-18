@@ -21,6 +21,9 @@ import { BankGame } from '../../pages/game/bank/bankGame';
 import { Rocket } from '../../pages/game/rocket/Rocket';
 import { SorterGame } from '../../pages/game/buhgalter/buhGame';
 import { LogistCep } from '../../pages/game/logist/LogistCep';
+import { MusicalGameCategories } from '../../pages/game/musical/MusicalGameCategories';
+import CommercePlayGame  from '../../pages/game/commerce_2/CommercePlayGame.js';
+import Commerce  from '../../pages/game/commerce/Commerce.js';
 import { Musical } from '../../pages/game/musical/musical';
 import { CommerceSr } from '../../pages/game/commerceSrok/CommerceSr.tsx';
 import { SpaceTransport } from '../../pages/game/SpaceTransport/SpaceTransport';
@@ -45,7 +48,6 @@ export enum RoutesEnum {
   TORGASHI = '/tovaroveds',
   MUSIC = '/music'
  //  ECONOMIST = '/economist',
- // main
 }
 
 export const router = createBrowserRouter([
@@ -86,6 +88,9 @@ export const router = createBrowserRouter([
   { path: '/gbuh2', element: <ExpenseSorterGame /> },
 
   { path: '/gamelogist', element: <LogistCep /> },
+  { path: '/musicalcategories', element: <MusicalGameCategories /> },
+  { path: '/commerce', element: <CommercePlayGame/> },
+  { path: '/commerce_2', element: <Commerce/> },
   { path: '/musicalcategories', element: <Musical /> },
   { path: '/commerceSr', element: <CommerceSr /> },
   {path: '/SpaceTransport', element: <SpaceTransport/>},
