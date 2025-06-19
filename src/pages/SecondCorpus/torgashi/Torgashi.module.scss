@@ -5,6 +5,20 @@
   //height: 1080px;
   height: 100vh;
 }
+//body p{
+//  position: fixed;
+//  top: 28%;
+//  text-align: justify;
+//  text-align-last: justify;
+//  word-spacing: 2px;
+//}
+teleskaGame body{
+  position: fixed;
+  top: 28%;
+  text-align: justify;
+  text-align-last: justify;
+  word-spacing: 2px;
+}
 .buttons{
   position: fixed;
   bottom: 1.1%;
@@ -13,7 +27,7 @@
   justify-content: space-around;
   align-items: center;
   width: 400px;
-  padding-top: 30px;
+  padding-top: 60px;
   padding-left: 30px;
 }
 .progs {
@@ -52,6 +66,24 @@
         position: absolute;
         right: 325px;
         top: 210px;
+      }
+    }
+
+    .shkaf {
+      position: fixed;
+      top: 21%;
+      right: 5.5%;
+      width: 260px;
+      height: 346px;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      div {
+        position: absolute;
+        right: 199px;
+        top: 170px;
       }
     }
   }
