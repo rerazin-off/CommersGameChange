@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import classes from './Commerce.module.scss';
 import CardFinish from './components/CardFinish/CardFinish';
@@ -19,6 +19,8 @@ interface Refrigerator {
   src: string;
   alt: string;
   categories: string[];
+  width: number;
+  height: number;
 }
 
 interface MatchedItem {
@@ -107,6 +109,17 @@ const CommercePlayGame: React.FC = () => {
     startY: number;
     offsetX: number;
     offsetY: number;
+    source: 'products' | 'refrigerator' | 'purple';
+    refrigeratorIndex?: number;
+  } | null>(null);
+  const [ghostElement, setGhostElement] = useState<{
+    src: string;
+    alt: string;
+    visible: boolean;
+    x: number;
+    y: number;
+    offsetX: number;
+    offsetY: number;
   } | null>(null);
 
   const products: Product[] = [
@@ -141,27 +154,25 @@ const CommercePlayGame: React.FC = () => {
   ];
 
   const refrigerators: Refrigerator[] = [
-    { src: '/src/assets/img/commerce_img/1.svg', alt: 'Холодильник для напитков', categories: ['drinks'] },
-    { src: '/src/assets/img/commerce_img/9.png', alt: 'Холодильник для молочной продукции', categories: ['dairy'] },
-    { src: '/src/assets/img/commerce_img/14.png', alt: 'Холодильник для рыбы', categories: ['fish'] },
-    { src: '/src/assets/img/commerce_img/gorkka2.png', alt: 'Стеллаж для продуктов', categories: ['drinks', 'dairy', 'fish', 'grocery', 'grocery1', 'grocery2', 'grocery3'] },
+    { src: '/src/assets/img/commerce_img/1.png', alt: 'Холодильник для напитков', categories: ['drinks'], width: 260, height: 300 },
+    { src: '/src/assets/img/commerce_img/9.png', alt: 'Холодильник для молочной продукции', categories: ['dairy'], width: 300, height: 340 },
+    { src: '/src/assets/img/commerce_img/14.png', alt: 'Холодильник для рыбы', categories: ['fish'], width: 280, height: 320 },
+    { src: '/src/assets/img/commerce_img/gorkka2.png', alt: 'Стеллаж для продуктов', categories: ['drinks', 'dairy', 'fish', 'grocery', 'grocery1', 'grocery2', 'grocery3'], width: 320, height: 360 },
   ];
 
   const [matchedItems, setMatchedItems] = useState<MatchedItem[]>([]);
   const [draggedItem, setDraggedItem] = useState<{ productIndex: number; source: 'products' | 'refrigerator' | 'purple'; refrigeratorIndex?: number } | null>(null);
   const [productsInPurpleZone, setProductsInPurpleZone] = useState<number[]>([]);
+  const touchMoveRef = useRef<number | null>(null);
 
   useEffect(() => {
-    // Проверяем, что все продукты размещены в холодильниках (ни одного в фиолетовой зоне)
-    const allProductsInRefrigerators = matchedItems.length === products.length;
-
-    // Проверяем, что все холодильники заполнены (по 4 продукта в каждом)
+    const allProductsPlaced = matchedItems.length === products.length;
     const allRefrigeratorsFilled = refrigerators.every((_, index) => {
       return matchedItems.filter(item => item.refrigeratorIndex === index).length >= 4;
     });
 
-    setIsVisibleButton(allProductsInRefrigerators && allRefrigeratorsFilled);
-  }, [matchedItems, productsInPurpleZone]);
+    setIsVisibleButton(allProductsPlaced && allRefrigeratorsFilled);
+  }, [matchedItems, products.length, refrigerators.length]);
 
   const checkBakaleyaNeighborhood = (targetRefrigeratorIndex: number, productIndex: number) => {
     if (targetRefrigeratorIndex !== 3) return true;
@@ -183,9 +194,13 @@ const CommercePlayGame: React.FC = () => {
     return firstBakaleyaGroup === product.bakaleyaGroup;
   };
 
+  const showErrorMessage = (message: string) => {
+    setErrorMessage(message);
+    setTimeout(() => setErrorMessage(null), 3000);
+  };
+
   const handleDragStart = (productIndex: number, source: 'products' | 'refrigerator' | 'purple' = 'products', refrigeratorIndex?: number) => {
     setDraggedItem({ productIndex, source, refrigeratorIndex });
-    setErrorMessage(null);
   };
 
   const handleTouchStart = (productIndex: number, e: React.TouchEvent, source: 'products' | 'refrigerator' | 'purple' = 'products', refrigeratorIndex?: number) => {
@@ -193,42 +208,59 @@ const CommercePlayGame: React.FC = () => {
     const touch = e.touches[0];
     const element = e.currentTarget as HTMLElement;
 
+    setGhostElement({
+      src: products[productIndex].src,
+      alt: products[productIndex].alt,
+      visible: true,
+      x: touch.clientX,
+      y: touch.clientY,
+      offsetX: touch.clientX - element.getBoundingClientRect().left,
+      offsetY: touch.clientY - element.getBoundingClientRect().top
+    });
+
     setTouchActive({
       productIndex,
       element,
       startX: touch.clientX,
       startY: touch.clientY,
       offsetX: touch.clientX - element.getBoundingClientRect().left,
-      offsetY: touch.clientY - element.getBoundingClientRect().top
+      offsetY: touch.clientY - element.getBoundingClientRect().top,
+      source,
+      refrigeratorIndex
     });
 
     setDraggedItem({ productIndex, source, refrigeratorIndex });
-    setErrorMessage(null);
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
     e.preventDefault();
-    if (touchActive) {
-      const touch = e.touches[0];
-      const { element, offsetX, offsetY } = touchActive;
 
-      element.style.position = 'fixed';
-      element.style.zIndex = '1000';
-      element.style.left = `${touch.clientX - offsetX}px`;
-      element.style.top = `${touch.clientY - offsetY}px`;
+    if (touchMoveRef.current) {
+      cancelAnimationFrame(touchMoveRef.current);
     }
+
+    touchMoveRef.current = requestAnimationFrame(() => {
+      if (touchActive && ghostElement) {
+        const touch = e.touches[0];
+        setGhostElement({
+          ...ghostElement,
+          x: touch.clientX - ghostElement.offsetX,
+          y: touch.clientY - ghostElement.offsetY
+        });
+      }
+    });
   };
 
   const handleTouchEnd = (e: React.TouchEvent) => {
     e.preventDefault();
-    if (touchActive) {
-      const { element } = touchActive;
-      const touch = e.changedTouches[0];
 
-      element.style.position = '';
-      element.style.zIndex = '';
-      element.style.left = '';
-      element.style.top = '';
+    if (touchMoveRef.current) {
+      cancelAnimationFrame(touchMoveRef.current);
+    }
+
+    if (touchActive) {
+      const touch = e.changedTouches[0];
+      setGhostElement(prev => prev ? { ...prev, visible: false } : null);
 
       const dropTarget = document.elementFromPoint(touch.clientX, touch.clientY);
 
@@ -239,7 +271,7 @@ const CommercePlayGame: React.FC = () => {
           handleDropOnRefrigerator(refrigeratorIndex);
         } else if (dropTarget.closest('[data-purple-zone]')) {
           handleDropOnPurpleZone();
-        } else if (draggedItem?.source === 'refrigerator') {
+        } else if (touchActive.source === 'refrigerator') {
           handleDropOnPurpleZone();
         }
       }
@@ -257,7 +289,7 @@ const CommercePlayGame: React.FC = () => {
     );
 
     if (itemsInTargetRefrigerator.length >= 4) {
-      setErrorMessage('Этот холодильник уже заполнен!');
+      showErrorMessage('Этот холодильник уже заполнен!');
       return;
     }
 
@@ -265,8 +297,14 @@ const CommercePlayGame: React.FC = () => {
     const refrigerator = refrigerators[targetRefrigeratorIndex];
     const isCorrectPlacement = refrigerator.categories.includes(product.category);
 
+    if (!isCorrectPlacement && targetRefrigeratorIndex !== 3) {
+      showErrorMessage('Нарушен температурный режим!');
+      return;
+    }
+
     if (targetRefrigeratorIndex === 3 && !checkBakaleyaNeighborhood(targetRefrigeratorIndex, draggedItem.productIndex)) {
-      setErrorMessage('Нарушено товарное соседство!');
+      showErrorMessage('Нарушено товарное соседство!');
+      return;
     }
 
     const updatedMatchedItems = matchedItems.filter(item =>
@@ -286,8 +324,6 @@ const CommercePlayGame: React.FC = () => {
     if (draggedItem.source === 'purple') {
       setProductsInPurpleZone(productsInPurpleZone.filter(index => index !== draggedItem.productIndex));
     }
-
-    setDraggedItem(null);
   };
 
   const handleDropOnPurpleZone = () => {
@@ -303,8 +339,6 @@ const CommercePlayGame: React.FC = () => {
     if (!productsInPurpleZone.includes(draggedItem.productIndex)) {
       setProductsInPurpleZone([...productsInPurpleZone, draggedItem.productIndex]);
     }
-
-    setDraggedItem(null);
   };
 
   const checkResults = () => {
@@ -362,6 +396,10 @@ const CommercePlayGame: React.FC = () => {
     }
   };
 
+  const isRefrigeratorFilled = (index: number) => {
+    return matchedItems.filter(item => item.refrigeratorIndex === index).length >= 4;
+  };
+
   return (
     <div style={{
       position: 'fixed',
@@ -378,18 +416,52 @@ const CommercePlayGame: React.FC = () => {
       display: 'flex',
       flexDirection: 'column'
     }}>
+      {/* Ghost element that follows the finger */}
+      {ghostElement && ghostElement.visible && (
+        <div style={{
+          position: 'fixed',
+          left: `${ghostElement.x}px`,
+          top: `${ghostElement.y}px`,
+          width: '125px',
+          height: '125px',
+          zIndex: 1000,
+          pointerEvents: 'none',
+          transform: 'translate(-50%, -50%)',
+          transition: 'transform 0.1s ease-out',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center'
+        }}>
+          <img
+            src={ghostElement.src}
+            alt={ghostElement.alt}
+            style={{
+              maxWidth: '100%',
+              maxHeight: '100%',
+              objectFit: 'contain',
+              userSelect: 'none',
+              WebkitUserDrag: 'none',
+            }}
+          />
+        </div>
+      )}
+
+      {/* Error message at the bottom */}
       {errorMessage && (
         <div style={{
           position: 'fixed',
-          top: '20px',
+          bottom: '20px',
           left: '50%',
           transform: 'translateX(-50%)',
           backgroundColor: 'rgba(255, 0, 0, 0.8)',
           color: 'white',
           padding: '10px 20px',
           borderRadius: '5px',
-          zIndex: 1000,
-          animation: 'fadeIn 0.3s'
+          zIndex: 1001,
+          animation: 'fadeIn 0.3s',
+          textAlign: 'center',
+          maxWidth: '80%',
+          wordBreak: 'break-word'
         }}>
           {errorMessage}
         </div>
@@ -470,11 +542,10 @@ const CommercePlayGame: React.FC = () => {
         }}
         onDrop={handleDropOnRefrigeratorsArea}
         onDragOver={handleDragOver}
-        onTouchMove={handleDragOver}
       >
         <div style={{
           display: 'flex',
-          gap: '80px',
+          gap: '40px',
           height: '100%',
           minWidth: 'fit-content',
           padding: '20px',
@@ -487,6 +558,7 @@ const CommercePlayGame: React.FC = () => {
             const itemsInRefrigerator = matchedItems.filter(item =>
               item.refrigeratorIndex === refrigeratorIndex
             );
+            const isFilled = isRefrigeratorFilled(refrigeratorIndex);
 
             return (
               <div
@@ -497,29 +569,50 @@ const CommercePlayGame: React.FC = () => {
                   flexDirection: 'column',
                   alignItems: 'center',
                   height: '100%',
-                  minWidth: '200px',
+                  minWidth: `${refrigerator.width}px`,
                   position: 'relative',
                   zIndex: 1,
                   transition: 'all 0.3s ease',
                   scrollSnapAlign: 'center',
-                  margin: '0 10px'
+                  margin: '0 5px',
                 }}
               >
                 <div style={{
                   position: 'relative',
-                  width: '260px',
-                  height: '300px',
+                  width: `${refrigerator.width}px`,
+                  height: `${refrigerator.height}px`,
                   display: 'flex',
                   justifyContent: 'center',
                   alignItems: 'center',
-                  padding: '30px'
+                  ...(isFilled ? {
+                    border: '4px solid #00c8d7',
+                    borderRadius: '15px',
+                    boxShadow: '0 0 15px rgba(0, 200, 215)',
+                    padding: '5px'
+                  } : {})
                 }}>
+                  {isFilled && (
+                    <div style={{
+                      position: 'absolute',
+                      top: '-20px',
+                      backgroundColor: '#00c8d7',
+                      color: 'white',
+                      padding: '5px 15px',
+                      borderRadius: '20px',
+                      fontWeight: 'bold',
+                      fontSize: '14px',
+                      zIndex: 10,
+                      boxShadow: '0 2px 5px rgba(0,0,0,0.2)'
+                    }}>
+                      Заполнено
+                    </div>
+                  )}
                   <img
                     src={refrigerator.src}
                     alt={refrigerator.alt}
                     style={{
-                      maxWidth: '100%',
-                      maxHeight: '100%',
+                      width: `${refrigerator.width}px`,
+                      height: `${refrigerator.height}px`,
                       objectFit: 'contain',
                       position: 'absolute'
                     }}
@@ -529,7 +622,7 @@ const CommercePlayGame: React.FC = () => {
                     display: 'grid',
                     gridTemplateColumns: 'repeat(2, 1fr)',
                     gap: '15px',
-                    width: '85%',
+                    width: '100%',
                     height: '75%',
                     position: 'absolute',
                     top: '50%',
@@ -606,3 +699,4 @@ const CommercePlayGame: React.FC = () => {
 };
 
 export default CommercePlayGame;
+
