@@ -101,7 +101,8 @@ html{
 
 .container {
   height: 100vh;
-  background: url("src/assets/img/fon/fon_game_tovary.svg") no-repeat center center;
+  width: 100vw;
+  background: url("../../../assets/img/fon/fon_chemodany.svg") no-repeat center center;
   background-size: cover;
   position: relative;
   overflow: hidden;
