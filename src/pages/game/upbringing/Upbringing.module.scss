@@ -1,0 +1,125 @@
+
+.container {
+ padding: 20px;
+  width: 100%;
+  margin: 0 auto; /* Центрирование по горизонтали */
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 1040px;
+  background: url(/src/assets/img/upbring/refon3.svg);
+  overflow: hidden;
+  position: absolute;
+
+}
+
+.topRow {
+  display: flex;
+
+  justify-content: center;
+  width: 700px;
+  flex-wrap: wrap;
+ align-items: center;
+ margin-bottom: 20px;
+ position: absolute;
+  transform: translate(550px,10px);
+  gap: 30px;
+}
+
+.bottomRow {
+   display: flex;
+  justify-content: center;
+    flex-direction: column;
+  width: 1000px;
+  flex-wrap: wrap;
+ align-items: center;
+ position: absolute;
+transform: translate(-200px,30px);
+
+}
+
+.targetContainer {
+  position: relative;
+  margin: 0 10px;
+}
+
+.dragging {
+  transform: scale(1.1);
+  transition: transform 0.2s;
+   
+}
+
+
+.matchedCard {
+  position: absolute;
+  top: -50px;
+  left: 0;
+  pointer-events: none;
+}
+
+.resetButton {
+  padding: 10px 20px;
+  background: none !important;
+  color: white;
+  border: 2px solid rgba(133, 23, 150, 1) !important;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 20px;
+
+  &:hover {
+    background-color: rgba(133, 23, 150, 1) !important;
+  }
+}
+
+.backButton{
+    width: 100%;
+    position: absolute;
+    transform: translate(-830px,490px);
+    
+    
+}
+.checkButton{
+    position: absolute;
+   transform: translate(800px,490px);
+}
+
+
+.targetContainer {
+  position: relative;
+
+}
+
+.baseCard {
+  width: 100%;
+  height: 100%;
+  will-change: filter;
+}
+.baseCard--active {
+  filter: blur(2px) saturate(0.8);
+}
+
+.overlayCard {
+  position: absolute;
+
+  z-index: 1;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  
+}
+
+
+
+.draggedCard {
+  position: fixed;
+  pointer-events: none;
+  touch-action: none;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  opacity: 0.8;
+  transition: none;
+}

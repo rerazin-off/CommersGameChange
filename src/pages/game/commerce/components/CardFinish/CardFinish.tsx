@@ -3,6 +3,7 @@ import Card from '@/components/Card/Card';
 import classes from './CardFinish.module.scss';
 
 
+
 type CardFinishProps = {
   attempts: number;
   isOpenCard: boolean;
@@ -23,12 +24,6 @@ const CardFinish = (props: CardFinishProps) => {
         }
         
         game="logistics"
-
-            Вы успешно завершили игру! <br /> Количество попыток: {attempts}
-          </>
-        }
-        game="tovaroveds"
-
         backLink=""
         isOpen={isOpenCard}
         onClose={onClose}

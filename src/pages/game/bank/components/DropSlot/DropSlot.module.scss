@@ -1,17 +1,47 @@
-
 .circle {
   width: 250px;
   height: 250px;
-  background-color: white;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 3px solid #fff;
-  filter: drop-shadow( 0 0 20px #4de4f2);
-  span {
-    font-size: 24px;
+  position: relative;
+  filter: drop-shadow(0 0 20px #4de4f2);
+
+  &__background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: white;
+    border-radius: 50%;
+    opacity: 0.7;
+    border: 3px solid #fff;
+    transition: filter 0.3s ease;
+    
+    .blurred & {
+      filter: blur(5px);
+    }
+  }
+
+  &__number {
+    font-size: 48px;
     font-weight: bold;
+    position: relative;
+    z-index: 1;
+  }
+
+  &__bagContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
   }
 
   &:nth-child(7) {
@@ -19,3 +49,6 @@
   }
 }
 
+.blurred {
+  // Дополнительные стили для размытого состояния, если нужно
+}
