@@ -25,6 +25,7 @@ import { MusicalGameCategories } from '../../pages/game/musical/MusicalGameCateg
 import { CommerceSr } from '../../pages/game/commerceSrok/CommerceSr.tsx';
 import { CommerceMat } from '../../pages/game/commerceMat/CommerceMat.tsx';
 import { Upbringing } from '../../pages/game/upbringing/Upbringing.tsx';
+import { MovieGame } from '../../pages/game/deti/Moviegame.tsx';
 
 
 import ExpenseSorterGame from '../../pages/game/buhgalter/buhgame2.0/components/BuhgalGame/BuhgalGame';
@@ -88,5 +89,6 @@ export const router = createBrowserRouter([
   { path: '/commerceSr', element: <CommerceSr /> },
    { path: '/commerceMat', element: <CommerceMat /> },
    { path: '/upbringing', element: <Upbringing /> },
+    { path: '/deti', element: <MovieGame /> },
    
 ]);
