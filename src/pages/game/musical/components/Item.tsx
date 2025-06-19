@@ -16,7 +16,7 @@ export default function Item({id, url, positions} : ItemProps){
             const dropResult = monitor.getDropResult();
             console.log(dropResult)
             if (dropResult){
-                item.position = {top: `${dropResult.top}`, left: `${dropResult.left}`};
+                item.position = {top: `${dropResult.top}px`, left: `${dropResult.left}px`};
             }
         },
 

@@ -30,18 +30,18 @@ type AreaPositions = {
 };
 
 const itemArr: ItemType[] = [
-    {id: 1, url: item1, position: {left: 0, top: 0}},
-    {id: 2, url: item2, position: {left: 0, top: 0}},
-    {id: 3, url: item3, position: {left: 0, top: 0}},
-    {id: 4, url: item4, position: {left: 0, top: 0}},
-    {id: 5, url: item5, position: {left: 0, top: 0}},
-    {id: 6, url: item6, position: {left: 0, top: 0}},
-    {id: 7, url: item7, position: {left: 0, top: 0}},
-    {id: 8, url: item8, position: {left: 0, top: 0}},
-    {id: 9, url: item9, position: {left: 0, top: 0}},
-    {id: 10, url: item10, position: {left: 0, top: 0}},
-    {id: 11, url: item11, position: {left: 0, top: 0}},
-    {id: 12, url: item12, position: {left: 0, top: 0}},
+    {id: 1, url: item1, position: {left: '0px', top: '0px'}},
+    {id: 2, url: item2, position: {left: '0px', top: '0px'}},
+    {id: 3, url: item3, position: {left: '0px', top: '0px'}},
+    {id: 4, url: item4, position: {left: '0px', top: '0px'}},
+    {id: 5, url: item5, position: {left: '0px', top: '0px'}},
+    {id: 6, url: item6, position: {left: '0px', top: '0px'}},
+    {id: 7, url: item7, position: {left: '0px', top: '0px'}},
+    {id: 8, url: item8, position: {left: '0px', top: '0px'}},
+    {id: 9, url: item9, position: {left: '0px', top: '0px'}},
+    {id: 10, url: item10, position: {left: '0px', top: '0px'}},
+    {id: 11, url: item11, position: {left: '0px', top: '0px'}},
+    {id: 12, url: item12, position: {left: '0px', top: '0px'}},
 ]
 
 import Item from './Item.tsx'
@@ -74,10 +74,10 @@ export default function ItemsList(){
     })
 
     const areaPositions:AreaPositions = {
-        1:{top:'11vh', left: '26vh'},
-        2:{top: '11vh', left: '100vh'},
-        3:{top: '57vh', left: '9vh'},
-        4:{top: '57vh', left: '83vh'}
+        1:{top:'9vh', left: '24vh'},
+        2:{top: '9vh', left: '98vh'},
+        3:{top: '55vh', left: '7vh'},
+        4:{top: '55vh', left: '81vh'}
     }
 
     const answers = {
@@ -146,7 +146,7 @@ export default function ItemsList(){
             <CustomDragPreview/>
             <div className={classes.currentItem}>
                 <div className={classes.whiteSpace} style={{opacity: dropItem.length===0 ? '0' : '1'}}>
-                    <Item url={dropItem[0]?.url} id={dropItem[0]?.id} key={dropItem[0]?.id} positions={{top: '50px', left: '50px'}}/>
+                    <Item url={dropItem[0]?.url} id={dropItem[0]?.id} key={dropItem[0]?.id} positions={{top: '50px', left: '70px'}}/>
                 </div>
             </div>
 

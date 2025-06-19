@@ -9,7 +9,7 @@ import { Indicator } from '../../../components/Indicator/Indicator';
 const gameData: Record<string, { title: string; body: string; url: string }> = {
   drumsGame: {
     title: 'ЗвукоСорт',
-    body: 'надо отсортировать музыкальные инструменты. удачи :)',
+    body: 'В мире музыки существует определенный порядок и классификация музыкальных инструментов. Выделяют четыре большие группы: струнные, клавишные, ударные, духовые. Вам предстоит распределить музыкальные инструменты по этим четырем категориям.',
     url: 'musicalcategories',
   },
   xylophoneGame: {

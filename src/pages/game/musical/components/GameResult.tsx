@@ -12,8 +12,8 @@ export function GameResult({wrongResCard, rightResCard, closeW, closeR}) {
             game={'music'}
         />
         <Card
-            title={'Неудача'}
-            body={'Какие-то инструменты отсортированы неправильно'}
+            title={'Увы...'}
+            body={'Не все инструменты распределены верно. Попробуйте еще.'}
             isOpen={wrongResCard}
             onClose={closeW}
             error = {true}
