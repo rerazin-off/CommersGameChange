@@ -45,19 +45,19 @@ interface ImageCardProps {
 }
 
 const ImageCard: React.FC<ImageCardProps> = ({
-                                               src,
-                                               alt,
-                                               draggable = false,
-                                               onDragStart = () => {},
-                                               onDrop = () => {},
-                                               onDragOver = () => {},
-                                               onTouchStart = () => {},
-                                               onTouchMove = () => {},
-                                               onTouchEnd = () => {},
-                                               isMatched = false,
-                                               isCorrect = true,
-                                               style = {}
-                                             }) => {
+  src,
+  alt,
+  draggable = false,
+  onDragStart = () => {},
+  onDrop = () => {},
+  onDragOver = () => {},
+  onTouchStart = () => {},
+  onTouchMove = () => {},
+  onTouchEnd = () => {},
+  isMatched = false,
+  isCorrect = true,
+  style = {}
+}) => {
   return (
     <div
       draggable={draggable}
@@ -68,24 +68,10 @@ const ImageCard: React.FC<ImageCardProps> = ({
       onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}
       style={{
-<<<<<<< HEAD
         height: '125px',
         width: '125px',
         position: 'relative',
         margin: '15px',
-=======
-
-        height: '95px',
-        width: '95px',
-        position: 'relative',
-        margin: '5px',
-
-        height: '110px',
-        width: '110px',
-        position: 'relative',
-        margin: '7px',
-
->>>>>>> f8758ad7b57f20091b224c7bc1af3a1ca1e29fc3
         cursor: draggable ? 'grab' : 'default',
         opacity: isMatched ? 0.5 : 1,
         display: 'flex',
@@ -104,10 +90,6 @@ const ImageCard: React.FC<ImageCardProps> = ({
           objectFit: 'contain',
           userSelect: 'none',
           WebkitUserDrag: 'none',
-
-
-          marginRight: '0px'
-
         }}
       />
     </div>
@@ -184,7 +166,6 @@ const CommercePlayGame: React.FC = () => {
   const touchMoveRef = useRef<number | null>(null);
 
   useEffect(() => {
-<<<<<<< HEAD
     const allProductsPlaced = matchedItems.length === products.length;
     const allRefrigeratorsFilled = refrigerators.every((_, index) => {
       return matchedItems.filter(item => item.refrigeratorIndex === index).length >= 4;
@@ -217,17 +198,6 @@ const CommercePlayGame: React.FC = () => {
     setErrorMessage(message);
     setTimeout(() => setErrorMessage(null), 3000);
   };
-=======
-
-    const allFilled = refrigerators.every((_, index) =>
-      matchedItems.filter(item => item.refrigeratorIndex === index).length >= 4
-    );
-
-    const allPlaced = matchedItems.length + productsInPurpleZone.length === products.length;
-    setIsVisibleButton(matchedItems.length > 0 || productsInPurpleZone.length > 0);
-  }, [matchedItems, productsInPurpleZone]);
->>>>>>> f8758ad7b57f20091b224c7bc1af3a1ca1e29fc3
-
 
   const handleDragStart = (productIndex: number, source: 'products' | 'refrigerator' | 'purple' = 'products', refrigeratorIndex?: number) => {
     setDraggedItem({ productIndex, source, refrigeratorIndex });
@@ -260,86 +230,13 @@ const CommercePlayGame: React.FC = () => {
     });
 
     setDraggedItem({ productIndex, source, refrigeratorIndex });
-<<<<<<< HEAD
-=======
-    setErrorMessage(null);
-
-  const handleDragStart = (productIndex: number) => {
-    const isMatched = matchedItems.some(item => item.productIndex === productIndex);
-    const isInPurpleZone = productsInPurpleZone.includes(productIndex);
-
-    // Разрешаем перетаскивание, даже если товар уже в фиолетовой зоне
-    if (!isMatched) {
-      setDraggedItem({ productIndex });
-      setErrorMessage(null);
-
-      // Если товар в фиолетовой зоне, удаляем его оттуда
-      if (isInPurpleZone) {
-        setProductsInPurpleZone(productsInPurpleZone.filter(index => index !== productIndex));
-      }
-    }
-  };
-
-  const handleTouchStart = (productIndex: number, e: React.TouchEvent) => {
-    const isMatched = matchedItems.some(item => item.productIndex === productIndex);
-    const isInPurpleZone = productsInPurpleZone.includes(productIndex);
-
-    if (!isMatched) {
-      const touch = e.touches[0];
-      const element = e.currentTarget as HTMLElement;
-      const rect = element.getBoundingClientRect();
-
-      const clone = element.cloneNode(true) as HTMLElement;
-      clone.style.position = 'fixed';
-      clone.style.zIndex = '1000';
-      clone.style.pointerEvents = 'none';
-      clone.style.transform = 'scale(1.1)';
-      clone.style.transition = 'transform 0.1s';
-      clone.style.left = `${rect.left}px`;
-      clone.style.top = `${rect.top}px`;
-      clone.style.width = `${rect.width}px`;
-      clone.style.height = `${rect.height}px`;
-
-      document.body.appendChild(clone);
-
-      setTouchActive({
-        productIndex,
-        element: clone,
-        startX: touch.clientX,
-        startY: touch.clientY,
-        offsetX: touch.clientX - rect.left,
-        offsetY: touch.clientY - rect.top
-      });
-
-      setDraggedItem({ productIndex });
-      setErrorMessage(null);
-
-      // Если товар в фиолетовой зоне, удаляем его оттуда
-      if (isInPurpleZone) {
-        setProductsInPurpleZone(productsInPurpleZone.filter(index => index !== productIndex));
-      }
-    }
->>>>>>> f8758ad7b57f20091b224c7bc1af3a1ca1e29fc3
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
     e.preventDefault();
-<<<<<<< HEAD
     
     if (touchMoveRef.current) {
       cancelAnimationFrame(touchMoveRef.current);
-=======
-    if (touchActive) {
-      const touch = e.touches[0];
-      const { element, offsetX, offsetY } = touchActive;
-
-
-      element.style.position = 'fixed';
-      element.style.zIndex = '1000';
-
-      element.style.left = `${touch.clientX - offsetX}px`;
-      element.style.top = `${touch.clientY - offsetY}px`;
->>>>>>> f8758ad7b57f20091b224c7bc1af3a1ca1e29fc3
     }
     
     touchMoveRef.current = requestAnimationFrame(() => {
@@ -363,17 +260,7 @@ const CommercePlayGame: React.FC = () => {
     
     if (touchActive) {
       const touch = e.changedTouches[0];
-<<<<<<< HEAD
       setGhostElement(prev => prev ? { ...prev, visible: false } : null);
-=======
-
-
-      element.style.position = '';
-      element.style.zIndex = '';
-      element.style.left = '';
-      element.style.top = '';
->>>>>>> f8758ad7b57f20091b224c7bc1af3a1ca1e29fc3
-
 
       const dropTarget = document.elementFromPoint(touch.clientX, touch.clientY);
 
@@ -388,8 +275,6 @@ const CommercePlayGame: React.FC = () => {
           handleDropOnPurpleZone();
         }
       }
-
-      element.remove();
 
       setTouchActive(null);
       setDraggedItem(null);
@@ -432,62 +317,7 @@ const CommercePlayGame: React.FC = () => {
       {
         productIndex: draggedItem.productIndex,
         refrigeratorIndex: targetRefrigeratorIndex,
-<<<<<<< HEAD
         isCorrect: isCorrectPlacement || targetRefrigeratorIndex === 3
-=======
-        isCorrect: isCorrectPlacement
- const handleDropOnRefrigerator = (refrigeratorIndex: number) => {
-    if (draggedItem) {
-      const itemsInRefrigerator = matchedItems.filter(item => item.refrigeratorIndex === refrigeratorIndex);
-
-      if (itemsInRefrigerator.length >= 4) {
-        setErrorMessage('Этот холодильник уже заполнен!');
-        setDraggedItem(null);
-        return;
-      }
-
-      const isAlreadyMatched = matchedItems.some(
-        item => item.productIndex === draggedItem.productIndex
-      );
-
-      if (!isAlreadyMatched) {
-        const product = products[draggedItem.productIndex];
-        const refrigerator = refrigerators[refrigeratorIndex];
-
-        if (refrigeratorIndex === 3) {
-          if (itemsInRefrigerator.length > 0) {
-            const firstProductCategory = products[itemsInRefrigerator[0].productIndex].category;
-
-            const isSameSubgroup =
-              (firstProductCategory.startsWith('grocery') && product.category.startsWith('grocery')) &&
-              (firstProductCategory === product.category ||
-                (firstProductCategory === 'grocery' && product.category === 'grocery') ||
-                (firstProductCategory !== 'grocery' && product.category !== 'grocery' &&
-                  firstProductCategory.replace('grocery', '') === product.category.replace('grocery', '')));
-
-            if (!isSameSubgroup) {
-              setErrorMessage('Нельзя смешивать разные подкатегории бакалеи в одном холодильнике!');
-              setDraggedItem(null);
-              return;
-            }
-          }
-        }
-
-        const isCorrectPlacement = refrigerator.categories.includes(product.category);
-
-        if (!isCorrectPlacement) {
-          setErrorMessage('Неверный температурный режим для этого продукта!');
-          setDraggedItem(null);
-          return;
-        }
-
-        setMatchedItems([...matchedItems, {
-          productIndex: draggedItem.productIndex,
-          refrigeratorIndex: refrigeratorIndex,
-          isCorrect: isCorrectPlacement
-        }]);
-
->>>>>>> f8758ad7b57f20091b224c7bc1af3a1ca1e29fc3
       }
     ]);
 
@@ -566,25 +396,10 @@ const CommercePlayGame: React.FC = () => {
     }
   };
 
-<<<<<<< HEAD
   const isRefrigeratorFilled = (index: number) => {
     return matchedItems.filter(item => item.refrigeratorIndex === index).length >= 4;
   };
 
-=======
-
-  const calculateResults = () => {
-    const correct = matchedItems.filter(item => item.isCorrect).length;
-    const incorrect = matchedItems.filter(item => !item.isCorrect).length;
-    return { correct, incorrect };
-  };
-
-  const allRefrigeratorsFilled = refrigerators.every((_, index) =>
-    matchedItems.filter(item => item.refrigeratorIndex === index).length >= 4
-  );
-
-
->>>>>>> f8758ad7b57f20091b224c7bc1af3a1ca1e29fc3
   return (
     <div style={{
       position: 'fixed',
@@ -652,7 +467,6 @@ const CommercePlayGame: React.FC = () => {
         </div>
       )}
 
-
       {/* Products section (Purple zone) - Top part */}
       <div
         style={{
@@ -712,89 +526,8 @@ const CommercePlayGame: React.FC = () => {
               }}
             />
           ))}
-
-      <div style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        gap: '30px',
-        marginTop: '30px',
-        height: '600px'
-      }}>
-        {/* Products section (Purple zone) */}
-        <div
-          style={{
-            flex: '1',
-            backgroundColor: '#c0adc3',
-            padding: '20px',
-            borderRadius: '15px',
-            maxWidth: '790px',
-            height: '850px',
-            display: 'flex',
-            flexDirection: 'column',
-            overflow: 'hidden',
-            alignItems: 'center',
-            marginLeft: '30px',
-            transform: 'translate(0px, -70px)'
-          }}
-          onDrop={handleDropOnPurpleZone}
-          onDragOver={handleDragOver}
-          data-purple-zone="true"
-        >
-          <div className={classes.texts} style={{ textAlign: 'center', width: '100%' }}>
-            <h2 style={{ fontSize: '28px', marginBottom: '20px' }}>Продукты</h2>
-          </div>
-          <div style={{
-            fontFamily: 'Cruinn Regular',
-            color: 'while',
-            display: 'flex',
-            flexWrap: 'wrap',
-            justifyContent: 'center',
-            height: '100%',
-            overflow: 'auto',
-            width: '100%',
-            padding: '10px'
-          }}>
-            {products.map((product, productIndex) => (
-              !isProductMatched(productIndex) ? (
-                <ImageCard
-                  key={`product-${productIndex}`}
-                  src={product.src}
-                  alt={product.alt}
-                  draggable={true}
-                  onDragStart={() => handleDragStart(productIndex)}
-                  onTouchStart={(e) => handleTouchStart(productIndex, e)}
-                  onTouchMove={handleTouchMove}
-                  onTouchEnd={handleTouchEnd}
-                  style={{
-                    transform: draggedItem?.productIndex === productIndex ? 'scale(1.05)' : 'none',
-                    transition: 'transform 0.2s',
-                  }}
-                />
-              ) : productsInPurpleZone.includes(productIndex) ? (
-                <ImageCard
-                  key={`product-purple-${productIndex}`}
-                  src={product.src}
-                  alt={product.alt}
-                  draggable={true}
-                  onDragStart={() => handleDragStart(productIndex)}
-                  onTouchStart={(e) => handleTouchStart(productIndex, e)}
-                  onTouchMove={handleTouchMove}
-                  onTouchEnd={handleTouchEnd}
-                  style={{
-                    width: '100px',
-                    height: '100px',
-                    margin: '8px',
-                    transform: draggedItem?.productIndex === productIndex ? 'scale(1.05)' : 'none',
-                    transition: 'transform 0.2s',
-                  }}
-                />
-              ) : null
-            ))}
-          </div>
-
         </div>
       </div>
-
 
       {/* Refrigerators section - Bottom part */}
       <div
@@ -875,68 +608,6 @@ const CommercePlayGame: React.FC = () => {
                     </div>
                   )}
                   <img
-
-        {/* Refrigerators section */}
-        <div
-          style={{
-            flex: '1',
-            maxWidth: '700px',
-            position: 'relative',
-          }}
-          onDrop={handleDropOnRefrigeratorsArea}
-          onDragOver={handleDragOver}
-          onTouchMove={handleTouchOver}
-        >
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(2, 1fr)',
-            gap: '30px',
-            height: '100%'
-          }}>
-            {refrigerators.map((refrigerator, refrigeratorIndex) => {
-              const itemsInRefrigerator = matchedItems.filter(item =>
-                item.refrigeratorIndex === refrigeratorIndex
-              );
-              const isFull = itemsInRefrigerator.length >= 4;
-              const allCorrect = isFull && itemsInRefrigerator.every(item => item.isCorrect);
-
-              return (
-                <div
-                  key={`refrigerator-${refrigeratorIndex}`}
-                  data-refrigerator={refrigeratorIndex}
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    backgroundColor: '#c0adc3',
-                    height: '400px',
-                    width: "400px",
-                    borderRadius: '15px',
-                    position: 'relative',
-                    zIndex: 1,
-                    border: allCorrect ? '4px solid #4DE4F2' : 'none',
-                    boxShadow: allCorrect ? '0 0 20px #4DE4F2' : '0 4px 12px rgba(0,0,0,0.2)',
-                    transition: 'all 0.3s ease',
-                    padding: '15px',
-                    transform: 'translate(-255px, -70px)',
-                  }}
-                >
-                  {allCorrect && (
-                    <div style={{
-                      position: 'absolute',
-                      top: '-20px',
-                      backgroundColor: '#4DE4F2',
-                      color: 'white',
-                      padding: '5px 15px',
-                      borderRadius: '15px',
-                      fontSize: '16px',
-                      fontWeight: 'bold'
-                    }}>
-                      Заполнен
-                    </div>
-                  )}
-                  <ImageCard
-
                     src={refrigerator.src}
                     alt={refrigerator.alt}
                     style={{
@@ -988,7 +659,6 @@ const CommercePlayGame: React.FC = () => {
         </div>
       </div>
 
-
       {/* Buttons section */}
       <div style={{
         display: 'flex',
@@ -1017,30 +687,6 @@ const CommercePlayGame: React.FC = () => {
             НАЗАД
           </Button>
         </div>
-
-      {isVisibleButton && (
-        <div onClick={checkResults} className={classes.checkButton} style={{ marginTop: '30px' }}>
-          <Button bgColor="blue" type="type1v2" style={{ fontSize: '20px', padding: '15px 30px' }}>
-            Завершить
-          </Button>
-        </div>
-      )}
-      <div className={classes.backButton} style={{
-        marginTop: '40px',
-        marginBottom: '40px'
-      }}>
-        <Button
-          bgColor="pink"
-          type="type1v2"
-          onClick={() => {
-            localStorage.setItem('fromGame', 'true');
-            navigate(RoutesEnum.TORGASHI);
-          }}
-          style={{ fontSize: '20px', padding: '15px 30px' }}
-        >
-          НАЗАД
-        </Button>
-
       </div>
 
       <CardFinish
