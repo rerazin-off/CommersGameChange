@@ -532,7 +532,7 @@ const CommercePlayGame: React.FC = () => {
       {/* Refrigerators section - Bottom part */}
       <div
         style={{
-          height: '45%',
+          height: '44%',
           position: 'relative',
           display: 'flex',
           justifyContent: 'center',
