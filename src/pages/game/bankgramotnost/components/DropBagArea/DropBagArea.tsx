@@ -3,7 +3,7 @@ import { DraggableBag } from '../index';
 import classes from './DropBagArea.module.scss';
 import { BagsList } from '../../types';
 import { useEffect, useState } from 'react';
-import { bags } from '../../contstans';
+// import { bags } from '../../contstans';
 
 type DropBagAreaProps = {
   positions: number[];

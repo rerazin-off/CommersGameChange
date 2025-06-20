@@ -272,10 +272,11 @@ export const SpaceTransport: React.FC = () => {
 
   useEffect(() => {
     setTimeout(()=>{
-      setVisibleFinishCard(userRouteLength ===  processPermutations())
+      setVisibleFinishCard(userRouteLength ===  processPermutations() && planets.every(p=>p.countPerson ===0))
     }, 3000)
   }, [userRouteLength]);
 
+  console.log(planets.every(p=>p.countPerson ===0));
   return (
     <div className={classes.container}>
       <ToastContainer />
@@ -321,14 +322,14 @@ export const SpaceTransport: React.FC = () => {
           ))}
         </div>
       </div>
-      <Button
-        bgColor="blue"
-        type="type1v2"
-        onClick={checkResult}
-        className={classes.checkButton}
-      >
-        ПРОВЕРИТЬ
-      </Button>
+      {/*<Button*/}
+      {/*  bgColor="blue"*/}
+      {/*  type="type1v2"*/}
+      {/*  onClick={checkResult}*/}
+      {/*  className={classes.checkButton}*/}
+      {/*>*/}
+      {/*  ПРОВЕРИТЬ*/}
+      {/*</Button>*/}
       <Button
         className={classes.backButton}
         bgColor="pink"

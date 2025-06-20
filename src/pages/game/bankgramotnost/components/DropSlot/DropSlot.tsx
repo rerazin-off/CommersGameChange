@@ -1,5 +1,5 @@
 import { useDrop } from 'react-dnd';
-import { bags } from '../../contstans';
+// import { bags } from '../../contstans';
 import { DraggableBag } from '../index';
 import classes from './DropSlot.module.scss';
 import { useRef, useEffect } from 'react';
