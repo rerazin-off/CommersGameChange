@@ -16,7 +16,6 @@ export const GameResult = ({ score, onRestart, backLink, gameLink }: GameResultP
     <div className={classes.resultContainer}>
       <div className={classes.resultContent}>
         <h2>Игра окончена!</h2>
-        <div className={classes.resultLine}><img src={lineImage} alt="" /></div>
         <p>Ваш результат: {score} из 5</p>
         {score >= 3 ? (
           <p className={classes.success}>Молодец!</p>
@@ -25,20 +24,23 @@ export const GameResult = ({ score, onRestart, backLink, gameLink }: GameResultP
         )}
       </div>
 
-      <div className={classes.resultButtons}>
-        <Link to={backLink}>
+        <div className={classes.frst}>
+          <Link to={backLink}>
           <Button bgColor="pink" type="type1v2">
             НАЗАД
           </Button>
         </Link>
-        <Button 
+        </div>
+       
+        <div className={classes.scnd}>
+          <Button 
           onClick={onRestart} 
           bgColor="blue" 
           type="type1v2"
         >
           ЗАНОВО
         </Button>
-      </div>
+        </div>
     </div>
   );
 };

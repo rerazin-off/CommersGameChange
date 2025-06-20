@@ -35,11 +35,10 @@ import {Upbringing}  from '../../pages/game/upbringing/Upbringing';
 import {CommerceTovary}  from '../../pages/game/commerce/CommerceTovary';
 import {CommerceMat}  from '../../pages/game/commerceMat/CommerceMat';
 import {CommerceSr}  from '../../pages/game/commerceSrok/CommerceSr';
+
 import ExpenseSorterGame from '../../pages/game/buhgalter/buhgame2.0/components/BuhgalGame/BuhgalGame';
-import {BankGramotnost} from '../../pages/game/bankgramotnost/BankGramotnost';
 
 import { Suspense } from 'react';
-import { SpaceTransport } from '../../pages/game/SpaceTransport/SpaceTransport';
 
 
 export enum RoutesEnum {
@@ -52,7 +51,8 @@ export enum RoutesEnum {
   DOU = '/dou',
   BANK = '/bank',
   TORGASHI = '/tovaroveds',
-  MUSIC = '/music'
+  KINDER = '/kinder',
+  MUSIC = '/music',
  //  ECONOMIST = '/economist',
  // main
 }
@@ -73,6 +73,7 @@ export const router = createBrowserRouter([
   { path: RoutesEnum.BANK, element: <Bank /> },
   { path: RoutesEnum.ECONOMIST, element: <Economist /> },
   { path: RoutesEnum.TORGASHI, element: <Torgashi /> },
+  { path: RoutesEnum.KINDER, element: <Kidergarden /> },
   {
     path: '/dou',
     element: (
@@ -109,4 +110,6 @@ export const router = createBrowserRouter([
   { path: '/CommerceSr', element: <CommerceSr/> },
   { path: '/SpaceTransport', element: <SpaceTransport/> },
   { path: '/chemodany', element: <BankGramotnost/> },
+
+
 ]);
