@@ -13,7 +13,7 @@ export const QuestionCard = ({
 }: QuestionCardProps) => {
   return (
     <div className={classes.questionCard}>
-      <h2>Что это за мультик?</h2>
+      <h2>Что это за сказка ?</h2>
       <input
         type="text"
         value={userAnswer}

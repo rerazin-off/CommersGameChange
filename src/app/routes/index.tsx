@@ -28,6 +28,7 @@ import { Upbringing } from '../../pages/game/upbringing/Upbringing.tsx';
 import { MovieGame } from '../../pages/game/deti/Moviegame.tsx';
 
 
+
 import ExpenseSorterGame from '../../pages/game/buhgalter/buhgame2.0/components/BuhgalGame/BuhgalGame';
 
 import { Suspense } from 'react';
@@ -42,7 +43,8 @@ export enum RoutesEnum {
   SPECIALKINDERGARDEN='/SpecialKinder',
   DOU = '/dou',
   BANK = '/bank',
-  TORGASHI = '/tovaroveds'
+  TORGASHI = '/tovaroveds',
+  KINDER = '/kinder'
  //  ECONOMIST = '/economist',
  // main
 }
@@ -63,6 +65,7 @@ export const router = createBrowserRouter([
   { path: RoutesEnum.BANK, element: <Bank /> },
   { path: RoutesEnum.ECONOMIST, element: <Economist /> },
   { path: RoutesEnum.TORGASHI, element: <Torgashi /> },
+  { path: RoutesEnum.KINDER, element: <Kidergarden /> },
   {
     path: '/dou',
     element: (
@@ -90,5 +93,6 @@ export const router = createBrowserRouter([
    { path: '/commerceMat', element: <CommerceMat /> },
    { path: '/upbringing', element: <Upbringing /> },
     { path: '/deti', element: <MovieGame /> },
+
    
 ]);

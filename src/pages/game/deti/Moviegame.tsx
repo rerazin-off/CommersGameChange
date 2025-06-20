@@ -77,7 +77,7 @@ export const MovieGame = () => {
       <GameResult 
         score={gameState.score}
         onRestart={handleRestartGame}
-        backLink={RoutesEnum.TORGASHI}
+        backLink={RoutesEnum.KINDER}
         gameLink={RoutesEnum.MOVIE_GAME}
       />
     );
@@ -109,7 +109,7 @@ export const MovieGame = () => {
           type="type1v2"
           onClick={() => {
             localStorage.setItem('fromGame', 'true');
-            navigate(RoutesEnum.TORGASHI);
+            navigate(RoutesEnum.KINDER);
           }}
         >
           НАЗАД
