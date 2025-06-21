@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import  { useEffect, useRef, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import { Button } from '../../../components/Button/Button';
 import { useNavigate } from 'react-router-dom';
@@ -86,12 +86,20 @@ export const SpaceTransport: React.FC = () => {
   }
 
   function sendTransport(event: React.MouseEvent, planet: Planet){
-    const notify = () => toast.error('Заполните корабль полностью');
     if (!positionTransport) return;
+
+    const notifyPartialTransport = () => {
+      const remaining = selectedTransport.numPerson - Math.min(
+        selectedTransport.numPerson,
+        planet.countPerson
+      );
+      toast(`Осталось человек на корабле: ${remaining}`);
+    };
+
 
     if (selectedTransport.currentPlanetId === null) {
       if (selectedTransport.numPerson !== selectedTransport.capacity) {
-        notify();
+        toast.error('Заполните транспорт полностью!');
         return;
       }
     }
@@ -112,6 +120,7 @@ export const SpaceTransport: React.FC = () => {
       }))
     }
     mainParameters[2].value = mainParameters[2].value - Math.min(selectedTransport?.numPerson, planet.countPerson)
+    notifyPartialTransport()
     animateTransport(planet)
   }
 
@@ -242,10 +251,6 @@ export const SpaceTransport: React.FC = () => {
     return minRoute
   }
 
-  function checkResult() {
-    setVisibleErrorCard(userRouteLength !==  processPermutations());
-    setVisibleFinishCard(userRouteLength ===  processPermutations());
-  }
 
   useEffect(() => {
     if (selectedTransport?.numPerson === 0 && selectedTransport.currentPlanetId !== null){
@@ -279,7 +284,7 @@ export const SpaceTransport: React.FC = () => {
   console.log(planets.every(p=>p.countPerson ===0));
   return (
     <div className={classes.container}>
-      <ToastContainer />
+      <ToastContainer position='top-center'/>
       <GameCanvas
         canvasRef={canvasRef}
         transportRef={transportRef}
@@ -322,14 +327,6 @@ export const SpaceTransport: React.FC = () => {
           ))}
         </div>
       </div>
-      {/*<Button*/}
-      {/*  bgColor="blue"*/}
-      {/*  type="type1v2"*/}
-      {/*  onClick={checkResult}*/}
-      {/*  className={classes.checkButton}*/}
-      {/*>*/}
-      {/*  ПРОВЕРИТЬ*/}
-      {/*</Button>*/}
       <Button
         className={classes.backButton}
         bgColor="pink"

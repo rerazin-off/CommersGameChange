@@ -1,0 +1,36 @@
+.backlight {
+  animation: backlight ease 1s infinite;
+}
+@keyframes backlight {
+  0% {
+    filter: drop-shadow(0 0 8px #4DE4F2);
+  }
+  50% {
+    filter: drop-shadow(0 0 2px #4de4f2);
+  }
+  100% {
+    filter: drop-shadow(0 0 8px #4DE4F2);
+  }
+}
+
+.increase{
+  animation: increase ease 1s infinite;
+}
+@keyframes increase {
+  0%{
+    font-size: 14px;
+  }
+  50%{
+    font-size: 15px;
+  }
+  100%{
+    font-size: 14px;
+  }
+}
+
+.parameter{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1vh;
+}
