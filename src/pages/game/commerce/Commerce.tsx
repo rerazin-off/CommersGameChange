@@ -30,12 +30,12 @@ interface ImageCardProps {
     src: string;
     alt: string;
     draggable?: boolean;
-    onDragStart?: (e: React.DragEvent) => void;
-    onDrop?: (e: React.DragEvent) => void;
-    onDragOver?: (e: React.DragEvent) => void;
-    onTouchStart?: (e: React.TouchEvent) => void;
-    onTouchMove?: (e: React.TouchEvent) => void;
-    onTouchEnd?: (e: React.TouchEvent) => void;
+    onDragStart?: (e: React.DragEvent<HTMLDivElement>) => void;
+    onDrop?: (e: React.DragEvent<HTMLDivElement>) => void;
+    onDragOver?: (e: React.DragEvent<HTMLDivElement>) => void;
+    onTouchStart?: (e: React.TouchEvent<HTMLDivElement>) => void;
+    onTouchMove?: (e: React.TouchEvent<HTMLDivElement>) => void;
+    onTouchEnd?: (e: React.TouchEvent<HTMLDivElement>) => void;
     isMatched?: boolean;
     style?: React.CSSProperties;
     isCorrect?: boolean;
@@ -46,16 +46,16 @@ const ImageCard: React.FC<ImageCardProps> = ({
     src,
     alt,
     draggable = false,
-    onDragStart = () => { },
-    onDrop = () => { },
-    onDragOver = () => { },
-    onTouchStart = () => { },
-    onTouchMove = () => { },
-    onTouchEnd = () => { },
+    onDragStart = () => {},
+    onDrop = () => {},
+    onDragOver = () => {},
+    onTouchStart = () => {},
+    onTouchMove = () => {},
+    onTouchEnd = () => {},
     isMatched = false,
     isCorrect = true,
     style = {},
-    onClick = () => { }
+    onClick = () => {}
 }) => {
     return (
         <div
@@ -68,16 +68,15 @@ const ImageCard: React.FC<ImageCardProps> = ({
             onTouchEnd={onTouchEnd}
             onClick={onClick}
             style={{
-                height: '110px',
-                width: '110px',
+                height: '160px',
+                width: '160px',
                 position: 'relative',
-                margin: '7px',
+                margin: '8px',
                 cursor: draggable ? 'grab' : 'default',
                 opacity: isMatched ? 0.5 : 1,
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                backgroundColor: isCorrect ? 'transparent' : 'rgba(255, 0, 0, 0.3)',
                 touchAction: 'manipulation',
                 ...style
             }}
@@ -103,12 +102,13 @@ const Commerce: React.FC = () => {
     const navigate = useNavigate();
     const [openIsCard, setOpenIsCard] = useState(false);
     const [attempts, setAttempts] = useState(0);
+    const [correctAttempts, setCorrectAttempts] = useState(0);
+    const [incorrectAttempts, setIncorrectAttempts] = useState(0);
     const [allProductsMatched, setAllProductsMatched] = useState(false);
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
     const [isVisibleButton, setIsVisibleButton] = useState(false);
-    const [showResults, setShowResults] = useState(false);
+    const [isCompleted, setIsCompleted] = useState(false);
 
-    // Refs for touch handling
     const touchCloneRef = useRef<HTMLDivElement | null>(null);
     const touchStartPos = useRef({ x: 0, y: 0 });
     const touchOffset = useRef({ x: 0, y: 0 });
@@ -144,24 +144,45 @@ const Commerce: React.FC = () => {
     useEffect(() => {
         const allPlaced = matchedItems.length + productsInPurpleZone.length === products.length;
         setAllProductsMatched(allPlaced);
-        setIsVisibleButton(matchedItems.length > 0 || productsInPurpleZone.length > 0);
+        setIsVisibleButton(matchedItems.length === products.length);
+        
+        const allCorrect = matchedItems.length === products.length && 
+                         matchedItems.every(item => item.isCorrect);
+        setIsCompleted(allCorrect);
     }, [matchedItems, productsInPurpleZone, products.length]);
 
-    // Touch handlers
-    const handleTouchStart = (e: React.TouchEvent, productIndex: number, fromRefrigerator?: number, fromPurpleZone?: boolean) => {
+    const handleDragStart = (e: React.DragEvent<HTMLDivElement>, productIndex: number, fromRefrigerator?: number) => {
+        e.dataTransfer.setData('productIndex', productIndex.toString());
+        if (fromRefrigerator !== undefined) {
+            e.dataTransfer.setData('fromRefrigerator', fromRefrigerator.toString());
+        }
+        draggedProductIndex.current = productIndex;
+        draggedFromRefrigeratorIndex.current = fromRefrigerator;
+        
+        // Если перетаскиваем из фиолетовой зоны - сразу удаляем оттуда
+        if (productsInPurpleZone.includes(productIndex)) {
+            setProductsInPurpleZone(prev => prev.filter(index => index !== productIndex));
+            draggedFromPurpleZone.current = true;
+        } else {
+            draggedFromPurpleZone.current = false;
+        }
+        
+        setErrorMessage(null);
+    };
+
+    const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>, productIndex: number, fromRefrigerator?: number) => {
         const touch = e.touches[0];
-        const element = e.currentTarget as HTMLElement;
+        const element = e.currentTarget;
         const rect = element.getBoundingClientRect();
 
-        // Create clone for dragging
         const clone = document.createElement('div');
         clone.style.position = 'fixed';
         clone.style.zIndex = '1000';
         clone.style.pointerEvents = 'none';
         clone.style.transform = 'scale(1.1)';
         clone.style.transition = 'transform 0.1s';
-        clone.style.width = '110px';
-        clone.style.height = '110px';
+        clone.style.width = '160px';
+        clone.style.height = '160px';
         clone.style.left = `${rect.left}px`;
         clone.style.top = `${rect.top}px`;
         clone.style.display = 'flex';
@@ -179,68 +200,29 @@ const Commerce: React.FC = () => {
         document.body.appendChild(clone);
         touchCloneRef.current = clone;
 
-        // Save start positions
-        touchStartPos.current = {
-            x: touch.clientX,
-            y: touch.clientY
-        };
-        touchOffset.current = {
-            x: touch.clientX - rect.left,
-            y: touch.clientY - rect.top
-        };
+        touchStartPos.current = { x: touch.clientX, y: touch.clientY };
+        touchOffset.current = { x: touch.clientX - rect.left, y: touch.clientY - rect.top };
 
         draggedProductIndex.current = productIndex;
-        setErrorMessage(null);
-
-        if (fromRefrigerator !== undefined) {
-            draggedFromRefrigeratorIndex.current = fromRefrigerator;
-        } else if (fromPurpleZone) {
+        draggedFromRefrigeratorIndex.current = fromRefrigerator;
+        
+        // Если перетаскиваем из фиолетовой зоны - сразу удаляем оттуда
+        if (productsInPurpleZone.includes(productIndex)) {
+            setProductsInPurpleZone(prev => prev.filter(index => index !== productIndex));
             draggedFromPurpleZone.current = true;
+        } else {
+            draggedFromPurpleZone.current = false;
         }
+        
+        setErrorMessage(null);
     };
 
-    const handleTouchMove = (e: React.TouchEvent) => {
+    const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
         if (touchCloneRef.current && e.touches.length > 0) {
             const touch = e.touches[0];
             const clone = touchCloneRef.current;
-
             clone.style.left = `${touch.clientX - touchOffset.current.x}px`;
             clone.style.top = `${touch.clientY - touchOffset.current.y}px`;
-        }
-    };
-
-    const handleTouchEnd = (e: React.TouchEvent) => {
-        if (touchCloneRef.current && draggedProductIndex.current !== null) {
-            const touch = e.changedTouches[0];
-            const clone = touchCloneRef.current;
-
-            // Find drop target
-            const dropTarget = document.elementFromPoint(touch.clientX, touch.clientY);
-            
-            if (dropTarget) {
-                // Check if dropped on refrigerator
-                const refrigeratorElement = dropTarget.closest('[data-refrigerator]');
-                if (refrigeratorElement) {
-                    const refrigeratorIndex = parseInt(refrigeratorElement.getAttribute('data-refrigerator') || '0');
-                    handleDropOnRefrigerator(refrigeratorIndex);
-                } 
-                // Check if dropped on purple zone
-                else if (dropTarget.closest('[data-purple-zone]')) {
-                    handleDropOnPurpleZone();
-                }
-                // If dragged from refrigerator and dropped elsewhere - return to purple zone
-                else if (draggedFromRefrigeratorIndex.current !== null) {
-                    handleDropOnPurpleZone();
-                }
-                // If dragged from purple zone and dropped elsewhere - do nothing (return to original position)
-            }
-
-            // Cleanup
-            clone.remove();
-            touchCloneRef.current = null;
-            draggedProductIndex.current = null;
-            draggedFromRefrigeratorIndex.current = null;
-            draggedFromPurpleZone.current = false;
         }
     };
 
@@ -252,38 +234,15 @@ const Commerce: React.FC = () => {
             
             const isCorrectPlacement = refrigerator.categories.includes(product.category);
 
-            // If dragged from another refrigerator
             if (draggedFromRefrigeratorIndex.current !== null) {
                 setMatchedItems(prev => [
                     ...prev.filter(item => item.productIndex !== productIndex),
-                    {
-                        productIndex: productIndex,
-                        refrigeratorIndex: refrigeratorIndex,
-                        isCorrect: isCorrectPlacement
-                    }
+                    { productIndex, refrigeratorIndex, isCorrect: isCorrectPlacement }
                 ]);
-            } 
-            // If dragged from purple zone
-            else if (draggedFromPurpleZone.current) {
-                setProductsInPurpleZone(prev => prev.filter(index => index !== productIndex));
+            } else {
                 setMatchedItems(prev => [
                     ...prev,
-                    {
-                        productIndex: productIndex,
-                        refrigeratorIndex: refrigeratorIndex,
-                        isCorrect: isCorrectPlacement
-                    }
-                ]);
-            }
-            // If dragged from products area
-            else {
-                setMatchedItems(prev => [
-                    ...prev,
-                    {
-                        productIndex: productIndex,
-                        refrigeratorIndex: refrigeratorIndex,
-                        isCorrect: isCorrectPlacement
-                    }
+                    { productIndex, refrigeratorIndex, isCorrect: isCorrectPlacement }
                 ]);
             }
         }
@@ -293,38 +252,91 @@ const Commerce: React.FC = () => {
         if (draggedProductIndex.current !== null) {
             const productIndex = draggedProductIndex.current;
             
-            // If dragged from refrigerator
             if (draggedFromRefrigeratorIndex.current !== null) {
                 setMatchedItems(prev => prev.filter(item => item.productIndex !== productIndex));
-                setProductsInPurpleZone(prev => [...prev, productIndex]);
-            } 
-            // If dragged from purple zone - do nothing (will return to original position)
-            else if (!draggedFromPurpleZone.current) {
-                // If dragged from products area
                 setProductsInPurpleZone(prev => [...prev, productIndex]);
             }
         }
     };
 
-    const removeFromRefrigerator = (productIndex: number) => {
-        setMatchedItems(matchedItems.filter(item => item.productIndex !== productIndex));
-        setProductsInPurpleZone([...productsInPurpleZone, productIndex]);
+    const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
+        if (touchCloneRef.current && draggedProductIndex.current !== null) {
+            const touch = e.changedTouches[0];
+            const clone = touchCloneRef.current;
+            const dropTarget = document.elementFromPoint(touch.clientX, touch.clientY);
+            
+            if (dropTarget) {
+                const refrigeratorElement = dropTarget.closest('[data-refrigerator]');
+                if (refrigeratorElement) {
+                    const refrigeratorIndex = parseInt(refrigeratorElement.getAttribute('data-refrigerator') || '0');
+                    handleDropOnRefrigerator(refrigeratorIndex);
+                } else if (dropTarget.closest('[data-purple-zone]')) {
+                    handleDropOnPurpleZone();
+                } else if (draggedFromRefrigeratorIndex.current !== null) {
+                    handleDropOnPurpleZone();
+                }
+            }
+
+            if (clone && clone.parentNode) {
+                clone.parentNode.removeChild(clone);
+            }
+            touchCloneRef.current = null;
+            draggedProductIndex.current = null;
+            draggedFromRefrigeratorIndex.current = null;
+            draggedFromPurpleZone.current = false;
+        }
     };
 
-    const removeFromPurpleZone = (productIndex: number) => {
-        setProductsInPurpleZone(productsInPurpleZone.filter(index => index !== productIndex));
+    const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+        e.preventDefault();
+    };
+
+    const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
+        e.preventDefault();
+        const refrigeratorIndex = parseInt(e.currentTarget.getAttribute('data-refrigerator') || '0');
+        handleDropOnRefrigerator(refrigeratorIndex);
+    };
+
+    const removeFromRefrigerator = (productIndex: number) => {
+        setMatchedItems(prev => prev.filter(item => item.productIndex !== productIndex));
+        setProductsInPurpleZone(prev => [...prev, productIndex]);
     };
 
     const checkResults = () => {
+        const incorrectItems = matchedItems.filter(item => !item.isCorrect);
+        const correctItems = matchedItems.filter(item => item.isCorrect);
+        
+        setCorrectAttempts(correctItems.length);
+        setIncorrectAttempts(incorrectItems.length);
         setAttempts(prev => prev + 1);
-        setOpenIsCard(true);
+        
+        // Move only incorrectly placed items back to purple zone
+        if (incorrectItems.length > 0) {
+            const incorrectProductIndexes = incorrectItems.map(item => item.productIndex);
+            setMatchedItems(correctItems);
+            setProductsInPurpleZone(prev => {
+                // Filter out any existing items with the same indexes to prevent duplicates
+                const existingIndexes = new Set(prev);
+                const newIndexes = incorrectProductIndexes.filter(index => !existingIndexes.has(index));
+                return [...prev, ...newIndexes];
+            });
+        }
+
+        // Show finish card only if all items are correctly placed
+        if (matchedItems.length === products.length && matchedItems.every(item => item.isCorrect)) {
+            setOpenIsCard(true);
+        }
     };
 
     const resetGame = () => {
         setMatchedItems([]);
         setProductsInPurpleZone([]);
         setAttempts(0);
+        setCorrectAttempts(0);
+        setIncorrectAttempts(0);
         setErrorMessage(null);
+        setIsCompleted(false);
+        setOpenIsCard(false);
     };
 
     const isProductMatched = (productIndex: number) => {
@@ -335,29 +347,14 @@ const Commerce: React.FC = () => {
         setOpenIsCard(false);
     };
 
-    const handleDragOver = (e: React.DragEvent) => {
-        e.preventDefault();
-    };
-
-    const calculateResults = () => {
-        const correct = matchedItems.filter(item => item.isCorrect).length;
-        const incorrect = matchedItems.filter(item => !item.isCorrect).length;
-        return { correct, incorrect };
-    };
-
-    const isRefrigeratorPerfect = (refrigeratorIndex: number) => {
-        const itemsInRefrigerator = matchedItems.filter(
-            item => item.refrigeratorIndex === refrigeratorIndex && item.isCorrect
-        );
-        return itemsInRefrigerator.length >= 3;
-    };
-
     return (
         <div style={{
             overflow: 'hidden',
-            backgroundImage: 'url(/src/assets/img/commerce_img/img_2/fon.png)',
+            backgroundImage: 'linear-gradient(to bottom, #0E0430, #7B74EB)',
+            backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundAttachment: 'fixed',
+            backgroundRepeat: 'no-repeat',
             padding: '20px',
             position: 'relative',
             width: '100%',
@@ -385,43 +382,50 @@ const Commerce: React.FC = () => {
             <div style={{
                 display: 'flex',
                 justifyContent: 'space-between',
-                gap: '30px',
-                marginTop: '30px',
+                gap: '15px',
+                marginTop: '20px',
                 height: '600px'
             }}>
-                {/* Products section (Purple zone) */}
                 <div
                     style={{
                         flex: '1',
-                        backgroundColor: '#FFC0CB',
-                        padding: '20px',
+                        backgroundColor: 'rgba(255, 192, 203, 0.2)',
+                        padding: '15px',
                         borderRadius: '15px',
-                        maxWidth: '790px',
-                        height: '850px',
+                        maxWidth: '750px',
+                        height: '800px',
                         display: 'flex',
                         flexDirection: 'column',
                         overflow: 'hidden',
                         alignItems: 'center',
-                        marginLeft: '30px',
-                        transform: 'translate(0px, -70px)'
+                        marginLeft: '20px',
+                        transform: 'translate(0px, -50px)',
+                        backdropFilter: 'blur(5px)'
                     }}
-                    onDrop={handleDropOnPurpleZone}
+                    onDrop={(e) => {
+                        e.preventDefault();
+                        handleDropOnPurpleZone();
+                    }}
                     onDragOver={handleDragOver}
                     data-purple-zone="true"
                 >
-                    <div className={classes.texts} style={{ textAlign: 'center', width: '100%' }}>
-                        <h2 style={{ fontSize: '28px', marginBottom: '20px' }}>ОБОРУДОВАНИЕ</h2>
-                    </div>
+                    <h2 style={{ 
+                        fontSize: '26px', 
+                        marginBottom: '15px', 
+                        textAlign: 'center',
+                        color: 'white',
+                        textShadow: '1px 1px 2px rgba(0,0,0,0.5)'
+                    }}>
+                        ОБОРУДОВАНИЕ
+                    </h2>
                     <div style={{
-                        fontFamily: 'Cruinn Regular',
-                        color: 'while',
                         display: 'flex',
                         flexWrap: 'wrap',
                         justifyContent: 'center',
                         height: '100%',
                         overflow: 'auto',
                         width: '100%',
-                        padding: '10px'
+                        padding: '8px'
                     }}>
                         {products.map((product, productIndex) => (
                             !isProductMatched(productIndex) && !productsInPurpleZone.includes(productIndex) ? (
@@ -434,10 +438,6 @@ const Commerce: React.FC = () => {
                                     onTouchStart={(e) => handleTouchStart(e, productIndex)}
                                     onTouchMove={handleTouchMove}
                                     onTouchEnd={handleTouchEnd}
-                                    style={{
-                                        transform: draggedProductIndex.current === productIndex ? 'scale(1.05)' : 'none',
-                                        transition: 'transform 0.2s',
-                                    }}
                                 />
                             ) : productsInPurpleZone.includes(productIndex) ? (
                                 <ImageCard
@@ -446,100 +446,90 @@ const Commerce: React.FC = () => {
                                     alt={product.alt}
                                     draggable={true}
                                     onDragStart={(e) => handleDragStart(e, productIndex)}
-                                    onTouchStart={(e) => handleTouchStart(e, productIndex, undefined, true)}
+                                    onTouchStart={(e) => handleTouchStart(e, productIndex)}
                                     onTouchMove={handleTouchMove}
                                     onTouchEnd={handleTouchEnd}
-                                    onClick={() => removeFromPurpleZone(productIndex)}
-                                    style={{
-                                        width: '110px',
-                                        height: '110px',
-                                        margin: '7px',
-                                        transform: draggedProductIndex.current === productIndex ? 'scale(1.05)' : 'none',
-                                        transition: 'transform 0.2s',
-                                        cursor: 'pointer'
-                                    }}
                                 />
                             ) : null
                         ))}
                     </div>
                 </div>
 
-                {/* Refrigerators section */}
                 <div
                     style={{
                         flex: '1',
-                        maxWidth: '700px',
+                        maxWidth: '850px',
                         position: 'relative',
+                        marginRight: '15px'
                     }}
-                    onDragOver={handleDragOver}
                 >
                     <div style={{
                         display: 'grid',
                         gridTemplateColumns: 'repeat(2, 1fr)',
-                        gap: '30px',
+                        gap: '5px',
                         height: '100%'
                     }}>
                         {refrigerators.map((refrigerator, refrigeratorIndex) => {
                             const itemsInRefrigerator = matchedItems.filter(item =>
                                 item.refrigeratorIndex === refrigeratorIndex
                             );
-                            const isPerfect = isRefrigeratorPerfect(refrigeratorIndex);
 
                             return (
                                 <div
                                     key={`refrigerator-${refrigeratorIndex}`}
                                     data-refrigerator={refrigeratorIndex}
+                                    onDrop={handleDrop}
+                                    onDragOver={handleDragOver}
                                     style={{
                                         display: 'flex',
                                         flexDirection: 'column',
                                         alignItems: 'center',
-                                        backgroundColor: '#FFC0CB',
-                                        height: '400px',
+                                        height: '460px',
                                         width: "400px",
-                                        borderRadius: '15px',
                                         position: 'relative',
                                         zIndex: 1,
-                                        border: isPerfect ? '4px solid #4DE4F2' : 'none',
-                                        boxShadow: isPerfect ? '0 0 20px #4DE4F2' : '0 4px 12px rgba(0,0,0,0.2)',
-                                        transition: 'all 0.3s ease',
-                                        padding: '15px',
-                                        transform: 'translate(-255px, -70px)',
+                                        padding: '0',
+                                        transform: 'translate(-70px, -50px)',
+                                        background: 'transparent',
+                                        borderRadius: '0'
                                     }}
                                 >
-                                    {isPerfect && (
+                                    <div
+                                        style={{ 
+                                            width: '380px', 
+                                            height: '380px',
+                                            marginBottom: '5px',
+                                            display: 'flex',
+                                            justifyContent: 'center',
+                                            alignItems: 'center',
+                                            position: 'relative'
+                                        }}
+                                    >
+                                        <img
+                                            src={refrigerator.src}
+                                            alt={refrigerator.alt}
+                                            style={{
+                                                maxWidth: '100%',
+                                                maxHeight: '100%',
+                                                objectFit: 'contain',
+                                                borderRadius: '12px'
+                                            }}
+                                        />
                                         <div style={{
                                             position: 'absolute',
-                                            top: '-20px',
-                                            backgroundColor: '#4DE4F2',
-                                            color: 'white',
-                                            padding: '5px 15px',
-                                            borderRadius: '15px',
-                                            fontSize: '16px',
-                                            fontWeight: 'bold'
+                                            bottom: '0',
+                                            display: 'flex',
+                                            flexWrap: 'wrap',
+                                            justifyContent: 'center',
+                                            width: '100%',
+                                            padding: '5px',
+                                            gap: '5px'
                                         }}>
-                                            Заполнен
-                                        </div>
-                                    )}
-                                    <ImageCard
-                                        src={refrigerator.src}
-                                        alt={refrigerator.alt}
-                                        onDragOver={handleDragOver}
-                                        style={{ width: '220px', height: '220px' }}
-                                    />
-                                    <div style={{
-                                        display: 'flex',
-                                        flexWrap: 'wrap',
-                                        justifyContent: 'center',
-                                        marginTop: '15px',
-                                        gap: '10px'
-                                    }}>
-                                        {itemsInRefrigerator
-                                            .map((item, idx) => (
+                                            {itemsInRefrigerator.map((item, idx) => (
                                                 <ImageCard
                                                     key={`matched-${refrigeratorIndex}-${idx}`}
                                                     src={products[item.productIndex].src}
                                                     alt={products[item.productIndex].alt}
-                                                    isCorrect={item.isCorrect}
                                                     draggable={true}
                                                     onDragStart={(e) => handleDragStart(e, item.productIndex, refrigeratorIndex)}
                                                     onTouchStart={(e) => handleTouchStart(e, item.productIndex, refrigeratorIndex)}
@@ -547,12 +537,13 @@ const Commerce: React.FC = () => {
                                                     onTouchEnd={handleTouchEnd}
                                                     onClick={() => removeFromRefrigerator(item.productIndex)}
                                                     style={{
-                                                        width: '110px',
-                                                        height: '110px',
-                                                        cursor: 'pointer'
+                                                        width: '80px',
+                                                        height: '80px',
+                                                        margin: '2px'
                                                     }}
                                                 />
                                             ))}
+                                        </div>
                                     </div>
                                 </div>
                             );
@@ -560,17 +551,16 @@ const Commerce: React.FC = () => {
                     </div>
                 </div>
             </div>
+
             {isVisibleButton && (
-                <div onClick={checkResults} className={classes.checkButton} style={{ marginTop: '30px' }}>
-                    <Button bgColor="blue" type="type1v2" style={{ fontSize: '20px', padding: '15px 30px' }}>
-                        Завершить
+                <div onClick={checkResults} className={classes.checkButton} style={{ marginTop: '20px' }}>
+                    <Button bgColor="blue" type="type1v2" style={{ fontSize: '18px', padding: '12px 25px' }}>
+                        Проверить
                     </Button>
                 </div>
             )}
-            <div className={classes.backButton} style={{
-                marginTop: '40px',
-                marginBottom: '40px'
-            }}>
+
+            <div className={classes.backButton} style={{ marginTop: '25px', marginBottom: '25px' }}>
                 <Button
                     bgColor="pink"
                     type="type1v2"
@@ -578,17 +568,22 @@ const Commerce: React.FC = () => {
                         localStorage.setItem('fromGame', 'true');
                         navigate(RoutesEnum.TORGASHI);
                     }}
-                    style={{ fontSize: '20px', padding: '15px 30px' }}
+                    style={{ fontSize: '18px', padding: '12px 25px' }}
                 >
                     НАЗАД
                 </Button>
             </div>
 
-            <CardFinish
-                attempts={attempts}
-                isOpenCard={openIsCard}
-                onClose={handleCloseCard}
-            />
+            {isCompleted && (
+                <CardFinish
+                    attempts={attempts}
+                    correctAttempts={correctAttempts}
+                    incorrectAttempts={incorrectAttempts}
+                    isOpenCard={openIsCard}
+                    onClose={handleCloseCard}
+                    onReset={resetGame}
+                />
+            )}
         </div>
     );
 };

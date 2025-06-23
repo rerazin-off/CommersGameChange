@@ -15,7 +15,7 @@ const CardFinish = (props: CardFinishProps) => {
   return (
     <div>
       <Card
-        title="'Поздравляем!"
+        title="Поздравляем!"
         body={
           <>
 
