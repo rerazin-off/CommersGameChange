@@ -5,6 +5,7 @@ import { Button } from '../../../components/Button/Button';
 import { useNavigate } from 'react-router-dom';
 import { RoutesEnum } from '../../../app/routes';
 import CardFinish from './components/CardFinish';
+import { CardSingle } from './components/CardSingle';
 
 interface ImagePair {
   top: {
@@ -66,15 +67,15 @@ export const CommerceMat = () => {
       top: { src: '/src/assets/img/commerceMat/fol.svg', alt: 'время', id: 10 },
       bottom: { src: '/src/assets/img/commerceMat/100y.svg', alt: 'карта', id: 10 }
     },
-     {
+    {
       top: { src: '/src/assets/img/commerceMat/plenk.svg', alt: 'время', id: 11 },
       bottom: { src: '/src/assets/img/commerceMat/200y.svg', alt: 'карта', id:11 }
     },
-     {
+    {
       top: { src: '/src/assets/img/commerceMat/plastic.svg', alt: 'время', id: 12 },
       bottom: { src: '/src/assets/img/commerceMat/180200y.svg', alt: 'карта', id: 12 }
     },
-     {
+    {
       top: { src: '/src/assets/img/commerceMat/alumin.svg', alt: 'время', id: 13 },
       bottom: { src: '/src/assets/img/commerceMat/500y.svg', alt: 'карта', id: 13 }
     }
@@ -86,7 +87,8 @@ export const CommerceMat = () => {
   const [attempts, setAttempts] = useState(0);
   const [openIsCard, setOpenIsCard] = useState(false);
   const [activeCard, setActiveCard] = useState<number | null>(null);
-  const [lockedCards, setLockedCards] = useState<number[]>([]); // Новое состояние для заблокированных карточек
+  const [lockedCards, setLockedCards] = useState<number[]>([]);
+  const [showInitialCard, setShowInitialCard] = useState(true);
   const draggedCardRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
@@ -104,6 +106,15 @@ export const CommerceMat = () => {
 
   const isCardLocked = (cardId: number) => {
     return lockedCards.includes(cardId);
+  };
+
+  const handleCloseInitialCard = () => {
+    setShowInitialCard(false);
+  };
+
+  const handleStartGame = () => {
+    setShowInitialCard(false);
+    // Дополнительная логика начала игры при необходимости
   };
 
   const handleTouchStart = (id: number) => (e: React.TouchEvent) => {
@@ -166,7 +177,6 @@ export const CommerceMat = () => {
       const newPositions = [...positions];
       const currentPositionIndex = newPositions.findIndex(pos => pos === activeCard);
       
-      // Если целевое место уже заблокировано, ничего не делаем
       if (lockedCards.includes(newPositions[targetContainerIndex])) {
         if (draggedCardRef.current) {
           draggedCardRef.current.style.display = 'none';
@@ -176,22 +186,15 @@ export const CommerceMat = () => {
         return;
       }
       
-      // Если на целевом месте уже есть карточка, меняем их местами
       if (newPositions[targetContainerIndex] !== 0) {
-        // Если карточка перемещается с верхнего ряда
         if (currentPositionIndex === -1) {
           newPositions[targetContainerIndex] = activeCard;
-        } 
-        // Если карточка перемещается с другого нижнего места
-        else {
+        } else {
           const temp = newPositions[targetContainerIndex];
           newPositions[targetContainerIndex] = activeCard;
           newPositions[currentPositionIndex] = temp;
         }
-      } 
-      // Если целевое место пустое
-      else {
-        // Если карточка перемещается с другого нижнего места
+      } else {
         if (currentPositionIndex !== -1) {
           newPositions[currentPositionIndex] = 0;
         }
@@ -221,7 +224,6 @@ export const CommerceMat = () => {
     setAttempts(prev => prev + 1);
     const newLockedCards = [...lockedCards];
     
-    // Блокируем правильно размещенные карточки
     positions.forEach((pos, idx) => {
       if (pos === correctOrder[idx] && !lockedCards.includes(pos)) {
         newLockedCards.push(pos);
@@ -294,157 +296,183 @@ export const CommerceMat = () => {
 
   return (
     <div className={classes.container} ref={containerRef}>
-      {/* Верхний ряд */}
-      <div className={classes.topRow}>
-        {shuffledPairs.map((pair) => (
-          <div 
-            key={`top-${pair.top.id}`}
-            style={{ 
-              display: draggedCardIds.includes(pair.top.id) ? 'none' : 'block',
-              opacity: isCardLocked(pair.top.id) ? 0.5 : 1
-            }}
-            onTouchStart={handleTouchStart(pair.top.id)}
-            onTouchMove={handleTouchMove}
-            onTouchEnd={handleTouchEnd}
-            onTouchCancel={() => {
-              if (draggedCardRef.current) {
-                draggedCardRef.current.style.display = 'none';
-              }
-              setActiveCard(null);
-              touchStartPosRef.current = null;
-            }}
-            draggable={!isCardLocked(pair.top.id)}
-            onDragStart={handleDragStart(pair.top.id)}
-            onDragEnd={handleDragEnd}
-          >
-            <ImageCard
-              src={pair.top.src}
-              alt={pair.top.alt}
-              number={pair.top.id}
-              draggable={!isCardLocked(pair.top.id)}
-              onDragStart={handleDragStart(pair.top.id)}
-              onDragEnd={handleDragEnd}
-              className={classes.draggableCard}
-            />
-          </div>
-        ))}
-      </div>
+      {/* Начальная карточка с инструкцией */}
+      {showInitialCard && (
+        <CardSingle
+          title="Время хранения"
+          body={
+            <div style={{ whiteSpace: 'pre-line' }}>
+              Наша планета даёт нам всё необходимое для жизни. Но 
+              человечество оставляет после себя много мусора.
+              Некоторые вещи исчезают довольно быстро, а другие могут
+              лежать в земле сотни и даже тысячи лет!
 
-      {/* Нижний ряд */}
-      <div className={classes.bottomRow}>
-        {shuffledPairs.map((pair, index) => {
-          const matchedTopCard = positions[index] 
-            ? shuffledPairs.find(p => p.top.id === positions[index])
-            : null;
+              Задача: соединить предметы с правильным временем их 
+              разложения в окружающей среде.
+            </div>
+          }
+          onClose={handleCloseInitialCard}
+          onForward={handleStartGame}
+          isOpen={showInitialCard}
+        />
+      )}
 
-          return (
-            <div 
-              key={`bottom-${index}`} 
-              className={classes.targetContainer}
-              onDrop={handleDrop(index)}
-              onDragOver={(e: React.DragEvent) => e.preventDefault()}
-            >
-           <ImageCard
-  src={pair.bottom.src}
-  alt={pair.bottom.alt}
-  number={pair.bottom.id}
-  className={classes.baseCard}
-  style={{ 
-    filter: lockedCards.includes(positions[index]) 
-      ? 'blur(5px)' 
-      : positions[index] !== 0 
-        ? 'blur(5px)' 
-        : 'none',
-    transition: 'filter 0.3s ease'
-  }}
-/>
-              
-              {positions[index] !== 0 && (
-                <div 
-                  className={classes.overlayCard}
-                  onTouchStart={handleTouchStart(positions[index])}
-                  onTouchMove={handleTouchMove}
-                  onTouchEnd={handleTouchEnd}
-                  onTouchCancel={() => {
-                    if (draggedCardRef.current) {
-                      draggedCardRef.current.style.display = 'none';
-                    }
-                    setActiveCard(null);
-                    touchStartPosRef.current = null;
-                  }}
-                  draggable={!isCardLocked(positions[index])}
-                  onDragStart={handleDragStart(positions[index])}
+      {/* Основной интерфейс игры */}
+      {!showInitialCard && (
+        <>
+          {/* Верхний ряд */}
+          <div className={classes.topRow}>
+            {shuffledPairs.map((pair) => (
+              <div 
+                key={`top-${pair.top.id}`}
+                style={{ 
+                  display: draggedCardIds.includes(pair.top.id) ? 'none' : 'block',
+                  opacity: isCardLocked(pair.top.id) ? 0.5 : 1
+                }}
+                onTouchStart={handleTouchStart(pair.top.id)}
+                onTouchMove={handleTouchMove}
+                onTouchEnd={handleTouchEnd}
+                onTouchCancel={() => {
+                  if (draggedCardRef.current) {
+                    draggedCardRef.current.style.display = 'none';
+                  }
+                  setActiveCard(null);
+                  touchStartPosRef.current = null;
+                }}
+                draggable={!isCardLocked(pair.top.id)}
+                onDragStart={handleDragStart(pair.top.id)}
+                onDragEnd={handleDragEnd}
+              >
+                <ImageCard
+                  src={pair.top.src}
+                  alt={pair.top.alt}
+                  number={pair.top.id}
+                  draggable={!isCardLocked(pair.top.id)}
+                  onDragStart={handleDragStart(pair.top.id)}
                   onDragEnd={handleDragEnd}
-                  style={{
-                    cursor: isCardLocked(positions[index]) ? 'not-allowed' : 'move'
-                  }}
+                  className={classes.draggableCard}
+                />
+              </div>
+            ))}
+          </div>
+
+          {/* Нижний ряд */}
+          <div className={classes.bottomRow}>
+            {shuffledPairs.map((pair, index) => {
+              const matchedTopCard = positions[index] 
+                ? shuffledPairs.find(p => p.top.id === positions[index])
+                : null;
+
+              return (
+                <div 
+                  key={`bottom-${index}`} 
+                  className={classes.targetContainer}
+                  onDrop={handleDrop(index)}
+                  onDragOver={(e: React.DragEvent) => e.preventDefault()}
                 >
                   <ImageCard
-                    src={matchedTopCard!.top.src}
-                    alt={matchedTopCard!.top.alt}
-                    number={matchedTopCard!.top.id}
-                    draggable={!isCardLocked(positions[index])}
-                    onDragStart={handleDragStart(matchedTopCard!.top.id)}
-                    onDragEnd={handleDragEnd}
-                    style={{
-                      opacity: isCardLocked(positions[index]) ? 1 : 1,
-                      scale: isCardLocked(positions[index]) ? 0.5: 1
+                    src={pair.bottom.src}
+                    alt={pair.bottom.alt}
+                    number={pair.bottom.id}
+                    className={classes.baseCard}
+                    style={{ 
+                      filter: lockedCards.includes(positions[index]) 
+                        ? 'blur(5px)' 
+                        : positions[index] !== 0 
+                          ? 'blur(5px)' 
+                          : 'none',
+                      transition: 'filter 0.3s ease'
                     }}
                   />
+                  
+                  {positions[index] !== 0 && (
+                    <div 
+                      className={classes.overlayCard}
+                      onTouchStart={handleTouchStart(positions[index])}
+                      onTouchMove={handleTouchMove}
+                      onTouchEnd={handleTouchEnd}
+                      onTouchCancel={() => {
+                        if (draggedCardRef.current) {
+                          draggedCardRef.current.style.display = 'none';
+                        }
+                        setActiveCard(null);
+                        touchStartPosRef.current = null;
+                      }}
+                      draggable={!isCardLocked(positions[index])}
+                      onDragStart={handleDragStart(positions[index])}
+                      onDragEnd={handleDragEnd}
+                      style={{
+                        cursor: isCardLocked(positions[index]) ? 'not-allowed' : 'move'
+                      }}
+                    >
+                      <ImageCard
+                        src={matchedTopCard!.top.src}
+                        alt={matchedTopCard!.top.alt}
+                        number={matchedTopCard!.top.id}
+                        draggable={!isCardLocked(positions[index])}
+                        onDragStart={handleDragStart(matchedTopCard!.top.id)}
+                        onDragEnd={handleDragEnd}
+                        style={{
+                          opacity: isCardLocked(positions[index]) ? 1 : 1,
+                          scale: isCardLocked(positions[index]) ? 0.5: 1
+                        }}
+                      />
+                    </div>
+                  )}
                 </div>
-              )}
+              );
+            })}
+          </div>
+
+          {/* Перетаскиваемая карточка для touch-устройств */}
+          <div 
+            ref={draggedCardRef}
+            className={classes.draggedCard}
+            style={{
+              display: 'none',
+              touchAction: 'none',
+              willChange: 'transform'
+            }}
+          >
+            {activeCard && !isCardLocked(activeCard) && (
+              <ImageCard
+                src={shuffledPairs.find(p => p.top.id === activeCard)!.top.src}
+                alt={shuffledPairs.find(p => p.top.id === activeCard)!.top.alt}
+                number={activeCard}
+                style={{ pointerEvents: 'none' }}
+              />
+            )}
+          </div>
+
+          {/* Кнопка проверки */}
+          {allCardsPlaced && (
+            <div onClick={checkResults} className={classes.checkButton}>
+              <Button bgColor="blue" type="type1v2">
+                ПРОВЕРИТЬ
+              </Button>
             </div>
-          );
-        })}
-      </div>
-
-      {/* Перетаскиваемая карточка для touch-устройств */}
-      <div 
-        ref={draggedCardRef}
-        className={classes.draggedCard}
-        style={{
-          display: 'none',
-          touchAction: 'none',
-          willChange: 'transform'
-        }}
-      >
-        {activeCard && !isCardLocked(activeCard) && (
-          <ImageCard
-            src={shuffledPairs.find(p => p.top.id === activeCard)!.top.src}
-            alt={shuffledPairs.find(p => p.top.id === activeCard)!.top.alt}
-            number={activeCard}
-            style={{ pointerEvents: 'none' }}
+          )}
+          
+          <div className={classes.backButton}>
+            <Button
+              bgColor="pink"
+              type="type1v2"
+              onClick={() => {
+                localStorage.setItem('fromGame', 'true');
+                navigate(RoutesEnum.TORGASHI);
+              }}
+            >
+              НАЗАД
+            </Button>
+          </div>
+          
+          <CardFinish
+            attempts={attempts}
+            isOpenCard={openIsCard}
+            onClose={handleCloseCard}
           />
-        )}
-      </div>
-
-      {/* Кнопка проверки */}
-      {allCardsPlaced && (
-        <div onClick={checkResults} className={classes.checkButton}>
-          <Button bgColor="blue" type="type1v2">
-            ПРОВЕРИТЬ
-          </Button>
-        </div>
+        </>
       )}
-      
-      <div className={classes.backButton}>
-        <Button
-          bgColor="pink"
-          type="type1v2"
-          onClick={() => {
-            localStorage.setItem('fromGame', 'true');
-            navigate(RoutesEnum.TORGASHI);
-          }}
-        >
-          НАЗАД
-        </Button>
-      </div>
-      
-      <CardFinish
-        attempts={attempts}
-        isOpenCard={openIsCard}
-        onClose={handleCloseCard}
-      />
     </div>
   );
 };
