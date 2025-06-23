@@ -32,26 +32,31 @@ export const movies = [
   {
     id: 1,
     name: "Бременские музыканты",
+    possibleAnswers: [],
     images: [img1, img2, img3, img4, img5]
   },
-   {
+  {
     id: 2,
     name: "Буратино",
+    possibleAnswers: ["Золотой ключик, или приключение буратино", "Золотой ключик "],
     images: [img6, img7, img8, img9, img10]
   },
-   {
+  {
     id: 3,
     name: "Незнайка",
+    possibleAnswers: ["Приключение незнайки и его друзей", "Приключение незнайки"],
     images: [img11, img12, img13, img14, img15]
   },
-   {
+  {
     id: 4,
     name: "Чиполлино",
+    possibleAnswers: ["Приключение чиполлино"],
     images: [img16, img17, img18, img19, img20]
   },
-   {
+  {
     id: 5,
     name: "Теремок",
+    possibleAnswers: [],
     images: [img21, img22, img23, img24, img25]
   }
 ] as const;
