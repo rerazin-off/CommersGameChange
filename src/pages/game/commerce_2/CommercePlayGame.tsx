@@ -45,19 +45,19 @@ interface ImageCardProps {
 }
 
 const ImageCard: React.FC<ImageCardProps> = ({
-                                               src,
-                                               alt,
-                                               draggable = false,
-                                               onDragStart = () => {},
-                                               onDrop = () => {},
-                                               onDragOver = () => {},
-                                               onTouchStart = () => {},
-                                               onTouchMove = () => {},
-                                               onTouchEnd = () => {},
-                                               isMatched = false,
-                                               isCorrect = true,
-                                               style = {}
-                                             }) => {
+  src,
+  alt,
+  draggable = false,
+  onDragStart = () => {},
+  onDrop = () => {},
+  onDragOver = () => {},
+  onTouchStart = () => {},
+  onTouchMove = () => {},
+  onTouchEnd = () => {},
+  isMatched = false,
+  isCorrect = true,
+  style = {}
+}) => {
   return (
     <div
       draggable={draggable}
@@ -170,7 +170,7 @@ const CommercePlayGame: React.FC = () => {
     const allRefrigeratorsFilled = refrigerators.every((_, index) => {
       return matchedItems.filter(item => item.refrigeratorIndex === index).length >= 4;
     });
-
+    
     setIsVisibleButton(allProductsPlaced && allRefrigeratorsFilled);
   }, [matchedItems, products.length, refrigerators.length]);
 
@@ -207,7 +207,7 @@ const CommercePlayGame: React.FC = () => {
     e.preventDefault();
     const touch = e.touches[0];
     const element = e.currentTarget as HTMLElement;
-
+    
     setGhostElement({
       src: products[productIndex].src,
       alt: products[productIndex].alt,
@@ -238,7 +238,7 @@ const CommercePlayGame: React.FC = () => {
     if (touchMoveRef.current) {
       cancelAnimationFrame(touchMoveRef.current);
     }
-
+    
     touchMoveRef.current = requestAnimationFrame(() => {
       if (touchActive && ghostElement) {
         const touch = e.touches[0];
@@ -253,11 +253,11 @@ const CommercePlayGame: React.FC = () => {
 
   const handleTouchEnd = (e: React.TouchEvent) => {
     e.preventDefault();
-
+    
     if (touchMoveRef.current) {
       cancelAnimationFrame(touchMoveRef.current);
     }
-
+    
     if (touchActive) {
       const touch = e.changedTouches[0];
       setGhostElement(prev => prev ? { ...prev, visible: false } : null);
@@ -532,7 +532,7 @@ const CommercePlayGame: React.FC = () => {
       {/* Refrigerators section - Bottom part */}
       <div
         style={{
-          height: '45%',
+          height: '44%',
           position: 'relative',
           display: 'flex',
           justifyContent: 'center',
@@ -587,7 +587,7 @@ const CommercePlayGame: React.FC = () => {
                   ...(isFilled ? {
                     border: '4px solid #00c8d7',
                     borderRadius: '15px',
-                    boxShadow: '0 0 15px rgba(0, 200, 215)',
+                    boxShadow: '0 0 15px rgba(0, 200, 215, 0.7)',
                     padding: '5px'
                   } : {})
                 }}>
@@ -699,4 +699,3 @@ const CommercePlayGame: React.FC = () => {
 };
 
 export default CommercePlayGame;
-
