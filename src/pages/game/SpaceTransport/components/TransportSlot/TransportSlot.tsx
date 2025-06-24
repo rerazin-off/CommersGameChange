@@ -1,7 +1,6 @@
-import React, { useEffect, useRef } from 'react';
+import  { useEffect, useRef } from 'react';
 import iconUser from '@/assets/img/game_assets/space-transport-img/iconUser.svg';
 import classes from '../../SpaceTransport.module.scss'
-import { log } from 'node:util';
 
 const TransportSlot = ({selectedImg, transport, transportRef, show, changeNumPerson}) => {
 
@@ -33,7 +32,7 @@ const TransportSlot = ({selectedImg, transport, transportRef, show, changeNumPer
           <div className={classes.slotParameters}>
             <img src={iconUser} />
             <p>
-              {transport?.capacity}/{transport?.numPerson}
+              {transport?.numPerson}/{transport?.capacity}
             </p>
           </div>
         </>

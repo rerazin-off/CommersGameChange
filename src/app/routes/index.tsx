@@ -21,10 +21,6 @@ import { BankGame } from '../../pages/game/bank/bankGame';
 import { Rocket } from '../../pages/game/rocket/Rocket';
 import { SorterGame } from '../../pages/game/buhgalter/buhGame';
 import { LogistCep } from '../../pages/game/logist/LogistCep';
-import { MusicalGameCategories } from '../../pages/game/musical/MusicalGameCategories';
-import { CommerceSr } from '../../pages/game/commerceSrok/CommerceSr.tsx';
-import { CommerceMat } from '../../pages/game/commerceMat/CommerceMat.tsx';
-import { Upbringing } from '../../pages/game/upbringing/Upbringing.tsx';
 import { MovieGame } from '../../pages/game/deti/Moviegame.tsx';
 
 
@@ -35,10 +31,12 @@ import {Upbringing}  from '../../pages/game/upbringing/Upbringing';
 import {CommerceTovary}  from '../../pages/game/commerce/CommerceTovary';
 import {CommerceMat}  from '../../pages/game/commerceMat/CommerceMat';
 import {CommerceSr}  from '../../pages/game/commerceSrok/CommerceSr';
-
 import ExpenseSorterGame from '../../pages/game/buhgalter/buhgame2.0/components/BuhgalGame/BuhgalGame';
+import {BankGramotnost} from '../../pages/game/bankgramotnost/BankGramotnost';
+import {SwiperPage} from '../../pages/SwiperPage/SwiperPage';
 
 import { Suspense } from 'react';
+import { SpaceTransport } from '../../pages/game/SpaceTransport/SpaceTransport';
 
 
 export enum RoutesEnum {
@@ -46,6 +44,7 @@ export enum RoutesEnum {
   FIRST_CORPUS = '/1',
   PROGRAMMERS = '/programmers',
   LOGISTICS = '/logistics',
+  SWIPER = '/swiperPage',
   ECONOMIST = '/economist',
   SPECIALKINDERGARDEN='/SpecialKinder',
   DOU = '/dou',
@@ -96,7 +95,6 @@ export const router = createBrowserRouter([
   { path: '/gbuh2', element: <ExpenseSorterGame /> },
   { path: '/tovary', element: <CommerceTovary /> },
   { path: '/gamelogist', element: <LogistCep /> },
-  { path: '/musicalcategories', element: <MusicalGameCategories /> },
   { path: '/commerceSr', element: <CommerceSr /> },
    { path: '/commerceMat', element: <CommerceMat /> },
    { path: '/upbringing', element: <Upbringing /> },
@@ -110,6 +108,5 @@ export const router = createBrowserRouter([
   { path: '/CommerceSr', element: <CommerceSr/> },
   { path: '/SpaceTransport', element: <SpaceTransport/> },
   { path: '/chemodany', element: <BankGramotnost/> },
-
-
+  {path: '/swiperPage', element: <SwiperPage/>}
 ]);

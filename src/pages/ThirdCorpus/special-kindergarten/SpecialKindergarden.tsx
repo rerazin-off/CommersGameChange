@@ -13,8 +13,8 @@ const gameData: Record<string, { title: string; body: string; url: string }> = {
     url: '../../../production/rostok/index.html',
   },
   tentGame: {
-    title: 'Ракета',
-    body: 'Интерактивное приложение Ракета. Вам будет необходимо построить ракету из предложенных программой элементов!',
+    title: 'Конструктор',
+    body: 'По чертежу вам необходимо собрать ракету из предложенных  элементов конструктора. Удачи!',
     url: 'rocket',
   },
 };
