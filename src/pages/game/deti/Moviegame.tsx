@@ -43,8 +43,11 @@ export const MovieGame = () => {
 
   const handleAnswer = () => {
     const currentMovie = movies[gameState.currentMovieIndex];
-    const isCorrect = gameState.userAnswer.trim().toLowerCase() === 
-      currentMovie.name.toLowerCase();
+    
+    // Проверяем, совпадает ли ответ пользователя с любым из вариантов
+    const isCorrect = currentMovie.possibleAnswers.some(
+      answer => gameState.userAnswer.trim().toLowerCase() === answer.toLowerCase()
+    );
 
     const newScore = isCorrect ? gameState.score + 1 : gameState.score;
     const isLastMovie = gameState.currentMovieIndex === movies.length - 1;
