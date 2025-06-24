@@ -2,7 +2,8 @@ export interface Bag {
   id: number;
   label: string;
   image: string;
+  part?: 'left' | 'right'; // Добавляем информацию о части чемодана
 }
 
-export type SlotContent = number[]; // Теперь слот содержит массив ID
-export type BagsList = Array<Bag>
+export type SlotContent = number[];
+export type BagsList = Array<Bag>;

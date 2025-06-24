@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import classes from './BankGramotnost.module.scss';
-import { Button } from '../../../components/Button/Button';
+import { Button } from '@/components/Button/Button';
 import { useNavigate } from 'react-router-dom';
 import { DndProvider } from 'react-dnd';
 import { TouchBackend } from 'react-dnd-touch-backend';
-import  Drag  from '../bank/Drag';
 import { DropBagArea } from './components';
-import { correctOrder } from './contstans';
+import { correctOrder, allBags, shuffleBags } from './contstans';
 import CardFinish from './components/CardFinish/CardFinish';
 import DropSlot from './components/DropSlot/DropSlot';
-import { RoutesEnum } from '../../../app/routes';
+import SplitBagArea from './components/SplitBagArea/SplitBagArea';
+import { RoutesEnum } from '@/app/routes';
 
 const touchBackendOptions = {
   enableMouseEvents: true,
@@ -22,12 +22,11 @@ const touchBackendOptions = {
   }
 };
 
-
 export const BankGramotnost = () => {
-  // Теперь positions хранит массивы ID для каждого слота
-  const [positions, setPositions] = useState<number[][]>(Array(2).fill([]));
+  const [positions, setPositions] = useState<number[][]>([[], []]);
   const [openIsCard, setOpenIsCard] = useState(false);
   const [attempts, setAttempts] = useState(0);
+  const [currentBagIndex, setCurrentBagIndex] = useState(0);
 
   const allRequiredBagsPlaced = () => {
     const requiredIds = correctOrder.flat();
@@ -35,28 +34,29 @@ export const BankGramotnost = () => {
     return requiredIds.every(id => placedIds.includes(id));
   };
 
-  const handleDrop = (index: number | null, item: { id: number }) => {
+  const handleDrop = (slotIndex: number, item: { id: number }) => {
     setPositions(prev => {
-      // Сначала удаляем элемент из всех слотов
-      const newPositions = prev.map(slot =>
-        slot.filter(id => id !== item.id)
-      );
-
-      // Если index указан и элемент еще не в этом слоте
-      if (index !== null && !newPositions[index].includes(item.id)) {
-        newPositions[index] = [...newPositions[index], item.id];
-      }
-
+      const newPositions = [...prev];
+      newPositions.forEach(slot => {
+        const index = slot.indexOf(item.id);
+        if (index !== -1) slot.splice(index, 1);
+      });
+      newPositions[slotIndex] = [...newPositions[slotIndex], item.id];
       return newPositions;
     });
+
+    // Увеличиваем индекс только если это текущий bag
+    if (item.id === allBags[currentBagIndex].id) {
+      setCurrentBagIndex(prev => Math.min(prev + 1, allBags.length - 1));
+    }
   };
+
+
   const checkResults = () => {
     setAttempts(prev => prev + 1);
 
-    // Проверяем соответствие каждого слота своему correctOrder
     const isCorrect = positions.every((slotItems, slotIndex) => {
       const correctIds = correctOrder[slotIndex];
-      // Проверяем что все нужные ID есть в слоте и нет лишних
       return (
         correctIds.every(id => slotItems.includes(id)) &&
         slotItems.every(id => correctIds.includes(id))
@@ -66,7 +66,6 @@ export const BankGramotnost = () => {
     if (isCorrect) {
       setOpenIsCard(true);
     } else {
-      // Подсвечиваем неправильные элементы
       setPositions(prev =>
         prev.map((slot, slotIndex) =>
           slot.filter(id => correctOrder[slotIndex].includes(id))
@@ -83,22 +82,22 @@ export const BankGramotnost = () => {
 
   return (
     <DndProvider backend={TouchBackend} options={touchBackendOptions}>
-      <Drag />
       <div className={classes.container}>
-        {/* Два слота для перетаскивания */}
         <div className={classes.grid}>
           {positions.map((_, i) => (
             <DropSlot
               key={i}
               index={i}
-              handleDrop={handleDrop}
-              positions={positions}
+              positions={positions[i]}
+              onDrop={(item) => handleDrop(i, item)}
             />
           ))}
         </div>
 
-        {/* Область с элементами для перетаскивания */}
-        <DropBagArea positions={positions.flat()} setPositions={setPositions} />
+        <SplitBagArea
+          placedItems={positions.flat()}
+          currentBagIndex={currentBagIndex}
+        />
 
         {allRequiredBagsPlaced() && (
           <div onClick={checkResults} className={classes.checkButton}>
@@ -112,9 +111,10 @@ export const BankGramotnost = () => {
           <Button
             bgColor="pink"
             type="type1v2"
+            // onClick={() => navigate(RoutesEnum.BANK)}
             onClick={() => {
-              localStorage.setItem('fromGame', 'true');
-              navigate(RoutesEnum.TORGASHI);
+              localStorage.setItem('fromGame', 'true'); // Устанавливаем флаг
+              navigate(RoutesEnum.BANK); // Возвращаемся назад
             }}
           >
             НАЗАД

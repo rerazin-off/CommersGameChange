@@ -12,10 +12,10 @@ const CardFinish = (props: CardFinishProps) => {
   return (
     <div>
       <Card
-        title="'Поздравляем!"
+        title="Поздравляем!"
         body={
           <>
-            Вы успешно завершили игру! <br /> Количество попыток: {attempts}
+            Вы успешно завершили игру! <br /> Использовано попыток: {attempts}
           </>
         }
         game="tovaroveds"

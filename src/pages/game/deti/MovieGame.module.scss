@@ -1,0 +1,166 @@
+.gameContainer {
+  width: 100%;
+  height: 1052px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+  background: url(./assets/gid_kindergarten.svg);
+}
+.errorContainer {
+  padding: 20px;
+  background: #ffebee;
+  color: #c62828;
+  border-radius: 8px;
+  margin: 20px 0;
+}
+.imageContainer {
+  position: relative;
+}
+
+.movieImage {
+  position: absolute;
+  top: 142px;
+  left: 575px;
+  /* или */
+  bottom: 30px;
+  right: 40px;
+}
+.questionCard {
+  position: absolute;  // Абсолютное позиционирование
+   top: 142px;
+  left: 575px;
+  /* или */
+  bottom: 30px;
+  height: 400px;
+  right: 40px;
+  width: 90%;         // Ширина карточки
+  max-width: 750px;   // Максимальная ширина
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 10;        // Поверх других элементов
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.answerInput {
+  padding: 10px;
+  font-size: 16px;
+  margin: 10px 0;
+  width: 80%;
+  border: 2px solid pink;
+  border-radius: 8px;
+}
+
+.submitButton {
+  padding: 10px 20px;
+  background: pink;
+  margin-top: 10px;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+
+  &:hover {
+    background:  palevioletred;
+  }
+}
+
+.progress {
+  margin-top: 10px;
+  font-size: 18px;
+  color: #666;
+}
+
+.resultContainer {
+      width: 100%;
+  height: 1052px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+  background: url(./assets/gid_kindergarten.svg);
+  text-align: center;
+  padding-top: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  
+
+  .success {
+    color: green;
+    font-weight: bold;
+    font-size: 24px;
+  }
+
+  .fail {
+    color: red;
+    font-weight: bold;
+    font-size: 24px;
+  }
+}
+.backButton{
+   position: fixed;
+    bottom: 20px;  /* отступ от низа */
+    left: 20px;    /* отступ от правого края */
+    width: auto;    /* ширина по содержимому */
+    transform: none; /* убираем трансформацию */
+    
+}
+.resultContainer h2{
+  color: white;
+  font-size: 32px;
+}
+.resultContainer p{
+  color: white;
+   font-size: 24px;
+}
+.resultContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+  padding: 20px;
+}
+
+.resultContent {
+  transform: translate(0px,-150px);
+}
+
+.resultLine {
+  margin: 15px 0;
+  img {
+    width: 100%;
+    max-width: 200px;
+  }
+}
+
+
+.success {
+  color: green;
+  font-weight: bold;
+  font-size: 1.2em;
+  margin-top: 10px;
+    font-size: 32px;
+}
+
+.fail {
+  color: red;
+  font-weight: bold;
+  font-size: 1.2em;
+  margin-top: 10px;
+    font-size: 32px;
+}
+
+.frst{
+  transform: translate(-275px,-100px);
+}
+.scnd{
+  transform: translate(250px,-150px);
+}

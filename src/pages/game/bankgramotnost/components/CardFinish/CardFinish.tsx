@@ -12,13 +12,13 @@ const CardFinish = (props: CardFinishProps) => {
   return (
     <div>
       <Card
-        title="'Поздравляем!"
+        title="Поздравляем!"
         body={
           <>
             Вы успешно завершили игру! <br /> Количество попыток: {attempts}
           </>
         }
-        game="tovaroveds"
+        game="bank"
         backLink=""
         isOpen={isOpenCard}
         onClose={onClose}

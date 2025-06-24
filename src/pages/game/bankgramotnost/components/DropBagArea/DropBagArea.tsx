@@ -3,10 +3,19 @@ import { DraggableBag } from '../index';
 import classes from './DropBagArea.module.scss';
 import { BagsList } from '../../types';
 import { useEffect, useState } from 'react';
-//import { bags } from '../../contstans';
+import { allBags } from '../../contstans';
+
+const shuffleArray = (array: any[]) => {
+  const newArray = [...array];
+  for (let i = newArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+  }
+  return newArray;
+};
 
 type DropBagAreaProps = {
-  positions: number[];
+  positions: number[][];
   setPositions: React.Dispatch<React.SetStateAction<number[][]>>;
 };
 
@@ -21,8 +30,8 @@ const DropBagArea = ({ positions, setPositions }: DropBagAreaProps) => {
   });
 
   useEffect(() => {
-    const shuffled = [...bags].sort(() => Math.random() - 0.5);
-    setShuffledBags(shuffled);
+    // Перемешиваем bags при монтировании компонента
+    setShuffledBags(shuffleArray(allBags));
   }, []);
 
   return (
@@ -30,9 +39,12 @@ const DropBagArea = ({ positions, setPositions }: DropBagAreaProps) => {
       {shuffledBags.map(bag => {
         const isPlaced = positions.flat().includes(bag.id);
         return isPlaced ? (
-          <div key={bag.id} className={classes.placeholder} /> // Пустой placeholder
+          <div key={bag.id} className={classes.placeholder} />
         ) : (
-          <DraggableBag key={bag.id} bag={bag} />
+          <DraggableBag
+            key={bag.id}
+            bag={bag}
+          />
         );
       })}
     </div>
