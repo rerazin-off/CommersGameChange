@@ -4,12 +4,14 @@ interface QuestionCardProps {
   onAnswer: () => void;
   userAnswer: string;
   setUserAnswer: (answer: string) => void;
+  isAnswerEmpty: boolean; // Новый пропс
 }
 
 export const QuestionCard = ({ 
   onAnswer, 
   userAnswer, 
-  setUserAnswer 
+  setUserAnswer,
+  isAnswerEmpty 
 }: QuestionCardProps) => {
   return (
     <div className={classes.questionCard}>
@@ -20,7 +22,11 @@ export const QuestionCard = ({
         onChange={(e) => setUserAnswer(e.target.value)}
         className={classes.answerInput}
       />
-      <button onClick={onAnswer} className={classes.submitButton}>
+      <button 
+        onClick={onAnswer} 
+        className={classes.submitButton}
+        disabled={isAnswerEmpty} // Блокируем кнопку если поле пустое
+      >
         Ответить
       </button>
     </div>

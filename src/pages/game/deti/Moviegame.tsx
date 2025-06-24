@@ -42,6 +42,8 @@ export const MovieGame = () => {
   }, [gameState]);
 
   const handleAnswer = () => {
+    if (!gameState.userAnswer.trim()) return; // Дополнительная проверка на пустую строку
+    
     const currentMovie = movies[gameState.currentMovieIndex];
     
     // Проверяем, совпадает ли ответ пользователя с любым из вариантов
@@ -96,6 +98,7 @@ export const MovieGame = () => {
           onAnswer={handleAnswer}
           userAnswer={gameState.userAnswer}
           setUserAnswer={(answer) => setGameState({...gameState, userAnswer: answer})}
+          isAnswerEmpty={!gameState.userAnswer.trim()} // Передаем информацию о пустом поле
         />
       ) : (
         <>
