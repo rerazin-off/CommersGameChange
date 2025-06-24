@@ -504,7 +504,7 @@ export const Upbringing = () => {
           type="type1v2"
           onClick={() => {
             localStorage.setItem('fromGame', 'true');
-            navigate(RoutesEnum.TORGASHI);
+            navigate(RoutesEnum.KINDER);
           }}
         >
           НАЗАД

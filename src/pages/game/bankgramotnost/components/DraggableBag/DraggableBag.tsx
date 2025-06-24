@@ -95,6 +95,7 @@ const DraggableBag = ({ bag, onRemove, isInSlot = false }: DraggableBagProps) =>
       className={`${classes.draggableContainer} ${isInSlot ? classes.inSlot : ''}`}
       style={{
         opacity: isDragging || isDraggingTouch ? 0 : 1,
+        transform: isInSlot ? 'translate(0px, 110px)' : 'translate(50px, -40px)',
         touchAction: 'none',
       }}
       onTouchStart={handleTouchStart}

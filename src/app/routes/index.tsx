@@ -22,8 +22,8 @@ import { Rocket } from '../../pages/game/rocket/Rocket';
 import { SorterGame } from '../../pages/game/buhgalter/buhGame';
 import { LogistCep } from '../../pages/game/logist/LogistCep';
 import { MovieGame } from '../../pages/game/deti/Moviegame.tsx';
-
-
+import { SpaceTransport } from '../../pages/game/SpaceTransport/SpaceTransport';
+import { BankGramotnost } from '../../pages/game/bankgramotnost/BankGramotnost';
 import { Musical } from '../../pages/game/musical/musical.js';
 import CommercePlayGame  from '../../pages/game/commerce_2/CommercePlayGame';
 import Commerce  from '../../pages/game/commerce/Commerce';
@@ -32,11 +32,9 @@ import {CommerceTovary}  from '../../pages/game/commerce/CommerceTovary';
 import {CommerceMat}  from '../../pages/game/commerceMat/CommerceMat';
 import {CommerceSr}  from '../../pages/game/commerceSrok/CommerceSr';
 import ExpenseSorterGame from '../../pages/game/buhgalter/buhgame2.0/components/BuhgalGame/BuhgalGame';
-import {BankGramotnost} from '../../pages/game/bankgramotnost/BankGramotnost';
 import {SwiperPage} from '../../pages/SwiperPage/SwiperPage';
 
 import { Suspense } from 'react';
-import { SpaceTransport } from '../../pages/game/SpaceTransport/SpaceTransport';
 
 
 export enum RoutesEnum {
@@ -52,6 +50,7 @@ export enum RoutesEnum {
   TORGASHI = '/tovaroveds',
   KINDER = '/kinder',
   MUSIC = '/music',
+  YUR = '/yur',
  //  ECONOMIST = '/economist',
  // main
 }
@@ -65,7 +64,7 @@ export const router = createBrowserRouter([
   { path: '/kinder', element: <Kidergarden /> },
   { path: RoutesEnum.LOGISTICS, element: <Logistics /> },
   // { path: '/robotGame', element:  < />,},
-  { path: '/Yur', element: <Yur /> },
+  { path: RoutesEnum.YUR, element: <Yur /> },
   { path: '/SpecialKinder', element: <SpecialKidergarden /> },
   { path: '/economist', element: <Economist /> },
   { path: RoutesEnum.DOU, element: <Dou /> },
