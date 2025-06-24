@@ -5,592 +5,651 @@ import CardFinish from './components/CardFinish/CardFinish';
 import { Button } from '../../../components/Button/Button';
 
 enum RoutesEnum {
-    TORGASHI = '/tovaroveds'
+  TORGASHI = '/tovaroveds'
 }
 
 interface Product {
-    src: string;
-    alt: string;
-    category: string;
+  src: string;
+  alt: string;
+  category: string;
 }
 
 interface Refrigerator {
-    src: string;
-    alt: string;
-    categories: string[];
+  src: string;
+  alt: string;
+  categories: string[];
 }
 
 interface MatchedItem {
-    productIndex: number;
-    refrigeratorIndex: number;
-    isCorrect: boolean;
+  productIndex: number;
+  refrigeratorIndex: number;
+  isCorrect: boolean;
 }
 
 interface ImageCardProps {
-    src: string;
-    alt: string;
-    draggable?: boolean;
-    onDragStart?: (e: React.DragEvent) => void;
-    onDrop?: (e: React.DragEvent) => void;
-    onDragOver?: (e: React.DragEvent) => void;
-    onTouchStart?: (e: React.TouchEvent) => void;
-    onTouchMove?: (e: React.TouchEvent) => void;
-    onTouchEnd?: (e: React.TouchEvent) => void;
-    isMatched?: boolean;
-    style?: React.CSSProperties;
-    isCorrect?: boolean;
-    onClick?: () => void;
+  src: string;
+  alt: string;
+  draggable?: boolean;
+  onDragStart?: (e: React.DragEvent<HTMLDivElement>) => void;
+  onDrop?: (e: React.DragEvent<HTMLDivElement>) => void;
+  onDragOver?: (e: React.DragEvent<HTMLDivElement>) => void;
+  onTouchStart?: (e: React.TouchEvent<HTMLDivElement>) => void;
+  onTouchMove?: (e: React.TouchEvent<HTMLDivElement>) => void;
+  onTouchEnd?: (e: React.TouchEvent<HTMLDivElement>) => void;
+  isMatched?: boolean;
+  style?: React.CSSProperties;
+  isCorrect?: boolean;
+  onClick?: () => void;
 }
 
 const ImageCard: React.FC<ImageCardProps> = ({
-    src,
-    alt,
-    draggable = false,
-    onDragStart = () => { },
-    onDrop = () => { },
-    onDragOver = () => { },
-    onTouchStart = () => { },
-    onTouchMove = () => { },
-    onTouchEnd = () => { },
-    isMatched = false,
-    isCorrect = true,
-    style = {},
-    onClick = () => { }
+  src,
+  alt,
+  draggable = false,
+  onDragStart = () => {},
+  onDrop = () => {},
+  onDragOver = () => {},
+  onTouchStart = () => {},
+  onTouchMove = () => {},
+  onTouchEnd = () => {},
+  isMatched = false,
+  isCorrect = true,
+  style = {},
+  onClick = () => {}
 }) => {
-    return (
-        <div
-            draggable={draggable}
-            onDragStart={onDragStart}
-            onDrop={onDrop}
-            onDragOver={onDragOver}
-            onTouchStart={onTouchStart}
-            onTouchMove={onTouchMove}
-            onTouchEnd={onTouchEnd}
-            onClick={onClick}
-            style={{
-                height: '110px',
-                width: '110px',
-                position: 'relative',
-                margin: '7px',
-                cursor: draggable ? 'grab' : 'default',
-                opacity: isMatched ? 0.5 : 1,
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                backgroundColor: isCorrect ? 'transparent' : 'rgba(255, 0, 0, 0.3)',
-                touchAction: 'manipulation',
-                ...style
-            }}
-        >
-            <img
-                src={src}
-                alt={alt}
-                style={{
-                    maxWidth: '100%',
-                    maxHeight: '100%',
-                    objectFit: 'contain',
-                    borderRadius: '12px',
-                    userSelect: 'none',
-                    WebkitUserDrag: 'none',
-                    pointerEvents: 'none'
-                }}
-            />
-        </div>
-    );
+  return (
+    <div
+      draggable={draggable}
+      onDragStart={onDragStart}
+      onDrop={onDrop}
+      onDragOver={onDragOver}
+      onTouchStart={onTouchStart}
+      onTouchMove={onTouchMove}
+      onTouchEnd={onTouchEnd}
+      onClick={onClick}
+      style={{
+        height: '180px',
+        width: '180px',
+        position: 'relative',
+        margin: '15px',
+        cursor: draggable ? 'grab' : 'default',
+        opacity: isMatched ? 0.5 : 1,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        touchAction: 'none',
+        ...style
+      }}
+    >
+      <img
+        src={src}
+        alt={alt}
+        style={{
+          maxWidth: '100%',
+          maxHeight: '100%',
+          objectFit: 'contain',
+          borderRadius: '16px',
+          userSelect: 'none',
+          WebkitUserDrag: 'none',
+          pointerEvents: 'none'
+        }}
+      />
+    </div>
+  );
 };
 
 const Commerce: React.FC = () => {
-    const navigate = useNavigate();
-    const [openIsCard, setOpenIsCard] = useState(false);
-    const [attempts, setAttempts] = useState(0);
-    const [allProductsMatched, setAllProductsMatched] = useState(false);
-    const [errorMessage, setErrorMessage] = useState<string | null>(null);
-    const [isVisibleButton, setIsVisibleButton] = useState(false);
-    const [showResults, setShowResults] = useState(false);
+  const navigate = useNavigate();
+  const [openIsCard, setOpenIsCard] = useState(false);
+  const [attempts, setAttempts] = useState(0);
+  const [correctAttempts, setCorrectAttempts] = useState(0);
+  const [incorrectAttempts, setIncorrectAttempts] = useState(0);
+  const [allProductsMatched, setAllProductsMatched] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [isVisibleButton, setIsVisibleButton] = useState(false);
+  const [isCompleted, setIsCompleted] = useState(false);
 
-    // Refs for touch handling
-    const touchCloneRef = useRef<HTMLDivElement | null>(null);
-    const touchStartPos = useRef({ x: 0, y: 0 });
-    const touchOffset = useRef({ x: 0, y: 0 });
-    const draggedProductIndex = useRef<number | null>(null);
-    const draggedFromRefrigeratorIndex = useRef<number | null>(null);
-    const draggedFromPurpleZone = useRef<boolean>(false);
+  const touchCloneRef = useRef<HTMLDivElement | null>(null);
+  const touchStartPos = useRef({ x: 0, y: 0 });
+  const touchOffset = useRef({ x: 0, y: 0 });
+  const draggedProductIndex = useRef<number | null>(null);
+  const draggedFromRefrigeratorIndex = useRef<number | null>(null);
+  const draggedFromPurpleZone = useRef<boolean>(false);
+  const isDragging = useRef(false);
+  const lastTouchMoveTime = useRef(0);
+  const animationFrameId = useRef<number | null>(null);
 
-    const products: Product[] = [
-        { src: '/src/assets/img/commerce_img/img_2/k.png', alt: 'k1', category: 'k' },
-        { src: '/src/assets/img/commerce_img/img_2/m1.png', alt: 'm1', category: 'm' },
-        { src: '/src/assets/img/commerce_img/img_2/r.png', alt: 'r1', category: 'r' },
-        { src: '/src/assets/img/commerce_img/img_2/k2.png', alt: 'k2', category: 'k' },
-        { src: '/src/assets/img/commerce_img/img_2/r2.png', alt: 'r2', category: 'r' },
-        { src: '/src/assets/img/commerce_img/img_2/r3.png', alt: 'r3', category: 'r' },
-        { src: '/src/assets/img/commerce_img/img_2/s1.png', alt: 's1', category: 's' },
-        { src: '/src/assets/img/commerce_img/img_2/k3.png', alt: 'k3', category: 'k' },
-        { src: '/src/assets/img/commerce_img/img_2/s2.png', alt: 's2', category: 's' },
-        { src: '/src/assets/img/commerce_img/img_2/m2.png', alt: 'm2', category: 'm' },
-        { src: '/src/assets/img/commerce_img/img_2/s3.png', alt: 's3', category: 's' },
-        { src: '/src/assets/img/commerce_img/img_2/m3.png', alt: 'm3', category: 'm' },
-    ];
+  const products: Product[] = [
+    { src: '/src/assets/img/commerce_img/img_2/k.png', alt: 'k1', category: 'k' },
+    { src: '/src/assets/img/commerce_img/img_2/m1.png', alt: 'm1', category: 'm' },
+    { src: '/src/assets/img/commerce_img/img_2/r.png', alt: 'r1', category: 'r' },
+    { src: '/src/assets/img/commerce_img/img_2/k2.png', alt: 'k2', category: 'k' },
+    { src: '/src/assets/img/commerce_img/img_2/r2.png', alt: 'r2', category: 'r' },
+    { src: '/src/assets/img/commerce_img/img_2/r3.png', alt: 'r3', category: 'r' },
+    { src: '/src/assets/img/commerce_img/img_2/s1.png', alt: 's1', category: 's' },
+    { src: '/src/assets/img/commerce_img/img_2/k3.png', alt: 'k3', category: 'k' },
+    { src: '/src/assets/img/commerce_img/img_2/s2.png', alt: 's2', category: 's' },
+    { src: '/src/assets/img/commerce_img/img_2/m2.png', alt: 'm2', category: 'm' },
+    { src: '/src/assets/img/commerce_img/img_2/s3.png', alt: 's3', category: 's' },
+    { src: '/src/assets/img/commerce_img/img_2/m3.png', alt: 'm3', category: 'm' },
+  ];
 
-    const refrigerators: Refrigerator[] = [
-        { src: '/src/assets/img/commerce_img/img_2/b1.png', alt: 'Крупы', categories: ['k'] },
-        { src: '/src/assets/img/commerce_img/img_2/b2.png', alt: 'Рыбка', categories: ['r'] },
-        { src: '/src/assets/img/commerce_img/img_2/b3.png', alt: 'Сладкое', categories: ['s'] },
-        { src: '/src/assets/img/commerce_img/img_2/b4.png', alt: 'Молоко', categories: ['m'] },
-    ];
+  const refrigerators: Refrigerator[] = [
+    { src: '/src/assets/img/commerce_img/img_2/b1 (1).svg', alt: 'Крупы', categories: ['k'] },
+    { src: '/src/assets/img/commerce_img/img_2/b2.svg', alt: 'Рыбка', categories: ['r'] },
+    { src: '/src/assets/img/commerce_img/img_2/b3.svg', alt: 'Сладкое', categories: ['s'] },
+    { src: '/src/assets/img/commerce_img/img_2/b4.svg', alt: 'Молоко', categories: ['m'] },
+  ];
 
-    const [matchedItems, setMatchedItems] = useState<MatchedItem[]>([]);
-    const [productsInPurpleZone, setProductsInPurpleZone] = useState<number[]>([]);
+  const [matchedItems, setMatchedItems] = useState<MatchedItem[]>([]);
+  const [productsInPurpleZone, setProductsInPurpleZone] = useState<number[]>([]);
 
-    useEffect(() => {
-        const allPlaced = matchedItems.length + productsInPurpleZone.length === products.length;
-        setAllProductsMatched(allPlaced);
-        setIsVisibleButton(matchedItems.length > 0 || productsInPurpleZone.length > 0);
-    }, [matchedItems, productsInPurpleZone, products.length]);
+  useEffect(() => {
+    const allPlaced = matchedItems.length + productsInPurpleZone.length === products.length;
+    setAllProductsMatched(allPlaced);
+    setIsVisibleButton(matchedItems.length === products.length);
 
-    // Touch handlers
-    const handleTouchStart = (e: React.TouchEvent, productIndex: number, fromRefrigerator?: number, fromPurpleZone?: boolean) => {
-        const touch = e.touches[0];
-        const element = e.currentTarget as HTMLElement;
-        const rect = element.getBoundingClientRect();
+    const allCorrect = matchedItems.length === products.length &&
+      matchedItems.every(item => item.isCorrect);
+    setIsCompleted(allCorrect);
 
-        // Create clone for dragging
-        const clone = document.createElement('div');
-        clone.style.position = 'fixed';
-        clone.style.zIndex = '1000';
-        clone.style.pointerEvents = 'none';
-        clone.style.transform = 'scale(1.1)';
-        clone.style.transition = 'transform 0.1s';
-        clone.style.width = '110px';
-        clone.style.height = '110px';
-        clone.style.left = `${rect.left}px`;
-        clone.style.top = `${rect.top}px`;
-        clone.style.display = 'flex';
-        clone.style.justifyContent = 'center';
-        clone.style.alignItems = 'center';
+    return () => {
+      if (animationFrameId.current) {
+        cancelAnimationFrame(animationFrameId.current);
+      }
+      if (touchCloneRef.current && touchCloneRef.current.parentNode) {
+        touchCloneRef.current.parentNode.removeChild(touchCloneRef.current);
+      }
+    };
+  }, [matchedItems, productsInPurpleZone, products.length]);
 
-        const img = document.createElement('img');
-        img.src = products[productIndex].src;
-        img.style.maxWidth = '100%';
-        img.style.maxHeight = '100%';
-        img.style.objectFit = 'contain';
-        img.style.borderRadius = '12px';
-        clone.appendChild(img);
+  const handleDragStart = (e: React.DragEvent<HTMLDivElement>, productIndex: number, fromRefrigerator?: number) => {
+    e.dataTransfer.setData('productIndex', productIndex.toString());
+    if (fromRefrigerator !== undefined) {
+      e.dataTransfer.setData('fromRefrigerator', fromRefrigerator.toString());
+    }
+    draggedProductIndex.current = productIndex;
+    draggedFromRefrigeratorIndex.current = fromRefrigerator;
 
-        document.body.appendChild(clone);
-        touchCloneRef.current = clone;
+    if (productsInPurpleZone.includes(productIndex)) {
+      setProductsInPurpleZone(prev => prev.filter(index => index !== productIndex));
+      draggedFromPurpleZone.current = true;
+    } else {
+      draggedFromPurpleZone.current = false;
+    }
 
-        // Save start positions
-        touchStartPos.current = {
-            x: touch.clientX,
-            y: touch.clientY
-        };
-        touchOffset.current = {
-            x: touch.clientX - rect.left,
-            y: touch.clientY - rect.top
-        };
+    setErrorMessage(null);
+  };
 
-        draggedProductIndex.current = productIndex;
-        setErrorMessage(null);
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>, productIndex: number, fromRefrigerator?: number) => {
+    if (isDragging.current) return;
+    isDragging.current = true;
 
-        if (fromRefrigerator !== undefined) {
-            draggedFromRefrigeratorIndex.current = fromRefrigerator;
-        } else if (fromPurpleZone) {
-            draggedFromPurpleZone.current = true;
+    const touch = e.touches[0];
+    const element = e.currentTarget;
+    const rect = element.getBoundingClientRect();
+
+    // Remove any existing clone
+    if (touchCloneRef.current) {
+      document.body.removeChild(touchCloneRef.current);
+      touchCloneRef.current = null;
+    }
+
+    // Create new clone with optimized styles
+    const clone = document.createElement('div');
+    clone.style.position = 'fixed';
+    clone.style.zIndex = '1000';
+    clone.style.pointerEvents = 'none';
+    clone.style.transform = 'translate3d(0, 0, 0) scale(1.1)';
+    clone.style.willChange = 'transform';
+    clone.style.transition = 'none';
+    clone.style.width = '180px';
+    clone.style.height = '180px';
+    clone.style.left = `${rect.left}px`;
+    clone.style.top = `${rect.top}px`;
+    clone.style.display = 'flex';
+    clone.style.justifyContent = 'center';
+    clone.style.alignItems = 'center';
+    clone.style.touchAction = 'none';
+    clone.style.backfaceVisibility = 'hidden';
+    clone.style.perspective = '1000px';
+
+    const img = document.createElement('img');
+    img.src = products[productIndex].src;
+    img.style.maxWidth = '100%';
+    img.style.maxHeight = '100%';
+    img.style.objectFit = 'contain';
+    img.style.borderRadius = '16px';
+    img.style.pointerEvents = 'none';
+    clone.appendChild(img);
+
+    document.body.appendChild(clone);
+    touchCloneRef.current = clone;
+
+    touchStartPos.current = { x: touch.clientX, y: touch.clientY };
+    touchOffset.current = { x: touch.clientX - rect.left, y: touch.clientY - rect.top };
+
+    draggedProductIndex.current = productIndex;
+    draggedFromRefrigeratorIndex.current = fromRefrigerator;
+
+    if (productsInPurpleZone.includes(productIndex)) {
+      setProductsInPurpleZone(prev => prev.filter(index => index !== productIndex));
+      draggedFromPurpleZone.current = true;
+    } else {
+      draggedFromPurpleZone.current = false;
+    }
+
+    setErrorMessage(null);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (!isDragging.current || !touchCloneRef.current) return;
+    
+    const now = performance.now();
+    if (now - lastTouchMoveTime.current < 16) return; // Limit to ~60fps
+    lastTouchMoveTime.current = now;
+
+    const touch = e.touches[0];
+    const clone = touchCloneRef.current;
+
+    if (animationFrameId.current) {
+      cancelAnimationFrame(animationFrameId.current);
+    }
+
+    animationFrameId.current = requestAnimationFrame(() => {
+      clone.style.transform = `translate3d(${touch.clientX - touchStartPos.current.x + touchOffset.current.x}px, ${
+        touch.clientY - touchStartPos.current.y + touchOffset.current.y
+      }px, 0) scale(1.1)`;
+    });
+
+    e.preventDefault();
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (!isDragging.current) return;
+    isDragging.current = false;
+
+    if (touchCloneRef.current && draggedProductIndex.current !== null) {
+      const touch = e.changedTouches[0];
+      const clone = touchCloneRef.current;
+      
+      // Use document.elementsFromPoint for better accuracy
+      const elements = document.elementsFromPoint(touch.clientX, touch.clientY);
+      let dropTarget = null;
+      
+      for (const el of elements) {
+        if (el.hasAttribute('data-refrigerator')) {
+          dropTarget = el;
+          break;
         }
-    };
-
-    const handleTouchMove = (e: React.TouchEvent) => {
-        if (touchCloneRef.current && e.touches.length > 0) {
-            const touch = e.touches[0];
-            const clone = touchCloneRef.current;
-
-            clone.style.left = `${touch.clientX - touchOffset.current.x}px`;
-            clone.style.top = `${touch.clientY - touchOffset.current.y}px`;
+        if (el.closest('[data-purple-zone]')) {
+          dropTarget = el.closest('[data-purple-zone]');
+          break;
         }
-    };
+      }
 
-    const handleTouchEnd = (e: React.TouchEvent) => {
-        if (touchCloneRef.current && draggedProductIndex.current !== null) {
-            const touch = e.changedTouches[0];
-            const clone = touchCloneRef.current;
-
-            // Find drop target
-            const dropTarget = document.elementFromPoint(touch.clientX, touch.clientY);
-            
-            if (dropTarget) {
-                // Check if dropped on refrigerator
-                const refrigeratorElement = dropTarget.closest('[data-refrigerator]');
-                if (refrigeratorElement) {
-                    const refrigeratorIndex = parseInt(refrigeratorElement.getAttribute('data-refrigerator') || '0');
-                    handleDropOnRefrigerator(refrigeratorIndex);
-                } 
-                // Check if dropped on purple zone
-                else if (dropTarget.closest('[data-purple-zone]')) {
-                    handleDropOnPurpleZone();
-                }
-                // If dragged from refrigerator and dropped elsewhere - return to purple zone
-                else if (draggedFromRefrigeratorIndex.current !== null) {
-                    handleDropOnPurpleZone();
-                }
-                // If dragged from purple zone and dropped elsewhere - do nothing (return to original position)
-            }
-
-            // Cleanup
-            clone.remove();
-            touchCloneRef.current = null;
-            draggedProductIndex.current = null;
-            draggedFromRefrigeratorIndex.current = null;
-            draggedFromPurpleZone.current = false;
+      if (dropTarget) {
+        if (dropTarget.hasAttribute('data-refrigerator')) {
+          const refrigeratorIndex = parseInt(dropTarget.getAttribute('data-refrigerator') || '0');
+          handleDropOnRefrigerator(refrigeratorIndex);
+        } else if (dropTarget.hasAttribute('data-purple-zone')) {
+          handleDropOnPurpleZone();
+        } else if (draggedFromRefrigeratorIndex.current !== null) {
+          handleDropOnPurpleZone();
         }
-    };
+      }
 
-    const handleDropOnRefrigerator = (refrigeratorIndex: number) => {
-        if (draggedProductIndex.current !== null) {
-            const productIndex = draggedProductIndex.current;
-            const product = products[productIndex];
-            const refrigerator = refrigerators[refrigeratorIndex];
-            
-            const isCorrectPlacement = refrigerator.categories.includes(product.category);
+      // Smooth removal of clone
+      if (clone && clone.parentNode) {
+        clone.style.transition = 'opacity 0.2s ease-out';
+        clone.style.opacity = '0';
+        setTimeout(() => {
+          if (clone.parentNode) {
+            clone.parentNode.removeChild(clone);
+          }
+        }, 200);
+      }
+      touchCloneRef.current = null;
+    }
+    
+    draggedProductIndex.current = null;
+    draggedFromRefrigeratorIndex.current = null;
+    draggedFromPurpleZone.current = false;
+    
+    if (animationFrameId.current) {
+      cancelAnimationFrame(animationFrameId.current);
+      animationFrameId.current = null;
+    }
+  };
 
-            // If dragged from another refrigerator
-            if (draggedFromRefrigeratorIndex.current !== null) {
-                setMatchedItems(prev => [
-                    ...prev.filter(item => item.productIndex !== productIndex),
-                    {
-                        productIndex: productIndex,
-                        refrigeratorIndex: refrigeratorIndex,
-                        isCorrect: isCorrectPlacement
-                    }
-                ]);
-            } 
-            // If dragged from purple zone
-            else if (draggedFromPurpleZone.current) {
-                setProductsInPurpleZone(prev => prev.filter(index => index !== productIndex));
-                setMatchedItems(prev => [
-                    ...prev,
-                    {
-                        productIndex: productIndex,
-                        refrigeratorIndex: refrigeratorIndex,
-                        isCorrect: isCorrectPlacement
-                    }
-                ]);
-            }
-            // If dragged from products area
-            else {
-                setMatchedItems(prev => [
-                    ...prev,
-                    {
-                        productIndex: productIndex,
-                        refrigeratorIndex: refrigeratorIndex,
-                        isCorrect: isCorrectPlacement
-                    }
-                ]);
-            }
-        }
-    };
+  const handleDropOnRefrigerator = (refrigeratorIndex: number) => {
+    if (draggedProductIndex.current !== null) {
+      const productIndex = draggedProductIndex.current;
+      const product = products[productIndex];
+      const refrigerator = refrigerators[refrigeratorIndex];
 
-    const handleDropOnPurpleZone = () => {
-        if (draggedProductIndex.current !== null) {
-            const productIndex = draggedProductIndex.current;
-            
-            // If dragged from refrigerator
-            if (draggedFromRefrigeratorIndex.current !== null) {
-                setMatchedItems(prev => prev.filter(item => item.productIndex !== productIndex));
-                setProductsInPurpleZone(prev => [...prev, productIndex]);
-            } 
-            // If dragged from purple zone - do nothing (will return to original position)
-            else if (!draggedFromPurpleZone.current) {
-                // If dragged from products area
-                setProductsInPurpleZone(prev => [...prev, productIndex]);
-            }
-        }
-    };
+      const isCorrectPlacement = refrigerator.categories.includes(product.category);
 
-    const removeFromRefrigerator = (productIndex: number) => {
-        setMatchedItems(matchedItems.filter(item => item.productIndex !== productIndex));
-        setProductsInPurpleZone([...productsInPurpleZone, productIndex]);
-    };
+      if (draggedFromRefrigeratorIndex.current !== null) {
+        setMatchedItems(prev => [
+          ...prev.filter(item => item.productIndex !== productIndex),
+          { productIndex, refrigeratorIndex, isCorrect: isCorrectPlacement }
+        ]);
+      } else {
+        setMatchedItems(prev => [
+          ...prev,
+          { productIndex, refrigeratorIndex, isCorrect: isCorrectPlacement }
+        ]);
+      }
+    }
+  };
 
-    const removeFromPurpleZone = (productIndex: number) => {
-        setProductsInPurpleZone(productsInPurpleZone.filter(index => index !== productIndex));
-    };
+  const handleDropOnPurpleZone = () => {
+    if (draggedProductIndex.current !== null) {
+      const productIndex = draggedProductIndex.current;
 
-    const checkResults = () => {
-        setAttempts(prev => prev + 1);
-        setOpenIsCard(true);
-    };
+      if (draggedFromRefrigeratorIndex.current !== null) {
+        setMatchedItems(prev => prev.filter(item => item.productIndex !== productIndex));
+        setProductsInPurpleZone(prev => [...prev, productIndex]);
+      }
+    }
+  };
 
-    const resetGame = () => {
-        setMatchedItems([]);
-        setProductsInPurpleZone([]);
-        setAttempts(0);
-        setErrorMessage(null);
-    };
+  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+  };
 
-    const isProductMatched = (productIndex: number) => {
-        return matchedItems.some(item => item.productIndex === productIndex);
-    };
+  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    const refrigeratorIndex = parseInt(e.currentTarget.getAttribute('data-refrigerator') || '0');
+    handleDropOnRefrigerator(refrigeratorIndex);
+  };
 
-    const handleCloseCard = () => {
-        setOpenIsCard(false);
-    };
+  const removeFromRefrigerator = (productIndex: number) => {
+    setMatchedItems(prev => prev.filter(item => item.productIndex !== productIndex));
+    setProductsInPurpleZone(prev => [...prev, productIndex]);
+  };
 
-    const handleDragOver = (e: React.DragEvent) => {
-        e.preventDefault();
-    };
+  const checkResults = () => {
+    const incorrectItems = matchedItems.filter(item => !item.isCorrect);
+    const correctItems = matchedItems.filter(item => item.isCorrect);
 
-    const calculateResults = () => {
-        const correct = matchedItems.filter(item => item.isCorrect).length;
-        const incorrect = matchedItems.filter(item => !item.isCorrect).length;
-        return { correct, incorrect };
-    };
+    setCorrectAttempts(correctItems.length);
+    setIncorrectAttempts(incorrectItems.length);
+    setAttempts(prev => prev + 1);
 
-    const isRefrigeratorPerfect = (refrigeratorIndex: number) => {
-        const itemsInRefrigerator = matchedItems.filter(
-            item => item.refrigeratorIndex === refrigeratorIndex && item.isCorrect
-        );
-        return itemsInRefrigerator.length >= 3;
-    };
+    if (incorrectItems.length > 0) {
+      const incorrectProductIndexes = incorrectItems.map(item => item.productIndex);
+      setMatchedItems(correctItems);
+      setProductsInPurpleZone(prev => {
+        const existingIndexes = new Set(prev);
+        const newIndexes = incorrectProductIndexes.filter(index => !existingIndexes.has(index));
+        return [...prev, ...newIndexes];
+      });
+    }
 
-    return (
+    if (matchedItems.length === products.length && matchedItems.every(item => item.isCorrect)) {
+      setOpenIsCard(true);
+    }
+  };
+
+  const resetGame = () => {
+    setMatchedItems([]);
+    setProductsInPurpleZone([]);
+    setAttempts(0);
+    setCorrectAttempts(0);
+    setIncorrectAttempts(0);
+    setErrorMessage(null);
+    setIsCompleted(false);
+    setOpenIsCard(false);
+  };
+
+  const isProductMatched = (productIndex: number) => {
+    return matchedItems.some(item => item.productIndex === productIndex);
+  };
+
+  const handleCloseCard = () => {
+    setOpenIsCard(false);
+  };
+
+  return (
+    <div style={{
+      overflow: 'hidden',
+      backgroundImage: 'linear-gradient(to bottom, #0E0430, #7B74EB)',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundAttachment: 'fixed',
+      backgroundRepeat: 'no-repeat',
+      padding: '20px',
+      position: 'relative',
+      width: '100%',
+      minHeight: '100vh',
+      paddingTop: '80px',
+      paddingBottom: '80px'
+    }}>
+      {errorMessage && (
         <div style={{
-            overflow: 'hidden',
-            backgroundImage: 'url(/src/assets/img/commerce_img/img_2/fon.png)',
-            backgroundPosition: 'center',
-            backgroundAttachment: 'fixed',
-            padding: '20px',
-            position: 'relative',
-            width: '100%',
-            minHeight: '100vh',
-            paddingTop: '80px',
-            paddingBottom: '80px'
+          position: 'fixed',
+          top: '20px',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          backgroundColor: 'rgba(255, 0, 0, 0.8)',
+          color: 'white',
+          padding: '10px 20px',
+          borderRadius: '5px',
+          zIndex: 1000,
+          animation: 'fadeIn 0.3s'
         }}>
-            {errorMessage && (
-                <div style={{
-                    position: 'fixed',
-                    top: '20px',
-                    left: '50%',
-                    transform: 'translateX(-50%)',
-                    backgroundColor: 'rgba(255, 0, 0, 0.8)',
-                    color: 'white',
-                    padding: '10px 20px',
-                    borderRadius: '5px',
-                    zIndex: 1000,
-                    animation: 'fadeIn 0.3s'
-                }}>
-                    {errorMessage}
-                </div>
-            )}
-
-            <div style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                gap: '30px',
-                marginTop: '30px',
-                height: '600px'
-            }}>
-                {/* Products section (Purple zone) */}
-                <div
-                    style={{
-                        flex: '1',
-                        backgroundColor: '#FFC0CB',
-                        padding: '20px',
-                        borderRadius: '15px',
-                        maxWidth: '790px',
-                        height: '850px',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        overflow: 'hidden',
-                        alignItems: 'center',
-                        marginLeft: '30px',
-                        transform: 'translate(0px, -70px)'
-                    }}
-                    onDrop={handleDropOnPurpleZone}
-                    onDragOver={handleDragOver}
-                    data-purple-zone="true"
-                >
-                    <div className={classes.texts} style={{ textAlign: 'center', width: '100%' }}>
-                        <h2 style={{ fontSize: '28px', marginBottom: '20px' }}>ОБОРУДОВАНИЕ</h2>
-                    </div>
-                    <div style={{
-                        fontFamily: 'Cruinn Regular',
-                        color: 'while',
-                        display: 'flex',
-                        flexWrap: 'wrap',
-                        justifyContent: 'center',
-                        height: '100%',
-                        overflow: 'auto',
-                        width: '100%',
-                        padding: '10px'
-                    }}>
-                        {products.map((product, productIndex) => (
-                            !isProductMatched(productIndex) && !productsInPurpleZone.includes(productIndex) ? (
-                                <ImageCard
-                                    key={`product-${productIndex}`}
-                                    src={product.src}
-                                    alt={product.alt}
-                                    draggable={true}
-                                    onDragStart={(e) => handleDragStart(e, productIndex)}
-                                    onTouchStart={(e) => handleTouchStart(e, productIndex)}
-                                    onTouchMove={handleTouchMove}
-                                    onTouchEnd={handleTouchEnd}
-                                    style={{
-                                        transform: draggedProductIndex.current === productIndex ? 'scale(1.05)' : 'none',
-                                        transition: 'transform 0.2s',
-                                    }}
-                                />
-                            ) : productsInPurpleZone.includes(productIndex) ? (
-                                <ImageCard
-                                    key={`product-purple-${productIndex}`}
-                                    src={product.src}
-                                    alt={product.alt}
-                                    draggable={true}
-                                    onDragStart={(e) => handleDragStart(e, productIndex)}
-                                    onTouchStart={(e) => handleTouchStart(e, productIndex, undefined, true)}
-                                    onTouchMove={handleTouchMove}
-                                    onTouchEnd={handleTouchEnd}
-                                    onClick={() => removeFromPurpleZone(productIndex)}
-                                    style={{
-                                        width: '110px',
-                                        height: '110px',
-                                        margin: '7px',
-                                        transform: draggedProductIndex.current === productIndex ? 'scale(1.05)' : 'none',
-                                        transition: 'transform 0.2s',
-                                        cursor: 'pointer'
-                                    }}
-                                />
-                            ) : null
-                        ))}
-                    </div>
-                </div>
-
-                {/* Refrigerators section */}
-                <div
-                    style={{
-                        flex: '1',
-                        maxWidth: '700px',
-                        position: 'relative',
-                    }}
-                    onDragOver={handleDragOver}
-                >
-                    <div style={{
-                        display: 'grid',
-                        gridTemplateColumns: 'repeat(2, 1fr)',
-                        gap: '30px',
-                        height: '100%'
-                    }}>
-                        {refrigerators.map((refrigerator, refrigeratorIndex) => {
-                            const itemsInRefrigerator = matchedItems.filter(item =>
-                                item.refrigeratorIndex === refrigeratorIndex
-                            );
-                            const isPerfect = isRefrigeratorPerfect(refrigeratorIndex);
-
-                            return (
-                                <div
-                                    key={`refrigerator-${refrigeratorIndex}`}
-                                    data-refrigerator={refrigeratorIndex}
-                                    style={{
-                                        display: 'flex',
-                                        flexDirection: 'column',
-                                        alignItems: 'center',
-                                        backgroundColor: '#FFC0CB',
-                                        height: '400px',
-                                        width: "400px",
-                                        borderRadius: '15px',
-                                        position: 'relative',
-                                        zIndex: 1,
-                                        border: isPerfect ? '4px solid #4DE4F2' : 'none',
-                                        boxShadow: isPerfect ? '0 0 20px #4DE4F2' : '0 4px 12px rgba(0,0,0,0.2)',
-                                        transition: 'all 0.3s ease',
-                                        padding: '15px',
-                                        transform: 'translate(-255px, -70px)',
-                                    }}
-                                >
-                                    {isPerfect && (
-                                        <div style={{
-                                            position: 'absolute',
-                                            top: '-20px',
-                                            backgroundColor: '#4DE4F2',
-                                            color: 'white',
-                                            padding: '5px 15px',
-                                            borderRadius: '15px',
-                                            fontSize: '16px',
-                                            fontWeight: 'bold'
-                                        }}>
-                                            Заполнен
-                                        </div>
-                                    )}
-                                    <ImageCard
-                                        src={refrigerator.src}
-                                        alt={refrigerator.alt}
-                                        onDragOver={handleDragOver}
-                                        style={{ width: '220px', height: '220px' }}
-                                    />
-                                    <div style={{
-                                        display: 'flex',
-                                        flexWrap: 'wrap',
-                                        justifyContent: 'center',
-                                        marginTop: '15px',
-                                        gap: '10px'
-                                    }}>
-                                        {itemsInRefrigerator
-                                            .map((item, idx) => (
-                                                <ImageCard
-                                                    key={`matched-${refrigeratorIndex}-${idx}`}
-                                                    src={products[item.productIndex].src}
-                                                    alt={products[item.productIndex].alt}
-                                                    isCorrect={item.isCorrect}
-                                                    draggable={true}
-                                                    onDragStart={(e) => handleDragStart(e, item.productIndex, refrigeratorIndex)}
-                                                    onTouchStart={(e) => handleTouchStart(e, item.productIndex, refrigeratorIndex)}
-                                                    onTouchMove={handleTouchMove}
-                                                    onTouchEnd={handleTouchEnd}
-                                                    onClick={() => removeFromRefrigerator(item.productIndex)}
-                                                    style={{
-                                                        width: '110px',
-                                                        height: '110px',
-                                                        cursor: 'pointer'
-                                                    }}
-                                                />
-                                            ))}
-                                    </div>
-                                </div>
-                            );
-                        })}
-                    </div>
-                </div>
-            </div>
-            {isVisibleButton && (
-                <div onClick={checkResults} className={classes.checkButton} style={{ marginTop: '30px' }}>
-                    <Button bgColor="blue" type="type1v2" style={{ fontSize: '20px', padding: '15px 30px' }}>
-                        Завершить
-                    </Button>
-                </div>
-            )}
-            <div className={classes.backButton} style={{
-                marginTop: '40px',
-                marginBottom: '40px'
-            }}>
-                <Button
-                    bgColor="pink"
-                    type="type1v2"
-                    onClick={() => {
-                        localStorage.setItem('fromGame', 'true');
-                        navigate(RoutesEnum.TORGASHI);
-                    }}
-                    style={{ fontSize: '20px', padding: '15px 30px' }}
-                >
-                    НАЗАД
-                </Button>
-            </div>
-
-            <CardFinish
-                attempts={attempts}
-                isOpenCard={openIsCard}
-                onClose={handleCloseCard}
-            />
+          {errorMessage}
         </div>
-    );
+      )}
+
+      <div style={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        gap: '20px',
+        marginTop: '-10px',
+        height: '700px'
+      }}>
+        <div
+          style={{
+            flex: '1',
+            backgroundColor: 'rgba(255, 192, 203, 0.2)',
+            padding: '20px',
+            borderRadius: '20px',
+            maxWidth: '800px',
+            height: '895px',
+            display: 'flex',
+            flexDirection: 'column',
+            overflow: 'hidden',
+            alignItems: 'center',
+            marginLeft: '30px',
+            transform: 'translate(0px, -50px)',
+            backdropFilter: 'blur(5px)',
+          }}
+          onDrop={(e) => {
+            e.preventDefault();
+            handleDropOnPurpleZone();
+          }}
+          onDragOver={handleDragOver}
+          data-purple-zone="true"
+        >
+          <h2 style={{
+            fontSize: '30px',
+            marginBottom: '20px',
+            textAlign: 'center',
+            color: 'white',
+            textShadow: '1px 1px 2px rgba(0,0,0,0.5)'
+          }}>
+            ОБОРУДОВАНИЕ
+          </h2>
+          <div style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            justifyContent: 'center',
+            height: 'calc(100% - 60px)',
+            width: '100%',
+            padding: '10px'
+          }}>
+            {products.map((product, productIndex) => (
+              !isProductMatched(productIndex) && !productsInPurpleZone.includes(productIndex) ? (
+                <ImageCard
+                  key={`product-${productIndex}`}
+                  src={product.src}
+                  alt={product.alt}
+                  draggable={true}
+                  onDragStart={(e) => handleDragStart(e, productIndex)}
+                  onTouchStart={(e) => handleTouchStart(e, productIndex)}
+                  onTouchMove={handleTouchMove}
+                  onTouchEnd={handleTouchEnd}
+                />
+              ) : productsInPurpleZone.includes(productIndex) ? (
+                <ImageCard
+                  key={`product-purple-${productIndex}`}
+                  src={product.src}
+                  alt={product.alt}
+                  draggable={true}
+                  onDragStart={(e) => handleDragStart(e, productIndex)}
+                  onTouchStart={(e) => handleTouchStart(e, productIndex)}
+                  onTouchMove={handleTouchMove}
+                  onTouchEnd={handleTouchEnd}
+                />
+              ) : null
+            ))}
+          </div>
+        </div>
+
+        <div
+          style={{
+            flex: '1',
+            maxWidth: '950px',
+            position: 'relative',
+            marginRight: '20px'
+          }}
+        >
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(2, 1fr)',
+            gap: '10px',
+            height: '100%'
+          }}>
+            {refrigerators.map((refrigerator, refrigeratorIndex) => {
+              const itemsInRefrigerator = matchedItems.filter(item =>
+                item.refrigeratorIndex === refrigeratorIndex
+              );
+
+              return (
+                <div
+                  key={`refrigerator-${refrigeratorIndex}`}
+                  data-refrigerator={refrigeratorIndex}
+                  onDrop={handleDrop}
+                  onDragOver={handleDragOver}
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    height: '450px',
+                    width: "450px",
+                    position: 'relative',
+                    zIndex: 1,
+                    padding: '0',
+                    transform: 'translate(-70px, -20px)',
+                    background: 'transparent',
+                    borderRadius: '0',
+                  }}
+                >
+                  <div
+                    style={{
+                      width: '420px',
+                      height: '420px',
+                      marginBottom: '10px',
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      position: 'relative'
+                    }}
+                  >
+                    <img
+                      src={refrigerator.src}
+                      alt={refrigerator.alt}
+                      style={{
+                        maxWidth: '100%',
+                        maxHeight: '100%',
+                        objectFit: 'contain',
+                        borderRadius: '16px'
+                      }}
+                    />
+                    <div style={{
+                      position: 'absolute',
+                      bottom: '0',
+                      display: 'flex',
+                      flexWrap: 'wrap',
+                      justifyContent: 'center',
+                      width: '100%',
+                      padding: '10px',
+                      gap: '10px'
+                    }}>
+                      {itemsInRefrigerator.map((item, idx) => (
+                        <ImageCard
+                          key={`matched-${refrigeratorIndex}-${idx}`}
+                          src={products[item.productIndex].src}
+                          alt={products[item.productIndex].alt}
+                          draggable={true}
+                          onDragStart={(e) => handleDragStart(e, item.productIndex, refrigeratorIndex)}
+                          onTouchStart={(e) => handleTouchStart(e, item.productIndex, refrigeratorIndex)}
+                          onTouchMove={handleTouchMove}
+                          onTouchEnd={handleTouchEnd}
+                          onClick={() => removeFromRefrigerator(item.productIndex)}
+                          style={{
+                            width: '100px',
+                            height: '100px',
+                            margin: '5px'
+                          }}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+
+      {isVisibleButton && (
+        <div onClick={checkResults} className={classes.checkButton} style={{ marginTop: '30px' }}>
+          <Button bgColor="blue" type="type1v2" style={{ fontSize: '20px', padding: '15px 30px' }}>
+            Проверить
+          </Button>
+        </div>
+      )}
+
+      <div className={classes.backButton} style={{ marginTop: '30px', marginBottom: '30px' }}>
+        <Button
+          bgColor="pink"
+          type="type1v2"
+          onClick={() => {
+            localStorage.setItem('fromGame', 'true');
+            navigate(RoutesEnum.TORGASHI);
+          }}
+          style={{ fontSize: '20px', padding: '15px 30px' }}
+        >
+          НАЗАД
+        </Button>
+      </div>
+
+      {isCompleted && (
+        <CardFinish
+          attempts={attempts}
+          correctAttempts={correctAttempts}
+          incorrectAttempts={incorrectAttempts}
+          isOpenCard={openIsCard}
+          onClose={handleCloseCard}
+          onReset={resetGame}
+        />
+      )}
+    </div>
+  );
 };
 
 export default Commerce;
