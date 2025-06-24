@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import classes from './Commerce.module.scss';
 import CardFinish from './components/CardFinish/CardFinish';
 import { Button } from '../../../components/Button/Button';
+import CommerceIntroCard from './components/CommerceIntroCard/CommerceIntroCard';
 
 enum RoutesEnum {
   TORGASHI = '/tovaroveds'
@@ -99,6 +100,7 @@ const ImageCard: React.FC<ImageCardProps> = ({
 const CommercePlayGame: React.FC = () => {
   const navigate = useNavigate();
   const [openIsCard, setOpenIsCard] = useState(false);
+  const [showIntroCard, setShowIntroCard] = useState(true);
   const [attempts, setAttempts] = useState(0);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [isVisibleButton, setIsVisibleButton] = useState(false);
@@ -154,10 +156,16 @@ const CommercePlayGame: React.FC = () => {
   ];
 
   const refrigerators: Refrigerator[] = [
-    { src: '/src/assets/img/commerce_img/1.png', alt: 'Холодильник для напитков', categories: ['drinks'], width: 260, height: 300 },
-    { src: '/src/assets/img/commerce_img/9.png', alt: 'Холодильник для молочной продукции', categories: ['dairy'], width: 300, height: 340 },
-    { src: '/src/assets/img/commerce_img/14.png', alt: 'Холодильник для рыбы', categories: ['fish'], width: 280, height: 320 },
-    { src: '/src/assets/img/commerce_img/gorkka2.png', alt: 'Стеллаж для продуктов', categories: ['drinks', 'dairy', 'fish', 'grocery', 'grocery1', 'grocery2', 'grocery3'], width: 320, height: 360 },
+    { src: '/src/assets/img/commerce_img/1.png', alt: 'Холодильник для напитков', categories: ['drinks'], width: 300, height: 350 },
+    { src: '/src/assets/img/commerce_img/9.png', alt: 'Холодильник для молочной продукции', categories: ['dairy'], width: 300, height: 350 },
+    { src: '/src/assets/img/commerce_img/14.png', alt: 'Холодильник для рыбы', categories: ['fish'], width: 300, height: 350 },
+    {
+      src: '/src/assets/img/commerce_img/gorkka2.png',
+      alt: 'Стеллаж для продуктов',
+      categories: ['grocery', 'grocery1', 'grocery2', 'grocery3'],
+      width: 300,
+      height: 350
+    },
   ];
 
   const [matchedItems, setMatchedItems] = useState<MatchedItem[]>([]);
@@ -166,13 +174,14 @@ const CommercePlayGame: React.FC = () => {
   const touchMoveRef = useRef<number | null>(null);
 
   useEffect(() => {
-    const allProductsPlaced = matchedItems.length === products.length;
     const allRefrigeratorsFilled = refrigerators.every((_, index) => {
       return matchedItems.filter(item => item.refrigeratorIndex === index).length >= 4;
     });
-    
-    setIsVisibleButton(allProductsPlaced && allRefrigeratorsFilled);
-  }, [matchedItems, products.length, refrigerators.length]);
+
+    const allProductsPlaced = matchedItems.length + productsInPurpleZone.length === products.length;
+
+    setIsVisibleButton(allRefrigeratorsFilled && allProductsPlaced);
+  }, [matchedItems, productsInPurpleZone, products.length, refrigerators.length]);
 
   const checkBakaleyaNeighborhood = (targetRefrigeratorIndex: number, productIndex: number) => {
     if (targetRefrigeratorIndex !== 3) return true;
@@ -207,7 +216,7 @@ const CommercePlayGame: React.FC = () => {
     e.preventDefault();
     const touch = e.touches[0];
     const element = e.currentTarget as HTMLElement;
-    
+
     setGhostElement({
       src: products[productIndex].src,
       alt: products[productIndex].alt,
@@ -238,7 +247,7 @@ const CommercePlayGame: React.FC = () => {
     if (touchMoveRef.current) {
       cancelAnimationFrame(touchMoveRef.current);
     }
-    
+
     touchMoveRef.current = requestAnimationFrame(() => {
       if (touchActive && ghostElement) {
         const touch = e.touches[0];
@@ -253,11 +262,11 @@ const CommercePlayGame: React.FC = () => {
 
   const handleTouchEnd = (e: React.TouchEvent) => {
     e.preventDefault();
-    
+
     if (touchMoveRef.current) {
       cancelAnimationFrame(touchMoveRef.current);
     }
-    
+
     if (touchActive) {
       const touch = e.changedTouches[0];
       setGhostElement(prev => prev ? { ...prev, visible: false } : null);
@@ -295,16 +304,24 @@ const CommercePlayGame: React.FC = () => {
 
     const product = products[draggedItem.productIndex];
     const refrigerator = refrigerators[targetRefrigeratorIndex];
-    const isCorrectPlacement = refrigerator.categories.includes(product.category);
 
-    if (!isCorrectPlacement && targetRefrigeratorIndex !== 3) {
-      showErrorMessage('Нарушен температурный режим!');
-      return;
-    }
+    if (targetRefrigeratorIndex === 3) {
+      const allowedCategories = ['grocery', 'grocery1', 'grocery2', 'grocery3'];
+      if (!allowedCategories.includes(product.category)) {
+        showErrorMessage('Нарушен температурный режим!');
+        return;
+      }
 
-    if (targetRefrigeratorIndex === 3 && !checkBakaleyaNeighborhood(targetRefrigeratorIndex, draggedItem.productIndex)) {
-      showErrorMessage('Нарушено товарное соседство!');
-      return;
+      if (!checkBakaleyaNeighborhood(targetRefrigeratorIndex, draggedItem.productIndex)) {
+        showErrorMessage('Нарушено товарное соседство!');
+        return;
+      }
+    } else {
+      const isCorrectPlacement = refrigerator.categories.includes(product.category);
+      if (!isCorrectPlacement) {
+        showErrorMessage('Нарушен температурный режим!');
+        return;
+      }
     }
 
     const updatedMatchedItems = matchedItems.filter(item =>
@@ -317,7 +334,7 @@ const CommercePlayGame: React.FC = () => {
       {
         productIndex: draggedItem.productIndex,
         refrigeratorIndex: targetRefrigeratorIndex,
-        isCorrect: isCorrectPlacement || targetRefrigeratorIndex === 3
+        isCorrect: true
       }
     ]);
 
@@ -416,7 +433,8 @@ const CommercePlayGame: React.FC = () => {
       display: 'flex',
       flexDirection: 'column'
     }}>
-      {/* Ghost element that follows the finger */}
+      {showIntroCard && <CommerceIntroCard onClose={() => setShowIntroCard(false)} />}
+
       {ghostElement && ghostElement.visible && (
         <div style={{
           position: 'fixed',
@@ -446,7 +464,6 @@ const CommercePlayGame: React.FC = () => {
         </div>
       )}
 
-      {/* Error message at the bottom */}
       {errorMessage && (
         <div style={{
           position: 'fixed',
@@ -467,7 +484,6 @@ const CommercePlayGame: React.FC = () => {
         </div>
       )}
 
-      {/* Products section (Purple zone) - Top part */}
       <div
         style={{
           backgroundColor: 'rgba(192, 173, 195, 0.5)',
@@ -529,23 +545,23 @@ const CommercePlayGame: React.FC = () => {
         </div>
       </div>
 
-      {/* Refrigerators section - Bottom part */}
       <div
         style={{
-          height: '44%',
+          height: '45%',
           position: 'relative',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'flex-start',
           overflow: 'hidden',
-          padding: '20px 40px'
+          padding: '20px 40px',
+          marginTop: '-50px'
         }}
         onDrop={handleDropOnRefrigeratorsArea}
         onDragOver={handleDragOver}
       >
         <div style={{
           display: 'flex',
-          gap: '40px',
+          gap: '60px',
           height: '100%',
           minWidth: 'fit-content',
           padding: '20px',
@@ -569,25 +585,25 @@ const CommercePlayGame: React.FC = () => {
                   flexDirection: 'column',
                   alignItems: 'center',
                   height: '100%',
-                  minWidth: `${refrigerator.width}px`,
+                  minWidth: '300px',
                   position: 'relative',
                   zIndex: 1,
                   transition: 'all 0.3s ease',
                   scrollSnapAlign: 'center',
-                  margin: '0 5px',
+                  margin: '0 10px',
                 }}
               >
                 <div style={{
                   position: 'relative',
-                  width: `${refrigerator.width}px`,
-                  height: `${refrigerator.height}px`,
+                  width: '300px',
+                  height: '350px',
                   display: 'flex',
                   justifyContent: 'center',
                   alignItems: 'center',
                   ...(isFilled ? {
                     border: '4px solid #00c8d7',
                     borderRadius: '15px',
-                    boxShadow: '0 0 15px rgba(0, 200, 215, 0.7)',
+                    boxShadow: '0 0 15px rgba(0, 200, 215, 0.8)',
                     padding: '5px'
                   } : {})
                 }}>
@@ -602,7 +618,9 @@ const CommercePlayGame: React.FC = () => {
                       fontWeight: 'bold',
                       fontSize: '14px',
                       zIndex: 10,
-                      boxShadow: '0 2px 5px rgba(0,0,0,0.2)'
+                      boxShadow: '0 2px 5px rgba(0,0,0,0.2)',
+                      width: '120px',
+                      textAlign: 'center'
                     }}>
                       Заполнено
                     </div>
@@ -611,8 +629,8 @@ const CommercePlayGame: React.FC = () => {
                     src={refrigerator.src}
                     alt={refrigerator.alt}
                     style={{
-                      width: `${refrigerator.width}px`,
-                      height: `${refrigerator.height}px`,
+                      width: '100%',
+                      height: '100%',
                       objectFit: 'contain',
                       position: 'absolute'
                     }}
@@ -626,7 +644,7 @@ const CommercePlayGame: React.FC = () => {
                     height: '75%',
                     position: 'absolute',
                     top: '50%',
-                    left: '50%',
+                    left: '55%',
                     transform: 'translate(-50%, -50%)',
                     zIndex: 2,
                     padding: '5px'
@@ -659,7 +677,6 @@ const CommercePlayGame: React.FC = () => {
         </div>
       </div>
 
-      {/* Buttons section */}
       <div style={{
         display: 'flex',
         justifyContent: 'center',
@@ -669,7 +686,16 @@ const CommercePlayGame: React.FC = () => {
       }}>
         {isVisibleButton && (
           <div onClick={checkResults} className={classes.checkButton}>
-            <Button bgColor="blue" type="type1v2" style={{ fontSize: '18px', padding: '12px 25px' }}>
+            <Button
+              bgColor="blue"
+              type="type1v2"
+              style={{
+                fontSize: '18px',
+                padding: '12px 25px',
+                animation: 'pulse 2s infinite',
+                boxShadow: '0 0 10px rgba(0, 200, 215, 0.8)'
+              }}
+            >
               Завершить
             </Button>
           </div>
