@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import classes from './Commerce.module.scss';
 import CardFinish from './components/CardFinish/CardFinish';
 import { Button } from '../../../components/Button/Button';
+import CommerceIntroCard from './components/CommerceIntroCard/CommerceIntroCard';
 
 enum RoutesEnum {
   TORGASHI = '/tovaroveds'
@@ -45,19 +46,19 @@ interface ImageCardProps {
 }
 
 const ImageCard: React.FC<ImageCardProps> = ({
-                                               src,
-                                               alt,
-                                               draggable = false,
-                                               onDragStart = () => {},
-                                               onDrop = () => {},
-                                               onDragOver = () => {},
-                                               onTouchStart = () => {},
-                                               onTouchMove = () => {},
-                                               onTouchEnd = () => {},
-                                               isMatched = false,
-                                               isCorrect = true,
-                                               style = {}
-                                             }) => {
+  src,
+  alt,
+  draggable = false,
+  onDragStart = () => {},
+  onDrop = () => {},
+  onDragOver = () => {},
+  onTouchStart = () => {},
+  onTouchMove = () => {},
+  onTouchEnd = () => {},
+  isMatched = false,
+  isCorrect = true,
+  style = {}
+}) => {
   return (
     <div
       draggable={draggable}
@@ -99,6 +100,7 @@ const ImageCard: React.FC<ImageCardProps> = ({
 const CommercePlayGame: React.FC = () => {
   const navigate = useNavigate();
   const [openIsCard, setOpenIsCard] = useState(false);
+  const [showIntroCard, setShowIntroCard] = useState(true);
   const [attempts, setAttempts] = useState(0);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [isVisibleButton, setIsVisibleButton] = useState(false);
@@ -431,6 +433,8 @@ const CommercePlayGame: React.FC = () => {
       display: 'flex',
       flexDirection: 'column'
     }}>
+      {showIntroCard && <CommerceIntroCard onClose={() => setShowIntroCard(false)} />}
+
       {ghostElement && ghostElement.visible && (
         <div style={{
           position: 'fixed',
@@ -599,7 +603,7 @@ const CommercePlayGame: React.FC = () => {
                   ...(isFilled ? {
                     border: '4px solid #00c8d7',
                     borderRadius: '15px',
-                    boxShadow: '0 0 15px rgba(0, 200, 215)',
+                    boxShadow: '0 0 15px rgba(0, 200, 215, 0.8)',
                     padding: '5px'
                   } : {})
                 }}>
