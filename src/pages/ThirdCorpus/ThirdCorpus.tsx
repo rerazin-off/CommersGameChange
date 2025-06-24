@@ -56,7 +56,7 @@ export const ThirdCorpus = () => {
             </div>
           </div>
           <div className={classes.buton}>
-            <Link to={`/`}>
+            <Link to={`/swiperPage`}>
               <Button type="type2" bgColor="pink">Назад</Button>
             </Link>
             <Link to={'/1'}>

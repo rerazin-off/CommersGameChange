@@ -30,6 +30,7 @@ import {CommerceMat}  from '../../pages/game/commerceMat/CommerceMat';
 import {CommerceSr}  from '../../pages/game/commerceSrok/CommerceSr';
 import ExpenseSorterGame from '../../pages/game/buhgalter/buhgame2.0/components/BuhgalGame/BuhgalGame';
 import {BankGramotnost} from '../../pages/game/bankgramotnost/BankGramotnost';
+import {SwiperPage} from '../../pages/SwiperPage/SwiperPage';
 
 import { Suspense } from 'react';
 import { SpaceTransport } from '../../pages/game/SpaceTransport/SpaceTransport';
@@ -40,6 +41,7 @@ export enum RoutesEnum {
   FIRST_CORPUS = '/1',
   PROGRAMMERS = '/programmers',
   LOGISTICS = '/logistics',
+  SWIPER = '/swiperPage',
   ECONOMIST = '/economist',
   SPECIALKINDERGARDEN='/SpecialKinder',
   DOU = '/dou',
@@ -96,4 +98,5 @@ export const router = createBrowserRouter([
   { path: '/CommerceSr', element: <CommerceSr/> },
   { path: '/SpaceTransport', element: <SpaceTransport/> },
   { path: '/chemodany', element: <BankGramotnost/> },
+  {path: '/swiperPage', element: <SwiperPage/>}
 ]);

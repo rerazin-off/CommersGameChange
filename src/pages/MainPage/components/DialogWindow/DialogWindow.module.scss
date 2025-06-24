@@ -1,0 +1,36 @@
+.tooltip {
+  background-size: 100% 100%;
+  position: absolute;
+  top: 25vh;
+  background-image: url("../../../../assets/img/mainPageImg/dialogWindowFon.svg");
+  background-repeat: no-repeat;
+  height: 30%;
+  padding: 1vh 9vw 1vh 11vw;
+  width: 35%;
+}
+
+.title{
+  font-size: 36px !important;
+  font-weight: 500;
+  color: #144E53;
+  margin-top: 0vh !important;
+}
+
+.body{
+  margin-top: 2.5vh !important;
+  font-size: 28px !important;
+  color: #FFFFFF;
+  text-shadow: 5px 3px 6px rgba(24, 89, 95, 1);
+  white-space: pre-line;
+}
+
+.X {
+  height: 50px;
+  width: 50px;
+  cursor: pointer;
+  position: absolute;
+  margin-left: 36vw;
+  margin-top: -3vh;
+}
+
+

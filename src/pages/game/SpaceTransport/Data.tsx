@@ -5,6 +5,10 @@ import transport4 from '@/assets/img/game_assets/space-transport-img/transport4.
 import planet1 from '@/assets/img/game_assets/space-transport-img/planet-corpus1.svg';
 import planet2 from '@/assets/img/game_assets/space-transport-img/planet-corpus2.svg';
 import planet3 from '@/assets/img/game_assets/space-transport-img/planet-corpus3.svg';
+import iconBalance from '@/assets/img/game_assets/space-transport-img/iconBalance.svg';
+import iconDays from '@/assets/img/game_assets/space-transport-img/iconDays.svg';
+import iconFuel from '@/assets/img/game_assets/space-transport-img/iconFuel.svg';
+import iconUser from '@/assets/img/game_assets/space-transport-img/iconUser.svg';
 
 
 export const transports=[
@@ -15,10 +19,10 @@ export const transports=[
 ]
 
 export const mainParameters=[
-  {name:'Баланс', value:200},
-  {name:'Дни', value:0},
-  {name:'Количество человек', value:100},
-  {name: 'Расход топлива', value: 0}
+  {name:'Баланс', value:200, icon: iconBalance},
+  {name:'Дни', value:0, icon: iconDays},
+  {name:'Количество человек', value:100, icon: iconUser},
+  {name: 'Расход топлива', value: 0, icon: iconFuel}
 ]
 export const dataPlanets=[
   {id:1, img:planet1, countPerson:15, paths:[5], pathsPlanet2:[4], pathsPlanet3:[1]},
