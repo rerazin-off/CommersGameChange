@@ -26,6 +26,7 @@ import { CommerceSr } from '../../pages/game/commerceSrok/CommerceSr.tsx';
 import { CommerceMat } from '../../pages/game/commerceMat/CommerceMat.tsx';
 import { Upbringing } from '../../pages/game/upbringing/Upbringing.tsx';
 import { MovieGame } from '../../pages/game/deti/Moviegame.tsx';
+import  GameRast  from '../../pages/game/rast/gameRast.tsx';
 
 
 
@@ -93,6 +94,6 @@ export const router = createBrowserRouter([
    { path: '/commerceMat', element: <CommerceMat /> },
    { path: '/upbringing', element: <Upbringing /> },
     { path: '/deti', element: <MovieGame /> },
-
+   { path: '/rast', element: <GameRast /> },
    
 ]);
