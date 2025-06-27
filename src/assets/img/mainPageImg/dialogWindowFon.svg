@@ -1,5 +1,5 @@
 <svg width="834" height="349" viewBox="0 0 834 349" fill="none" xmlns="http://www.w3.org/2000/svg">
-<foreignObject x="13.9209" y="-26.1118" width="839.522" height="401.173"><div xmlns="http://www.w3.org/1999/xhtml" style="backdrop-filter:blur(20px);clip-path:url(#bgblur_0_538_4115_clip_path);height:100%;width:100%"></div></foreignObject><path data-figma-bg-blur-radius="40" d="M811.444 333.061H134.621L55.9209 276.22V15.8882H732.743C763.484 38.0903 780.703 50.5271 811.444 72.7292V333.061Z" fill="#B2F8FF" fill-opacity="0.3" stroke="#02EAFF" stroke-width="4" stroke-miterlimit="10"/>
+<path d="M811.444 333.061H134.621L55.9209 276.22V15.8882H732.743C763.484 38.0903 780.703 50.5271 811.444 72.7292V333.061Z" fill="url(#paint0_linear_547_441)" stroke="#02EAFF" stroke-width="4" stroke-miterlimit="10"/>
 <path d="M39 197.5V280.5L125.177 345.249H413.315" stroke="#02EAFF" stroke-width="4" stroke-miterlimit="10"/>
 <path d="M283.082 349H125.681L65.3184 306.528L75.5966 304.789L128.845 342.179H278.36L283.082 349Z" fill="#02EAFF"/>
 <path d="M295.169 349H287.299L282.577 342.179H290.447L295.169 349Z" fill="#02EAFF"/>
@@ -15,6 +15,8 @@
 <path d="M28.6144 0.542969H39.9094L28.6144 44.0321H17.3193L28.6144 0.542969Z" fill="#4DE4F2" fill-opacity="0.7"/>
 <path d="M11.295 0H22.5901L11.295 43.4891H0L11.295 0Z" fill="#4DE4F2" fill-opacity="0.3"/>
 <defs>
-<clipPath id="bgblur_0_538_4115_clip_path" transform="translate(-13.9209 26.1118)"><path d="M811.444 333.061H134.621L55.9209 276.22V15.8882H732.743C763.484 38.0903 780.703 50.5271 811.444 72.7292V333.061Z"/>
-</clipPath></defs>
+<linearGradient id="paint0_linear_547_441" x1="433.682" y1="15.8882" x2="433.682" y2="333.061" gradientUnits="userSpaceOnUse">
+<stop stop-color="#404E6F"/>
+</linearGradient>
+</defs>
 </svg>

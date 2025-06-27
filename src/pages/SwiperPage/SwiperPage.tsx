@@ -16,8 +16,6 @@ export const SwiperPage = () => {
   const navigationNextRef = useRef(null);
   const swiperRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(1);
-  const [startDialog, setStartDialog] = useState(false);
-  const [startGame, setStartGame] = useState(false)
 
   useEffect(() => {
     if (!swiperRef?.current && !swiperRef.current?.swiper) return;
@@ -25,7 +23,7 @@ export const SwiperPage = () => {
     swiperRef.current.swiper.params.navigation.nextEl = navigationNextRef.current;
     swiperRef.current.swiper.navigation.init();
     swiperRef.current.swiper.navigation.update()
-  }, [startGame]);
+  }, []);
 
 
   return (
@@ -34,64 +32,63 @@ export const SwiperPage = () => {
         <h1>Вселенная Нижегородский губернский колледж</h1>
         <img
           src={CatIcon}
-          onClick={() => setStartDialog(true)}
         />
       </div>
-        <div className={classes.sliderContainer}>
-          <Swiper
-            onSwiper={swiper => {
-              swiper.wrapperEl.style.top = '70vh';
-              swiper.wrapperEl.style.height = '60%';
-            }}
-            ref={swiperRef}
-            loop={false}
-            slidesPerView={3}
-            spaceBetween={50}
-            centeredSlides={true}
-            initialSlide={1}
-            navigation={{
-              prevEl: navigationPrevRef.current,
-              nextEl: navigationNextRef.current,
-            }}
-            modules={[Navigation]}
-            className={`mySwiper ${classes.customSwiper}`}
-            onSlideChange={swiper => setActiveIndex(swiper.realIndex)}
+      <div className={classes.sliderContainer}>
+        <Swiper
+          onSwiper={swiper => {
+            swiper.wrapperEl.style.top = '70vh';
+            swiper.wrapperEl.style.height = '60%';
+          }}
+          ref={swiperRef}
+          loop={false}
+          slidesPerView={3}
+          spaceBetween={50}
+          centeredSlides={true}
+          initialSlide={1}
+          navigation={{
+            prevEl: navigationPrevRef.current,
+            nextEl: navigationNextRef.current,
+          }}
+          modules={[Navigation]}
+          className={`mySwiper ${classes.customSwiper}`}
+          onSlideChange={swiper => setActiveIndex(swiper.realIndex)}
+        >
+          <SwiperSlide
+            className={`${classes.slide} ${activeIndex === 0 ? classes.activeSlide : classes.passiveSlide}`}
           >
-            <SwiperSlide
-              className={`${classes.slide} ${activeIndex === 0 ? classes.activeSlide : classes.passiveSlide}`}
-            >
-              <img src={PlanetFirstCorpus} />
-            </SwiperSlide>
+            <img src={PlanetFirstCorpus} />
+          </SwiperSlide>
 
-            <SwiperSlide
-              className={`${classes.slide} ${activeIndex === 1 ? classes.activeSlide : classes.passiveSlide}`}
-            >
-              <img src={PlanetSecondCorpus} />
-            </SwiperSlide>
+          <SwiperSlide
+            className={`${classes.slide} ${activeIndex === 1 ? classes.activeSlide : classes.passiveSlide}`}
+          >
+            <img src={PlanetSecondCorpus} />
+          </SwiperSlide>
 
-            <SwiperSlide
-              className={`${classes.slide} ${activeIndex === 2 ? classes.activeSlide : classes.passiveSlide}`}
-            >
-              <img src={PlanetThirdCorpus} />
-            </SwiperSlide>
-          </Swiper>
+          <SwiperSlide
+            className={`${classes.slide} ${activeIndex === 2 ? classes.activeSlide : classes.passiveSlide}`}
+          >
+            <img src={PlanetThirdCorpus} />
+          </SwiperSlide>
+        </Swiper>
 
-          <div className={classes.controlPanel}>
-            <button ref={navigationPrevRef} className={classes.navButton}>
-              <FaPlay
-                color="#fff"
-                size={40}
-                style={{ transform: 'rotate(180deg)' }}
-              />
-            </button>
-            <Link to={`/${activeIndex + 1}`}>
-              <button className={classes.selectButton}>выбрать</button>
-            </Link>
-            <button ref={navigationNextRef} className={classes.navButton}>
-              <FaPlay color="#fff" size={40} />
-            </button>
-          </div>
+        <div className={classes.controlPanel}>
+          <button ref={navigationPrevRef} className={classes.navButton}>
+            <FaPlay
+              color="#fff"
+              size={40}
+              style={{ transform: 'rotate(180deg)' }}
+            />
+          </button>
+          <Link to={`/${activeIndex + 1}`}>
+            <button className={classes.selectButton}>выбрать</button>
+          </Link>
+          <button ref={navigationNextRef} className={classes.navButton}>
+            <FaPlay color="#fff" size={40} />
+          </button>
         </div>
+      </div>
     </div>
   );
 };

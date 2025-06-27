@@ -10,8 +10,6 @@ interface DialogWindowProps {
 
 const DialogWindow = (props: DialogWindowProps) => {
   const [openHelper, setOpenHelper] = useState(true);
-  const [searchParams] = useSearchParams();
-  const hideAssistant = searchParams.get('hideAssistant') === 'true';
 
   useEffect(() => {
     const fromGame = localStorage.getItem('fromGame') === 'true';
@@ -21,18 +19,14 @@ const DialogWindow = (props: DialogWindowProps) => {
     }
   }, []);
 
-  const handleClose = () => {
-    setOpenHelper(false);
-  };
-
-  if (!openHelper || hideAssistant) {
+  if (!openHelper) {
     return null;
   }
 
   return (
     <div className={classes.tooltip}>
       <img
-        onClick={handleClose}
+        onClick={() => setOpenHelper(false)}
         src={IconX}
         className={classes.X}
       />
