@@ -64,7 +64,7 @@ export const MainPage = () => {
             marginLeft: startDialog ? '40vw' : '0vw',
           }}
         />
-        {!startDialog  && <p>Нажми на меня</p>}
+        {!startDialog  && <p>нажми на меня</p>}
       </div>
     </div>
   );
