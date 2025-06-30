@@ -2,6 +2,9 @@ import { useState, useRef, useCallback } from 'react';
 import CardFinish from './components/CardFinish';
 import CardError from './components/CardError';
 import styles from './gameRast.module.scss';
+import { Button } from '../../../components/Button/Button';
+import { useNavigate } from 'react-router-dom';
+import { RoutesEnum } from '../../../app/routes';
 
 // Импортируем все изображения напрямую
 import background from './assets/fonpl.svg';
@@ -26,6 +29,8 @@ import par from './assets/par.svg';
 type ImageType = string;
 
 const PlantGame = () => {
+  const navigate = useNavigate();
+  
   // Используем импортированные изображения
   const images = {
     background,
@@ -61,6 +66,12 @@ const PlantGame = () => {
     sun,
     spray
   ];
+
+  // Обработчик кнопки "Назад"
+const handleBack = useCallback(() => {
+  localStorage.setItem('fromGame', 'true');
+  navigate(RoutesEnum.SPECIALKINDERGARDEN);
+}, [navigate]);
 
   // Обработка начала перетаскивания
   const handleStart = useCallback((e: React.DragEvent | React.TouchEvent, item: ImageType) => {
@@ -159,7 +170,7 @@ const PlantGame = () => {
             setShowResultCard(true);
           }, 2000);
         }
-      }, 1500); // Увеличили длительность пульсации до 1.5 секунд
+      }, 1500);
     }
     
     if (draggedItemRef.current) {
@@ -206,7 +217,7 @@ const PlantGame = () => {
           setShowResultCard(true);
         }, 2000);
       }
-    }, 1500); // Увеличили длительность пульсации до 1.5 секунд
+    }, 1500);
     
     setActiveItem(null);
   }, [activeItem, attempts, correctAnswers, images, stage]);
@@ -313,25 +324,36 @@ const PlantGame = () => {
       </div>
 
       {/* Карточка результата */}
-      {showResultCard && (
-        isSuccess ? (
-          <CardFinish 
-            attempts={attempts} 
-            isOpenCard={true} 
-            onClose={resetGame} 
-          />
-        ) : (
-          <CardError
-            attempts={attempts}
-            isOpenCard={true}
-            onClose={resetGame}
-          />
-        )
-      )}
+{showResultCard && (
+  isSuccess ? (
+    <CardFinish 
+      attempts={attempts} 
+      isOpenCard={true} 
+      onClose={resetGame}
+    />
+  ) : (
+    <CardError
+      attempts={attempts}
+      isOpenCard={true}
+      onClose={resetGame}
+    />
+  )
+)}
 
       {/* Индикатор текущего этапа */}
       <div className={styles.stageIndicator}>
         Этап: {stage + 1} из 5
+      </div>
+
+      {/* Кнопка "Назад" */}
+      <div className={styles.backButton}>
+        <Button
+          bgColor="pink"
+          type="type1v2"
+          onClick={handleBack}
+        >
+          НАЗАД
+        </Button>
       </div>
     </div>
   );

@@ -10,7 +10,7 @@ const gameData: Record<string, { title: string; body: string; url: string }> = {
   flowersGame: {
     title: 'Росток',
     body: 'Интерактивное приложение Росток. Вам будет необходимо вырастить цветок!',
-    url: '../../../production/rostok/index.html',
+    url: 'rast',
   },
   tentGame: {
     title: 'Ракета',

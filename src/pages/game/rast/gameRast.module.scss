@@ -53,7 +53,10 @@ html {
     pointer-events: none;
   }
 }
-
+.backButton{
+  position: absolute;
+  transform: translate(10px,460px);
+}
 .centerImage {
   width: 300px;
   height: 400px;
@@ -72,6 +75,7 @@ html {
   img {
     max-width: 100%;
     max-height: 100%;
+        object-fit: contain; // Сохраняет пропорции
     transition: all 0.3s ease;
   }
 }

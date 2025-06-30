@@ -61,6 +61,7 @@ export const router = createBrowserRouter([
   // { path: '/robotGame', element:  < />,},
   { path: '/Yur', element: <Yur /> },
   { path: '/SpecialKinder', element: <SpecialKidergarden /> },
+  {path: "/specialkindergarden", element:<SpecialKidergarden />},
   { path: '/economist', element: <Economist /> },
   { path: RoutesEnum.DOU, element: <Dou /> },
   { path: RoutesEnum.BANK, element: <Bank /> },

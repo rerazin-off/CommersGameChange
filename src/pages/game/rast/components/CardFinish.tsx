@@ -1,30 +1,27 @@
 import Card from '..//..//..//..//components/Card/Card';
-import classes from './CardFinish.module.scss';
 
-type CardFinishProps = {
+interface CardFinishProps {
   attempts: number;
   isOpenCard: boolean;
   onClose: () => void;
-};
+}
 
-const CardFinish = (props: CardFinishProps) => {
-  const { attempts, isOpenCard, onClose } = props;
+const CardFinish = ({ attempts, isOpenCard, onClose }: CardFinishProps) => {
   return (
-    <div>
-      <Card
-        title="Поздравляем!"
-        body={
-          <>
-            Вы успешно завершили игру! <br />
-          </>
-        }
-        game="tovaroveds"
-        backLink=""
-        isOpen={isOpenCard}
-        onClose={onClose}
-        type="gameOver"
-      />
-    </div>
+    <Card
+      title="Поздравляем!"
+      body={
+        <>
+          Вы успешно вырастили растение!<br />
+
+        </>
+      }
+      onClose={onClose}
+      isOpen={isOpenCard}
+      game="specialkindergarden" // Используем прямой путь
+      backLink=""
+      type="gameOver"
+    />
   );
 };
 
