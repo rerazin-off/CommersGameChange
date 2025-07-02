@@ -14,7 +14,7 @@ export const ThirdCorpus = () => {
           <div className={classes.bloc}>
             <div className={classes.text}>
               <h1>ПЛАНЕТА <br /> 3 КОРПУС</h1>
-              <p>Эта самая дружелюбная и добрая планете, ведь на ней обитают следующие специальности: <br />
+              <p className={classes.pp}>Эта самая дружелюбная и добрая планете, ведь на ней обитают следующие специальности: <br />
                 -Дошкольное образование; <br />
                 -Специальное дошкольное образование; <br />
                 -Преподавание в начальных классах; <br />
@@ -56,7 +56,7 @@ export const ThirdCorpus = () => {
             </div>
           </div>
           <div className={classes.buton}>
-            <Link to={`/`}>
+            <Link to={`/swiperPage`}>
               <Button type="type2" bgColor="pink">Назад</Button>
             </Link>
             <Link to={'/1'}>

@@ -1,0 +1,34 @@
+html {
+    overflow: hidden;
+}
+
+.container {
+
+    background-size: cover;
+    position: relative;
+    height: 852px !important;
+    margin: 0 auto;
+    text-align: center;
+    background-image: url('/src/assets/img/fon/fonchik (1).svg') no-repeat center center;
+
+}
+
+.texts {
+    font-family: 'Cruinn Medium';
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    background-image: linear-gradient(to bottom, #7B74EB, #0E0430);
+}
+
+.checkButton {
+    position: absolute;
+    bottom: 210px;
+    right: 70px;
+}
+
+.backButton {
+    position: absolute;
+    bottom: 160px;
+    left: 40px;
+}

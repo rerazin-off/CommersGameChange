@@ -14,6 +14,7 @@ interface CardProps {
   backLink: string;
   type: 'game' | 'gameOver';
   onClickBack?: () => void;
+  error?: boolean,
 }
 
 const Card = (props: CardProps) => {
@@ -26,6 +27,7 @@ const Card = (props: CardProps) => {
     isOpen,
     onClose,
     type,
+    error
   } = props;
 
   const isMarker = type === 'gameOver';
@@ -69,7 +71,7 @@ const Card = (props: CardProps) => {
   return (
     <>
       <div className={classes.cardBackdrop}></div>
-      <div className={classes.var}>
+      <div className={`${classes.var} ${error ? classes.error : ''}`}>
         <div className={classes.text}>
           <h1> {title} </h1>
           <div className={classes.img}><img src={lineImage} alt="" /></div>

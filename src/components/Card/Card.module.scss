@@ -5,6 +5,7 @@
   right: 0;
   bottom: 0;
   backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.4);
   z-index: 2;
 }
 
@@ -25,9 +26,14 @@
   border: 1px solid #4DE4F2;
   width: 622px;
   height: 421px;
+  &.error {
+    background: linear-gradient(to right, rgba(179, 20, 20, 0.09), rgba(179, 20, 20, 0.16));
+    border: 1px solid #b31414;
+  }
   .text{
     width: 622px;
   }
+
 
   h1{
     font-family:"AA Spaceman";
@@ -58,7 +64,7 @@
 
 .knopki{
   width: 100%;
-  margin-bottom: 52px;
+  margin-bottom: 32px;
   display: flex;
   justify-content: space-around;
   align-content: space-between;

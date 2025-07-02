@@ -1,0 +1,32 @@
+html {
+  overflow: hidden;
+}
+
+.container {
+
+  background-size: cover;
+  position: relative;
+  height: 852px !important;
+  margin: 0 auto;
+  text-align: center;
+  background-image: url('/src/assets/img/commerce_img/commerce room.svg')  no-repeat center center;
+
+}
+
+.texts {
+  font-family: 'Cruinn Medium';
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.checkButton {
+  position: absolute;
+  bottom: 80px;
+  right: 70px;
+}
+.backButton {
+  position: absolute;
+  bottom: 90px;
+  left: 40px;
+}

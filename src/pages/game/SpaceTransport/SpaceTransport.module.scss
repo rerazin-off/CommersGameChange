@@ -1,0 +1,129 @@
+.gridContainer{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5vh 2vh;
+  background: linear-gradient(#0C0D2E, #02495E);
+  padding: 7vh 3vw;
+}
+.container{
+  display: flex;
+  justify-content: end;
+  flex-direction: column;
+}
+nav p{
+  font-weight: 700;
+  color: #fff;
+  font-size: 18px;
+}
+nav{
+  background: #02495E;
+  background: linear-gradient(90deg, rgba(2, 73, 94, 1) 0%, rgba(12, 13, 46, 1) 100%);
+  display: flex;
+  justify-content: space-around;
+  padding: 1vh 0;
+}
+.game{
+  background: url('@/assets/img/game_assets/space-transport-img/bgGame.svg') no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  grid-template-rows: auto auto auto;
+  grid-template-columns: 1fr 1fr;
+}
+.game > div:nth-child(1){
+  grid-column: 1 / -1;
+  justify-self: center;
+}
+.game > div:nth-child(2){
+  grid-column: 1;
+}
+.game > div:nth-child(3){
+  grid-column: 2;
+}
+.game > div:nth-child(4){
+  grid-column: 1/-1;
+  justify-self: center;
+}
+.gameField{
+  display: flex;
+  flex-direction: row;
+}
+.row{
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+.count{
+  font-size: 14px;
+  color: #fff;
+  padding: 1vh 2vh;
+  display: flex;
+  align-items: center;
+  margin-bottom: -5.5vh;
+  margin-left: 3vh;
+  gap: 1vh;
+  z-index: 100;
+}
+.planet{
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.planet img{
+  width: 27vw;
+}
+.game button{
+  color: #fff;
+  background: linear-gradient(rgba(249,88,200, 0.4), rgba(249,88,200, 0.2), rgba(249,88,200, 0.4));
+  border: 1px solid #F958C8;
+  padding: 1vh;
+}
+.slot{
+  position: relative;
+  z-index:2;
+  display: flex;
+  flex-direction: column;
+  width: 20vh;
+  align-items: center;
+  color: #fff;
+}
+.slot button{
+  font-family: 'Comfortaa';
+  font-size: 18px;
+  padding: 0.5vh 0.5vw;
+  margin: 1vh 0.5vh;
+}
+.paths{
+  position: absolute;
+  z-index: 0;
+  top: 10vh;
+}
+.slotParameters{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1vh;
+}
+.icon{
+  width: 1vw !important;
+}
+.checkButton{
+  position: absolute;
+  bottom: 1vh;
+  right: 5vh;
+  z-index: 100;
+}
+.backButton{
+  position: absolute;
+  bottom: 1vh;
+  left: 5vh;
+  z-index: 100;
+}
+.canvasClass{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}

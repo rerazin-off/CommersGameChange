@@ -1,102 +1,120 @@
-@font-face {
-  font-family: "AA Spaceman";
-  src: url("../../assets/fonts/ofont.ru_AA\ Spaceman.ttf");
-  font-weight: 400;
-  font-style: normal;
-}
 .universe {
-    background-image: url("../../assets/img/main-section.svg");
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 1080px;
-    overflow: hidden;
-  
-    .cat {
-      z-index: 100;
-      position: relative;
-  
-      .container {
+  background-image: url("../../assets/img/main-section.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 1080px;
+  overflow: hidden;
+
+  .container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+  }
+
+  .cat {
+    z-index: 100;
+    position: relative;
+  }
+
+  h1 {
+    width: 90%;
+    font-size: 64px;
+    text-align: center;
+    margin-top: 55px;
+    margin-bottom: 0;
+    font-family: "AA Spaceman";
+  }
+
+  p{
+    font-size: 32px;
+    margin-top: 10vh;
+    font-weight: 500;
+  }
+
+  .sliderContainer {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    overflow: visible;
+    display: flex;
+    align-items: end;
+    top: 0;
+
+    .customSwiper {
+      height: 100%;
+      bottom: 0vh;
+
+      .slide {
         display: flex;
-        flex-direction: column;
-        align-items: center;
-  
-        h1 {
-          width: 90%;
-          font-size: 64px;
-          text-align: center;
-          margin-top: 55px;
-          color: white;
-          margin-bottom: 0;
-          font-family: "AA Spaceman";
-        }
-  
-        .img {
-          margin-top: 40px;
-          width: 450px;
-  
-          img {
-            position: absolute;
-          }
+        justify-content: center;
+        align-items: flex-end;
+        transition: all 0.3s ease;
+        height: 100%;
+
+        img {
+          position: relative;
+          width: auto;
+          height: 90%;
+          transition: all 0.3s ease;
+          filter: brightness(0.8);
+          object-fit: contain;
         }
       }
     }
-  
-    .slider {
-      .slides {
-        width: 100%;
-        height: 100vh;
-        overflow: hidden;
-        position: relative;
-  
-        .slide {
-          position: absolute;
-          top: 4%;
-          left: -10%;
-          width: 80%;
-          height: 0;
-          transform: translateX(-50%);
-          transition: all 0.5s ease-in-out;
-          z-index: 2;
-          display: flex;
-          justify-content: center;
-          cursor: pointer;
-  
-          &.active {
-            z-index: 0;
-            width: 120%;
-            transform: translateY(30%) scale(1.1);
-          }
-  
-          &.left {
-            transform: translateX(-35%) translateY(-40%) scale(0.25);
-          }
-  
-          &.right {
-            transform: translateX(80%) translateY(-40%) scale(0.25);
-          }
-        }
-      }
-  
-      .controls {
-        position: absolute;
-        top: 50%;
-        width: 100%;
+
+    .controlPanel {
+      position: absolute;
+      bottom: 8vh;
+      left: 40%;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 2vh;
+
+      .navButton {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 10px;
         display: flex;
-        z-index: 150;
-        justify-content: space-between;
-        transform: translateY(-50%);
-  
-        .control {
-          background:none;
-          color: white;
-          width: 50px;
-          height: 50px;
-          border: none;
-          font-size: 18px;
-          cursor: pointer;
-          padding: 10px;
-        }
+        align-items: center;
+        justify-content: center;
+      }
+
+      .selectButton {
+        background: linear-gradient(0.25turn, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2));
+        border: 1px solid #fff;
+        color: #fff;
+        font-family: 'Cruinn';
+        font-weight: 500;
+        font-size: 32px;
+        padding: 10px 30px;
+        border-radius: 5px;
+        cursor: pointer;
       }
     }
   }
-  
+}
+
+.activeSlide {
+  img {
+    transform: scale(1.9) !important;
+    filter: brightness(1.1) !important;
+    margin-bottom: 0 !important;
+  }
+}
+
+.passiveSlide {
+  img {
+    margin-bottom: 30vh;
+  }
+}
+
+.backButton{
+  position: absolute;
+  bottom: 1vh;
+  right: 5vh;
+  z-index: 100;
+}
