@@ -107,5 +107,7 @@ export const router = createBrowserRouter([
   { path: '/CommerceSr', element: <CommerceSr/> },
   { path: '/SpaceTransport', element: <SpaceTransport/> },
   { path: '/chemodany', element: <BankGramotnost/> },
-  {path: '/swiperPage', element: <SwiperPage/>}
+  {path: '/swiperPage', element: <SwiperPage/>},
+  {path: '/rest', element: <RestRoom/>},
+  {path: '/relaxRoom', element: <RelaxRoom/>},
 ]);
