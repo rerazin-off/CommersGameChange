@@ -13,6 +13,7 @@ interface CardProps {
   game: string;
   backLink: string;
   type: 'game' | 'gameOver';
+  onClickBack?: () => void;
   error?: boolean,
 }
 
