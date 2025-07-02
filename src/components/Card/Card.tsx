@@ -13,6 +13,7 @@ interface CardProps {
   game: string;
   backLink: string;
   type: 'game' | 'gameOver';
+  onClickBack?: () => void;
   error?: boolean,
 }
 
@@ -74,7 +75,7 @@ const Card = (props: CardProps) => {
         <div className={classes.text}>
           <h1> {title} </h1>
           <div className={classes.img}><img src={lineImage} alt="" /></div>
-          <p> {body} </p>
+          <p style={{ whiteSpace: 'pre-line' }}>{body}</p>
         </div>
         {isMarker? (
           <div className={classes.knopki}>

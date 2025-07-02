@@ -1,130 +1,149 @@
-import React, { useEffect } from 'react';
-import classes from '../../SpaceTransport.module.scss'
+import React, { useEffect, useRef, useState } from 'react';
+import classes from '../../SpaceTransport.module.scss';
 
-type CanvasProps = {
+interface CanvasProps {
   canvasRef: React.RefObject<HTMLCanvasElement>;
   transportRef: React.RefObject<HTMLDivElement>;
   planetRefs: React.RefObject<HTMLDivElement>[];
   days: number[];
 }
 
-const GameCanvas = ({canvasRef, transportRef, planetRefs, days}: CanvasProps) => {
-  const daysPositions = [];
+interface Position {
+  x: number;
+  y: number;
+}
 
-  function drawConnections(start, end, straight, dayIndex){
+const dayOffset: Record<number, Position> = {
+  0: { x: 0, y: -150 },
+  1: { x: -80, y: 150 },
+  2: { x: 80, y: 150 },
+  3: { x: -80, y: -160 },
+  4: { x: 100, y: -10 },
+  5: { x: 80, y: -160 },
+};
+
+const GameCanvas: React.FC<CanvasProps> = ({ canvasRef, transportRef, planetRefs, days }) => {
+  const daysPositions = useRef<Position[]>([]);
+  const [positionsChanged, setPositionsChanged] = useState(0);
+
+  const getCanvasContext = () => {
     const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d')
-    ctx.strokeStyle = 'white';
-    ctx.lineWidth = 1;
-    const canvasRec = canvas.getBoundingClientRect()
+    return canvas?.getContext('2d');
+  };
 
-    const x0 = start.left + start.width/2;
-    const y0 = start.top + start.height/2 - canvasRec.top;
-    const x1 = end.left + end.width/2;
-    const y1 = end.top + end.height/2 - canvasRec.top;
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      setPositionsChanged(prev => prev + 1);
+    });
 
-    const midX = (x0 + x1) / 2;
-    const midY = (y0 + y1) / 2;
-    let offsetX=0;
-    let offsetY =0;
+    const config = { attributes: true, attributeFilter: ['style'] };
+    planetRefs.forEach(ref => ref.current && observer.observe(ref.current, config));
 
-    if (dayIndex ===0){
-      offsetY = -150
-    }
-    else if (dayIndex === 1){
-      offsetX = -80
-      offsetY = +150
-    }
-    else if (dayIndex === 2){
-      offsetX = +80
-      offsetY = +150
-    }
-    else if (dayIndex === 3){
-      offsetX = -80
-      offsetY = -160
-    }
-    else if (dayIndex === 5){
-      offsetX = +80
-      offsetY = -160
-    }
-    else if(dayIndex ===4){
-      offsetX = +100;
-      offsetY =-10
-    }
+    return () => observer.disconnect();
+  }, [planetRefs]);
 
-    daysPositions[dayIndex] = {
-      x: midX + offsetX,
-      y: midY + offsetY,
+  const calcControlPoints = (start: Position, end: Position) => ({
+    controlP1: { x: start.x + (end.x - start.x) * 0.2, y: start.y },
+    controlP2: { x: end.x + (end.x - start.x) * 2, y: end.y + (end.y - start.y) * (-0.3) }
+  });
+
+  const drawConnection = (start: DOMRect, end: DOMRect, straight: boolean, dayIndex: number) => {
+    const ctx = getCanvasContext();
+    if (!ctx || !canvasRef.current) return;
+
+    const canvasRec = canvasRef.current.getBoundingClientRect();
+    const toCanvasCoords = (rect: DOMRect) => ({
+      x: rect.left + rect.width / 2,
+      y: rect.top + rect.height / 2 - canvasRec.top
+    });
+
+    const startPos = toCanvasCoords(start);
+    const endPos = toCanvasCoords(end);
+    const midPoint = {
+      x: (startPos.x + endPos.x) / 2,
+      y: (startPos.y + endPos.y) / 2
     };
 
-    const controlPoints = calcControlPoints(x0, x1, y0, y1)
+    const offset = dayOffset[dayIndex] || { x: 0, y: 0 };
+    daysPositions.current[dayIndex] = {
+      x: midPoint.x + offset.x,
+      y: midPoint.y + offset.y
+    };
 
-    ctx.beginPath()
-    ctx.moveTo(x0, y0)
+    ctx.strokeStyle = 'white';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(startPos.x, startPos.y);
 
-    if (straight){
-      ctx.lineTo(x1, y1)
+    if (straight) {
+      ctx.lineTo(endPos.x, endPos.y);
+    } else {
+      const { controlP1, controlP2 } = calcControlPoints(startPos, endPos);
+      ctx.bezierCurveTo(controlP1.x, controlP1.y, controlP2.x, controlP2.y, endPos.x, endPos.y);
     }
-    else{
-      ctx.bezierCurveTo(controlPoints.controlP1.x, controlPoints.controlP1.y, controlPoints.controlP2.x, controlPoints.controlP2.y, x1, y1)
-    }
-    ctx.stroke()
-  }
+    ctx.stroke();
+  };
 
-  const calcControlPoints=(x0, x1, y0, y1)=>{
-    return {
-      controlP1:{
-        x: x0+(x1-x0)*0.2,
-        y: y0
-      },
-      controlP2:{
-        x: x1 + (x1 - x0) * 2,
-        y: y1 + (y1- y0) *(-0.3)
-      }
-    }
-  }
-
-  const drawDayMarks =()=>{
-    const canvas = canvasRef.current
-    const ctx = canvas.getContext('2d');
+  const drawDayMarks = () => {
+    const ctx = getCanvasContext();
+    if (!ctx) return;
 
     ctx.fillStyle = 'white';
     ctx.font = '16px Arial';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
 
-    for (let i = 0; i < days.length && i < daysPositions.length; i++) {
-      if (days[i] && daysPositions[i]) {
-        ctx.fillText(`${days[i]} дня`, daysPositions[i].x, daysPositions[i].y);
+    days.forEach((day, i) => {
+      if (day && daysPositions.current[i]) {
+        ctx.fillText(`${day} дня`, daysPositions.current[i].x, daysPositions.current[i].y);
       }
+    });
+  };
+
+  const drawAll = () => {
+    const ctx = getCanvasContext();
+    if (!ctx || !canvasRef.current) return;
+
+    ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
+
+    const planets = planetRefs
+      .map(p => p.current?.getBoundingClientRect())
+      .filter(Boolean) as DOMRect[];
+    const transport = transportRef.current?.getBoundingClientRect();
+
+    if (planets.length >= 3 && transport) {
+      drawConnection(planets[0], planets[1], false, 3);
+      drawConnection(planets[0], planets[2], false, 5);
+      drawConnection(planets[1], planets[2], true, 4);
+      planets.forEach((p, i) => drawConnection(transport, p, false, i));
+
+      drawDayMarks();
     }
-  }
-
-  const animateTransport = () =>{
-
-  }
+  };
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    canvas.width = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
+    if (!canvas) return;
 
-    const planets = planetRefs.map(p => p.current?.getBoundingClientRect()).filter(Boolean)
-    const transport = transportRef.current?.getBoundingClientRect()
+    const resizeCanvas = () => {
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+      drawAll();
+    };
 
-    drawConnections(planets[0], planets[1], false, 3)
-    drawConnections(planets[0], planets[2], false, 5)
-    drawConnections(planets[1], planets[2], true, 4)
+    resizeCanvas();
+    const resizeObserver = new ResizeObserver(resizeCanvas);
+    resizeObserver.observe(canvas);
 
-    planets.forEach((p, index)=>{
-      drawConnections(transport, p, false, index)
-    })
-    drawDayMarks()
-  }, [days]);
+    return () => {
+      getCanvasContext()?.clearRect(0, 0, canvas.width, canvas.height);
+      resizeObserver.disconnect();
+    };
+  }, []);
 
-  return (
-    <canvas ref={canvasRef} className={classes.canvasClass}/>
-  );
+  useEffect(() => drawAll(), [positionsChanged, days]);
+
+  return <canvas ref={canvasRef} className={classes.canvasClass} />;
 };
 
 export default GameCanvas;

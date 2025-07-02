@@ -11,7 +11,7 @@ export const FirstCorpus = () => {
         <div className={classes.bloc}>
           <div className={classes.text}>
             <h1>ПЛАНЕТА <br /> <span>1</span> КОРПУС</h1>
-            <p>На планете первого корпуса вас ждут следующие специальности: <br />
+            <p className={classes.pp}>На планете первого корпуса вас ждут следующие специальности: <br />
               -Информационные системы и программирование; <br />
               -Операционная деятельность в логистике; <br />
               -Экономика и бухгалтерский учет (по отраслям); <br />
@@ -53,7 +53,7 @@ export const FirstCorpus = () => {
           </div>
         </div>
         <div className={classes.buton}>
-          <Link to={`/`}>
+          <Link to={`/swiperPage`}>
             <Button type="type2" bgColor="pink">Назад</Button>
           </Link>
           <Link to={'/2'}>

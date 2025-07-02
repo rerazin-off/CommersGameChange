@@ -9,7 +9,7 @@ export const SecondCorpus = () => {
         <div className={classes.bloc}>
           <div className={classes.text}>
             <h1>ПЛАНЕТА <br /> 2 КОРПУС</h1>
-            <p>На данной планете вы познакомитесь со следующими специальностями: <br />
+            <p className={classes.pp}>На данной планете вы познакомитесь со следующими специальностями: <br />
               -Документационное обеспечение управления и архивоведение; <br />
               -Банковское дело; <br />
               -Коммерция (по отраслям); <br />
@@ -43,7 +43,7 @@ export const SecondCorpus = () => {
           </div>
         </div>
         <div className={classes.buton}>
-          <Link to={`/`}>
+          <Link to={`/swiperPage`}>
             <Button type="type2" bgColor="pink">Назад</Button>
           </Link>
           <Link to={'/3'}>

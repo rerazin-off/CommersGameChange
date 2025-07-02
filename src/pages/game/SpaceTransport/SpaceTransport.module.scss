@@ -3,7 +3,7 @@
   grid-template-columns: 1fr 1fr;
   gap: 5vh 2vh;
   background: linear-gradient(#0C0D2E, #02495E);
-  padding: 10vh 3vw;
+  padding: 7vh 3vw;
 }
 .container{
   display: flex;
@@ -13,13 +13,13 @@
 nav p{
   font-weight: 700;
   color: #fff;
-  font-size: 16px;
+  font-size: 18px;
 }
 nav{
-  background-color: #090324;
+  background: #02495E;
+  background: linear-gradient(90deg, rgba(2, 73, 94, 1) 0%, rgba(12, 13, 46, 1) 100%);
   display: flex;
   justify-content: space-around;
-  border: 1px solid #fff;
   padding: 1vh 0;
 }
 .game{
@@ -49,15 +49,21 @@ nav{
   display: flex;
   flex-direction: row;
 }
+.row{
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
 .count{
-  border: 1px solid #fff;
+  font-size: 14px;
   color: #fff;
-  padding: 0.5vh 1vh;
-  background: linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0.2), rgba(255,255,255,0.4));
+  padding: 1vh 2vh;
   display: flex;
   align-items: center;
-  margin-top: -5vh;
+  margin-bottom: -5.5vh;
+  margin-left: 3vh;
   gap: 1vh;
+  z-index: 100;
 }
 .planet{
   position: relative;
@@ -98,6 +104,8 @@ nav{
 .slotParameters{
   display: flex;
   flex-direction: row;
+  align-items: center;
+  gap: 1vh;
 }
 .icon{
   width: 1vw !important;

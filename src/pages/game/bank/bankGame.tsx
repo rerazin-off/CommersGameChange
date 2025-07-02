@@ -67,6 +67,7 @@ export const BankGame = () => {
     <DndProvider backend={TouchBackend} options={touchBackendOptions}>
       <Drag />
       <div className={classes.container}>
+        <div className={classes.over}>
         <div className={classes.grid}>
           {positions.map((_, i) => (
             <DropSlot
@@ -103,6 +104,7 @@ export const BankGame = () => {
           isOpenCard={openIsCard}
           onClose={handleCloseCard}
         />
+        </div>
       </div>
     </DndProvider>
   );

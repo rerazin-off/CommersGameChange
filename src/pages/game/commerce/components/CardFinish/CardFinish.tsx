@@ -1,5 +1,8 @@
 import Card from '@/components/Card/Card';
+
 import classes from './CardFinish.module.scss';
+
+
 
 type CardFinishProps = {
   attempts: number;
@@ -12,12 +15,14 @@ const CardFinish = (props: CardFinishProps) => {
   return (
     <div>
       <Card
-        title="'Поздравляем!"
+        title="Поздравляем!"
         body={
           <>
-            Вы успешно завершили игру! <br /> Количество попыток: {attempts}
+
+            Вы успешно завершили игру! <br/> Количество попыток: {attempts}
           </>
         }
+        
         game="logistics"
         backLink=""
         isOpen={isOpenCard}

@@ -11,13 +11,15 @@ const GameResults = ({showErrorCard, showFinishCard, closeErrorCard, closeFinish
         onClose={closeErrorCard}
         type={'gameOver'}
         error={true}
+        game='Logistics'
       />
       <Card
         title={'Поздравляем!'}
         body={'Вы отлично справились с задачей логиста!'}
         isOpen={showFinishCard}
-        omClose={closeFinishCard}
+        onClose={closeFinishCard}
         type={'gameOver'}
+        game = 'Logistics'
       />
     </>
   );

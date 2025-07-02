@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { useDrag } from 'react-dnd';
 import { Bag } from '../../types';
 import classes from './DraggableBag.module.scss';
@@ -11,8 +11,8 @@ type DraggableBagProps = {
 
 const DraggableBag = ({ bag, onRemove, isInSlot = false }: DraggableBagProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const previewRef = useRef<HTMLDivElement | null>(null);
   const [isDraggingTouch, setIsDraggingTouch] = useState(false);
-  const [touchOffset, setTouchOffset] = useState({ x: 0, y: 0 });
 
   const [{ isDragging }, drag] = useDrag(() => ({
     type: 'bag',
@@ -20,55 +20,71 @@ const DraggableBag = ({ bag, onRemove, isInSlot = false }: DraggableBagProps) =>
     collect: (monitor) => ({
       isDragging: !!monitor.isDragging(),
     }),
+    end: () => {
+      // Гарантированное удаление превью при любом завершении перетаскивания
+      removePreview();
+    }
   }));
+
+  const createPreview = (x: number, y: number) => {
+    if (!bag || isInSlot) return;
+
+    const preview = document.createElement('div');
+    preview.className = classes.dragPreview;
+
+    const img = document.createElement('img');
+    img.src = bag.image;
+    img.alt = bag.label;
+    preview.appendChild(img);
+
+    preview.style.left = `${x - 25}px`;
+    preview.style.top = `${y - 25}px`;
+
+    document.body.appendChild(preview);
+    previewRef.current = preview;
+  };
+
+  const removePreview = () => {
+    if (previewRef.current && document.body.contains(previewRef.current)) {
+      document.body.removeChild(previewRef.current);
+    }
+    previewRef.current = null;
+    setIsDraggingTouch(false);
+  };
+
+  const updatePreviewPosition = (x: number, y: number) => {
+    if (previewRef.current) {
+      previewRef.current.style.left = `${x - 25}px`;
+      previewRef.current.style.top = `${y - 25}px`;
+    }
+  };
+
+  useEffect(() => {
+    return () => {
+      // Очистка при размонтировании компонента
+      removePreview();
+    };
+  }, []);
 
   drag(containerRef);
 
   const handleTouchStart = (e: React.TouchEvent) => {
-    if (!containerRef.current) return;
-
+    if (!containerRef.current || isInSlot) return;
     const touch = e.touches[0];
-    const rect = containerRef.current.getBoundingClientRect();
-
-    setTouchOffset({
-      x: touch.clientX - rect.left,
-      y: touch.clientY - rect.top,
-    });
+    createPreview(touch.clientX, touch.clientY);
     setIsDraggingTouch(true);
-
-    // Фиксируем начальную позицию
-    containerRef.current.style.position = 'fixed';
-    containerRef.current.style.left = `${rect.left}px`;
-    containerRef.current.style.top = `${rect.top}px`;
-    containerRef.current.style.zIndex = '1000';
-    containerRef.current.style.width = `${rect.width}px`;
-    containerRef.current.style.height = `${rect.height}px`;
-
     e.preventDefault();
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
-    if (!isDraggingTouch || !containerRef.current) return;
-
+    if (!isDraggingTouch || !previewRef.current) return;
     const touch = e.touches[0];
-    const newX = touch.clientX - touchOffset.x;
-    const newY = touch.clientY - touchOffset.y;
-
-    containerRef.current.style.left = `${newX}px`;
-    containerRef.current.style.top = `${newY}px`;
+    updatePreviewPosition(touch.clientX, touch.clientY);
     e.preventDefault();
   };
 
   const handleTouchEnd = () => {
-    setIsDraggingTouch(false);
-    if (containerRef.current) {
-      containerRef.current.style.position = '';
-      containerRef.current.style.left = '';
-      containerRef.current.style.top = '';
-      containerRef.current.style.zIndex = '';
-      containerRef.current.style.width = '';
-      containerRef.current.style.height = '';
-    }
+    removePreview();
   };
 
   if (!bag) return null;
@@ -78,7 +94,8 @@ const DraggableBag = ({ bag, onRemove, isInSlot = false }: DraggableBagProps) =>
       ref={containerRef}
       className={`${classes.draggableContainer} ${isInSlot ? classes.inSlot : ''}`}
       style={{
-        opacity: isDragging || isDraggingTouch ? 0.8 : 1,
+        opacity: isDragging || isDraggingTouch ? 0 : 1,
+        touchAction: 'none',
       }}
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}

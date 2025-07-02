@@ -18,9 +18,12 @@ const gameData: Record<string, { title: string; body: string; url: string  }> = 
     url: '../../../production/dopolnenie/Ankety/ank/index.html'
   },
   ekranGame: {
-    title: 'Признаки человека',
-    body: 'Вам будет необходимо соотнести признаки финансово грамотного человека и человека с низкой финансовой грамотностью!',
-    url: '../../../production/bank/priznaki/index.html'
+    title: 'В мире финансов',
+    body: 'В мире финансов есть свои секреты успеха. Одни люди умеют грамотно управлять деньгами и приумножать их, а другие совершают ошибки и влезают в долги. \n' +
+      '\n' +
+      'Задача: распределите признаки человека на две группы: “Низкая финансовая грамотность” и “Высокая финансовая грамотность”.',
+    // url: '../../../production/bank/priznaki/index.html'
+    url: 'chemodany'
   },
   koshelGame: {
     // url: '../../../production/bank/chein/index.html',
