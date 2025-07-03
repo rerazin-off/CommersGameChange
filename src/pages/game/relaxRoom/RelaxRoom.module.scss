@@ -1,0 +1,116 @@
+.container {
+  padding: 20px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 1040px;
+  background: url(src/assets/img/game_assets/relax-room/fons.svg);
+  overflow: hidden;
+  position: absolute;
+}
+
+.topRow {
+  display: flex;
+  justify-content: center;
+  width: 1300px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 30px; /* Увеличенный отступ */
+  gap: 30px;
+  position: absolute;
+  transform: translateY(-390px);
+}
+
+.bottomRow {
+  display: flex;
+  justify-content: center;
+  width: 1300px;
+  flex-wrap: wrap;
+  align-items: center;
+  position: absolute;
+  transform: translateY(100px);
+}
+
+.targetContainer {
+  position: relative;
+  margin: 10px; /* Увеличенный отступ */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dragging {
+  transform: scale(1.1);
+  transition: transform 0.2s;
+}
+
+.matchedCard {
+  position: absolute;
+  left: 0;
+  pointer-events: none;
+}
+
+/* Стиль для подсветки правильного соотношения */
+.correctMatch {
+  box-shadow: 0 0 15px 5px rgba(76, 175, 80, 0.7); /* Зеленая подсветка */
+  transition: box-shadow 0.3s ease;
+  border-radius: 8px;
+}
+
+.resetButton {
+  padding: 10px 20px;
+  background: none !important;
+  color: white;
+  border: 2px solid rgba(133, 23, 150, 1) !important;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 20px;
+
+  &:hover {
+    background-color: rgba(133, 23, 150, 1) !important;
+  }
+}
+
+.backButton {
+  width: 100%;
+  position: absolute;
+  transform: translate(-830px, 490px);
+}
+
+.checkButton {
+  position: absolute;
+  transform: translate(800px, 490px);
+}
+
+.baseCard {
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.3s ease;
+}
+
+.overlayCard {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.draggedCard {
+  position: fixed;
+  pointer-events: none;
+  touch-action: none;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  opacity: 0.8;
+  transition: none;
+}

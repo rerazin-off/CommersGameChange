@@ -2,7 +2,7 @@ export interface Bag {
   id: number;
   label: string;
   image: string;
-  part?: 'left' | 'right'; // Добавляем информацию о части чемодана
+  part?: 'left' | 'right';
 }
 
 export type SlotContent = number[];

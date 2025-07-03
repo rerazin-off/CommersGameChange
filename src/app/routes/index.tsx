@@ -22,6 +22,10 @@ import { Rocket } from '../../pages/game/rocket/Rocket';
 import { SorterGame } from '../../pages/game/buhgalter/buhGame';
 import { LogistCep } from '../../pages/game/logist/LogistCep';
 import { MovieGame } from '../../pages/game/deti/Moviegame.tsx';
+import  GameRast  from '../../pages/game/rast/gameRast.tsx';
+
+
+
 import { SpaceTransport } from '../../pages/game/SpaceTransport/SpaceTransport';
 import { BankGramotnost } from '../../pages/game/bankgramotnost/BankGramotnost';
 import { Musical } from '../../pages/game/musical/musical.js';
@@ -67,6 +71,7 @@ export const router = createBrowserRouter([
   // { path: '/robotGame', element:  < />,},
   { path: RoutesEnum.YUR, element: <Yur /> },
   { path: '/SpecialKinder', element: <SpecialKidergarden /> },
+  {path: "/specialkindergarden", element:<SpecialKidergarden />},
   { path: '/economist', element: <Economist /> },
   { path: RoutesEnum.DOU, element: <Dou /> },
   { path: RoutesEnum.BANK, element: <Bank /> },
@@ -109,5 +114,5 @@ export const router = createBrowserRouter([
   { path: '/SpaceTransport', element: <SpaceTransport/> },
   { path: '/chemodany', element: <BankGramotnost/> },
   {path: '/swiperPage', element: <SwiperPage/>},
-  {path: '/childWardrobe', element: <ChildWardrobe/>},
+
 ]);

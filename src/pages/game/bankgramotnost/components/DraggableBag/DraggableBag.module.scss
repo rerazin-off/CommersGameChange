@@ -2,13 +2,11 @@
   position: fixed !important;
   z-index: 1000;
   pointer-events: none;
-  width: 120px !important;
-  height: 120px !important;
-  will-change: transform;
-  opacity: 0.9;
-  filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.3));
-  transform: translate3d(0, 0, 0);
-  touch-action: none;
+  width: 440px !important;
+  height: 200px !important;
+  transform: translate(-50%, -50%);
+  border-radius: 8px;
+  padding: 4px;
 
   img {
     width: 100% !important;
@@ -21,18 +19,38 @@
 
 .draggableContainer {
   position: relative;
-  width: 240px;
-  height: 167px;
-  cursor: grab;
+  width: 440px;
+  height: 200px;
+  transform: translate(1px, -83px);
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  user-select: none;
   touch-action: none;
-  will-change: transform; // Добавьте это свойство
-  transform: translate3d(0, 0, 0); // Для аппаратного ускорения
+  will-change: transform;
+
+  &:active, &.dragging {
+    z-index: 1000;
+    transition: none;
+  }
+
+  &.inSlot {
+    width: 120px;
+    height: 95px;
+
+    &.correct {
+      filter: drop-shadow(0 0 10px rgba(0, 255, 0, 0.7));
+    }
+  }
 }
 
-.inSlot {
-  width: 90px !important;
-  height: 90px !important;
-  cursor: grab !important;
+.disabled {
+  cursor: not-allowed !important;
+  opacity: 0.9;
+  pointer-events: none;
+
+  img {
+    pointer-events: none;
+  }
 }
 
 .bagImage {
@@ -41,4 +59,5 @@
   pointer-events: none;
   user-select: none;
   object-fit: contain;
+  -webkit-user-drag: none;
 }

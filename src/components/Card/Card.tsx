@@ -11,9 +11,7 @@ interface CardProps {
   isOpen?: boolean;
   game: string;
   backLink: string;
-  type: 'game' | 'gameOver' | 'secondRound';
-  error?: boolean;
-  onSecondRound?: () => void;
+
 }
 
 const Card = (props: CardProps) => {
