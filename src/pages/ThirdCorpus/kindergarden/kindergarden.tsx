@@ -8,9 +8,10 @@ import { Indicator } from '../../../components/Indicator/Indicator';
 
 const gameData: Record<string, { title: string; body: string; url: string }> = {
   wheelchairGame: {
-    title: 'Дочки-матери',
-    body: 'Интерактивная игра. Вам необходимо расставить подходящие игрушки на коврик, а лишнее убрать в сторону.',
-    url: '../../../production/specialty_of_NGK/games/mother-daughter/index.html',
+    title: 'Гардероб',
+    body: 'Детям часто трудно самостоятельно одеваться и поэтому воспитатель помогпет им с этим. \n' +
+      'Помогите Илье собраться на летнюю прогулку в детском саду.',
+    url:'childWardrobe',
   },
   сrescentGame: {
     title: 'Детский возраст',

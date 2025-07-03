@@ -37,6 +37,7 @@ import {CommerceMat}  from '../../pages/game/commerceMat/CommerceMat';
 import {CommerceSr}  from '../../pages/game/commerceSrok/CommerceSr';
 import ExpenseSorterGame from '../../pages/game/buhgalter/buhgame2.0/components/BuhgalGame/BuhgalGame';
 import {SwiperPage} from '../../pages/SwiperPage/SwiperPage';
+import {ChildWardrobe} from '../../pages/game/childWardrobe/ChildWardrobe';
 
 import { Suspense } from 'react';
 
@@ -113,8 +114,5 @@ export const router = createBrowserRouter([
   { path: '/SpaceTransport', element: <SpaceTransport/> },
   { path: '/chemodany', element: <BankGramotnost/> },
   {path: '/swiperPage', element: <SwiperPage/>},
-  {path: '/rest', element: <RestRoom/>},
-  {path: '/relaxRoom', element: <RelaxRoom/>},
-   { path: '/rast', element: <GameRast /> },
 
 ]);
