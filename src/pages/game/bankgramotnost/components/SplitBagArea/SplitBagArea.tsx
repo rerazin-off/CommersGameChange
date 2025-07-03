@@ -1,51 +1,57 @@
 import { DraggableBag } from '../index';
 import classes from './SplitBagArea.module.scss';
-import { leftBags, rightBags, allBags } from '../../contstans';
-import { useState, useEffect } from 'react';
+import { allBags } from '../../contstans';
 
 type SplitBagAreaProps = {
   placedItems: number[];
+  currentBagId: number | null;
+  checked: boolean;
+  incorrectBags: typeof allBags;
+  currentIncorrectIndex: number;
+  onIncorrectBagPlaced: () => void;
 };
 
-const SplitBagArea = ({ placedItems = [] }: SplitBagAreaProps) => {
-  const [initialBags, setInitialBags] = useState<{
-    left: typeof leftBags;
-    right: typeof rightBags;
-  }>({ left: [], right: [] });
+const SplitBagArea = ({
+                        placedItems = [],
+                        currentBagId,
+                        checked,
+                        incorrectBags,
+                        currentIncorrectIndex,
+                        onIncorrectBagPlaced
+                      }: SplitBagAreaProps) => {
+  // До проверки - показываем текущую сумку
+  if (!checked) {
+    const currentBag = allBags.find(bag => bag.id === currentBagId);
+    const isPlaced = placedItems.includes(currentBagId);
 
-  useEffect(() => {
-    // Инициализация только при первом рендере
-    if (initialBags.left.length === 0 && initialBags.right.length === 0) {
-      const allAvailableBags = [...allBags].sort(() => Math.random() - 0.5);
-      const leftCount = Math.ceil(allAvailableBags.length / 2);
-      const newLeftBags = allAvailableBags.slice(0, leftCount);
-      const newRightBags = allAvailableBags.slice(leftCount);
+    return (
+      <div className={classes.splitContainer}>
+        <div className={classes.bags}>
+          {!isPlaced && currentBag && (
+            <DraggableBag
+              key={currentBag.id}
+              bag={currentBag}
+              disabled={false}
+            />
+          )}
+        </div>
+      </div>
+    );
+  }
 
-      setInitialBags({
-        left: newLeftBags,
-        right: newRightBags
-      });
-    }
-  }, []);
-
-  // Фильтруем только не размещенные элементы, сохраняя исходное распределение
-  const availableBags = {
-    left: initialBags.left.filter(bag => !placedItems.includes(bag.id)),
-    right: initialBags.right.filter(bag => !placedItems.includes(bag.id))
-  };
+  // После проверки - показываем текущую неправильную сумку
+  const currentIncorrectBag = incorrectBags[currentIncorrectIndex];
+  if (!currentIncorrectBag) return null;
 
   return (
     <div className={classes.splitContainer}>
-      <div className={classes.leftBags}>
-        {availableBags.left.map(bag => (
-          <DraggableBag key={`left-${bag.id}`} bag={bag} />
-        ))}
-      </div>
-
-      <div className={classes.rightBags}>
-        {availableBags.right.map(bag => (
-          <DraggableBag key={`right-${bag.id}`} bag={bag} />
-        ))}
+      <div className={classes.bags}>
+        <DraggableBag
+          key={currentIncorrectBag.id}
+          bag={currentIncorrectBag}
+          disabled={false}
+          onDragEnd={onIncorrectBagPlaced}
+        />
       </div>
     </div>
   );

@@ -5,22 +5,18 @@ import { BagsList } from '../../types';
 import { useEffect, useState } from 'react';
 import { allBags } from '../../contstans';
 
-const shuffleArray = (array: any[]) => {
-  const newArray = [...array];
-  for (let i = newArray.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
-  }
-  return newArray;
-};
-
 type DropBagAreaProps = {
   positions: number[][];
   setPositions: React.Dispatch<React.SetStateAction<number[][]>>;
+  currentBagIndex: number;
 };
 
-const DropBagArea = ({ positions, setPositions }: DropBagAreaProps) => {
+const DropBagArea = ({ positions, setPositions, currentBagIndex }: DropBagAreaProps) => {
   const [shuffledBags, setShuffledBags] = useState<BagsList>([]);
+
+  useEffect(() => {
+    setShuffledBags([...allBags].sort(() => Math.random() - 0.5));
+  }, []);
 
   const [, drop] = useDrop({
     accept: 'bag',
@@ -29,22 +25,14 @@ const DropBagArea = ({ positions, setPositions }: DropBagAreaProps) => {
     },
   });
 
-  useEffect(() => {
-    // Перемешиваем bags при монтировании компонента
-    setShuffledBags(shuffleArray(allBags));
-  }, []);
-
   return (
     <div ref={drop} className={classes.bags}>
-      {shuffledBags.map(bag => {
+      {shuffledBags.slice(0, currentBagIndex + 1).map(bag => {
         const isPlaced = positions.flat().includes(bag.id);
         return isPlaced ? (
           <div key={bag.id} className={classes.placeholder} />
         ) : (
-          <DraggableBag
-            key={bag.id}
-            bag={bag}
-          />
+          <DraggableBag key={bag.id} bag={bag} />
         );
       })}
     </div>

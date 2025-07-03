@@ -4,6 +4,10 @@
   background-size: cover;
   position: relative;
   overflow: hidden;
+  pointer-events: none;
+  > * {
+    pointer-events: auto;
+  }
 }
 
 .grid {
@@ -13,7 +17,7 @@
   right: 0;
   display: flex;
   justify-content: center;
-  gap: 200px;
+  gap: 200px; // Увеличиваем расстояние между слотами
 }
 
 .circle {

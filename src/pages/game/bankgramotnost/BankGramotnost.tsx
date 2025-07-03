@@ -1,15 +1,14 @@
-import { useState } from 'react';
-import classes from './BankGramotnost.module.scss';
-import { Button } from '@/components/Button/Button';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { DndProvider } from 'react-dnd';
 import { TouchBackend } from 'react-dnd-touch-backend';
-import { DropBagArea } from './components';
-import { correctOrder, allBags, shuffleBags } from './contstans';
-import CardFinish from './components/CardFinish/CardFinish';
+import classes from './BankGramotnost.module.scss';
+import { Button } from '@/components/Button/Button';
+import { RoutesEnum } from '@/app/routes';
+import { allBags, correctOrder } from './contstans';
 import DropSlot from './components/DropSlot/DropSlot';
 import SplitBagArea from './components/SplitBagArea/SplitBagArea';
-import { RoutesEnum } from '@/app/routes';
+import CardFinish from './components/CardFinish/CardFinish';
 
 const touchBackendOptions = {
   enableMouseEvents: true,
@@ -17,22 +16,37 @@ const touchBackendOptions = {
   delayTouchStart: 0,
   delay: 0,
   ignoreContextMenu: true,
-  getDropTargetElements: (element: HTMLElement) => {
-    return Array.from(document.querySelectorAll('[data-drop-target="true"]'));
-  }
+  enableHoverOutsideTarget: true,
+  touchSlop: 0, // Важно: установлено в 0 для мгновенного отслеживания
+  getDropTargetElementsForElement: (element) => {
+    return Array.from(document.querySelectorAll('[data-testid^="drop-slot"]'));
+  },
+  getTouchClientOffset: (e: TouchEvent) => {
+    const touch = e.touches[0];
+    return { x: touch.clientX, y: touch.clientY };
+  },
+  previewEnabled: true,
 };
 
 export const BankGramotnost = () => {
   const [positions, setPositions] = useState<number[][]>([[], []]);
   const [openIsCard, setOpenIsCard] = useState(false);
   const [attempts, setAttempts] = useState(0);
-  const [currentBagIndex, setCurrentBagIndex] = useState(0);
+  const [currentBagId, setCurrentBagId] = useState<number | null>(null);
+  const [checked, setChecked] = useState(false);
+  const [correctlyPlaced, setCorrectlyPlaced] = useState<number[]>([]);
+  const [incorrectBags, setIncorrectBags] = useState<typeof allBags>([]);
+  const [currentIncorrectIndex, setCurrentIncorrectIndex] = useState(0);
+  const [allBagsPlaced, setAllBagsPlaced] = useState(false);
+  const [shuffledBags, setShuffledBags] = useState<typeof allBags>([]);
+  const navigate = useNavigate();
 
-  const allRequiredBagsPlaced = () => {
-    const requiredIds = correctOrder.flat();
-    const placedIds = positions.flat();
-    return requiredIds.every(id => placedIds.includes(id));
-  };
+  // Инициализация перемешанных багов
+  useEffect(() => {
+    const shuffled = [...allBags].sort(() => Math.random() - 0.5);
+    setShuffledBags(shuffled);
+    setCurrentBagId(shuffled[0]?.id || null);
+  }, []);
 
   const handleDrop = (slotIndex: number, item: { id: number }) => {
     setPositions(prev => {
@@ -45,40 +59,59 @@ export const BankGramotnost = () => {
       return newPositions;
     });
 
-    // Увеличиваем индекс только если это текущий bag
-    if (item.id === allBags[currentBagIndex].id) {
-      setCurrentBagIndex(prev => Math.min(prev + 1, allBags.length - 1));
-    }
+    // Находим следующий неразмещенный баг
+    const nextBag = shuffledBags.find(bag =>
+      !positions.flat().includes(bag.id) && bag.id !== item.id
+    );
+    setCurrentBagId(nextBag?.id || null);
   };
-
 
   const checkResults = () => {
     setAttempts(prev => prev + 1);
+    setChecked(true);
 
-    const isCorrect = positions.every((slotItems, slotIndex) => {
+    const newCorrectlyPlaced: number[] = [];
+    const newIncorrectBags: typeof allBags = [];
+    const newPositions: number[][] = [[], []];
+
+    positions.forEach((slotItems, slotIndex) => {
       const correctIds = correctOrder[slotIndex];
-      return (
-        correctIds.every(id => slotItems.includes(id)) &&
-        slotItems.every(id => correctIds.includes(id))
-      );
+      slotItems.forEach(id => {
+        if (correctIds.includes(id)) {
+          newCorrectlyPlaced.push(id);
+          newPositions[slotIndex].push(id);
+        } else {
+          const bag = allBags.find(b => b.id === id);
+          if (bag) newIncorrectBags.push(bag);
+        }
+      });
     });
 
-    if (isCorrect) {
+    setCorrectlyPlaced(newCorrectlyPlaced);
+    setIncorrectBags(newIncorrectBags);
+    setPositions(newPositions);
+    setCurrentIncorrectIndex(0);
+    setAllBagsPlaced(false);
+
+    if (newIncorrectBags.length === 0) {
       setOpenIsCard(true);
-    } else {
-      setPositions(prev =>
-        prev.map((slot, slotIndex) =>
-          slot.filter(id => correctOrder[slotIndex].includes(id))
-        )
-      );
     }
   };
 
-  const handleCloseCard = () => {
-    setOpenIsCard(false);
+  const handleIncorrectBagPlaced = () => {
+    if (currentIncorrectIndex < incorrectBags.length - 1) {
+      setCurrentIncorrectIndex(prev => prev + 1);
+    } else {
+      setAllBagsPlaced(true);
+      setIncorrectBags([]);
+    }
   };
 
-  const navigate = useNavigate();
+  const allRequiredBagsPlaced = () => {
+    const requiredIds = correctOrder.flat();
+    const placedIds = positions.flat();
+    return requiredIds.every(id => placedIds.includes(id));
+  };
 
   return (
     <DndProvider backend={TouchBackend} options={touchBackendOptions}>
@@ -90,32 +123,34 @@ export const BankGramotnost = () => {
               index={i}
               positions={positions[i]}
               onDrop={(item) => handleDrop(i, item)}
+              checked={checked}
+              correctlyPlaced={correctlyPlaced}
             />
           ))}
         </div>
 
         <SplitBagArea
           placedItems={positions.flat()}
-          currentBagIndex={currentBagIndex}
+          currentBagId={currentBagId}
+          checked={checked}
+          incorrectBags={incorrectBags}
+          currentIncorrectIndex={currentIncorrectIndex}
+          onIncorrectBagPlaced={handleIncorrectBagPlaced}
         />
 
-        {allRequiredBagsPlaced() && (
+        {(allRequiredBagsPlaced() && !checked) || (checked && allBagsPlaced) ? (
           <div onClick={checkResults} className={classes.checkButton}>
             <Button bgColor="blue" type="type1v2">
               ПРОВЕРИТЬ
             </Button>
           </div>
-        )}
+        ) : null}
 
         <div className={classes.backButton}>
           <Button
             bgColor="pink"
             type="type1v2"
-            // onClick={() => navigate(RoutesEnum.BANK)}
-            onClick={() => {
-              localStorage.setItem('fromGame', 'true'); // Устанавливаем флаг
-              navigate(RoutesEnum.BANK); // Возвращаемся назад
-            }}
+            onClick={() => navigate(RoutesEnum.BANK)}
           >
             НАЗАД
           </Button>
@@ -124,7 +159,7 @@ export const BankGramotnost = () => {
         <CardFinish
           attempts={attempts}
           isOpenCard={openIsCard}
-          onClose={handleCloseCard}
+          onClose={() => setOpenIsCard(false)}
         />
       </div>
     </DndProvider>

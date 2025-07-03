@@ -5,27 +5,43 @@ import classes from './DraggableBag.module.scss';
 
 type DraggableBagProps = {
   bag?: Bag;
-  onRemove?: () => void;
   isInSlot?: boolean;
+  isCorrect?: boolean;
+  disabled?: boolean;
+  onDragEnd?: () => void;
+  onRemove?: () => void;
 };
 
-const DraggableBag = ({ bag, onRemove, isInSlot = false }: DraggableBagProps) => {
+const DraggableBag = ({
+                        bag,
+                        isInSlot = false,
+                        isCorrect = false,
+                        disabled = false,
+                        onDragEnd,
+                        onRemove,
+                      }: DraggableBagProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const previewRef = useRef<HTMLDivElement | null>(null);
   const [isDraggingTouch, setIsDraggingTouch] = useState(false);
+  const [isDraggingLocal, setIsDraggingLocal] = useState(false);
 
-  const [{ isDragging }, drag] = useDrag(() => ({
+  const [{ isDragging }, drag, preview] = useDrag(() => ({
     type: 'bag',
     item: { id: bag?.id },
+    end: (item, monitor) => {
+      if (monitor.didDrop() && onDragEnd) {
+        onDragEnd();
+      }
+      setIsDraggingLocal(false);
+      removePreview(); // Гарантированное удаление превью
+    },
+    canDrag: !disabled,
     collect: (monitor) => ({
       isDragging: !!monitor.isDragging(),
     }),
-    end: () => {
-      // Гарантированное удаление превью при любом завершении перетаскивания
-      removePreview();
-    }
   }));
 
+  // Создание и управление превью для touch-событий
   const createPreview = (x: number, y: number) => {
     if (!bag || isInSlot) return;
 
@@ -59,17 +75,22 @@ const DraggableBag = ({ bag, onRemove, isInSlot = false }: DraggableBagProps) =>
     }
   };
 
+  // Инициализация drag и preview
   useEffect(() => {
-    return () => {
-      // Очистка при размонтировании компонента
-      removePreview();
-    };
-  }, []);
+    if (containerRef.current) {
+      drag(containerRef.current);
+      preview(containerRef.current, { captureDraggingState: true });
+    }
+    return removePreview; // Очистка при размонтировании
+  }, [drag, preview]);
 
-  drag(containerRef);
+  useEffect(() => {
+    setIsDraggingLocal(isDragging || isDraggingTouch);
+  }, [isDragging, isDraggingTouch]);
 
+  // Обработчики touch-событий
   const handleTouchStart = (e: React.TouchEvent) => {
-    if (!containerRef.current || isInSlot) return;
+    if (!containerRef.current || isInSlot || disabled) return;
     const touch = e.touches[0];
     createPreview(touch.clientX, touch.clientY);
     setIsDraggingTouch(true);
@@ -92,10 +113,14 @@ const DraggableBag = ({ bag, onRemove, isInSlot = false }: DraggableBagProps) =>
   return (
     <div
       ref={containerRef}
-      className={`${classes.draggableContainer} ${isInSlot ? classes.inSlot : ''}`}
+      className={`${classes.draggableContainer} 
+        ${isInSlot ? classes.inSlot : ''} 
+        ${isCorrect ? classes.correct : ''}
+        ${disabled ? classes.disabled : ''}
+        ${isDraggingLocal ? classes.dragging : ''}`}
       style={{
-        opacity: isDragging || isDraggingTouch ? 0 : 1,
-        transform: isInSlot ? 'translate(0px, 110px)' : 'translate(50px, -40px)',
+        opacity: isDraggingLocal ? 0 : 1, // Прячем оригинал при перетаскивании
+        cursor: disabled ? 'not-allowed' : 'grab',
         touchAction: 'none',
       }}
       onTouchStart={handleTouchStart}
