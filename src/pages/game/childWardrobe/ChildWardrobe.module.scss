@@ -1,0 +1,94 @@
+.game{
+  background: url("@/assets/img/game_assets/child-wardrobe-img/bg.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+}
+.sliderContainer {
+  position: absolute;
+  width: 60%;
+  overflow: visible;
+  display: flex;
+  align-items: end;
+
+  .customSwiper {
+    height: 100%;
+    bottom: 0vh;
+
+    .slide {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      transition: all 0.3s ease;
+      height: 100%;
+
+      img {
+        position: relative;
+        width: auto;
+        height: 90%;
+        transition: all 0.3s ease;
+        filter: brightness(0.8);
+        object-fit: contain;
+      }
+    }
+  }
+}
+
+.backButton{
+  position: absolute;
+  bottom: 1vh;
+  right: 5vh;
+  z-index: 100;
+}
+
+.panel{
+  color: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1vh;
+  font-size: 28px;
+  font-family: 'Comfortaa';
+  margin-bottom: 5vh;
+  position: relative;
+  z-index: 100;
+  text-align: center;
+
+  button {
+    border-radius: 7px;
+    font-family: 'Comfortaa';
+    border: none;
+    padding: 1vh 2vw;
+    margin: 0;
+    background: #fff;
+    font-size: 14px;
+  }
+}
+
+.row{
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 2vh;
+  button{
+    background: transparent;
+  }
+}
+
+.col{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 19.5%;
+}
+
+.backButton{
+  position: absolute;
+  bottom: 1vh;
+  left: 5vh;
+  z-index: 100;
+}

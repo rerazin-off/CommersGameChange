@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { MutableRefObject, ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import lineImage from '../../assets/img/line.svg';
 
-
 interface CardProps {
   title: string;
   body: ReactNode;
@@ -12,12 +11,12 @@ interface CardProps {
   isOpen?: boolean;
   game: string;
   backLink: string;
-  type: 'game' | 'gameOver';
-  error?: boolean,
+  type: 'game' | 'gameOver' | 'secondRound';
+  error?: boolean;
+  onSecondRound?: () => void;
 }
 
 const Card = (props: CardProps) => {
-
   const {
     title,
     body,
@@ -26,10 +25,12 @@ const Card = (props: CardProps) => {
     isOpen,
     onClose,
     type,
-    error
+    error,
+    onSecondRound
   } = props;
 
   const isMarker = type === 'gameOver';
+  const isSecondRound = type === 'secondRound';
 
   const ANIMATION_DELAY = 300;
 
@@ -43,9 +44,7 @@ const Card = (props: CardProps) => {
   }, [isOpen]);
 
   const closeCard = useCallback(() => {
-
-    if (onClose){
-
+    if (onClose) {
       setIsClose(true);
       timerRef.current = setTimeout(() => {
         onClose();
@@ -53,11 +52,6 @@ const Card = (props: CardProps) => {
       }, ANIMATION_DELAY);
     }
   }, [onClose]);
-
-
-  // const redirectToGame = () => {
-  //   window.location.href = props.game;
-  // };
 
   const handleReloadPage = useCallback(() => {
     window.location.reload();
@@ -72,27 +66,29 @@ const Card = (props: CardProps) => {
       <div className={classes.cardBackdrop}></div>
       <div className={`${classes.var} ${error ? classes.error : ''}`}>
         <div className={classes.text}>
-          <h1> {title} </h1>
+          <h1>{title}</h1>
           <div className={classes.img}><img src={lineImage} alt="" /></div>
           <p style={{ whiteSpace: 'pre-line' }}>{body}</p>
         </div>
-        {isMarker? (
+        {isMarker ? (
           <div className={classes.knopki}>
             <Link to={`/${game}?hideAssistant=true`}><Button bgColor={'pink'} type={'type1v2'}>НАЗАД</Button></Link>
             <Button onClick={handleReloadPage} bgColor={'blue'} type={'type1v2'}>ЗАНОВО</Button>
           </div>
+        ) : isSecondRound ? (
+          <div className={classes.knopki}>
+            <Button onClick={closeCard} bgColor={'pink'} type={'type1v2'}>НАЗАД</Button>
+            <Button onClick={onSecondRound} bgColor={'blue'} type={'type1v2'}>ВПЕРЕД</Button>
+          </div>
         ) : (
           <div className={classes.knopki}>
             <Button onClick={closeCard} bgColor={'pink'} type={'type1v2'}>НАЗАД</Button>
-            {/*<Link to={`/game?url=${encodeURIComponent(game)}&backLink=/${encodeURIComponent(backLink)}`}><Button bgColor={'blue'} type={'type1v2'}>ВПЕРЕД</Button></Link>*/}
-            <Link to={`/${(game)}`}><Button bgColor={'blue'} type={'type1v2'}>ВПЕРЕД</Button></Link>
+            <Link to={`/${game}`}><Button bgColor={'blue'} type={'type1v2'}>ВПЕРЕД</Button></Link>
           </div>
         )}
-
       </div>
     </>
-  )
-    ;
+  );
 };
 
 export default Card;
