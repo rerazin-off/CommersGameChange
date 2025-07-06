@@ -18,7 +18,7 @@ const touchBackendOptions = {
   delay: 0,
   ignoreContextMenu: true,
   getDropTargetElements: (element: HTMLElement) => {
-    return Array.from(document.querySelectorAll('[data-drop-target="true"]'));
+    return Array.from(document.querySelectorAll('[blocks-drop-target="true"]'));
   }
 };
 

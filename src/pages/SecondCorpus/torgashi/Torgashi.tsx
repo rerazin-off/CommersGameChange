@@ -31,7 +31,7 @@ const gameData: Record<string, { title: string; body: string; url: string }> = {
   },
 };
 
-export const Torgashi: React.FC = () => {
+const Torgashi: React.FC = () => {
 
   const [openIsCard, setOpenIsCard] = useState(false);
   const [currentGame, setGame] = useState<string>('')
@@ -108,3 +108,5 @@ export const Torgashi: React.FC = () => {
     </div>
   );
 };
+
+export default Torgashi;

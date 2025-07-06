@@ -1,0 +1,45 @@
+// components/DragDropContainer.scss
+.drag-drop-container {
+  position: relative;
+  transition: opacity 0.2s ease;
+  margin-bottom: 8px;
+
+  &.dragging {
+    opacity: 0.6;
+    // УБРАНО: transform: rotate(3deg);
+    // УБРАНО: box-shadow при перетаскивании
+    z-index: 1000;
+  }
+
+  &.drop-target {
+    background-color: rgba(76, 175, 80, 0.05);
+  }
+}
+
+.drop-indicator-line {
+  position: absolute;
+  top: -2px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: #4CAF50;
+  border-radius: 2px;
+  z-index: 10;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 8px;
+    background: #4CAF50;
+    border-radius: 50%;
+  }
+}
+
+// Убираем лишние анимации
+.drag-drop-container:not(.dragging) {
+  transition: all 0.2s ease;
+}

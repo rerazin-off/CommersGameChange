@@ -9,7 +9,7 @@ import { GameState } from './components/types';
 import { RoutesEnum } from '../../../app/routes';
 import classes from '../deti/MovieGame.module.scss';
 
-export const MovieGame = () => {
+const MovieGame = () => {
   const [gameState, setGameState] = useState<GameState>({
     currentMovieIndex: 0,
     currentImageIndex: 0,
@@ -124,3 +124,5 @@ export const MovieGame = () => {
     </div>
   );
 };
+
+export default MovieGame;

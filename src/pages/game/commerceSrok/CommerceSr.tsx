@@ -28,7 +28,7 @@ const shuffleArray = (array: any[]) => {
   return newArray;
 };
 
-export const CommerceSr = () => {
+const CommerceSr = () => {
   const initialPairs: ImagePair[] = [
     {
       top: { src: '/src/assets/img/6.svg', alt: 'время', id: 1 },
@@ -420,3 +420,5 @@ export const CommerceSr = () => {
     </div>
   );
 };
+
+export default CommerceSr;

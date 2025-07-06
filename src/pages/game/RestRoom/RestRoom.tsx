@@ -342,7 +342,7 @@ const RestRoom: React.FC = () => {
 
   const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
-    const refrigeratorIndex = parseInt(e.currentTarget.getAttribute('data-refrigerator') || '0');
+    const refrigeratorIndex = parseInt(e.currentTarget.getAttribute('blocks-refrigerator') || '0');
     handleDropOnRefrigerator(refrigeratorIndex);
   };
 

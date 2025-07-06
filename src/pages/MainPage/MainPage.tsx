@@ -8,7 +8,7 @@ import DialogWindow from './components/DialogWindow/DialogWindow';
 import { Button } from '../../components/Button/Button';
 import { RoutesEnum } from '../../app/routes';
 
-export const MainPage = () => {
+const MainPage = () => {
   const navigate = useNavigate()
   const navigationPrevRef = useRef(null)
   const navigationNextRef = useRef(null);
@@ -69,3 +69,5 @@ export const MainPage = () => {
     </div>
   );
 };
+
+export default MainPage;

@@ -48,10 +48,10 @@ $(document).ready(function () {
     var correctAnswer4 = 0;
 
 
-    var Answer1 = $('[data-drag = item1]').length;
-    var Answer2 = $('[data-drag = item2]').length;
-    var Answer3 = $('[data-drag = item3]').length;
-    var Answer4 = $('[data-drag = item4]').length;
+    var Answer1 = $('[blocks-drag = item1]').length;
+    var Answer2 = $('[blocks-drag = item2]').length;
+    var Answer3 = $('[blocks-drag = item3]').length;
+    var Answer4 = $('[blocks-drag = item4]').length;
 
     $(".drop").droppable({
         classes: {
@@ -59,8 +59,8 @@ $(document).ready(function () {
             "ui-droppable-hover": "hover"
         },
         accept: function (el) {
-            var test = el.attr("data-drag");
-            var test1 = $(this).attr("data-drop");
+            var test = el.attr("blocks-drag");
+            var test1 = $(this).attr("blocks-drop");
             if (test == test1) {
                 return true;
             } else {
@@ -73,24 +73,24 @@ $(document).ready(function () {
         },
         out: function (event, ui) {},
         drop: function (event, ui) {
-            if (ui.draggable.attr('data-drag-true') == 'false') {
-                switch ($(this).attr('data-drop')) {
+            if (ui.draggable.attr('blocks-drag-true') == 'false') {
+                switch ($(this).attr('blocks-drop')) {
                     case 'item1':
                         correctAnswer1++;
-                        ui.draggable.attr('data-drag-true', 'true');
+                        ui.draggable.attr('blocks-drag-true', 'true');
                         console.log(correctAnswer1);
                         break;
                     case 'item2':
                         correctAnswer2++;
-                        ui.draggable.attr('data-drag-true', 'true');
+                        ui.draggable.attr('blocks-drag-true', 'true');
                         break;
                     case 'item3':
                         correctAnswer3++;
-                        ui.draggable.attr('data-drag-true', 'true');
+                        ui.draggable.attr('blocks-drag-true', 'true');
                         break;
                     case 'item4':
                         correctAnswer4++;
-                        ui.draggable.attr('data-drag-true', 'true');
+                        ui.draggable.attr('blocks-drag-true', 'true');
                         break;
                     default:
                         break;

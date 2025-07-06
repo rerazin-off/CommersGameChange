@@ -3,10 +3,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '../../components/Button/Button';
 
 
-export const ThirdCorpus = () => {
-
-
-
+const ThirdCorpus = () => {
   return (
     <div>
       <div className={classes.korpus_1}>
@@ -68,3 +65,5 @@ export const ThirdCorpus = () => {
     </div>
   );
 };
+
+export default ThirdCorpus;

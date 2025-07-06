@@ -28,9 +28,13 @@
   }
 }
 
-.parameter{
+.slotParameters{
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 1vh;
+}
+
+p{
+  font-family: 'Comfortaa';
 }

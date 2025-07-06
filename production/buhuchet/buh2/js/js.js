@@ -40,15 +40,15 @@ $(document).ready(function () {
     var correctAnswer8 = 0;
     var correctAnswer9 = 0;
 
-    var Answer1 = $('[data-drag = item1]').length;
-    var Answer2 = $('[data-drag = item2]').length;
-    var Answer3 = $('[data-drag = item3]').length;
-    var Answer4 = $('[data-drag = item4]').length;
-    var Answer5 = $('[data-drag = item5]').length;
-    var Answer6 = $('[data-drag = item6]').length;
-    var Answer7 = $('[data-drag = item7]').length;
-    var Answer8 = $('[data-drag = item8]').length;
-    var Answer9 = $('[data-drag = item9]').length;
+    var Answer1 = $('[blocks-drag = item1]').length;
+    var Answer2 = $('[blocks-drag = item2]').length;
+    var Answer3 = $('[blocks-drag = item3]').length;
+    var Answer4 = $('[blocks-drag = item4]').length;
+    var Answer5 = $('[blocks-drag = item5]').length;
+    var Answer6 = $('[blocks-drag = item6]').length;
+    var Answer7 = $('[blocks-drag = item7]').length;
+    var Answer8 = $('[blocks-drag = item8]').length;
+    var Answer9 = $('[blocks-drag = item9]').length;
 
     $(".drop").droppable({
         classes: {
@@ -56,8 +56,8 @@ $(document).ready(function () {
             "ui-droppable-hover": "hover"
         },
         accept: function (el) {
-            var test = el.attr("data-drag");
-            var test1 = $(this).attr("data-drop");
+            var test = el.attr("blocks-drag");
+            var test1 = $(this).attr("blocks-drop");
             if (test == test1) {
                 return true;
             } else {
@@ -70,21 +70,21 @@ $(document).ready(function () {
         },
         out: function (event, ui) {},
         drop: function (event, ui) {
-            if (ui.draggable.attr('data-drag-true') == 'false') {
-                switch ($(this).attr('data-drop')) {
+            if (ui.draggable.attr('blocks-drag-true') == 'false') {
+                switch ($(this).attr('blocks-drop')) {
                     case 'item1':
                         correctAnswer1++;
                         ui.draggable.css({
                             "background": 'green'
                         });
-                        ui.draggable.attr('data-drag-true', 'true');
+                        ui.draggable.attr('blocks-drag-true', 'true');
                         break;
                     case 'item2':
                         correctAnswer2++;
                         ui.draggable.css({
                             "background": 'red'
                         });
-                        ui.draggable.attr('data-drag-true', 'true');
+                        ui.draggable.attr('blocks-drag-true', 'true');
                         break;
                     case 'item3':
                         correctAnswer3++;
@@ -92,7 +92,7 @@ $(document).ready(function () {
                             "background": 'green',
                             "color": 'white'
                         });
-                        ui.draggable.attr('data-drag-true', 'true');
+                        ui.draggable.attr('blocks-drag-true', 'true');
                         break;
                     case 'item4':
                         correctAnswer4++;
@@ -100,7 +100,7 @@ $(document).ready(function () {
                             "background": 'green',
                             "color": 'white'
                         });
-                        ui.draggable.attr('data-drag-true', 'true');
+                        ui.draggable.attr('blocks-drag-true', 'true');
                         break;
                     case 'item5':
                         correctAnswer5++;
@@ -108,7 +108,7 @@ $(document).ready(function () {
                             "background": 'green',
                             "color": 'white'
                         });
-                        ui.draggable.attr('data-drag-true', 'true');
+                        ui.draggable.attr('blocks-drag-true', 'true');
                         break;
                     case 'item6':
                         correctAnswer6++;
@@ -116,7 +116,7 @@ $(document).ready(function () {
                             "background": 'green',
                             "color": 'white'
                         });
-                        ui.draggable.attr('data-drag-true', 'true');
+                        ui.draggable.attr('blocks-drag-true', 'true');
                         break;
                     case 'item7':
                         correctAnswer7++;
@@ -124,7 +124,7 @@ $(document).ready(function () {
                             "background": 'green',
                             "color": 'white'
                         });
-                        ui.draggable.attr('data-drag-true', 'true');
+                        ui.draggable.attr('blocks-drag-true', 'true');
                         break;
                     case 'item8':
                         correctAnswer8++;
@@ -132,7 +132,7 @@ $(document).ready(function () {
                             "background": 'green',
                             "color": 'white'
                         });
-                        ui.draggable.attr('data-drag-true', 'true');
+                        ui.draggable.attr('blocks-drag-true', 'true');
                         break;
                     case 'item9':
                         correctAnswer9++;
@@ -140,7 +140,7 @@ $(document).ready(function () {
                             "background": 'green',
                             "color": 'white'
                         });
-                        ui.draggable.attr('data-drag-true', 'true');
+                        ui.draggable.attr('blocks-drag-true', 'true');
                         break;
                     default:
                         break;

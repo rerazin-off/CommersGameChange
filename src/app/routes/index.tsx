@@ -1,120 +1,124 @@
+import React, {Suspense} from 'react';
 import { createBrowserRouter } from 'react-router-dom';
-import { FirstCorpus } from '../../pages/FirstCorpus/FirstCorpus.tsx';
-import { MainPage } from '../../pages/MainPage/MainPage.tsx';
-import { SecondCorpus } from '../../pages/SecondCorpus/SecondCorpus.tsx';
-import { ThirdCorpus } from '../../pages/ThirdCorpus/ThirdCorpus.tsx';
-import { Kidergarden } from '../../pages/ThirdCorpus/kindergarden/kindergarden';
-import { Logistics } from '../../pages/FirstCorpus/Logistics/Logistics.tsx';
-import { Yur } from '../../pages/FirstCorpus/Yur/Yur.tsx';
-import { Dou } from '../../pages/SecondCorpus/Dou/dou.tsx';
-import { Programmers } from '../../pages/FirstCorpus/Programmers/Programmers';
-import { SpecialKidergarden } from '../../pages/ThirdCorpus/special-kindergarten/SpecialKindergarden';
-import { Economist } from '../../pages/FirstCorpus/Economist/Economist';
-import { Bank } from '../../pages/SecondCorpus/bank/Bank';
-import { Torgashi } from '../../pages/SecondCorpus/torgashi/Torgashi';
-import { MusiciansRoom } from '../../pages/ThirdCorpus/musiciansroom/MusiciansRoom';
-import { ElementarySchool } from '../../pages/ThirdCorpus/ElementarySchool/ElementarySchool';
-import { Psih } from '../../pages/MainPage/Psih/Psih';
+import SpacePreloader from '../../components/Preloaer/Preloader';
 import Game from '../../components/Game/Game';
-import { Doy } from '../../pages/game/doy/doy';
-import { BankGame } from '../../pages/game/bank/bankGame';
-import { Rocket } from '../../pages/game/rocket/Rocket';
-import { SorterGame } from '../../pages/game/buhgalter/buhGame';
-import { LogistCep } from '../../pages/game/logist/LogistCep';
-import { MovieGame } from '../../pages/game/deti/Moviegame.tsx';
-import  GameRast  from '../../pages/game/rast/gameRast.tsx';
 
+//Главные компоненты
+const MainPage = React.lazy(()=>import('../../pages/MainPage/MainPage'));
+const SwiperPage = React.lazy(()=>import('../../pages/SwiperPage/SwiperPage'));
+const FirstCorpus = React.lazy(()=>import('../../pages/FirstCorpus/FirstCorpus'));
+const SecondCorpus = React.lazy(()=>import('../../pages/SecondCorpus/SecondCorpus'));
+const ThirdCorpus = React.lazy(()=>import('../../pages/ThirdCorpus/ThirdCorpus'));
+const Psih = React.lazy(()=>import('../../pages/Psih/Psih'));
 
+//Страницы первого корпуса
+const Logistics = React.lazy(()=>import('../../pages/FirstCorpus/Logistics/Logistics'));
+const Yur = React.lazy(()=>import('../../pages/FirstCorpus/Yur/Yur'));
+const Programmers = React.lazy(()=>import('../../pages/FirstCorpus/Programmers/Programmers'));
+const Economist = React.lazy(()=>import('../../pages/FirstCorpus/Economist/Economist'));
 
-import { SpaceTransport } from '../../pages/game/SpaceTransport/SpaceTransport';
-import { BankGramotnost } from '../../pages/game/bankgramotnost/BankGramotnost';
+//Страницы второго корпуса
+const Dou = React.lazy(()=>import('../../pages/SecondCorpus/Dou/dou'));
+const Bank = React.lazy(()=>import('../../pages/SecondCorpus/bank/Bank'));
+const Torgashi = React.lazy(()=>import('../../pages/SecondCorpus/torgashi/Torgashi'));
+
+//Страницы третьего корпуса
+const Kidergarden = React.lazy(()=>import('../../pages/ThirdCorpus/kindergarden/kindergarden'));
+const ElementarySchool = React.lazy(()=>import('../../pages/ThirdCorpus/ElementarySchool/ElementarySchool'));
+const SpecialKidergarden = React.lazy(()=>import('../../pages/ThirdCorpus/special-kindergarten/SpecialKindergarden'));
+const MusiciansRoom = React.lazy(()=>import('../../pages/ThirdCorpus/musiciansroom/MusiciansRoom'));
+
+//Страницы игр
+const BankGame = React.lazy(()=>import('../../pages/game/bank/bankGame'));
+const BankGramotnost = React.lazy(()=>import('../../pages/game/bankgramotnost/BankGramotnost'));
+const ExpenseSorterGame = React.lazy(()=>import('../../pages/game/buhgalter/buhgame2.0/components/BuhgalGame/BuhgalGame'));
+const ChildWardrobe = React.lazy(()=>import('../../pages/game/childWardrobe/ChildWardrobe'));
+const Commerce = React.lazy(()=>import('../../pages/game/commerce/Commerce'));
+const CommercePlayGame = React.lazy(()=>import('../../pages/game/commerce_2/CommercePlayGame'));
+const CommerceMat = React.lazy(()=>import('../../pages/game/commerceMat/CommerceMat'));
+const CommerceSr = React.lazy(()=>import('../../pages/game/commerceSrok/CommerceSr'));
+const MovieGame = React.lazy(()=>import('../../pages/game/deti/Moviegame'));
+const Doy = React.lazy(()=>import('../../pages/game/doy/doy'));
+const LogistCep = React.lazy(()=>import('../../pages/game/logist/LogistCep'));
+const GameRast = React.lazy(()=>import('../../pages/game/rast/gameRast'));
+const Rocket = React.lazy(()=>import('../../pages/game/rocket/Rocket'));
+const SpaceTransport = React.lazy(()=>import('../../pages/game/SpaceTransport/SpaceTransport'));
+const Upbringing = React.lazy(()=>import('../../pages/game/upbringing/Upbringing'));
+const siteBuilde = React.lazy(()=>import('../../pages/game/siteBuilder/App'));
+const geometricPersonGame = React.lazy(()=>import('../../pages/game/geometricPerson/src/App'));
+
+import Preloader from '../../components/Preloaer/Preloader';
+
 import { Musical } from '../../pages/game/musical/musical.js';
-import CommercePlayGame  from '../../pages/game/commerce_2/CommercePlayGame';
-import Commerce  from '../../pages/game/commerce/Commerce';
-import {Upbringing}  from '../../pages/game/upbringing/Upbringing';
-import {CommerceTovary}  from '../../pages/game/commerce/CommerceTovary';
-import {CommerceMat}  from '../../pages/game/commerceMat/CommerceMat';
-import {CommerceSr}  from '../../pages/game/commerceSrok/CommerceSr';
-import ExpenseSorterGame from '../../pages/game/buhgalter/buhgame2.0/components/BuhgalGame/BuhgalGame';
-import {SwiperPage} from '../../pages/SwiperPage/SwiperPage';
+import { CommerceTovary } from '../../pages/game/commerce/CommerceTovary';
 
-import { Suspense } from 'react';
 
+
+const LoadingFallback = () => <SpacePreloader/>;
 
 export enum RoutesEnum {
   HOME = '/',
   FIRST_CORPUS = '/1',
+  SECOND_CORPUS = '/2',
+  THIRD_CORPUS = '/3',
   PROGRAMMERS = '/programmers',
   LOGISTICS = '/logistics',
   SWIPER = '/swiperPage',
   ECONOMIST = '/economist',
-  SPECIALKINDERGARDEN='/SpecialKinder',
+  SPECIALKINDERGARDEN = '/SpecialKinder',
   DOU = '/dou',
   BANK = '/bank',
   TORGASHI = '/tovaroveds',
   KINDER = '/kinder',
   MUSIC = '/music',
   YUR = '/yur',
- //  ECONOMIST = '/economist',
- // main
 }
 
+const withSuspense = (Component: React.ComponentType) => (
+  <Suspense fallback={<LoadingFallback />}>
+    <Component />
+  </Suspense>
+);
+
 export const router = createBrowserRouter([
-  { path: RoutesEnum.HOME, element: <MainPage /> },
-  { path: RoutesEnum.FIRST_CORPUS, element: <FirstCorpus /> },
-  { path: '/2', element: <SecondCorpus /> },
-  { path: '/3', element: <ThirdCorpus /> },
-  { path: '/programmers', element: <Programmers /> },
-  { path: '/kinder', element: <Kidergarden /> },
-  { path: RoutesEnum.LOGISTICS, element: <Logistics /> },
-  // { path: '/robotGame', element:  < />,},
-  { path: RoutesEnum.YUR, element: <Yur /> },
-  { path: '/SpecialKinder', element: <SpecialKidergarden /> },
-  {path: "/specialkindergarden", element:<SpecialKidergarden />},
-  { path: '/economist', element: <Economist /> },
-  { path: RoutesEnum.DOU, element: <Dou /> },
-  { path: RoutesEnum.BANK, element: <Bank /> },
-  { path: RoutesEnum.ECONOMIST, element: <Economist /> },
-  { path: RoutesEnum.TORGASHI, element: <Torgashi /> },
-  { path: RoutesEnum.KINDER, element: <Kidergarden /> },
-  {
-    path: '/dou',
-    element: (
-      <Suspense fallback={<>ЗАГРУЗКА..................</>}>
-        <Dou />
-      </Suspense>
-    ),
-  },
-  { path: '/bank', element: <Bank /> },
-  { path: '/tovaroveds', element: <Torgashi /> },
-  { path: '/music', element: <MusiciansRoom /> },
-  { path: '/ElemShool', element: <ElementarySchool /> },
-  { path: '/Psih', element: <Psih /> },
-  // { path: '/game/:gameId', element: <Game /> },
-  { path: '/doyGame', element: <Doy /> },
-  { path: '/gbank', element: <BankGame /> },
-  { path: '/game', element: <Game /> },
-  { path: '/rocket', element: <Rocket /> },
-  { path: '/gbuh', element: <SorterGame /> },
-  { path: '/gbuh2', element: <ExpenseSorterGame /> },
-  { path: '/tovary', element: <CommerceTovary /> },
-  { path: '/gamelogist', element: <LogistCep /> },
-  { path: '/commerceSr', element: <CommerceSr /> },
-   { path: '/commerceMat', element: <CommerceMat /> },
-   { path: '/upbringing', element: <Upbringing /> },
-    { path: '/deti', element: <MovieGame /> },
+  { path: RoutesEnum.HOME, element: withSuspense(MainPage) },
+  { path: RoutesEnum.FIRST_CORPUS, element: withSuspense(FirstCorpus) },
+  { path: RoutesEnum.SECOND_CORPUS, element: withSuspense(SecondCorpus) },
+  { path: RoutesEnum.THIRD_CORPUS, element: withSuspense(ThirdCorpus) },
+  { path: RoutesEnum.PROGRAMMERS, element: withSuspense(Programmers) },
+  { path: RoutesEnum.KINDER, element: withSuspense(Kidergarden) },
+  { path: RoutesEnum.LOGISTICS, element: withSuspense(Logistics) },
+  { path: RoutesEnum.YUR, element: withSuspense(Yur) },
+  { path: RoutesEnum.SPECIALKINDERGARDEN, element: withSuspense(SpecialKidergarden) },
+  { path: RoutesEnum.ECONOMIST, element: withSuspense(Economist) },
+  { path: RoutesEnum.DOU, element: withSuspense(Dou) },
+  { path: RoutesEnum.BANK, element: withSuspense(Bank) },
+  { path: RoutesEnum.TORGASHI, element: withSuspense(Torgashi) },
+  { path: RoutesEnum.MUSIC, element: withSuspense(MusiciansRoom) },
+  { path: '/ElemShool', element: withSuspense(ElementarySchool) },
+  { path: '/Psih', element: withSuspense(Psih) },
+  // { path: RoutesEnum.GAME, element: withSuspense(Game) },
 
-  { path: '/musicalcategories', element: <Musical /> },
-  { path: '/commerce', element: <CommercePlayGame/> },
-  { path: '/commerce_2', element: <Commerce/> },
-  { path: '/Upbringing', element: <Upbringing/> },
-  { path: '/CommerceMat', element: <CommerceMat/> },
-  { path: '/CommerceSr', element: <CommerceSr/> },
-  { path: '/SpaceTransport', element: <SpaceTransport/> },
-  { path: '/chemodany', element: <BankGramotnost/> },
-  {path: '/swiperPage', element: <SwiperPage/>},
-  {path: '/rest', element: <RestRoom/>},
-  {path: '/relaxRoom', element: <RelaxRoom/>},
-   { path: '/rast', element: <GameRast /> },
-
+  // Игровые маршруты
+  { path: '/doyGame', element: withSuspense(Doy) },
+  { path: '/gbank', element: withSuspense(BankGame) },
+  { path: '/rocket', element: withSuspense(Rocket) },
+  { path: '/gbuh2', element: withSuspense(ExpenseSorterGame) },
+  { path: '/tovary', element: withSuspense(CommerceTovary) },
+  { path: '/gamelogist', element: withSuspense(LogistCep) },
+  { path: '/commerceSr', element: withSuspense(CommerceSr) },
+  { path: '/commerceMat', element: withSuspense(CommerceMat) },
+  { path: '/upbringing', element: withSuspense(Upbringing) },
+  { path: '/deti', element: withSuspense(MovieGame) },
+  { path: '/musicalcategories', element: withSuspense(Musical) },
+  { path: '/commerce', element: withSuspense(CommercePlayGame) },
+  { path: '/commerce_2', element: withSuspense(Commerce) },
+  { path: '/SpaceTransport', element: withSuspense(SpaceTransport) },
+  { path: '/chemodany', element: withSuspense(BankGramotnost) },
+  { path: '/swiperPage', element: withSuspense(SwiperPage) },
+  { path: '/childWardrobe', element: withSuspense(ChildWardrobe) },
+  { path: '/gameRast', element: withSuspense(GameRast) },
+  { path: '/preloader', element: <Preloader/> },
+  { path: '/siteBuilde', element: withSuspense(siteBuilde) },
+  { path: '/geometricPersonGame', element: withSuspense(geometricPersonGame) },
 ]);

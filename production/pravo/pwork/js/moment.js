@@ -2123,7 +2123,7 @@
             }
 
             if (data) {
-                // moment.duration._locale = moment._locale = data;
+                // moment.duration._locale = moment._locale = blocks;
                 globalLocale = data;
             } else {
                 if (typeof console !== 'undefined' && console.warn) {
@@ -2237,7 +2237,7 @@
         return locales[name];
     }
 
-    // returns locale data
+    // returns locale blocks
     function getLocale(key) {
         var locale;
 

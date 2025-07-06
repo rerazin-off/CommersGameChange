@@ -17,9 +17,14 @@ const gameData: Record<string, { title: string; body: string; url: string }> = {
     body: 'Интерактивное приложение Робота. Вам будет неоходимо запрограмировать роюота так, чтобы он смог дойти до сундука не столкнувшись с разными препятствиями!',
     url: '../../../production/robot/index.html'
   },
+  siteBuild: {
+    title: 'Создание сайта',
+    body: 'Вам необходимо собрать веб-страницу из основных блоков — Header, Navigation, Main, Footer и других. Расположите элементы в правильном порядке, чтобы страница получилась корректной и логичной. Будьте внимательны: неправильная структура приведёт к ошибкам в макете!',
+    url: 'siteBuilde'
+  }
 };
 
-export const Programmers: React.FC = () => {
+const Programmers: React.FC = () => {
 
   const [openIsCard, setOpenIsCard] = useState(false);
   const [currentGame, setGame] = useState<string>('')
@@ -44,6 +49,7 @@ export const Programmers: React.FC = () => {
       <div className={classes.container}>
         <div className={classes.comp} onClick={() => handleGameClick('computerGame')}><Indicator></Indicator></div>
         <div className={classes.robot} onClick={() => handleGameClick('robotGame')}><Indicator></Indicator></div>
+        <div className={classes.siteBuild} onClick={() => handleGameClick('siteBuild')}><Indicator></Indicator></div>
       </div>
       <div className={classes.card}><Card type={'game'} title={cardData.title} body={cardData.body} game={cardData.url} backLink={'programmers'}
                                           isOpen={openIsCard} onClose={closeCard} /></div>
@@ -58,3 +64,4 @@ export const Programmers: React.FC = () => {
 )
   ;
 };
+export default Programmers;

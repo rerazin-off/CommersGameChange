@@ -25,7 +25,7 @@ const shuffleArray = (array: any[]) => {
   return newArray;
 };
 
-export const Upbringing = () => {
+const Upbringing = () => {
   // Нижние карточки (не перемешиваются)
   const bottomCards: BottomCard[] = [
     { 
@@ -123,7 +123,7 @@ export const Upbringing = () => {
     const elements = document.elementsFromPoint(touch.clientX, touch.clientY);
     const overlayCard = elements.find(el => el.classList.contains(classes.overlayCard));
     if (overlayCard) {
-      const cardId = parseInt(overlayCard.getAttribute('data-card-id') || '0');
+      const cardId = parseInt(overlayCard.getAttribute('blocks-card-id') || '0');
       setHoveredCard(cardId);
     } else {
       setHoveredCard(null);
@@ -519,3 +519,5 @@ export const Upbringing = () => {
     </div>
   );
 };
+
+export default Upbringing;

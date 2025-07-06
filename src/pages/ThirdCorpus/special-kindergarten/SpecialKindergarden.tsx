@@ -13,8 +13,7 @@ const gameData: Record<string, { title: string; body: string; url: string }> = {
       '\n' +
       'Роза любит рыхлые, богатые гумусом грунты, солнечный свет и умеренный полив.\n' +
       'Периодически требуется обработка от вредителей.',
-    // url: '../../../production/rostok/index.html',
-    url: 'rast'
+    url: 'gameRast'
   },
   tentGame: {
     title: 'Конструктор',
@@ -23,7 +22,7 @@ const gameData: Record<string, { title: string; body: string; url: string }> = {
   },
 };
 
-export const SpecialKidergarden: React.FC = () => {
+const SpecialKidergarden: React.FC = () => {
   const [openIsCard, setOpenIsCard] = useState(false);
   const [currentGame, setGame] = useState<string>('');
 
@@ -105,3 +104,5 @@ export const SpecialKidergarden: React.FC = () => {
     </div>
   );
 };
+
+export default SpecialKidergarden;

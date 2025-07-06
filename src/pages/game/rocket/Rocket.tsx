@@ -31,7 +31,7 @@ const initialState = [
   {index:'reactors', el: RocketElements.reactor}
 ]
 
-export const Rocket: React.FC = () => {
+const Rocket: React.FC = () => {
   const [showDrawing, setShowDrawing] = useState<boolean>(true);
   const [elements1, setElements1] = useState<Array<ElementsRocket>>(initialState);
   const [showWinning, setShowWinning] = useState<boolean>(false);
@@ -190,3 +190,5 @@ export const Rocket: React.FC = () => {
     </DndProvider>
   );
 };
+
+export default Rocket;
