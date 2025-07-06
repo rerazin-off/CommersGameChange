@@ -19,7 +19,7 @@ const gameData: Record<string, { title: string; body: string; url: string }> = {
   },
 };
 
-export const Programmers: React.FC = () => {
+const Programmers: React.FC = () => {
 
   const [openIsCard, setOpenIsCard] = useState(false);
   const [currentGame, setGame] = useState<string>('')
@@ -58,3 +58,4 @@ export const Programmers: React.FC = () => {
 )
   ;
 };
+export default Programmers;
