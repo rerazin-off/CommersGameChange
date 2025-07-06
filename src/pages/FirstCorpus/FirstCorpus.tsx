@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '../../components/Button/Button.tsx';
 
 
-export const FirstCorpus = () => {
+const FirstCorpus = () => {
 
   return (
     <div className={classes.korpus_1}>
@@ -64,3 +64,5 @@ export const FirstCorpus = () => {
     </div>
   );
 };
+
+export default FirstCorpus;

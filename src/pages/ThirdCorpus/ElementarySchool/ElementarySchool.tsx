@@ -19,7 +19,7 @@ const gameData: Record<string, { title: string; body: string; url: string }> = {
   },
 };
 
-export const ElementarySchool = () => {
+const ElementarySchool = () => {
   const [openIsCard, setOpenIsCard] = useState(false);
   const [currentGame, setGame] = useState<string>('');
 
@@ -99,3 +99,5 @@ export const ElementarySchool = () => {
     </div>
   );
 };
+
+export default ElementarySchool;

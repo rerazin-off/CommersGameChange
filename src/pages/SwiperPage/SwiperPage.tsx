@@ -11,7 +11,7 @@ import 'swiper/css'
 import 'swiper/css/navigation';
 import classes from '../MainPage/MainPage.module.scss';
 
-export const SwiperPage = () => {
+const SwiperPage = () => {
   const navigationPrevRef = useRef(null)
   const navigationNextRef = useRef(null);
   const swiperRef = useRef(null);
@@ -92,3 +92,5 @@ export const SwiperPage = () => {
     </div>
   );
 };
+
+export default SwiperPage;

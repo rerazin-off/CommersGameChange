@@ -20,7 +20,7 @@ const gameData: Record<string, { title: string; body: string; url: string }> = {
   },
 };
 
-export const Economist: React.FC = () => {
+const Economist: React.FC = () => {
   const [openIsCard, setOpenIsCard] = useState(false);
   const [currentGame, setGame] = useState<string>('');
 
@@ -93,3 +93,5 @@ export const Economist: React.FC = () => {
     </div>
   );
 };
+
+export default Economist;

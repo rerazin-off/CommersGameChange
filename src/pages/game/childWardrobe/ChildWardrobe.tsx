@@ -15,7 +15,7 @@ import { RoutesEnum } from '../../../app/routes';
 import { useNavigate } from 'react-router-dom';
 import EventPanel from './components/EventPanel/EventPanel';
 
-export const ChildWardrobe: React.FC = () => {
+const ChildWardrobe: React.FC = () => {
   const navigate = useNavigate()
   const navigationPrevRef = useRef(null);
   const navigationNextRef = useRef(null);
@@ -164,3 +164,5 @@ export const ChildWardrobe: React.FC = () => {
     </div>
   );
 };
+
+export default ChildWardrobe;

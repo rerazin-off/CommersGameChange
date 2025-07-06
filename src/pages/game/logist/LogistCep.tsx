@@ -15,7 +15,7 @@ const touchBackendOptions = {
   enableMouseEvents: true,
 };
 
-export const LogistCep = () => {
+const LogistCep = () => {
   const [positions, setPositions] = useState<number[]>(Array(10).fill(0));
 
   const [openIsCard, setOpenIsCard] = useState(false);
@@ -100,3 +100,5 @@ export const LogistCep = () => {
     </DndProvider>
   );
 };
+
+export default LogistCep;

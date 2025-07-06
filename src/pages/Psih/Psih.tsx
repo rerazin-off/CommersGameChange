@@ -1,9 +1,9 @@
 import classes from './Psih.module.scss';
 import React, { useCallback, useState } from 'react';
-import Card from '../../../components/Card/Card';
-import { Button } from '../../../components/Button/Button';
+import Card from '../../components/Card/Card';
+import { Button } from '../../components/Button/Button';
 import { Link } from 'react-router-dom';
-import { Assistant } from '../../../components/Assistant/Assistant';
+import { Assistant } from '../../components/Assistant/Assistant';
 
 const gameData: Record<string, { title: string; body: string }> = {
   floursGame: {
@@ -21,7 +21,7 @@ const gameData: Record<string, { title: string; body: string }> = {
 
 };
 
-export const Psih: React.FC = () => {
+const Psih: React.FC = () => {
 
   const [openIsCard, setOpenIsCard] = useState(false);
   const [currentGame, setGame] = useState<string>('')
@@ -58,6 +58,7 @@ export const Psih: React.FC = () => {
         <Link to={"/"}><Button bgColor={'white'} type={"gallery"} /></Link>
       </div>
     </div>
-  )
-    ;
+  );
 };
+
+export default Psih;

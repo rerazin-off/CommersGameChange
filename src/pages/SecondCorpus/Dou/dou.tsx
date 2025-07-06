@@ -21,7 +21,7 @@ const gameData: Record<string, { title: string; body: string; url: string }> = {
 
 };
 
-export const Dou: React.FC = () => {
+const Dou: React.FC = () => {
 
   const [openIsCard, setOpenIsCard] = useState(false);
   const [currentGame, setGame] = useState<string>('')
@@ -60,6 +60,7 @@ export const Dou: React.FC = () => {
         <Link to={"/psih"}><Button bgColor={'white'} type={"meditation"} /></Link>
       </div>
     </div>
-  )
-    ;
+  );
 };
+
+export default Dou;

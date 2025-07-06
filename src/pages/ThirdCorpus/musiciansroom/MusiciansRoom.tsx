@@ -24,7 +24,7 @@ const gameData: Record<string, { title: string; body: string; url: string }> = {
   },
 };
 
-export const MusiciansRoom = () => {
+const MusiciansRoom = () => {
   const [openIsCard, setOpenIsCard] = useState(false);
   const [currentGame, setGame] = useState<string>('');
 
@@ -109,3 +109,5 @@ export const MusiciansRoom = () => {
     </div>
   );
 };
+
+export default MusiciansRoom;

@@ -2,7 +2,7 @@ import classes from '../SecondCorpus/SecondCorpus.module.scss';
 import { Link } from 'react-router-dom';
 import { Button } from '../../components/Button/Button';
 
-export const SecondCorpus = () => {
+const SecondCorpus = () => {
   return (
     <div className={classes.korpus_1}>
       <div className={classes.container}>
@@ -56,4 +56,4 @@ export const SecondCorpus = () => {
   ;
 };
 
-// export default SecondCorpus;
+export default SecondCorpus;
