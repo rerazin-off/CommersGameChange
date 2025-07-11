@@ -35,7 +35,7 @@ const gameData: Record<string, { title: string; body: string; url: string }> = {
   },
 };
 
-export const Yur: React.FC = () => {
+const Yur: React.FC = () => {
   const [openIsCard, setOpenIsCard] = useState(false);
   const [currentGame, setGame] = useState<string>('');
 
@@ -120,3 +120,5 @@ export const Yur: React.FC = () => {
     </div>
   );
 };
+
+export default Yur;

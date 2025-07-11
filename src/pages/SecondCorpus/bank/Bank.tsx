@@ -33,7 +33,7 @@ const gameData: Record<string, { title: string; body: string; url: string  }> = 
   },
 };
 
-export const Bank: React.FC = () => {
+const Bank: React.FC = () => {
 
   const [openIsCard, setOpenIsCard] = useState(false);
   const [currentGame, setGame] = useState<string>('')
@@ -79,6 +79,7 @@ export const Bank: React.FC = () => {
         <Link to={"/psih"}><Button bgColor={'white'} type={"meditation"} /></Link>
       </div>
     </div>
-  )
-    ;
+  );
 };
+
+export default Bank;

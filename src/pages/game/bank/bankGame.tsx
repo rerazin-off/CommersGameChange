@@ -15,7 +15,7 @@ const touchBackendOptions = {
   enableMouseEvents: true,
 };
 
-export const BankGame = () => {
+const BankGame = () => {
   const [positions, setPositions] = useState<number[]>(Array(7).fill(0));
   const [openIsCard, setOpenIsCard] = useState(false);
   const [attempts, setAttempts] = useState(0);
@@ -109,3 +109,5 @@ export const BankGame = () => {
     </DndProvider>
   );
 };
+
+export default BankGame;

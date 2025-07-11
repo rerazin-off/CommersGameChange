@@ -15,7 +15,7 @@ const touchBackendOptions = {
   enableMouseEvents: true,
 };
 
-export const Doy = () => {
+const Doy = () => {
   const [positions, setPositions] = useState<number[]>(Array(9).fill(0));
   const [openIsCard, setOpenIsCard] = useState(false);
   const [attempts, setAttempts] = useState(0);
@@ -105,3 +105,5 @@ export const Doy = () => {
     </DndProvider>
   );
 };
+
+export default Doy;

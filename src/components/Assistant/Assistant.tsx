@@ -5,25 +5,19 @@ import {  useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '../Button/Button';
 import { classNames } from '../../helpers/classNames/classNames';
-// import { useLocation } from 'react-router-dom';
 import { useSearchParams } from 'react-router-dom';
 
 
 export const Assistant = ((props: { title: string ; body: string; mar:string; cat:string; fon: string; link: string;}) => {
 
   const [openHelper, setOpenHelper] = useState(true);
-
-  // const location = useLocation();
-  // const hideAssistant = location.state?.hideAssistant;
   const [searchParams] = useSearchParams();
   const hideAssistant = searchParams.get('hideAssistant') === 'true';
 
   useEffect(() => {
-    // Проверяем, если флаг "fromGame" установлен, ассистент не должен отображаться
     const fromGame = localStorage.getItem('fromGame') === 'true';
     if (fromGame) {
       setOpenHelper(false);
-      // Удаляем флаг после проверки, чтобы он применялся только один раз
       localStorage.removeItem('fromGame');
     }
   }, []);

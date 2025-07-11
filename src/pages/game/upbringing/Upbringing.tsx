@@ -25,7 +25,7 @@ const shuffleArray = (array: any[]) => {
   return newArray;
 };
 
-export const Upbringing = () => {
+const Upbringing = () => {
   // Нижние карточки (не перемешиваются)
   const bottomCards: BottomCard[] = [
     { 
@@ -519,3 +519,5 @@ export const Upbringing = () => {
     </div>
   );
 };
+
+export default Upbringing;

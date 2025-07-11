@@ -29,7 +29,7 @@ const shuffleArray = (array: any[]) => {
   return newArray;
 };
 
-export const CommerceMat = () => {
+const CommerceMat = () => {
   const initialPairs: ImagePair[] = [
     {
       top: { src: '/src/assets/img/commerceMat/mor.svg', alt: 'время', id: 1 },
@@ -476,3 +476,5 @@ export const CommerceMat = () => {
     </div>
   );
 };
+
+export default CommerceMat'

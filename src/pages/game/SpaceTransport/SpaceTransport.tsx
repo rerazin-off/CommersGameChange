@@ -16,7 +16,7 @@ import {Transport, PositionTransport, PlanetT} from '../SpaceTransport/types'
 
 import slot from '@/assets/img/game_assets/space-transport-img/slot.svg';
 
-export const SpaceTransport: React.FC = () => {
+const SpaceTransport: React.FC = () => {
   const navigate = useNavigate()
   const [planets, setPlanets] = useState<PlanetT[]>(dataPlanets);
   const [selectedImg, setSelectedImg] = useState<string>(slot);
@@ -231,3 +231,5 @@ export const SpaceTransport: React.FC = () => {
     </div>
   );
 };
+
+export default SpaceTransport;

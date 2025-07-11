@@ -19,7 +19,7 @@ const gameData: Record<string, { title: string; body: string; url: string }> = {
       '\n' +
       'Задача: распределить предметы/игрушки согласно возрасту ребенка.',
     //
-    url:'upbringing'
+    url:'MovieGame'
   },
   telescopeGame: {
     title: 'Угадай-ка',
@@ -30,7 +30,7 @@ const gameData: Record<string, { title: string; body: string; url: string }> = {
   },
 };
 
-export const Kidergarden = () => {
+const Kidergarden = () => {
   const [openIsCard, setOpenIsCard] = useState(false);
   const [currentGame, setGame] = useState<string>('');
 
@@ -119,3 +119,5 @@ export const Kidergarden = () => {
     </div>
   );
 };
+
+export default Kidergarden;

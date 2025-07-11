@@ -13,13 +13,14 @@ const gameData: Record<string, { title: string; body: string; url: string }> = {
     url: '../../../production/mat/index.html'
   },
   robotGame: {
-    title: 'Игра с роботом',
-    body: 'Интерактивное приложение Робота. Вам будет неоходимо запрограмировать роюота так, чтобы он смог дойти до сундука не столкнувшись с разными препятствиями!',
-    url: '../../../production/robot/index.html'
+    title: 'Поколение ЭВМ',
+    body: 'Компьютеры не всегда были такими, какими мы видим\n ' +
+      'их сегодня. Чтобы узнать историю развития ЭВМ, вам\n необходимо написать команды для робота.',
+    url: 'liteBot'
   },
 };
 
-export const Programmers: React.FC = () => {
+const Programmers: React.FC = () => {
 
   const [openIsCard, setOpenIsCard] = useState(false);
   const [currentGame, setGame] = useState<string>('')
@@ -58,3 +59,4 @@ export const Programmers: React.FC = () => {
 )
   ;
 };
+export default Programmers;

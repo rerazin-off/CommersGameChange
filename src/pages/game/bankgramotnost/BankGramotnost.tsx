@@ -28,7 +28,7 @@ const touchBackendOptions = {
   previewEnabled: true,
 };
 
-export const BankGramotnost = () => {
+const BankGramotnost = () => {
   const [positions, setPositions] = useState<number[][]>([[], []]);
   const [openIsCard, setOpenIsCard] = useState(false);
   const [attempts, setAttempts] = useState(0);
@@ -165,3 +165,5 @@ export const BankGramotnost = () => {
     </DndProvider>
   );
 };
+
+export default BankGramotnost;

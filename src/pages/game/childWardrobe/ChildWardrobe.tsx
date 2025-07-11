@@ -15,7 +15,7 @@ import { RoutesEnum } from '../../../app/routes';
 import { useNavigate } from 'react-router-dom';
 import EventPanel from './components/EventPanel/EventPanel';
 
-export const ChildWardrobe: React.FC = () => {
+const ChildWardrobe: React.FC = () => {
   const navigate = useNavigate()
   const navigationPrevRef = useRef(null);
   const navigationNextRef = useRef(null);
@@ -96,7 +96,7 @@ export const ChildWardrobe: React.FC = () => {
     <div className={classes.game}>
       <ToastContainer position='bottom-left'/>
       <SelectedWear clothes={selectedWear}/>
-      <div className={classes.col} style={{position: 'absolute', left: '30vw', top: '11.3vh'}}>
+      <div className={classes.col} style={{position: 'absolute', left: '30vw', top: '8.2vh'}}>
         <EventPanel
           round={round[0]}
         />
@@ -164,3 +164,5 @@ export const ChildWardrobe: React.FC = () => {
     </div>
   );
 };
+
+export default ChildWardrobe;
