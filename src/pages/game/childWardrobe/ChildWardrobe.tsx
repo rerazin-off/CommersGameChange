@@ -96,7 +96,7 @@ const ChildWardrobe: React.FC = () => {
     <div className={classes.game}>
       <ToastContainer position='bottom-left'/>
       <SelectedWear clothes={selectedWear}/>
-      <div className={classes.col} style={{position: 'absolute', left: '30vw', top: '11.3vh'}}>
+      <div className={classes.col} style={{position: 'absolute', left: '30vw', top: '8.2vh'}}>
         <EventPanel
           round={round[0]}
         />

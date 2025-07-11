@@ -9,14 +9,17 @@ const gameData: Record<string, { title: string; body: string }> = {
   floursGame: {
     title: 'Внутренний монстр',
     body: 'Наше подсознание таит в себе много неизведанного и неожиданного, даже для нас самих. Чтобы определить это, предлогаем пройти тест. Выберите фигуру, которая вам нравится!',
+    url: 'RestRoom',
   },
   pillowGame: {
     title: 'Собери человечка',
     body: 'Вам необходимо собрать человечка из различных фигур. В результате будет определён ваш тип!',
+    url: '',
   },
   pillowsGame: {
     title: 'Тест',
     body: 'Вам необходимо ответить на вопросы. В конце, основываясь на ваших ответах будет указан тип человека, к которому вы относитесь.',
+    url: '',
   },
 
 };
@@ -49,8 +52,13 @@ const Psih: React.FC = () => {
           <div className={classes.pillows} onClick={() => handleGameClick('pillowsGame')}></div>
 
         </div>
-        <div className={classes.card}><Card title={cardData.title} body={cardData.body} game={currentGame}
-                                            isOpen={openIsCard} onClose={closeCard} /></div>
+        <div className={classes.card}>
+          <Card title={cardData.title}
+                body={cardData.body} game={currentGame}
+                isOpen={openIsCard} onClose={closeCard}
+                game={cardData.url}
+          />
+        </div>
 
       </div>
       <div className={classes.buttons}>

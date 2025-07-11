@@ -4,7 +4,9 @@ import child2 from '@/assets/img/game_assets/child-wardrobe-img/child2.svg';
 import TShort from '@/assets/img/game_assets/child-wardrobe-img/T-short.svg';
 import TShort2 from '@/assets/img/game_assets/child-wardrobe-img/Tshort2.svg';
 import jacket from '@/assets/img/game_assets/child-wardrobe-img/jacket.svg';
+import jacket2 from '@/assets/img/game_assets/child-wardrobe-img/jacket2.svg';
 import shirt from '@/assets/img/game_assets/child-wardrobe-img/shirt.svg';
+import sweatshirt from '@/assets/img/game_assets/child-wardrobe-img/sweatshirt.svg';
 import sweater from '@/assets/img/game_assets/child-wardrobe-img/sweater.svg';
 import sweater2 from '@/assets/img/game_assets/child-wardrobe-img/sweater2.svg';
 import shorts from '@/assets/img/game_assets/child-wardrobe-img/shorts.svg';
@@ -62,11 +64,13 @@ export const wear1 = [
     {
         name: 'верхняя одежда',
         items: [
+            {img: jacket2, name: 'Куртка', correct: false},
             {img: sweater2, name:'Свитер', correct: false},
             {img: shirt,  name: 'Рубашка', correct: true},
             {img: TShort2, name: 'Футболка', correct: false},
+            {img: sweatshirt, name: 'Джемпер', correct: false}
         ],
-        positions: [29, 59.3],
+        positions: [30.7, 59.3],
         width: '240',
         zIndex: 100,
     },
@@ -77,7 +81,7 @@ export const wear1 = [
             {img: jeans2,  name: 'Джинсы', correct: false},
             {img: trousers, name: 'Брюки', correct: true}
         ],
-        positions: [48.6, 59.1],
+        positions: [48.6, 59.3],
         width: '240',
         zIndex: 9,
     },
@@ -89,7 +93,7 @@ export const wear1 = [
             {img: sneakers, name: 'Кроссовки', correct: false},
             {img: moccasins, name: 'Мокасины', correct: true}
         ],
-        positions: [72, 59.5],
+        positions: [73, 59.5],
         width: '240',
         zIndex: 100,
     },
