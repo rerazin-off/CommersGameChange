@@ -1,0 +1,90 @@
+.evidenceCard {
+  position: relative;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(0.25turn, rgba(35,235,250, 0.3), rgba(35,235,250, 0), rgba(35,235,250, 0.3));
+  width: 30vw;
+  justify-content: space-between;
+  margin-top: 30vh;
+  align-items: center;
+  gap: 2vh;
+  backdrop-filter: blur(50px);
+  padding-top: 4vh;
+}
+.evidenceCard::before,
+.evidenceCard::after {
+  content: "";
+  position: absolute;
+  width: 7vh;
+  height: 7vh;
+  border: 2px solid #23EBFA;
+  pointer-events: none;
+}
+.evidenceCard::before {
+  top: 0;
+  left: 0;
+  border-right: none;
+  border-bottom: none;
+}
+.evidenceCard::after {
+  bottom: 0;
+  right: 0;
+  border-left: none;
+  border-top: none;
+}
+.cornerTopRight,
+.cornerBottomLeft {
+  position: absolute;
+  width: 7vh;
+  height: 7vh;
+  border: 2px solid #23EBFA;
+  pointer-events: none;
+}
+.cornerTopRight {
+  top: 0;
+  right: 0;
+  border-left: none;
+  border-bottom: none;
+}
+
+.cornerBottomLeft {
+  bottom: 0;
+  left: 0;
+  border-right: none;
+  border-top: none;
+}
+h3{
+  font-size: 40px;
+  font-family: 'BOWLER';
+  font-weight: 800;
+  margin: 0;
+}
+.title{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 15vh;
+  cursor: pointer;
+}
+.description{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0 3vh;
+  text-align: center;
+}
+.evidenceBg{
+  background: url(src/assets/img/game_assets/magicalCrimes-img/EvidenceBg.svg);
+  width: 30vh;
+  height: 30vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: 100% 100%;
+  img{
+    position: relative;
+    bottom: 0;
+    right: 0;
+  }
+}

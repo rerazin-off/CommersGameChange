@@ -27,11 +27,10 @@ const gameData: Record<string, { title: string; body: string; url: string }> = {
     url: '../../../production/pravo/pwork/index.html',
   },
   hammerGame: {
-    title: 'Игра суд',
+    title: 'Сказочный суд',
     body:
-      'Вам будет необходимо выступить в роли судьи, выносящего приговор!' +
-      'Помните, что от вашего решения зависит судьба человека!',
-    url: '../../../production/pravo/syd/index.html',
+    'Определите какие правонарушения были допущены в литературных произведениях, выберите оптимальное решение и найдите возможные улики.',
+    url: 'magicalCrimes',
   },
 };
 
