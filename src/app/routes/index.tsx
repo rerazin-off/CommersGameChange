@@ -46,8 +46,8 @@ const SpaceTransport = React.lazy(()=>import('../../pages/game/SpaceTransport/Sp
 const Upbringing = React.lazy(()=>import('../../pages/game/upbringing/Upbringing'));
 const RelaxRoom = React.lazy(()=> import('../../pages/game/relaxRoom/relaxRoom'));
 const RestRoom = React.lazy(()=> import('../../pages/game/RestRoom/RestRoom'));
-const Litebot = React.lazy(() => import('../../pages/game/liteBot/App'))
-
+const Litebot = React.lazy(() => import('../../pages/game/liteBot/App'));
+const MagicalCrimes = React.lazy(() => import('../../pages/game/magicalCrimes/MagicalCrimes'));
 
 import { Musical } from '../../pages/game/musical/musical.js';
 import { CommerceTovary } from '../../pages/game/commerce/CommerceTovary';
@@ -118,4 +118,5 @@ export const router = createBrowserRouter([
   {path: '/relaxRoom', element: withSuspense(RelaxRoom)},
   { path: '/restRoom', element: withSuspense(RestRoom) },
   { path: '/liteBot', element: withSuspense(Litebot) },
+  { path: '/magicalCrimes', element: withSuspense(MagicalCrimes) },
 ]);

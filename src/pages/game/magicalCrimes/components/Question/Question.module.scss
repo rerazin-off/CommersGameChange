@@ -1,0 +1,115 @@
+.question {
+  position: relative;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(0.25turn, rgba(35,235,250, 0.3), rgba(35,235,250, 0), rgba(35,235,250, 0.3));
+  width: 65vw;
+  justify-content: space-between;
+  padding: 7vh 4vh;
+  margin: 3vh 0;
+  align-items: center;
+  gap: 2vh;
+}
+img{
+  position: absolute;
+  bottom: 3vh;
+  right: 2vw;
+}
+.question::before,
+.question::after {
+  content: "";
+  position: absolute;
+  width: 7vh;
+  height: 7vh;
+  border: 2px solid #23EBFA;
+  pointer-events: none;
+}
+
+.question::before {
+  top: 0;
+  left: 0;
+  border-right: none;
+  border-bottom: none;
+}
+.question::after {
+  bottom: 0;
+  right: 0;
+  border-left: none;
+  border-top: none;
+}
+
+.answersContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 20px;
+}
+.cornerTopRight,
+.cornerBottomLeft {
+  position: absolute;
+  width: 7vh;
+  height: 7vh;
+  border: 2px solid #23EBFA;
+  pointer-events: none;
+}
+.cornerTopRight {
+  top: 0;
+  right: 0;
+  border-left: none;
+  border-bottom: none;
+}
+
+.cornerBottomLeft {
+  bottom: 0;
+  left: 0;
+  border-right: none;
+  border-top: none;
+}
+.answer{
+  padding: 1vh 0;
+  width: 25vw;
+  text-align: center;
+  background-color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+  color: #000;
+  font-family: 'Comfortaa';
+  font-weight: 700;
+}
+.answer:hover {
+  background: #23EAFA;
+  border-color: rgba(0, 60, 255, 0.48);
+}
+.answer.selected {
+  background: #12516C;
+  border: 1px solid #fff;
+  color: #fff;
+}
+.correct{
+  background: #12516C;
+  border: 1px solid #23EAFA;
+  color: #fff;
+}
+.incorrect{
+  background: #541620;
+  border: 1px solid #FF2B00;
+  color: #fff;
+}
+button{
+  background: #23EBFA;
+  padding: 1vh 3vh;
+  border: none;
+  border-radius: 5px;
+  color: #000;
+  font-family: 'BOWLER';
+}
+.fullscreen{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+}
