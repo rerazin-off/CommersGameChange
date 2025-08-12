@@ -48,6 +48,8 @@ const RelaxRoom = React.lazy(()=> import('../../pages/game/relaxRoom/relaxRoom')
 const RestRoom = React.lazy(()=> import('../../pages/game/RestRoom/RestRoom'));
 const Litebot = React.lazy(() => import('../../pages/game/liteBot/App'));
 const MagicalCrimes = React.lazy(() => import('../../pages/game/magicalCrimes/MagicalCrimes'));
+const PensionGalaxy = React.lazy(() => import('../../pages/game/PensionGalaxy/PensionGalaxy'));
+const LaborCode = React.lazy(() => import('../../pages/game/PensionGalaxy/components/LaborCode/LaborCode'));
 
 import { Musical } from '../../pages/game/musical/musical.js';
 import { CommerceTovary } from '../../pages/game/commerce/CommerceTovary';
@@ -70,6 +72,7 @@ export enum RoutesEnum {
   KINDER = '/kinder',
   MUSIC = '/music',
   YUR = '/yur',
+  LABORCODE = '/laborCode',
 }
 
 const withSuspense = (Component: React.ComponentType) => (
@@ -119,4 +122,6 @@ export const router = createBrowserRouter([
   { path: '/restRoom', element: withSuspense(RestRoom) },
   { path: '/liteBot', element: withSuspense(Litebot) },
   { path: '/magicalCrimes', element: withSuspense(MagicalCrimes) },
+  { path: '/pensionGalaxy', element: withSuspense(PensionGalaxy) },
+  { path: '/laborCode', element: withSuspense(LaborCode) },
 ]);

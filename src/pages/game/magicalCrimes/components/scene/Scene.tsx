@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import CardEvidences from '../CardEvidences/CardEvidences';
 import { Button } from '../../../../../components/Button/Button';
 
+
 const Scene = ({ numEvidence, evidences, environment, onBack, onCorrectAnswer, onCloseCase }) => {
   const [currentEvidence, setCurrentEvidence] = useState(null);
   const [foundEvidence, setFoundEvidence] = useState([]);
