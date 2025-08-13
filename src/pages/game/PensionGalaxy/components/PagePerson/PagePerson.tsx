@@ -10,6 +10,7 @@ import { Persons } from '../../Date';
 
 const PagePerson = ({ personId, comeBack, openLaboreCode }) => {
   const [selectedPerson, setSelectedPerson] = useState(null);
+  const [showFied, setShowField] = useState(false);
 
   useEffect(() => {
     setSelectedPerson(Persons.find((el) => el.id === personId));
@@ -17,49 +18,69 @@ const PagePerson = ({ personId, comeBack, openLaboreCode }) => {
 
   return (
     <div className={classes.bg}>
-
+      <div
+        style={{
+          textAlign: 'center',
+          marginBottom: '-7vh',
+          marginLeft: '35vh',
+        }}
+      >
+        <h1 className={classes.name}>{selectedPerson?.name}</h1>
+        <h3>{selectedPerson?.profession}</h3>
+      </div>
       <div className={classes.mainInf}>
         <div className={classes.iconPerson}>
           <img src={circle2} className={classes.circle2} />
           <img src={circle1} className={classes.circle1} />
           <img src={selectedPerson?.img} className={classes.personImg} />
         </div>
-
         <div style={{ flex: 1 }}>
-          <div style={{ textAlign: 'center', marginBottom: '5vh' }}>
-            <h1 className={classes.name}>{selectedPerson?.name}</h1>
-            <h3>{selectedPerson?.profession}</h3>
-          </div>
-
-          <div style={{ display: 'flex', flexDirection: 'row' }}>
-            <div className={classes.col}></div>
+          <div
+            style={{ display: 'flex', flexDirection: 'column', width: '55vh' }}
+          >
             <div className={classes.panel}>
               <h1>Информация</h1>
               {selectedPerson?.mainInf.map((el, index) => (
                 <div key={index} className={classes.infoItem}>
-                  <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+                  <div
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                    }}
+                  >
                     <img src={mark} alt="mark" />
                     <h2>{el.name}</h2>
                   </div>
-                  <h3>{el.value}</h3>
+                  <h3>{Array.isArray(el.value) ? el.value.map((item)=>item.text).join('') : el.value}</h3>
                 </div>
               ))}
+              {!showFied && (
+                <button className={classes.btnCalc} onClick={()=>setShowField(true)}>Расчитать пенсию</button>
+              )}
             </div>
+            {showFied && (
+              <div className={classes.answer}>
+                <h1>Пенсия:</h1>
+                <input type={'number'} />
+                <button>Проверить</button>
+              </div>
+            )}
           </div>
         </div>
       </div>
-      <div className={classes.icons}
-      >
+      <div className={classes.icons}>
         <img
           onClick={openLaboreCode}
           src={infIcon}
-          onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.1)'}
-          onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+          onMouseEnter={e => (e.currentTarget.style.transform = 'scale(1.1)')}
+          onMouseLeave={e => (e.currentTarget.style.transform = 'scale(1)')}
         />
-        <img src={backIcon}
-             onClick={comeBack}
-             onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.1)'}
-             onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+        <img
+          src={backIcon}
+          onClick={comeBack}
+          onMouseEnter={e => (e.currentTarget.style.transform = 'scale(1.1)')}
+          onMouseLeave={e => (e.currentTarget.style.transform = 'scale(1)')}
         />
       </div>
     </div>

@@ -1,4 +1,3 @@
-import imgPerson1 from '../../../assets/img/game_assets/pensionGalaxy-img/person1.svg';
 import imgPerson2 from '../../../assets/img/game_assets/pensionGalaxy-img/person2.svg';
 import imgPerson3 from '../../../assets/img/game_assets/pensionGalaxy-img/person3.svg';
 import imgPerson4 from '../../../assets/img/game_assets/pensionGalaxy-img/person4.svg';
@@ -21,7 +20,11 @@ export const Persons = [
     mainInf: [
       {name:'стаж', value: '40 лет'},
       {name:'раса', value: 'человек'},
-      {name:'особые условия', value: ['Участвовал в Третьей Войне с Ксеноморфами', '10 лет служил на планете Корвус-9(гравитация 3G).']},
+      {name:'особые условия', value:
+          [
+            {coefficient: 2, text:'Участвовал в Третьей Войне с Ксеноморфами'},
+            {coefficient:1.5, text:'10 лет служил на планете Корвус-9(гравитация 3G).'}
+          ]},
       {name:'средняя зарплата', value: 85000}
     ]
   },
@@ -33,7 +36,9 @@ export const Persons = [
     mainInf: [
       {name:'стаж', value: '67 лет'},
       {name:'раса', value: 'киборг'},
-      {name:'особые условия', value: ['Работала в лаборатории с патогенами (опасные уловия)']},
+      {name:'особые условия', value: [
+          {coefficient: 1.5, text: 'Работала в лаборатории с патогенами (опасные уловия)'}
+        ]},
       {name:'средняя зарплата', value: 120000}
     ]
   },
@@ -45,7 +50,9 @@ export const Persons = [
     mainInf: [
       {name:'стаж', value: '73 года'},
       {name:'раса', value: 'инопланетное существо'},
-      {name:'особые условия', value: ['Работа с опасными языками (например, языком Древних, вызывающим безумие).']},
+      {name:'особые условия', value: [
+          {coefficient: 1.5, text:'Работа с опасными языками (например, языком Древних, вызывающим безумие, опасные условия).'}
+        ]},
       {name:'средняя зарплата', value: 95000}
     ]
   },
@@ -57,7 +64,9 @@ export const Persons = [
     mainInf: [
       {name:'стаж', value: '30 лет'},
       {name:'раса', value: 'киборг'},
-      {name:'особые условия', value: ['Обнаружил артефакты с аномальными свойствами']},
+      {name:'особые условия', value: [
+          {coefficient:1.7, text: 'Обнаружил артефакты с аномальными свойствами'}
+        ]},
       {name:'средняя зарплата', value: 78000}
     ]
   },
@@ -69,7 +78,9 @@ export const Persons = [
     mainInf: [
       {name:'стаж', value: '80 лет'},
       {name:'раса', value: 'инопланетное существо'},
-      {name:'особые условия', value: ['Выращивал хищные растения для фармацевтики']},
+      {name:'особые условия', value: [
+          {coefficient:1.5, text: 'Выращивал хищные растения для фармацевтики'}
+        ]},
       {name:'средняя зарплата', value: 65000}
     ]
   },
@@ -81,7 +92,9 @@ export const Persons = [
     mainInf: [
       {name:'стаж', value: '28 лет'},
       {name:'раса', value: 'человек'},
-      {name:'особые условия', value: ['Работа в опасных условиях']},
+      {name:'особые условия', value: [
+          {coefficient:1.5, text: 'Работа в опасных условиях'}
+        ]},
       {name:'средняя зарплата', value: 97000}
     ]
   },
@@ -93,7 +106,7 @@ export const Persons = [
     mainInf: [
       {name:'стаж', value: '200 лет'},
       {name:'раса', value: 'инопланетное существо'},
-      {name:'особые условия', value: ['Работа в опасных условиях']},
+      {name:'особые условия', value: []},
       {name:'средняя зарплата', value: 114000}
     ]
   },
@@ -105,7 +118,9 @@ export const Persons = [
     mainInf: [
       {name:'стаж', value: '35 лет'},
       {name:'раса', value: 'человек'},
-      {name:'особые условия', value: ['Получил киберпротез после перестрелки']},
+      {name:'особые условия', value: [
+          {coefficient:1.5, text: 'Работа в опасных условиях'}
+        ]},
       {name:'средняя зарплата', value: 110000}
     ]
   },
