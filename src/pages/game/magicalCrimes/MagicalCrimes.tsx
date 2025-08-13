@@ -4,8 +4,12 @@ import AchievementsPanel from './components/AchievementsPanel/AchievementsPanel'
 import CardFairyTale from './components/CardFairyTale/CardFairyTale';
 import { FairyTales } from './Data';
 import Question from './components/Question/Question';
+import { Button } from '../../../components/Button/Button';
+import { useNavigate } from 'react-router-dom';
+import { RoutesEnum } from '../../../app/routes';
 
 const MagicalCrimes: React.FC = () => {
+  const navigate = useNavigate()
   const [openedTale, setOpenedTale] = useState(null);
   const [score, setScore] = useState(0);
   const [closedCases, setClosedCases] = useState<number[]>([]);
@@ -63,6 +67,14 @@ const MagicalCrimes: React.FC = () => {
           skipToScene={openedTale.skipToScene}
         />
       )}
+      <Button
+        className={classes.backButton}
+        bgColor="pink"
+        type="type1v2"
+        onClick={()=>navigate(RoutesEnum.YUR)}
+      >
+        НАЗАД
+      </Button>
     </div>
   );
 };
