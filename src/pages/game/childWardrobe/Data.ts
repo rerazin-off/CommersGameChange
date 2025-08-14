@@ -65,10 +65,10 @@ export const wear1 = [
         name: 'верхняя одежда',
         items: [
             {img: jacket2, name: 'Куртка', correct: false},
-            {img: sweater2, name:'Свитер', correct: false},
             {img: shirt,  name: 'Рубашка', correct: true},
+            {img: sweater2, name:'Свитер', correct: false},
             {img: TShort2, name: 'Футболка', correct: false},
-            {img: sweatshirt, name: 'Джемпер', correct: false}
+            {img: sweatshirt, name: 'Джемпер', correct: false},
         ],
         positions: [30.7, 59.3],
         width: '240',

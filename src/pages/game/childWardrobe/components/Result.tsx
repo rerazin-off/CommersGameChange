@@ -46,7 +46,7 @@ export default function Result ({position}) {
         body={'Теперь Лёва полностью готов к утреннику!'}
         isOpen={showCard}
         type={'gameOver'}
-        game = 'SpecialKinder'
+        game = 'kinder'
       />
     </div>
   );

@@ -1,9 +1,12 @@
 import React, {useState, useRef, useEffect} from 'react';
-import SliderItem from './SliderItem';
-import '../ThreeDSlider.css';
-import { Persons } from '../Date';
+import SliderItem from '../../components/SliderItem';
+import './ThreeDSlider.css';
+import { Persons } from '../../Date';
+import { Button } from '../../../../../components/Button/Button';
+import { RoutesEnum } from '../../../../../app/routes';
+import { useNavigate } from 'react-router-dom';
 
-const ThreeDSlider = ({switchPage, selectPerson}) => {
+const ThreeDSlider = ({switchPage, selectPerson, passedCard}) => {
   const [isDragging, setIsDragging] = useState(false);
   const [autoRotate, setAutoRotate] = useState(true);
   const [initialAnimation, setInitialAnimation] = useState(true);
@@ -15,6 +18,7 @@ const ThreeDSlider = ({switchPage, selectPerson}) => {
   const sliderRef = useRef(null);
   const bannerRef = useRef(null);
   const animationRef = useRef(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const timer = setTimeout(()=>{
@@ -96,9 +100,21 @@ const ThreeDSlider = ({switchPage, selectPerson}) => {
             initial={initialAnimation}
             name={person.name}
             switchPage={()=>clickCard(person.id)}
+            passedCard={passedCard[person.id] || false}
           />
         ))}
       </div>
+      <Button
+        className='backButton'
+        bgColor="pink"
+        type="type1v2"
+        onClick={() => {
+          localStorage.setItem('fromGame', 'true');
+          navigate(RoutesEnum.ECONOMIST);
+        }}
+      >
+        НАЗАД
+      </Button>
     </div>
   );
 };
