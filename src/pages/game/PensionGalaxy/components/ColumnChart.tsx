@@ -1,7 +1,7 @@
 import React from 'react';
 import {motion} from 'framer-motion';
 import column from '../../../../assets/img/game_assets/pensionGalaxy-img/column.svg';
-import classes from './LaborCode/LaboreCode.module.scss'
+import classes from '../pages/LaborCode/LaboreCode.module.scss'
 
 const ColumnChart = ({height, personImg, text, y,}) => {
   return (

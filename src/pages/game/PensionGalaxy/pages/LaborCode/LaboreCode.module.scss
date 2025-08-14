@@ -33,7 +33,7 @@ body{
 }
 
 .chart{
-  background: url(src/assets/img/game_assets/pensionGalaxy-img/scale.svg);
+  background: url(../../../../../assets/img/game_assets/pensionGalaxy-img/scale.svg);
   background-size: cover;
   margin-top: 8vh;
   display: flex;
@@ -44,13 +44,12 @@ body{
 }
 
 .laborCode{
-  background: url(src/assets/img/game_assets/pensionGalaxy-img/bgLaboreCode.svg);
+  background: url(../../../../../assets/img/game_assets/pensionGalaxy-img/bgLaboreCode.svg);
   display: flex;
   align-items: center;
   flex-direction: column;
   height: 100vh;
   width: 100%;
-  position: fixed;
 }
 
 .scrollContainer {
@@ -68,7 +67,7 @@ body{
   flex-direction: column;
   align-items: center;
   position: relative;
-  margin-bottom: -10vh;
+  margin-bottom: -5vh;
   width: 37%;
   color: #fff;
   font-family: "BOWLER";
@@ -93,9 +92,9 @@ body{
 }
 
 .cardBg {
-  background: url(src/assets/img/game_assets/pensionGalaxy-img/conditionsCard.svg) no-repeat;
+  background: url(../../../../../assets/img/game_assets/pensionGalaxy-img/conditionsCard.svg) no-repeat;
   background-size: 100% 100%;
-  width: 100%;
+  width: 35vh;
   display: flex;
   flex-direction: column;
   align-items: center;

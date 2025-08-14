@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './LaborCode/LaboreCode.module.scss'
+import classes from '../pages/LaborCode/LaboreCode.module.scss'
 
 const ConditionsCard = ({img, coefficient, title}) => {
   return (

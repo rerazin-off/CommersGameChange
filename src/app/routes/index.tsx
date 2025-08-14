@@ -49,7 +49,7 @@ const RestRoom = React.lazy(()=> import('../../pages/game/RestRoom/RestRoom'));
 const Litebot = React.lazy(() => import('../../pages/game/liteBot/App'));
 const MagicalCrimes = React.lazy(() => import('../../pages/game/magicalCrimes/MagicalCrimes'));
 const PensionGalaxy = React.lazy(() => import('../../pages/game/PensionGalaxy/PensionGalaxy'));
-const LaborCode = React.lazy(() => import('../../pages/game/PensionGalaxy/components/LaborCode/LaborCode'));
+const LaborCode = React.lazy(() => import('../../pages/game/PensionGalaxy/pages/LaborCode/LaborCode'));
 
 import { Musical } from '../../pages/game/musical/musical.js';
 import { CommerceTovary } from '../../pages/game/commerce/CommerceTovary';
@@ -72,7 +72,6 @@ export enum RoutesEnum {
   KINDER = '/kinder',
   MUSIC = '/music',
   YUR = '/yur',
-  LABORCODE = '/laborCode',
 }
 
 const withSuspense = (Component: React.ComponentType) => (

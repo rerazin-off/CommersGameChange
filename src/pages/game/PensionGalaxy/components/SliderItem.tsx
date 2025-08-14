@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
-import '../ThreeDSlider.css';
+import '../pages/ThreeDSlider/ThreeDSlider.css';
 
-const SliderItem = ({position, imageUrl, initial, name, switchPage}) => {
+const SliderItem = ({position, imageUrl, initial, name, switchPage, passedCard}) => {
   const itemRef = useRef(null);
 
   useEffect(() => {
@@ -18,11 +18,11 @@ const SliderItem = ({position, imageUrl, initial, name, switchPage}) => {
   }
 
   return (
-    <div className='item' ref={itemRef} style={{'--position': position, transform: initial ? 'translateZ(0)' : ''}}>
+    <div className={`item  ${passedCard ? 'passed' : 'item'}`}  ref={itemRef} style={{'--position': position, transform: initial ? 'translateZ(0)' : ''}}>
       <h1>{name}</h1>
       <img src={imageUrl}/>
       <button
-        onClick={switchPage}
+        onClick={ !passedCard ? switchPage : ''}
         onTouchStart={touchStart}
       >играть</button>
     </div>
