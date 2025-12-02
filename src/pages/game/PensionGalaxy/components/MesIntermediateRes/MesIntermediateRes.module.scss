@@ -1,0 +1,71 @@
+.effect{
+  background: rgba(0, 0, 0, 0.9);
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: appearance 4s forwards;
+
+  h2{
+    font-size: 2rem;
+    text-align: center;
+    width: 90vw;
+    color: #fff;
+    font-family: "BOWLER";
+    padding: 5vh 0;
+    height: 10vh;
+    animation: appearance 4s forwards;
+  }
+}
+
+@keyframes appearance {
+  0% {
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.9);
+  }
+  50% {
+    background: rgba(0, 0, 0, 0.7);
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+    background: rgba(0, 0, 0, 0);
+  }
+}
+
+.textEffect{
+  position: relative;
+  width: 100%;
+  text-align: center;
+  overflow: hidden;
+
+  &::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40vh;
+    padding: 3vh 0;
+    animation: appearanceText 3s forwards;
+  }
+  &.correct::after{
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 165, 0.7), transparent);
+  }
+  &.incorrect::after{
+    background: linear-gradient(90deg, transparent, rgba(255, 0, 0, 0.7), transparent);
+  }
+}
+
+@keyframes appearanceText {
+  0%{
+    transform: translateX(-100%);
+  }
+  100%{
+    transform: translateX(100%);
+  }
+}

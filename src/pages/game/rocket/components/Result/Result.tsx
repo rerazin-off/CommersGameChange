@@ -50,8 +50,7 @@ export default function Result ({position}) {
           transform: `translateY(-${position}vh)`,
           transition: 'transform 0.05s ease-out'
         }}/>
-      <button onClick={() => location.reload()}>Заново
-      </button>
+      <button onClick={() => location.reload()}>Заново</button>
       <Card
         title={'Поздравляем!'}
         body={'Вы правильно собрали ракету по представленному чертежу!'}

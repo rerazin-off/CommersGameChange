@@ -29,7 +29,7 @@ const shuffleArray = (array: any[]) => {
   return newArray;
 };
 
-export const RelaxRoom = () => {
+const RelaxRoom = () => {
   const initialPairs: ImagePair[] = [
     {
       top: { src: 'src/assets/img/game_assets/relax-room/1.svg', alt: 'время', id: 1 },
@@ -422,3 +422,5 @@ export const RelaxRoom = () => {
     </div>
   );
 };
+
+export default RelaxRoom;

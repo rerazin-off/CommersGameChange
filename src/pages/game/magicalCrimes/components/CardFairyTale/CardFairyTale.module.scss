@@ -1,0 +1,62 @@
+.card {
+  background: url(src/assets/img/game_assets/magicalCrimes-img/cardBg.svg);
+  background-size: cover;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  white-space: pre-line;
+  gap: 0.4vh;
+  overflow: hidden;
+  height: 39vh;
+  padding-bottom: 3vh;
+
+  h1 {
+    font-family: 'Miroslav';
+    font-size: 30px;
+    font-weight: 300;
+    margin: 0;
+  }
+
+  p {
+    font-family: 'Comfortaa';
+    font-size: 10px;
+    margin: 0;
+  }
+
+  button {
+    border-radius: 5px;
+    padding: 0.5vh 1vh;
+    font-family: 'Comfortaa';
+    color: #064250;
+    border: none;
+    font-weight: 700;
+  }
+
+  .image {
+    width: 24vh;
+    height: 33.5vh;
+    margin-left: 3.7vh;
+    margin-top: -8vh;
+    position: relative;
+  }
+
+  img {
+    position: absolute;
+    top: 18.5vh;
+    left: 7.5vw;
+    transform: translate(-50%, -50%);
+    width: 11vw;
+  }
+}
+
+.circle{
+  border-radius: 100px;
+  height: 12vh;
+  width: 7vw;
+  background: #fff;
+  margin-top: 37vh;
+  margin-right: -10vh;
+}
