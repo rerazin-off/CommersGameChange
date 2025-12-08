@@ -46,6 +46,7 @@ const SpaceTransport = React.lazy(()=>import('../../pages/game/SpaceTransport/Sp
 const Upbringing = React.lazy(()=>import('../../pages/game/upbringing/Upbringing'));
 const RelaxRoom = React.lazy(()=> import('../../pages/game/relaxRoom/relaxRoom'));
 const RestRoom = React.lazy(()=> import('../../pages/game/RestRoom/RestRoom'));
+const PongGame = React.lazy(()=> import('../../pages/game/ElementarySchool/Pong/PongGame'));
 const Litebot = React.lazy(() => import('../../pages/game/liteBot/App'));
 const MagicalCrimes = React.lazy(() => import('../../pages/game/magicalCrimes/MagicalCrimes'));
 const PensionGalaxy = React.lazy(() => import('../../pages/game/PensionGalaxy/PensionGalaxy'));
@@ -123,4 +124,6 @@ export const router = createBrowserRouter([
   { path: '/magicalCrimes', element: withSuspense(MagicalCrimes) },
   { path: '/pensionGalaxy', element: withSuspense(PensionGalaxy) },
   { path: '/laborCode', element: withSuspense(LaborCode) },
+  { path: '/PongGame', element: withSuspense(PongGame) },
+
 ]);

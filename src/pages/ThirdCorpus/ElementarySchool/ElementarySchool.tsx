@@ -12,10 +12,11 @@ const gameData: Record<string, { title: string; body: string; url: string }> = {
     body: '',
     url: '',
   },
-  drumsGame: {
-    title: '',
-    body: '',
-    url: '',
+  PongGame: {
+    title: 'Предметный Брейк',
+    body: 'Двигайте пальцем для управления платформой\n' +
+      'Разбивайте все уроки чтобы победить',
+    url: 'PongGame',
   },
 };
 
@@ -24,6 +25,7 @@ const ElementarySchool = () => {
   const [currentGame, setGame] = useState<string>('');
 
   const cardData = gameData[currentGame] || { title: '', body: '' };
+  console.log(cardData);
 
   const handleGameClick = (param: string) => {
     setOpenIsCard(true);
@@ -62,7 +64,7 @@ const ElementarySchool = () => {
           </div>
           <div
             className={classes.glass}
-            onClick={() => handleGameClick('glassGame')}
+            onClick={() => handleGameClick('PongGame')}
           >
             <Indicator></Indicator>
           </div>
