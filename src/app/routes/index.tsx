@@ -17,6 +17,7 @@ const Yur = React.lazy(()=>import('../../pages/FirstCorpus/Yur/Yur'));
 const Programmers = React.lazy(()=>import('../../pages/FirstCorpus/Programmers/Programmers'));
 const Economist = React.lazy(()=>import('../../pages/FirstCorpus/Economist/Economist'));
 
+
 //Страницы второго корпуса
 const Dou = React.lazy(()=>import('../../pages/SecondCorpus/Dou/dou'));
 const Bank = React.lazy(()=>import('../../pages/SecondCorpus/bank/Bank'));
@@ -44,10 +45,12 @@ const GameRast = React.lazy(()=>import('../../pages/game/rast/gameRast'));
 const Rocket = React.lazy(()=>import('../../pages/game/rocket/Rocket'));
 const SpaceTransport = React.lazy(()=>import('../../pages/game/SpaceTransport/SpaceTransport'));
 const Upbringing = React.lazy(()=>import('../../pages/game/upbringing/Upbringing'));
+const Connector = React.lazy(()=>import('../../pages/game/Connector/components/game'));
 import Preloader from '../../components/Preloaer/Preloader';
 
 import { Musical } from '../../pages/game/musical/musical.js';
 import { CommerceTovary } from '../../pages/game/commerce/CommerceTovary';
+import { Xylophone } from '../../pages/game/xylophone/Xylophone';
 
 const LoadingFallback = () => <SpacePreloader/>;
 
@@ -106,6 +109,7 @@ export const router = createBrowserRouter([
   { path: '/upbringing', element: withSuspense(Upbringing) },
   { path: '/deti', element: withSuspense(MovieGame) },
   { path: '/musicalcategories', element: withSuspense(Musical) },
+  { path: '/xylophonesounds', element: withSuspense(Xylophone) },
   { path: '/commerce', element: withSuspense(CommercePlayGame) },
   { path: '/commerce_2', element: withSuspense(Commerce) },
   { path: '/SpaceTransport', element: withSuspense(SpaceTransport) },
@@ -113,5 +117,6 @@ export const router = createBrowserRouter([
   { path: '/swiperPage', element: withSuspense(SwiperPage) },
   { path: '/childWardrobe', element: withSuspense(ChildWardrobe) },
   { path: '/gameRast', element: withSuspense(GameRast) },
+  { path: '/Connector', element: withSuspense(Connector) },
   {path: '/preloader', element: <Preloader/>}
 ]);

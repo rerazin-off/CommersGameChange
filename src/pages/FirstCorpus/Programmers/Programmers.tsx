@@ -17,6 +17,11 @@ const gameData: Record<string, { title: string; body: string; url: string }> = {
     body: 'Интерактивное приложение Робота. Вам будет неоходимо запрограмировать роюота так, чтобы он смог дойти до сундука не столкнувшись с разными препятствиями!',
     url: '../../../production/robot/index.html'
   },
+  connectorGame: {
+    title: 'Витая пара',
+    body: 'Увлекательная головоломка по компьютерным сетям! Ваша задача — правильно "обжать" сетевой кабель, соединив разноцветные проводки с соответствующими контактами разъёма. Каждая успешная сборка восстанавливает часть сети и приближает вас к запуску сервера!',
+    url: 'Connector'
+  },
 };
 
 const Programmers: React.FC = () => {
@@ -44,6 +49,7 @@ const Programmers: React.FC = () => {
       <div className={classes.container}>
         <div className={classes.comp} onClick={() => handleGameClick('computerGame')}><Indicator></Indicator></div>
         <div className={classes.robot} onClick={() => handleGameClick('robotGame')}><Indicator></Indicator></div>
+        <div className={classes.connector} onClick={() => handleGameClick('connectorGame')}><Indicator></Indicator></div>
       </div>
       <div className={classes.card}><Card type={'game'} title={cardData.title} body={cardData.body} game={cardData.url} backLink={'programmers'}
                                           isOpen={openIsCard} onClose={closeCard} /></div>

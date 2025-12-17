@@ -1,0 +1,547 @@
+/* ====== ГЛАВНЫЙ ФОН И ЛЕЙАУТ ====== */
+.game-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  inset: 0;
+  background: url("../assets/main.png");
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  font-family: sans-serif;
+  padding-top: 70px;
+}
+
+/* ====== ВЕРХНЯЯ СЕКЦИЯ ====== */
+.top-section {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: auto;
+}
+
+/* ====== НИЖНЯЯ СЕКЦИЯ ====== */
+.bottom-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: auto;
+  margin-bottom: 35px;
+}
+
+.connector-wires-container {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  width: 100%;
+}
+
+.left-column,
+.middle-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ====== КОННЕКТОР (С position: relative!) ====== */
+.connector {
+  position: relative; /* ВАЖНО! */
+  width: 276px;
+  height: 521px;
+
+  .connector-image {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+/* ====== ПИНЫ ====== */
+.pin-wrapper {
+  position: absolute;
+  width: 12px;
+  height: 56px;
+  z-index: 9;
+  box-sizing: border-box;
+}
+
+.pin-drop-zone {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 8px;
+
+  &:hover:not(.disabled) {
+    background-color: rgba(0, 255, 0, 0.4);
+    border: 2px solid #00ff00;
+  }
+
+  &.disabled {
+    cursor: not-allowed !important;
+    opacity: 0.6;
+
+    /* УБИРАЕМ красный фон при hover */
+    &:hover {
+      background-color: transparent !important;
+      border: none !important;
+    }
+  }
+}
+
+.pin {
+  position: absolute;
+  width: 12px;
+  height: 56px;
+  background: #ffd000;
+  border-radius: 6px;
+  z-index: 10;
+  pointer-events: none;
+
+  .pin-drop-zone.disabled & {
+    background: #ccc !important;
+  }
+
+  .pin-drop-zone:not(.disabled).hover & {
+    background: #4CAF50;
+  }
+}
+
+.pin-wire-container {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+  z-index: 11;
+}
+
+.pin-wire {
+  width: 55px;
+  height: 263px;
+  display: block;
+  user-select: none;
+}
+
+/* ====== ПРОВОДА ====== */
+.wires-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  max-width: 800px;
+  max-height: 300px;
+  padding: 10px;
+  overflow-y: auto;
+  justify-content: center;
+}
+
+.wire-item {
+  width: 15px;
+  height: 236px;
+  border-radius: 8px;
+  user-select: none;
+  -webkit-user-drag: none;
+  cursor: grab;
+  transition: opacity 0.2s;
+
+  &.is-dragging {
+    opacity: 0.3;
+  }
+
+  &.is-disabled {
+    opacity: 0.5;
+    cursor: not-allowed !important;
+    filter: grayscale(50%);
+    position: relative;
+
+    &::after {
+      content: "🔒";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 24px;
+      opacity: 0.7;
+    }
+  }
+}
+
+/* ====== КНОПКА ПРОВЕРКИ ====== */
+.game-check-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  animation: fadeInUp 0.4s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ====== НИЖНИЕ КНОПКИ НАВИГАЦИИ ====== */
+.buttons {
+  position: fixed;
+  bottom: 1.1%;
+  left: 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 400px;
+  padding-top: 30px;
+  padding-left: 30px;
+
+}
+
+/* ====== СТИЛИ ДЛЯ УВЕДОМЛЕНИЯ ====== */
+.notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999; // УВЕЛИЧЬТЕ z-index ДО 9999
+  animation: slideInRight 0.3s ease-out;
+}
+
+.notification-content {
+  background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+  color: white;
+  padding: 15px 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 300px;
+  max-width: 400px;
+  font-weight: 500;
+  font-size: 16px;
+  border-left: 5px solid #ff4757;
+}
+
+.notification-close {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  opacity: 0.8;
+  margin-left: 15px;
+  transition: opacity 0.2s;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* ====== РЕБУСЫ ====== */
+.rebus-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  width: 100%;
+}
+
+.rebus-row {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.rebus-card {
+  width: 180px;
+  height: 110px;
+  border-radius: 12px;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s;
+
+  &:hover:not(.solved) {
+    transform: scale(1.05);
+  }
+
+  &.solved {
+    cursor: default;
+
+    .image-blur {
+      position: absolute;
+      inset: 0;
+      backdrop-filter: blur(4px);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .pin-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      color: white;
+      font-weight: bold;
+      z-index: 2;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+
+      .pin-number {
+        font-size: 18px;
+        margin-bottom: 5px;
+      }
+
+      .pin-label {
+        font-size: 14px;
+        opacity: 0.9;
+      }
+    }
+  }
+
+  .unsolved-card {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+  }
+}
+
+/* Индикатор прогресса ребусов */
+.rebus-progress {
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  padding: 8px 16px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
+  margin-top: 10px;
+}
+
+/* ====== МОДАЛКА РЕБУСА ====== */
+.blur-background {
+  position: fixed;
+  inset: 0;
+  backdrop-filter: blur(110px);
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 999;
+}
+
+.rebus-modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.rebus-content {
+  width: 700px;
+  background: #fff;
+  padding: 25px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #666;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+
+  &:hover {
+    background-color: #f5f5f5;
+    color: #000;
+  }
+}
+
+.rebus-input {
+  padding: 12px 15px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+
+  &:focus {
+    outline: none;
+    border-color: #4caf50;
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+  }
+}
+
+.solve-btn {
+  padding: 12px 24px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #45a049;
+  }
+}
+
+.error-message {
+  color: #f44336;
+  text-align: center;
+  font-weight: bold;
+  animation: shake 0.5s;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+  20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+/* ====== СТИЛИ ДЛЯ УВЕДОМЛЕНИЯ ЧЕРЕЗ ПОРТАЛ ====== */
+.notification-portal {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 999999; /* Очень высокий z-index */
+  animation: slideInRight 0.3s ease-out;
+  pointer-events: auto;
+
+  .notification-content {
+    background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 300px;
+    max-width: 400px;
+    font-weight: 500;
+    font-size: 16px;
+    border-left: 5px solid #ff4757;
+    animation: pulse 2s infinite;
+  }
+
+  .notification-close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    opacity: 0.8;
+    margin-left: 15px;
+    transition: opacity 0.2s;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+/* Анимация пульсации для привлечения внимания */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+  }
+  50% {
+    box-shadow: 0 4px 20px rgba(255, 107, 107, 0.6);
+  }
+  100% {
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+  }
+}
+
+/* Гарантируем, что уведомление будет поверх всего */
+body > .notification-portal {
+  z-index: 999999 !important;
+}
+
+/* Отключаем drag-and-drop когда провода заблокированы */
+.wire-item.is-disabled {
+  pointer-events: none !important;
+  opacity: 0.5 !important;
+  filter: grayscale(100%) !important;
+  cursor: not-allowed !important;
+
+  &::after {
+    content: "🔒";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    opacity: 0.7;
+    z-index: 10;
+  }
+}
+
+/* Стиль для заблокированных пинов */
+.pin-drop-zone.disabled {
+  cursor: not-allowed !important;
+  opacity: 0.5;
+
+  &:hover {
+    background-color: transparent !important;
+    border: none !important;
+  }
+}
+
+/* Дополнительные стили для визуализации */
+.pin-drop-zone.highlight {
+  background-color: rgba(255, 0, 0, 0.3) !important;
+  border: 2px dashed red !important;
+}
