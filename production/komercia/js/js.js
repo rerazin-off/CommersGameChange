@@ -12,7 +12,7 @@ $(".block, .obr").sortable({
     items: 'img',
     receive: function (event, ui) {
         var huj = Number($(this).attr('col'));
-        if (ui.item.attr('data-type') == $(this).attr('data-type')) {
+        if (ui.item.attr('blocks-type') == $(this).attr('blocks-type')) {
             ui.item.attr('alt', 'true');
             ui.item.css({
                 'background-color':'rgba(255, 0, 0, 0)'

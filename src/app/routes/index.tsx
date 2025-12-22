@@ -44,13 +44,7 @@ const GameRast = React.lazy(()=>import('../../pages/game/rast/gameRast'));
 const Rocket = React.lazy(()=>import('../../pages/game/rocket/Rocket'));
 const SpaceTransport = React.lazy(()=>import('../../pages/game/SpaceTransport/SpaceTransport'));
 const Upbringing = React.lazy(()=>import('../../pages/game/upbringing/Upbringing'));
-const RelaxRoom = React.lazy(()=> import('../../pages/game/relaxRoom/relaxRoom'));
-const RestRoom = React.lazy(()=> import('../../pages/game/RestRoom/RestRoom'));
-const PongGame = React.lazy(()=> import('../../pages/game/ElementarySchool/Pong/PongGame'));
-const Litebot = React.lazy(() => import('../../pages/game/liteBot/App'));
-const MagicalCrimes = React.lazy(() => import('../../pages/game/magicalCrimes/MagicalCrimes'));
-const PensionGalaxy = React.lazy(() => import('../../pages/game/PensionGalaxy/PensionGalaxy'));
-const LaborCode = React.lazy(() => import('../../pages/game/PensionGalaxy/pages/LaborCode/LaborCode'));
+import Preloader from '../../components/Preloaer/Preloader';
 
 import { Musical } from '../../pages/game/musical/musical.js';
 import { CommerceTovary } from '../../pages/game/commerce/CommerceTovary';
@@ -98,6 +92,7 @@ export const router = createBrowserRouter([
   { path: RoutesEnum.MUSIC, element: withSuspense(MusiciansRoom) },
   { path: '/ElemShool', element: withSuspense(ElementarySchool) },
   { path: '/Psih', element: withSuspense(Psih) },
+  // { path: RoutesEnum.GAME, element: withSuspense(Game) },
 
   // Игровые маршруты
   { path: '/doyGame', element: withSuspense(Doy) },
@@ -118,12 +113,5 @@ export const router = createBrowserRouter([
   { path: '/swiperPage', element: withSuspense(SwiperPage) },
   { path: '/childWardrobe', element: withSuspense(ChildWardrobe) },
   { path: '/gameRast', element: withSuspense(GameRast) },
-  {path: '/relaxRoom', element: withSuspense(RelaxRoom)},
-  { path: '/restRoom', element: withSuspense(RestRoom) },
-  { path: '/liteBot', element: withSuspense(Litebot) },
-  { path: '/magicalCrimes', element: withSuspense(MagicalCrimes) },
-  { path: '/pensionGalaxy', element: withSuspense(PensionGalaxy) },
-  { path: '/laborCode', element: withSuspense(LaborCode) },
-  { path: '/PongGame', element: withSuspense(PongGame) },
-
+  {path: '/preloader', element: <Preloader/>}
 ]);

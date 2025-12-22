@@ -9,7 +9,7 @@ $(".block, .igr").sortable({
   items: 'img',
   receive: function (event, ui) {
       var huj = Number($(this).attr('col'));
-      if (ui.item.attr('data-type') == $(this).attr('data-type')) {
+      if (ui.item.attr('blocks-type') == $(this).attr('blocks-type')) {
         ui.item.attr('alt','true').css({
             'background-color':'rgba(50, 205, 50,0.66)'
         })

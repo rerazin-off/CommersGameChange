@@ -1,0 +1,262 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #eef2f6;
+}
+
+.wrapper {
+    display: flex;
+    height: 100%;
+    background: url(/src/assets/img/фонт.svg);
+}
+
+/* Левая панель */
+.sidebar {
+    width: 280px;
+    background: #1e293b;
+    color: white;
+    padding: 20px;
+}
+
+.sidebar h2 {
+    margin-bottom: 20px;
+}
+
+.block-list .block {
+    padding: 12px;
+    background: #334155;
+    color: white;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    cursor: grab;
+}
+
+/* Игровая зона */
+.game-area {
+    flex: 1;
+    padding: 20px;
+}
+
+.drop-zone {
+    background: white 50%;
+    min-height: 80vh;
+    padding: 20px;
+    border: 2px dashed #94a3b8;
+    border-radius: 10px;
+}
+
+/* Разные стили для разных блоков */
+
+.block-visual {
+    padding: 18px;
+    margin-bottom: 12px;
+    border-radius: 6px;
+    position: relative;
+}
+
+.block-header {
+    background: #0ea5e9;
+    color: white;
+}
+
+.block-navigation {
+    background: #0284c7;
+    color: white;
+}
+
+.block-hero {
+    background: linear-gradient(135deg, #3b82f6, #1e40af);
+    height: 120px;
+    color: white;
+}
+
+.block-main {
+    background: #e2e8f0;
+    height: 150px;
+}
+
+.block-section {
+    background: #cbd5e1;
+}
+
+.block-article {
+    background: white;
+    border: 1px solid #cbd5e1;
+}
+
+.block-sidebar {
+    background: #94a3b8;
+    width: 300px;
+}
+
+.block-footer {
+    background: #0f172a;
+    color: white;
+}
+
+/* Кнопка удаления */
+
+.delete-btn {
+    position: absolute;
+    top: 6px;
+    right: 10px;
+    cursor: pointer;
+    color: red;
+    font-weight: bold;
+    background: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+#checkBtn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+}
+
+.correct {
+    border: 3px solid #22c55e !important;
+}
+
+.wrong {
+    border: 3px solid #ef4444 !important;
+}
+
+/* Общие базовые стили */
+.block-visual {
+    padding: 16px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    position: relative;
+}
+
+/* HEADER */
+.block-header {
+    background: #0ea5e9;
+    color: white;
+}
+.block-header .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.block-header .logo {
+    font-size: 22px;
+    font-weight: bold;
+}
+.block-header .menu span {
+    margin-left: 12px;
+}
+
+/* NAVIGATION */
+.block-navigation {
+    background: #0284c7;
+    color: white;
+    display: flex;
+    gap: 20px;
+    padding: 10px;
+}
+
+/* HERO */
+.block-hero {
+    background: linear-gradient(135deg, #3b82f6, #1e40af);
+    color: white;
+    padding: 30px;
+}
+.hero-title {
+    font-size: 28px;
+    font-weight: bold;
+}
+.hero-subtitle {
+    opacity: 0.8;
+}
+
+/* MAIN */
+.block-main {
+    background: #e2e8f0;
+    height: 100%;
+}
+
+/* SECTION */
+.block-section {
+    background: #cbd5e1;
+    display: flex;
+    justify-content: center;
+}
+.block-section .cards {
+    display: flex;
+    gap: 10px;
+
+}
+.block-section .card {
+    background: white;
+    padding: 10px;
+    border-radius: 6px;
+}
+
+/* ARTICLE */
+.block-article {
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+}
+
+/* SIDEBAR */
+.block-sidebar {
+    background: #94a3b8;
+}
+.block-sidebar ul {
+    padding-left: 20px;
+}
+
+/* FOOTER */
+.block-footer {
+    background: #0f172a;
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+.block-footer .links span {
+    margin-left: 12px;
+    opacity: 0.7;
+}
+/* Внутренняя зона внутри MAIN */
+.inner-drop {
+    min-height: 120px;
+    margin-top: 15px;
+    background: #f1f5f9; /* светлый фон */
+    border: 2px dashed #94a3b8; /* как у основной зоны */
+    border-radius: 8px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Подсказка внутри MAIN */
+.inner-text {
+    color: #888;
+    font-style: italic;
+    text-align: center;
+}
+
+/* Перетаскиваемые блоки внутри MAIN */
+.inner-drop .block-visual {
+    margin-bottom: 0; /* расстояние уже задаётся через gap */
+}
+
+/* Подсветка правильного и неправильного положения */
+.inner-drop .correct {
+    border: 3px solid #22c55e !important;
+}
+
+.inner-drop .wrong {
+    border: 3px solid #ef4444 !important;
+}
+
+/* Немного адаптируем Hero, Section, Article внутри MAIN */
+.inner-drop .block-hero,
+.inner-drop .block-section,
+.inner-drop .block-article,
+.inner-drop .block-sidebar {
+
+}

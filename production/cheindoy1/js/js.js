@@ -21,12 +21,12 @@ $(document).ready(function () {
         
         out: function (event, ui) {
             
-            if (ui.draggable.attr('data-drag-true') == 'true') {
+            if (ui.draggable.attr('blocks-drag-true') == 'true') {
                
                   
-                if($(this).attr('data-drop') == ui.draggable.attr('data-drag')){
+                if($(this).attr('blocks-drop') == ui.draggable.attr('blocks-drag')){
                    
-					ui.draggable.attr('data-drag-true', 'false');
+					ui.draggable.attr('blocks-drag-true', 'false');
                         ui.draggable.css({
                             "background": 'rgba(16, 193, 30, 0)'
                         });
@@ -36,18 +36,18 @@ $(document).ready(function () {
         drop: function (event, ui) {
            
             
-            if (ui.draggable.attr('data-drag-true') == 'false') {
+            if (ui.draggable.attr('blocks-drag-true') == 'false') {
                 j=j+1;
                   
                 j1=j1-1;
                 document.getElementById("p1").innerHTML="Осталось перетаскиваний: "+j1;
-				if($(this).attr('data-drop') == ui.draggable.attr('data-drag')){
+				if($(this).attr('blocks-drop') == ui.draggable.attr('blocks-drag')){
                   
                      
             i=i+1;
                  
                    
-					ui.draggable.attr('data-drag-true', 'true');
+					ui.draggable.attr('blocks-drag-true', 'true');
                         ui.draggable.css({
                             "background": 'rgba(16, 193, 30, 0.63)'
                         });

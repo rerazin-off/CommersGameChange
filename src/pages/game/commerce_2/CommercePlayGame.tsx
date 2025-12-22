@@ -274,11 +274,11 @@ const CommercePlayGame: React.FC = () => {
       const dropTarget = document.elementFromPoint(touch.clientX, touch.clientY);
 
       if (dropTarget) {
-        const refrigeratorElement = dropTarget.closest('[data-refrigerator]');
+        const refrigeratorElement = dropTarget.closest('[blocks-refrigerator]');
         if (refrigeratorElement) {
-          const refrigeratorIndex = parseInt(refrigeratorElement.getAttribute('data-refrigerator') || '0');
+          const refrigeratorIndex = parseInt(refrigeratorElement.getAttribute('blocks-refrigerator') || '0');
           handleDropOnRefrigerator(refrigeratorIndex);
-        } else if (dropTarget.closest('[data-purple-zone]')) {
+        } else if (dropTarget.closest('[blocks-purple-zone]')) {
           handleDropOnPurpleZone();
         } else if (touchActive.source === 'refrigerator') {
           handleDropOnPurpleZone();
@@ -385,7 +385,7 @@ const CommercePlayGame: React.FC = () => {
   const handleDropOnRefrigeratorsArea = (e: React.DragEvent) => {
     e.preventDefault();
 
-    const refrigeratorElements = document.querySelectorAll('[data-refrigerator]');
+    const refrigeratorElements = document.querySelectorAll('[blocks-refrigerator]');
     const dropX = e.clientX;
     const dropY = e.clientY;
 
@@ -402,7 +402,7 @@ const CommercePlayGame: React.FC = () => {
 
       if (distance < minDistance) {
         minDistance = distance;
-        closestRefrigerator = el.getAttribute('data-refrigerator');
+        closestRefrigerator = el.getAttribute('blocks-refrigerator');
       }
     });
 
