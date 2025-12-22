@@ -1,0 +1,74 @@
+.panel {
+  background: rgba(9, 3, 36, 0.8);
+  padding: 3vh 5vh;
+  border-radius: 10px;
+  border: 1px solid rgba(1, 199, 233, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5),
+  inset 0 0 15px rgba(1, 199, 233, 0.2);
+  backdrop-filter: blur(5px);
+  width: 100%;
+  max-width: 600px;
+
+  h1 {
+    margin-bottom: 2vh;
+    text-align: center;
+    font-size: 24px;
+    font-family: 'BOWLER';
+    color: #fff;
+  }
+  h2 {
+    font-family: 'Arial' !important;
+    color: #01C7E9;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 20px;
+    margin: 0 0 5px 0;
+  }
+}
+
+.infoHeader{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.btnCalc{
+  margin-top: 3vh;
+  padding: 1vh 2vh;
+  background: #034460;
+  color: #fff;
+  overflow: hidden;
+  position: relative;
+  border: none;
+  border-radius: 7px;
+  font-family: 'BOWLER';
+
+  span {
+    z-index: 20;
+  }
+  &:after{
+    background: #fff;
+    content: "";
+    height: 155px;
+    left: -75px;
+    opacity: .2;
+    position: absolute;
+    top: -50px;
+    transform: rotate(35deg);
+    width: 50px;
+    z-index: 10;
+    animation: btnEffect 3s infinite;
+  }
+}
+
+@keyframes btnEffect {
+  0%{
+    left: -75px;
+  }
+  20%{
+    left: 120%;
+  }
+  100%{
+    left: 120%;
+  }
+}

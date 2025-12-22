@@ -14,7 +14,6 @@ import { RocketElements } from '../rocket/RocketElements';
 import btnCheck from '@/assets/img/game_assets/game-rocket-img/btn-check.svg';
 import icon from '@/assets/img/game_assets/game-rocket-img/icon.svg';
 import btnClose from '@/assets/img/game_assets/game-rocket-img/btnClose.svg';
-import fire from '@/assets/img/game_assets/game-rocket-img/fire.svg';
 import ElementsPanel from './components/ElementsPanel/ElementsPanel';
 
 type ElementsRocket = {

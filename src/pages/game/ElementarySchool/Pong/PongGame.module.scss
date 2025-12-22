@@ -1,0 +1,241 @@
+.container1{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #000428 0%, #004e92 100%);
+  color: white;
+  font-family: 'Orbitron', 'Arial', sans-serif;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100%;
+  background: linear-gradient(135deg, #000428 0%, #004e92 100%);
+  color: white;
+  font-family: 'Orbitron', 'Arial', sans-serif;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Космический фон с туманностями и звездами */
+.container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+          radial-gradient(2px 2px at 20px 30px, #fff, transparent),
+          radial-gradient(2px 2px at 40px 70px, #fff, transparent),
+          radial-gradient(1px 1px at 90px 40px, #fff, transparent),
+          radial-gradient(1px 1px at 130px 80px, #fff, transparent),
+          radial-gradient(2px 2px at 160px 30px, #fff, transparent),
+          radial-gradient(1px 1px at 210px 60px, #fff, transparent),
+          radial-gradient(2px 2px at 250px 90px, #fff, transparent),
+          radial-gradient(1px 1px at 290px 40px, #fff, transparent),
+          radial-gradient(2px 2px at 320px 70px, #fff, transparent),
+          radial-gradient(1px 1px at 360px 20px, #fff, transparent),
+          radial-gradient(2px 2px at 400px 50px, #fff, transparent),
+          radial-gradient(1px 1px at 450px 80px, #fff, transparent),
+          radial-gradient(2px 2px at 500px 30px, #fff, transparent),
+          radial-gradient(1px 1px at 550px 60px, #fff, transparent),
+          radial-gradient(2px 2px at 600px 90px, #fff, transparent),
+          radial-gradient(1px 1px at 650px 40px, #fff, transparent),
+          radial-gradient(2px 2px at 700px 70px, #fff, transparent),
+          radial-gradient(1px 1px at 750px 20px, #fff, transparent),
+            /* Туманности */
+          radial-gradient(300px 300px at 10% 20%, rgba(138, 43, 226, 0.1), transparent),
+          radial-gradient(400px 400px at 80% 30%, rgba(255, 69, 0, 0.08), transparent),
+          radial-gradient(350px 350px at 40% 70%, rgba(30, 144, 255, 0.1), transparent);
+  animation: twinkle 6s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+  0% { opacity: 0.4; }
+  100% { opacity: 0.8; }
+}
+
+.canvas {
+  border: 2px solid rgba(255, 215, 0, 0.5);
+  border-radius: 10px;
+  box-shadow:
+          0 0 50px rgba(255, 215, 0, 0.3),
+          inset 0 0 30px rgba(255, 215, 0, 0.1);
+  cursor: none;
+  margin: 8px 0;
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(180deg, #000428 0%, #000c40 100%);
+}
+.buttons{
+  display: flex;
+  gap: 1rem;
+}
+.button{
+  border: 1px solid rgba(255, 215, 0, 0.5);
+  width: 14rem;
+  height: 4rem;
+  font-size: 40px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  color: white;
+
+
+}
+
+
+.canvas:hover {
+  box-shadow:
+          0 0 60px rgba(255, 215, 0, 0.5),
+          inset 0 0 40px rgba(255, 215, 0, 0.2);
+}
+
+.game-info {
+  display: flex;
+  justify-content: space-between;
+  width: 800px;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  padding: 20px;
+  border-radius: 15px;
+  margin-bottom: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.game-info div {
+  text-align: center;
+  flex: 1;
+  color: #ffd700;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin-top: 25px;
+  position: relative;
+  z-index: 10;
+}
+
+
+.instructions {
+  text-align: center;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  padding: 20px;
+  border-radius: 15px;
+  max-width: 600px;
+  border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.instructions p {
+  margin: 8px 0;
+  color: #ffd700;
+  font-size: 14px;
+  text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+}
+
+.h1 {
+  font-size: 52px;
+  margin-bottom: 15px;
+  background: linear-gradient(45deg, #ffd700, #ff8c00, #ff6347, #ff4500);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+  position: relative;
+  z-index: 1;
+  font-weight: bold;
+  letter-spacing: 2px;
+  font-family: 'Orbitron', sans-serif;
+}
+
+/* Солнечная система в углу */
+.solar_system_decoration {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  width: 120px;
+  height: 120px;
+  z-index: 0;
+}
+
+.sun {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: radial-gradient(circle, #ffd700 0%, #ff8c00 50%, #ff4500 100%);
+  border-radius: 50%;
+  top: 40px;
+  left: 40px;
+  box-shadow:
+          0 0 40px #ff4500,
+          0 0 60px #ff8c00,
+          0 0 80px #ffd700;
+  animation: sun-pulse 3s ease-in-out infinite;
+}
+
+.earth_orbit {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border: 1px dashed rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  top: 20px;
+  left: 20px;
+  animation: orbit-rotate 10s linear infinite;
+}
+
+.earth {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: radial-gradient(circle, #1e90ff 0%, #006400 30%, #8b4513 70%);
+  border-radius: 50%;
+  top: 0;
+  left: 34px;
+  animation: earth-rotate 5s linear infinite;
+}
+
+
+@keyframes sun-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+@keyframes orbit-rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes earth-rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(-360deg); }
+}
+
+
+
+/* Анимации для космического эффекта */
+@keyframes cosmic-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(5deg); }
+}
+
+.solar-system-decoration {
+  animation: cosmic-float 8s ease-in-out infinite;
+}

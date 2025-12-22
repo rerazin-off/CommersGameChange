@@ -1,0 +1,172 @@
+h3 {
+  font-family: 'Arial';
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 14px;
+  margin: 0;
+  opacity: 0.8;
+}
+
+.header{
+  text-align: center;
+  margin-bottom: 5vh;
+}
+
+.name {
+  color: #01C7E9;
+  animation: flicker 3s infinite alternate;
+  font-family: 'BOWLER';
+  font-size: 70px;
+  font-weight: 100;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+@keyframes flicker {
+  0%, 19%, 21%, 23%, 25%, 55%, 57%, 100% {
+    text-shadow:
+            0 0 10px #01C7E9,
+            0 0 20px #055d6c,
+            0 0 30px #055d6c,
+            0 0 40px rgba(1, 199, 233, 0.3);
+    opacity: 1;
+  }
+  20%, 24%, 56% {
+    text-shadow: none;
+    opacity: 0.7;
+  }
+}
+
+.bg {
+  background: url(../../../../../assets/img/game_assets/pensionGalaxy-img/bg.svg) center/cover no-repeat;
+  width: 100%;
+  min-height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 5vh;
+  gap: 5vh;
+  overflow: hidden;
+}
+
+.mainInf {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  position: relative;
+  z-index: 1;
+  margin-top: -5vh;
+}
+
+.iconPerson {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 40%;
+  min-width: 300px;
+}
+
+.personImg{
+  width: 30vh;
+  height: 30vh;
+  border-radius: 100%;
+  position: absolute;
+  z-index: 3;
+  object-fit: cover;
+}
+
+.circle1 {
+  animation: rotateCircle 8s infinite linear;
+  width: 73%;
+  filter: drop-shadow(0 0 20px #01C7E9);
+  position: absolute;
+  z-index: 2;
+}
+
+.circle2{
+  width: 90%;
+  filter: drop-shadow(0 0 20px #01C7E9);
+  position: relative;
+  z-index: 1;
+  top: 2vh;
+  right: 3vh;
+  height: 60vh;
+}
+
+@keyframes rotateCircle {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.col {
+  background: linear-gradient(#23EAFA, #114B4D);
+  width: 4px;
+  height: 100%;
+  filter: drop-shadow(-5px 0 10px #01C7E9);
+  margin-right: 20px;
+  border-radius: 2px;
+}
+
+.icons{
+  display: flex;
+  flex-direction: row;
+  gap: 2vh;
+  position: absolute;
+  bottom: 2vh;
+  left: 2vw;
+  width: 40px;
+  transition: transform 0.3s;
+  z-index: 10;
+}
+
+
+.answer{
+  border: 1px dashed #01C7E9;
+  background: rgba(9, 3, 36, 0.8);
+  padding: 3vh 5vh;
+  border-radius: 10px;
+  margin-top: 3vh;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  h1{
+    font-family: 'BOWLER';
+    font-size: 14px;
+    font-weight: 100;
+  }
+  input{
+    background: transparent;
+    border: 1px solid #01C7E9;
+    border-radius: 3px;
+    color: #fff;
+    padding: 0.7vh;
+  }
+  button{
+    background: #01C7E9;
+    padding: 1vh 2vw;
+    border-radius: 5px;
+    font-family: 'BOWLER';
+    border: none;
+  }
+}
+
+.infoContainer{
+  display: flex;
+  flex-direction: column;
+  width: 55vh;
+}

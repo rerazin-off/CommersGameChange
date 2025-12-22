@@ -1,0 +1,115 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.banner {
+    height: 100vh;
+    width: 100%;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+    cursor: grab;
+    background: #090324;
+    color: #fff;
+}
+
+.banner .slider {
+    position: absolute;
+    width: 10vw;
+    height: 26vh;
+    top: 20%;
+    left: calc(50% - 100px);
+    transform-style: preserve-3d;
+}
+
+.banner .slider .initial{
+    animation: none;
+}
+
+.banner .slider .initial .item{
+    transform: translateZ(0) !important;
+    transition: transform 1s ease-out;
+}
+
+@keyframes autoRun {
+    from {
+        transform: perspective(1000px) rotateX(-16deg) rotateY(0deg);
+    }
+    to {
+        transform: perspective(1000px) rotateX(-16deg) rotateY(360deg);
+    }
+}
+
+.banner .slider .item {
+    -webkit-box-reflect: below 1vh linear-gradient(transparent, transparent, #0007);
+    position: absolute;
+    inset: 0;
+    transform:
+            rotateY(calc((var(--position) - 1) * (360deg / 8)))
+            translateZ(550px);
+    width: 100%;
+    height: 100%;
+    transition: transform 1s ease-out;
+    background: url(../../../../../assets/img/game_assets/pensionGalaxy-img/bgCard.svg);
+    background-size: cover;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    white-space: pre-line;
+    gap: 0.4vh;
+    overflow: hidden;
+    padding-bottom: 3vh;
+
+    h1 {
+        font-family: 'BOWLER';
+        font-size: 8px;
+        margin-top: 3vh;
+        font-weight: 100;
+    }
+
+    p {
+        font-family: 'Comfortaa';
+        font-size: 10px;
+        margin: 0;
+    }
+
+    button {
+        border-radius: 5px;
+        padding: 0.5vh 1vh;
+        font-family: 'Comfortaa';
+        color: #000;
+        border: none;
+        font-weight: 700;
+        font-size: 10px;
+        position: relative;
+        z-index: 100;
+        background: #23EAFA;
+        font-weight: 700;
+    }
+}
+
+.passed{
+    filter: brightness(50%);
+}
+
+.banner .slider .item img {
+    width: 80%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.backButton{
+    position: absolute;
+    bottom: 1vh;
+    left: 5vh;
+    z-index: 100;
+    width: 30vw;
+    color: #0ec3c9;
+    fill: #0ec3c9;
+}
+
