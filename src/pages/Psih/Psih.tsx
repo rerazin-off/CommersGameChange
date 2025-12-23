@@ -5,18 +5,21 @@ import { Button } from '../../components/Button/Button';
 import { Link } from 'react-router-dom';
 import { Assistant } from '../../components/Assistant/Assistant';
 
-const gameData: Record<string, { title: string; body: string }> = {
+const gameData: Record<string, { title: string; body: string; url: string  }> = {
   floursGame: {
     title: 'Внутренний монстр',
     body: 'Наше подсознание таит в себе много неизведанного и неожиданного, даже для нас самих. Чтобы определить это, предлогаем пройти тест. Выберите фигуру, которая вам нравится!',
+    url: ''
   },
-  pillowGame: {
+  geometricPerson: {
     title: 'Собери человечка',
     body: 'Вам необходимо собрать человечка из различных фигур. В результате будет определён ваш тип!',
+    url: 'geometricPerson'
   },
   pillowsGame: {
     title: 'Тест',
     body: 'Вам необходимо ответить на вопросы. В конце, основываясь на ваших ответах будет указан тип человека, к которому вы относитесь.',
+    url: ''
   },
 
 };
@@ -45,7 +48,7 @@ const Psih: React.FC = () => {
       <div className={classes.progs}>
         <div className={classes.container}>
           <div className={classes.flours} onClick={() => handleGameClick('floursGame')}></div>
-          <div className={classes.pillow} onClick={() => handleGameClick('pillowGame')}></div>
+          <div className={classes.pillow} onClick={() => handleGameClick('geometricPerson')}></div>
           <div className={classes.pillows} onClick={() => handleGameClick('pillowsGame')}></div>
 
         </div>

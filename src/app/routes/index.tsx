@@ -44,6 +44,9 @@ const GameRast = React.lazy(()=>import('../../pages/game/rast/gameRast'));
 const Rocket = React.lazy(()=>import('../../pages/game/rocket/Rocket'));
 const SpaceTransport = React.lazy(()=>import('../../pages/game/SpaceTransport/SpaceTransport'));
 const Upbringing = React.lazy(()=>import('../../pages/game/upbringing/Upbringing'));
+const siteBuilde = React.lazy(()=>import('../../pages/game/siteBuilder/App'));
+const geometricPerson = React.lazy(()=>import('../../pages/game/geometricPerson/src/App'));
+
 import Preloader from '../../components/Preloaer/Preloader';
 
 import { Musical } from '../../pages/game/musical/musical.js';
@@ -113,5 +116,7 @@ export const router = createBrowserRouter([
   { path: '/swiperPage', element: withSuspense(SwiperPage) },
   { path: '/childWardrobe', element: withSuspense(ChildWardrobe) },
   { path: '/gameRast', element: withSuspense(GameRast) },
+  { path: '/siteBuilde', element: withSuspense(siteBuilde) },
+  { path: '/geometricPerson', element: withSuspense(geometricPerson) },
   {path: '/preloader', element: <Preloader/>}
 ]);
