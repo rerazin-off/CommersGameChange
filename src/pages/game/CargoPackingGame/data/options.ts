@@ -1,59 +1,73 @@
-import {
-  Option,
-} from "../types/game";
+import { Option } from "../types/game";
+
+// Импортируем иконки для типов груза
+import lightIcon from '../assets/cargos/light.svg';
+import fragileIcon from '../assets/cargos/fragile.svg';
+import heavyIcon from '../assets/cargos/heavy.svg';
+import temperatureIcon from '../assets/cargos/temperature.svg';
+
+// Импортируем иконки для упаковки
+import thermoIcon from '../assets/cargos/thermo.svg';
+import woodIcon from '../assets/cargos/wood.svg';
+import courierIcon from '../assets/cargos/courier.svg';
+import boxIcon from '../assets/cargos/box.svg';
+
+// Импортируем иконки для наполнителей
+import bubbleIcon from '../assets/cargos/bubble.svg';
+import foamIcon from '../assets/cargos/foam.svg';
+import coldIcon from '../assets/cargos/cold.svg';
+import noneIcon from '../assets/cargos/none.svg';
 
 export const cargoTypeOptions: Option[] = [
   {
     id: "light",
     label: "Лёгкий",
-    icon: "./assets/cargos/light.svg",
+    icon: lightIcon,
     category: "cargoType",
   },
   {
     id: "fragile",
     label: "Хрупкий",
-    icon: "./assets/cargos/fragile.svg",
+    icon: fragileIcon,
     category: "cargoType",
   },
   {
     id: "heavy",
     label: "Тяжёлый",
-    icon: "./assets/cargos/heavy.svg",
+    icon: heavyIcon,
     category: "cargoType",
   },
   {
     id: "temperature",
     label: "Температурный",
-    icon: "./assets/cargos/temperature.svg",
+    icon: temperatureIcon,
     category: "cargoType",
   },
 ];
 
 export const packageOptions: Option[] = [
-
-
   {
     id: "thermo",
     label: "Термоконтейнер",
-    icon: "./assets/cargos/thermo.svg",
+    icon: thermoIcon,
     category: "package",
   },
   {
     id: "wood",
     label: "Деревянный ящик",
-    icon: "./assets/cargos/wood.svg",
+    icon: woodIcon,
     category: "package",
   },
-    {
+  {
     id: "courier",
     label: "Курьерский пакет",
-    icon: "./assets/cargos/courier.svg",
+    icon: courierIcon,
     category: "package",
   },
   {
     id: "box",
     label: "Коробка",
-    icon: "./assets/cargos/box.svg",
+    icon: boxIcon,
     category: "package",
   },
 ];
@@ -62,25 +76,25 @@ export const fillerOptions: Option[] = [
   {
     id: "bubble",
     label: "Пузырчатая плёнка",
-    icon: "./assets/cargos/bubble.svg",
+    icon: bubbleIcon,
     category: "filler",
   },
   {
     id: "foam",
     label: "Пенопласт",
-    icon: "./assets/cargos/foam.svg",
+    icon: foamIcon,
     category: "filler",
   },
   {
     id: "cold",
     label: "Хладоэлемент",
-    icon: "./assets/cargos/cold.svg",
+    icon: coldIcon,
     category: "filler",
   },
   {
     id: "none",
     label: "Без наполнителя",
-    icon: "./assets/cargos/none.svg",
+    icon: noneIcon,
     category: "filler",
   },
 ];

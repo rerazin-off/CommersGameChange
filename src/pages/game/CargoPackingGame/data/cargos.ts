@@ -1,10 +1,20 @@
 import { Cargo } from "../types/game";
 
+// Импортируем все SVG иконки из папки cargos
+import bookIcon from '../assets/cargos/book.svg';
+import glassIcon from '../assets/cargos/glass.svg';
+import tvIcon from '../assets/cargos/tv.svg';
+import engineIcon from '../assets/cargos/engine.svg';
+import milkIcon from '../assets/cargos/milk.svg';
+import medicineIcon from '../assets/cargos/medicine.svg';
+import washingmachineIcon from '../assets/cargos/washingmachine.svg';
+import glovesIcon from '../assets/cargos/gloves.svg';
+
 export const cargos: Cargo[] = [
   {
     id: "book",
     name: "Книга",
-    icon: "/assets/img/fon/book.svg",
+    icon: bookIcon,
     correct: {
       type: "light",
       package: "courier",
@@ -14,7 +24,7 @@ export const cargos: Cargo[] = [
   {
     id: "glass",
     name: "Стеклянный сервиз",
-    icon: "/assets/img/fon/glass.svg",
+    icon: glassIcon,
     correct: {
       type: "fragile",
       package: "box",
@@ -24,7 +34,7 @@ export const cargos: Cargo[] = [
   {
     id: "electronics",
     name: "Монитор",
-    icon: "/assets/img/fon/tv.svg",
+    icon: tvIcon,
     correct: {
       type: "fragile",
       package: "box",
@@ -34,7 +44,7 @@ export const cargos: Cargo[] = [
   {
     id: "engine",
     name: "Двигатель",
-    icon: "/assets/img/fon/engine.svg",
+    icon: engineIcon,
     correct: {
       type: "heavy",
       package: "wood",
@@ -44,7 +54,7 @@ export const cargos: Cargo[] = [
   {
     id: "milk",
     name: "Молочные продукты",
-    icon: "/assets/img/fon/milk.svg",
+    icon: milkIcon,
     correct: {
       type: "temperature",
       package: "thermo",
@@ -54,7 +64,7 @@ export const cargos: Cargo[] = [
   {
     id: "medicine",
     name: "Лекарства",
-    icon: "/assets/img/fon/medicine.svg",
+    icon: medicineIcon,
     correct: {
       type: "temperature",
       package: "thermo",
@@ -64,7 +74,7 @@ export const cargos: Cargo[] = [
   {
     id: "washingmachine",
     name: "Стиральная машина",
-    icon: "/assets/img/fon/washingmachine.svg",
+    icon: washingmachineIcon,
     correct: {
       type: "heavy",
       package: "wood",
@@ -74,7 +84,7 @@ export const cargos: Cargo[] = [
   {
     id: "gloves",
     name: "Перчатки",
-    icon: "/assets/img/fon/gloves.svg",
+    icon: glovesIcon,
     correct: {
       type: "light",
       package: "courier",

@@ -3,6 +3,9 @@ import { WaybillDropSlot } from "./DropSlot";
 import { Option, Cargo } from "../../types/game";
 import { WaybillSubmitButton } from "./WaybillSubmitButton";
 
+// Импортируем фоновую SVG
+import waybillBg from '../../assets/img/fon/waybill-bg.svg';
+
 type WrongMap = {
   type: boolean;
   package: boolean;
@@ -56,7 +59,7 @@ export const Waybill = ({
           width: 657,
           height: 800,
           position: "relative",
-          backgroundImage: "url(/assets/img/fon/waybill-bg.svg)",
+          backgroundImage: `url(${waybillBg})`, // Используем импортированную переменную
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center",
           backgroundSize: "100% 100%",
