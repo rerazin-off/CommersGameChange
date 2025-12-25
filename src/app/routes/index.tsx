@@ -46,6 +46,8 @@ const SpaceTransport = React.lazy(()=>import('../../pages/game/SpaceTransport/Sp
 const Upbringing = React.lazy(()=>import('../../pages/game/upbringing/Upbringing'));
 const siteBuilde = React.lazy(()=>import('../../pages/game/siteBuilder/App'));
 const geometricPerson = React.lazy(()=>import('../../pages/game/geometricPerson/src/App'));
+const Xylophone = React.lazy(() =>import('../../pages/game/xylophone/Xylophone'));
+const Concert = React.lazy(() =>import('../../pages/game/Concert/Concert'));
 
 import Preloader from '../../components/Preloaer/Preloader';
 
@@ -109,6 +111,8 @@ export const router = createBrowserRouter([
   { path: '/upbringing', element: withSuspense(Upbringing) },
   { path: '/deti', element: withSuspense(MovieGame) },
   { path: '/musicalcategories', element: withSuspense(Musical) },
+  { path: '/xylophonesounds', element: withSuspense(Xylophone)},
+  { path: '/concertsounds', element: withSuspense(Concert)},
   { path: '/commerce', element: withSuspense(CommercePlayGame) },
   { path: '/commerce_2', element: withSuspense(Commerce) },
   { path: '/SpaceTransport', element: withSuspense(SpaceTransport) },
