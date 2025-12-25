@@ -48,6 +48,7 @@ const siteBuilde = React.lazy(()=>import('../../pages/game/siteBuilder/App'));
 const geometricPerson = React.lazy(()=>import('../../pages/game/geometricPerson/src/App'));
 const Xylophone = React.lazy(() =>import('../../pages/game/xylophone/Xylophone'));
 const Concert = React.lazy(() =>import('../../pages/game/Concert/Concert'));
+const CargoPacking = React.lazy(() =>import('../../pages/game/CargoPackingGame/CargoPackingGame'));
 
 import Preloader from '../../components/Preloaer/Preloader';
 
@@ -122,5 +123,6 @@ export const router = createBrowserRouter([
   { path: '/gameRast', element: withSuspense(GameRast) },
   { path: '/siteBuilde', element: withSuspense(siteBuilde) },
   { path: '/geometricPerson', element: withSuspense(geometricPerson) },
+  { path: '/CargoPacking', element: withSuspense(CargoPacking) },
   {path: '/preloader', element: <Preloader/>}
 ]);
