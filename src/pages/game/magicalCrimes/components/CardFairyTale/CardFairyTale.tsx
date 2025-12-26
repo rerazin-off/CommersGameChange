@@ -3,11 +3,11 @@ import { FaStar } from "react-icons/fa6";
 
 const CardFairyTale = ({ title, type, countStar, image, onClick, isClosed }) => {
   return (
-    <div className={classes.card}>
-        <div className={classes.image}>
-          <img src={image} alt={title} />
-        </div>
-      <div style={{display:'flex', gap:'1vh', flexDirection:'column', alignItems:'center'}}>
+    <div className={`${classes.card} ${isClosed ? classes.closedCard : ''}`}>
+      <div className={classes.image}>
+        <img src={image} alt={title} />
+      </div>
+      <div style={{ display: 'flex', gap: '1vh', flexDirection: 'column', alignItems: 'center' }}>
         <h1>{title}</h1>
         <p>{type}</p>
         <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '0.5vh' }}>

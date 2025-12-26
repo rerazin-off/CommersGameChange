@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Answers, Questions, Evidences } from '../../Data';
+import { Answers, Questions, Evidences, FalseEvidence } from '../../Data';
 import classes from './Question.module.scss';
 import fingerprint from '../../../../../assets/img/game_assets/magicalCrimes-img/fingerprint.svg';
 import Scene from '../scene/Scene';
@@ -78,6 +78,7 @@ const Question = ({ fairyTale, onBack, onCorrectAnswer, onCloseCase, onCompleteQ
         <Scene
           numEvidence={fairyTale.evidence}
           evidences={Evidences.filter(el => el.idScenes === fairyTale.id)}
+          falseEvidences={FalseEvidence.filter(el => el.idScenes === fairyTale.id)}
           environment={fairyTale.environment}
           onBack={onBack}
           onCorrectAnswer={onCorrectAnswer}
