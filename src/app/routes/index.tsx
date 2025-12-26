@@ -17,6 +17,7 @@ const Yur = React.lazy(()=>import('../../pages/FirstCorpus/Yur/Yur'));
 const Programmers = React.lazy(()=>import('../../pages/FirstCorpus/Programmers/Programmers'));
 const Economist = React.lazy(()=>import('../../pages/FirstCorpus/Economist/Economist'));
 
+
 //Страницы второго корпуса
 const Dou = React.lazy(()=>import('../../pages/SecondCorpus/Dou/dou'));
 const Bank = React.lazy(()=>import('../../pages/SecondCorpus/bank/Bank'));
@@ -44,6 +45,7 @@ const GameRast = React.lazy(()=>import('../../pages/game/rast/gameRast'));
 const Rocket = React.lazy(()=>import('../../pages/game/rocket/Rocket'));
 const SpaceTransport = React.lazy(()=>import('../../pages/game/SpaceTransport/SpaceTransport'));
 const Upbringing = React.lazy(()=>import('../../pages/game/upbringing/Upbringing'));
+const Connector = React.lazy(()=>import('../../pages/game/Connector/components/game'));
 const siteBuilde = React.lazy(()=>import('../../pages/game/siteBuilder/App'));
 const geometricPerson = React.lazy(()=>import('../../pages/game/geometricPerson/src/App'));
 const Xylophone = React.lazy(() =>import('../../pages/game/xylophone/Xylophone'));
@@ -124,5 +126,6 @@ export const router = createBrowserRouter([
   { path: '/siteBuilde', element: withSuspense(siteBuilde) },
   { path: '/geometricPerson', element: withSuspense(geometricPerson) },
   { path: '/CargoPacking', element: withSuspense(CargoPacking) },
+  { path: '/Connector', element: withSuspense(Connector) },
   {path: '/preloader', element: <Preloader/>}
 ]);
