@@ -50,5 +50,21 @@
         transform: translate(0px,0px);
       }
     }
+    .cargoPacking {
+      position: fixed;
+      top: 22%;
+      left: 5.7%;
+      width: 1720px;
+      height: 220px;
+      cursor: pointer;
+      object-fit: contain;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 1000px;
+      img {
+        transform: translate(0px, 0px);
+      }
+    }
   }
 }

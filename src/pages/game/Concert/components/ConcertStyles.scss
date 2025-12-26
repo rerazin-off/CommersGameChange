@@ -1,0 +1,44 @@
+@font-face {
+  font-family: 'Montserrat';
+  src: url(../fonts/Montserrat-Regular.ttf);
+}
+
+.instruments-grid{
+  position: absolute;
+  display: inline-flex;
+  gap: 3vw;
+  width: 100%;
+  justify-content: center;
+  top: 55vh;
+}
+.grid-set-top{
+  top: 60vh
+}
+.play-btn{
+  position: absolute;
+  top: 83vh;
+  right: 3vw;
+  border: none;
+  background-color: transparent;
+  color: white;
+  display: flex ;
+  flex-direction: column;
+  box-sizing: border-box;
+
+  &__desc{
+    font-size: 2rem;
+  }
+}
+.title-text{
+  font-family: 'Montserrat';
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  top: 35vh;
+  font-size: 1.5rem;
+}
+.backButton{
+  position: absolute;
+  top: 85vh;
+  left: 3vw;
+}
