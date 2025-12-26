@@ -88,3 +88,51 @@ h3{
     right: 0;
   }
 }
+
+.errorCard{
+  background: linear-gradient(0.25turn, rgba(250,35,35, 0.3), rgba(250,35,35, 0), rgba(250,35,35, 0.3));
+  padding: 10vh 0;
+}
+
+.errorCard::before,
+.errorCard::after {
+  content: "";
+  position: absolute;
+  width: 7vh;
+  height: 7vh;
+  border: 2px solid red;
+  pointer-events: none;
+}
+
+.errorCard::before {
+  top: 0;
+  left: 0;
+  border-right: none;
+  border-bottom: none;
+}
+.errorCard::after {
+  bottom: 0;
+  right: 0;
+  border-left: none;
+  border-top: none;
+}
+
+.cornerTopRightError,
+.cornerBottomLeftError {
+  border: 2px solid red;
+}
+
+.cornerTopRightError {
+  top: 0;
+  right: 0;
+  border-left: none;
+  border-bottom: none;
+}
+
+.cornerBottomLeftError {
+  bottom: 0;
+  left: 0;
+  border-right: none;
+  border-top: none;
+}
+
