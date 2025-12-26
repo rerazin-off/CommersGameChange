@@ -10,11 +10,11 @@ const AchievementsPanel = ({ score, level, closedCasesCount }) => {
     <div className={classes.nav}>
       <h1>Сказочный криминал</h1>
       <div className={classes.panel}>
-        {Object.entries(Patamters).map(el=>(
-            <div className={classes.parameter}>
-            <h1>{el[1]}</h1>
-            <p>{el[0]}</p>
-          </div>
+        {Object.entries(Patamters).map((el, index)=>(
+            <div className={classes.parameter} key={index}>
+              <h1>{el[1]}</h1>
+              <p>{el[0]}</p>
+            </div>
         ))}
       </div>
     </div>

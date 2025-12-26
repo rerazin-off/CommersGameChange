@@ -3,11 +3,11 @@ import FairyTale2 from '@/assets/img/game_assets/magicalCrimes-img/fairyTaile2.p
 import FairyTale3 from '@/assets/img/game_assets/magicalCrimes-img/fairyTaile3.png';
 import FairyTale4 from '@/assets/img/game_assets/magicalCrimes-img/fairyTaile4.png';
 import FairyTale5 from '@/assets/img/game_assets/magicalCrimes-img/fairyTaile5.png';
-import environment1 from '@/assets/img/game_assets/magicalCrimes-img/environment1.svg';
-import environment2 from '@/assets/img/game_assets/magicalCrimes-img/environment2.svg';
-import environment3 from '@/assets/img/game_assets/magicalCrimes-img/environment3.svg';
-import environment4 from '@/assets/img/game_assets/magicalCrimes-img/environment4.svg';
-import environment5 from '@/assets/img/game_assets/magicalCrimes-img/environment5.svg';
+import environment1 from '@/assets/img/game_assets/magicalCrimes-img/environment1.png';
+import environment2 from '@/assets/img/game_assets/magicalCrimes-img/environment2.png';
+import environment3 from '@/assets/img/game_assets/magicalCrimes-img/environment3.png';
+import environment4 from '@/assets/img/game_assets/magicalCrimes-img/environment4.png';
+import environment5 from '@/assets/img/game_assets/magicalCrimes-img/environment5.png';
 import EvidenceImg1 from '@/assets/img/game_assets/magicalCrimes-img/EvidenceImg1.png';
 import EvidenceImg2 from '@/assets/img/game_assets/magicalCrimes-img/EvidenceImg2.png';
 import EvidenceImg3 from '@/assets/img/game_assets/magicalCrimes-img/EvidenceImg3.png';
@@ -108,8 +108,8 @@ export const Evidences: Evidence[] = [
     idScenes: 1,
     name: 'Перо жар-птицы',
     type: 'вещественное доказательство. Перо, найденное на месте преступления возможно принадлежит жертве. ',
-    size: [7, 8],
-    positions: [26, 32],
+    size: [5, 4],
+    positions: [6, 31],
     image: EvidenceImg1,
   },
   {
@@ -117,8 +117,8 @@ export const Evidences: Evidence[] = [
     idScenes: 1,
     name: 'Следы преступника',
     type: 'Обстоятельства преступления. Отпечатки лап дикого животного. Глубина вдавливания следа указывает на бег.',
-    size: [25, 21],
-    positions: [1, 66],
+    size: [14, 12],
+    positions: [6, 58],
     image: EvidenceImg2,
   },
   {
@@ -127,7 +127,7 @@ export const Evidences: Evidence[] = [
     name: 'Обрывок веревки',
     type: 'Вещественное доказательство. Фрагмент пеньковой веревки длиной около 15 см с явными следами насильственного разрыва',
     size: [6, 8],
-    positions: [56, 11],
+    positions: [69, 118],
     image: EvidenceImg3,
   },
   {
@@ -135,8 +135,8 @@ export const Evidences: Evidence[] = [
     idScenes: 1,
     name: 'Возможные свидетели',
     type: 'Свидетельские показания. Группа людей, которые возможно видели момент соверешения преступления.',
-    size: [13, 20],
-    positions: [49, 101],
+    size: [4, 6],
+    positions: [36, 64],
     image: EvidenceImg4,
   },
   {
@@ -144,8 +144,8 @@ export const Evidences: Evidence[] = [
     idScenes: 2,
     name: 'Детская игрушка',
     type: 'Деревянный конь, оставленный без присмотра во дворе.',
-    size: [8, 10],
-    positions: [29, 90],
+    size: [5, 5],
+    positions: [40, 130],
     image: EvidenceImg5,
   },
   {
@@ -153,8 +153,8 @@ export const Evidences: Evidence[] = [
     idScenes: 2,
     name: 'Ватрушка',
     type: 'Недоеденный десерт, оставленный на столе. В доме пострадавшего такого десерта не было обнаружено, возможно его принес преступник.',
-    size: [8, 7],
-    positions: [7, 35],
+    size: [4, 4],
+    positions: [5, 131],
     image: EvidenceImg6,
   },
   {
@@ -162,8 +162,8 @@ export const Evidences: Evidence[] = [
     idScenes: 2,
     name: 'Ленточка для волос',
     type: 'Обрывок шёлковой ленты тёмно-красного цвета с небольшим пятном.',
-    size: [6, 6],
-    positions: [43, 5],
+    size: [6, 3],
+    positions: [32, 51],
     image: EvidenceImg7,
   },
   {
@@ -171,8 +171,8 @@ export const Evidences: Evidence[] = [
     idScenes: 2,
     name: 'Перо',
     type: 'Гусиное перо.',
-    size: [25, 10],
-    positions: [29, 96],
+    size: [8, 3],
+    positions: [2, 2],
     image: EvidenceImg8,
   },
   {
@@ -225,8 +225,8 @@ export const Evidences: Evidence[] = [
     idScenes: 4,
     name: 'Яд',
     type: 'Небольшой стеклянный флакон с остатками красной жидкости. На этикетке стертая надпись на латыни.',
-    size: [4, 13],
-    positions: [74, 38],
+    size: [3, 4],
+    positions: [43, 26],
     image: EvidenceImg13,
   },
   {
@@ -234,17 +234,17 @@ export const Evidences: Evidence[] = [
     idScenes: 4,
     name: 'Книга учета',
     type: 'отрепанный гроссбух с двойной бухгалтерией. На последних страницах обнаружены зашифрованные записи о "специальных заказах" с инициалами клиентов и суммами платежей.',
-    size: [64, 30],
-    positions: [1, 67],
+    size: [24, 15],
+    positions: [0, 54],
     image: EvidenceImg14,
   },
   {
     id: 15,
     idScenes: 4,
     name: 'Ядовитые ягоды',
-    type: 'Темными волчьи ягодами. По количеству (около 30 штук) можно судить о промышленных масштабах сбора.',
-    size: [24, 11],
-    positions: [24, 131],
+    type: 'Ядовитые вольчьи ягоды. По количеству (около 30 штук) можно судить о промышленных масштабах сбора.',
+    size: [5, 20],
+    positions: [74, 63],
     image: EvidenceImg15,
   },
   {
@@ -252,8 +252,8 @@ export const Evidences: Evidence[] = [
     idScenes: 4,
     name: 'Монеты',
     type: 'Среды всех монет были найдены монеты с гербом Монтекки.',
-    size: [44, 23],
-    positions: [1, 28],
+    size: [4, 3],
+    positions: [5, 106.5],
     image: EvidenceImg16,
   },
   {
@@ -261,8 +261,8 @@ export const Evidences: Evidence[] = [
     idScenes: 5,
     name: 'Заспиртованный гипофиз',
     type: 'Среды всех монет были найдены монеты с гербом Монтекки.',
-    size: [10, 13],
-    positions: [42, 44],
+    size: [6, 11],
+    positions: [32, 142],
     image: EvidenceImg17,
   },
   {
@@ -270,9 +270,147 @@ export const Evidences: Evidence[] = [
     idScenes: 5,
     name: 'Фото',
     type: 'Фото животного с пометкой "после операции".',
-    size: [6.5, 11],
-    positions: [58.5, 119.5],
+    size: [5, 8],
+    positions: [44, 163],
     image: EvidenceImg18,
+  },
+]
+
+export const FalseEvidence = [
+  {
+    idScenes: 1,
+    size: [4, 6],
+    positions: [69, 105],
+  },
+  {
+    idScenes: 1,
+    size: [13, 5],
+    positions: [17, 101],
+  },
+  {
+    idScenes: 1,
+    size: [4, 3],
+    positions: [25, 85],
+  },
+  {
+    idScenes: 1,
+    size: [7, 6],
+    positions: [13, 167],
+  },
+  {
+    idScenes: 1,
+    size: [14, 5],
+    positions: [2, 104],
+  },
+  {
+    idScenes: 1,
+    size: [3, 3],
+    positions: [32, 121],
+  },
+  {
+    idScenes: 2,
+    size: [3, 5],
+    positions: [70, 159],
+  },
+  {
+    idScenes: 2,
+    size: [3, 4],
+    positions: [90, 111],
+  },
+  {
+    idScenes: 2,
+    size: [5, 3],
+    positions: [92, 61],
+  },
+  {
+    idScenes: 2,
+    size: [12, 19],
+    positions: [49, 32],
+  },
+  {
+    idScenes: 2,
+    size: [3, 3],
+    positions: [41, 15],
+  },
+  {
+    idScenes: 2,
+    size: [4, 6],
+    positions: [39, 131],
+  },
+  {
+    idScenes: 3,
+    size: [7, 3],
+    positions: [70.5, 141],
+  },
+  {
+    idScenes: 3,
+    size: [2, 4],
+    positions: [22, 56],
+  },
+  {
+    idScenes: 3,
+    size: [3, 3],
+    positions: [18, 112],
+  },
+  {
+    idScenes: 3,
+    size: [4, 6],
+    positions: [39, 131],
+  },
+  {
+    idScenes: 4,
+    size: [8, 8],
+    positions: [73, 160],
+  },
+  {
+    idScenes: 4,
+    size: [10, 13],
+    positions: [31, 127],
+  },
+  {
+    idScenes: 4,
+    size: [1, 6],
+    positions: [29, 55.5],
+  },
+  {
+    idScenes: 4,
+    size: [10, 1],
+    positions: [1, 85],
+  },
+  {
+    idScenes: 4,
+    size: [7, 6],
+    positions: [32, 33],
+  },
+  {
+    idScenes: 5,
+    size: [9, 11],
+    positions: [48, 108],
+  },
+  {
+    idScenes: 5,
+    size: [10, 3],
+    positions: [30, 111],
+  },
+  {
+    idScenes: 5,
+    size: [4, 3],
+    positions: [26.5, 52],
+  },
+  {
+    idScenes: 5,
+    size: [12, 10],
+    positions: [11, 54],
+  },
+  {
+    idScenes: 5,
+    size: [16, 30],
+    positions: [32, 20],
+  },
+  {
+    idScenes: 5,
+    size: [6, 5],
+    positions: [69, 79],
   },
 ]
 
