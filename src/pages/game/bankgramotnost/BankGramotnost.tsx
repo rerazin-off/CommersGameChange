@@ -19,7 +19,7 @@ const touchBackendOptions = {
   enableHoverOutsideTarget: true,
   touchSlop: 0, // Важно: установлено в 0 для мгновенного отслеживания
   getDropTargetElementsForElement: (element) => {
-    return Array.from(document.querySelectorAll('[data-testid^="drop-slot"]'));
+    return Array.from(document.querySelectorAll('[blocks-testid^="drop-slot"]'));
   },
   getTouchClientOffset: (e: TouchEvent) => {
     const touch = e.touches[0];

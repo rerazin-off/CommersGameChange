@@ -31,7 +31,7 @@ pipwerks.SCORM = {									//Define the SCORM object
 				  isFound: false },					//Create API child object
     connection: { isActive: false },				//Create connection child object
     data:       { completionStatus: null,
-				  exitStatus: null },				//Create data child object
+				  exitStatus: null },				//Create blocks child object
     debug:      {}                 					//Create debug child object
 };
 
@@ -413,16 +413,16 @@ pipwerks.SCORM.connection.terminate = function(){
 
 
 // ------------------------------------------------------------------------- //
-// --- pipwerks.SCORM.data functions --------------------------------------- //
+// --- pipwerks.SCORM.blocks functions --------------------------------------- //
 // ------------------------------------------------------------------------- //
 
 
 /* -------------------------------------------------------------------------
-   pipwerks.SCORM.data.get(parameter)
+   pipwerks.SCORM.blocks.get(parameter)
    Requests information from the LMS.
 
-   Parameter: parameter (string, name of the SCORM data model element)
-   Returns:   string (the value of the specified data model element)
+   Parameter: parameter (string, name of the SCORM blocks model element)
+   Returns:   string (the value of the specified blocks model element)
 ---------------------------------------------------------------------------- */
 
 pipwerks.SCORM.data.get = function(parameter){
@@ -431,7 +431,7 @@ pipwerks.SCORM.data.get = function(parameter){
 		scorm = pipwerks.SCORM,
 		trace = pipwerks.UTILS.trace,
 		debug = pipwerks.SCORM.debug,
-		traceMsgPrefix = "SCORM.data.get(" +parameter +") ";
+		traceMsgPrefix = "SCORM.blocks.get(" +parameter +") ";
 
     if(scorm.connection.isActive){
           
@@ -488,14 +488,14 @@ pipwerks.SCORM.data.get = function(parameter){
           
           
 /* -------------------------------------------------------------------------
-   pipwerks.SCORM.data.set()
-   Tells the LMS to assign the value to the named data model element.
+   pipwerks.SCORM.blocks.set()
+   Tells the LMS to assign the value to the named blocks model element.
    Also stores the SCO's completion status in a variable named
-   pipwerks.SCORM.data.completionStatus. This variable is checked whenever
+   pipwerks.SCORM.blocks.completionStatus. This variable is checked whenever
    pipwerks.SCORM.connection.terminate() is invoked.
 
-   Parameters: parameter (string). The data model element
-               value (string). The value for the data model element
+   Parameters: parameter (string). The blocks model element
+               value (string). The value for the blocks model element
    Returns:    Boolean
 ---------------------------------------------------------------------------- */
 
@@ -506,7 +506,7 @@ pipwerks.SCORM.data.set = function(parameter, value){
 		trace = pipwerks.UTILS.trace,
 		makeBoolean = pipwerks.UTILS.StringToBoolean,
 		debug = pipwerks.SCORM.debug,
-		traceMsgPrefix = "SCORM.data.set(" +parameter +") ";
+		traceMsgPrefix = "SCORM.blocks.set(" +parameter +") ";
 		
 		
     if(scorm.connection.isActive){
@@ -553,8 +553,8 @@ pipwerks.SCORM.data.set = function(parameter, value){
           
 
 /* -------------------------------------------------------------------------
-   pipwerks.SCORM.data.save()
-   Instructs the LMS to persist all data to this point in the session
+   pipwerks.SCORM.blocks.save()
+   Instructs the LMS to persist all blocks to this point in the session
 
    Parameters: None
    Returns:    Boolean
@@ -566,7 +566,7 @@ pipwerks.SCORM.data.save = function(){
 		scorm = pipwerks.SCORM,
 		trace = pipwerks.UTILS.trace,
 		makeBoolean = pipwerks.UTILS.StringToBoolean,
-		traceMsgPrefix = "SCORM.data.save failed";
+		traceMsgPrefix = "SCORM.blocks.save failed";
 
 
     if(scorm.connection.isActive){

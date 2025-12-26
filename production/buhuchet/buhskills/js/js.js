@@ -56,9 +56,9 @@ $(document).ready(function () {
         e.preventDefault;
         $('.block-text').addClass('active');
         $('.exe').addClass('act-ex');
-        var header = $(this).attr('data-header');
-        var img = $(this).attr('data-img');
-        var text = $(this).attr('data-text');
+        var header = $(this).attr('blocks-header');
+        var img = $(this).attr('blocks-img');
+        var text = $(this).attr('blocks-text');
         $('#modal-header').html(header);
         $('.modal-text').html(text);
         $('#modal-img').attr("src",img);

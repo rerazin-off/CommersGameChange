@@ -7,7 +7,6 @@ import ErrorCard from '../ErrorCard/ErrorCard';
 
 
 const Scene = ({ numEvidence, evidences, environment, onBack, onCorrectAnswer, onCloseCase, falseEvidences }) => {
-  const [currentEvidence, setCurrentEvidence] = useState(null);
   const [foundEvidence, setFoundEvidence] = useState([]);
   const [countClick, setCountClick] = useState(0);
   const heartsToDisplay = Math.max(0, 10 - countClick);

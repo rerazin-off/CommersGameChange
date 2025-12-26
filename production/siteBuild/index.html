@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Игра: Собери сайт</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="wrapper">
+
+    <div class="sidebar">
+        <h2>Блоки сайта</h2>
+        <div id="blockList" class="block-list"></div>
+    </div>
+
+    <div class="game-area">
+        <h2>Поле сборки</h2>
+        <div id="dropZone" class="drop-zone">
+            Перетащи блоки сюда
+        </div>
+        <button id="checkBtn">Проверить</button>
+    </div>
+
+</div>
+
+<script src="data/blocks.js"></script>
+<script src="js/dragAndDrop.js"></script>
+<script src="js/game.js"></script>
+
+</body>
+</html>

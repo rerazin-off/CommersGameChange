@@ -1,0 +1,36 @@
+@font-face {
+  font-family: "Cruinn";
+  src: url("./assets/fonts/ofont.ru_Cruinn.ttf") format("truetype");
+}
+
+.root {
+  position: relative;
+  min-height: 100vh;
+  padding: 24px;
+  display: flex;
+  gap: 24px;
+  font-family: 'Cruinn', sans-serif;
+  background: url('./assets/cargos/cargo-packing-bg.png')
+    center / cover no-repeat;
+}
+
+.root::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.25);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.root > * {
+  position: relative;
+  z-index: 1;
+  justify-content: center;
+}
+
+.root button {
+  font-family: inherit;
+  appearance: none;
+}
+

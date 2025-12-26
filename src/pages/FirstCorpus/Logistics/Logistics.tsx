@@ -20,6 +20,13 @@ const gameData: Record<string, { title: string; body: string; url: string }> = {
     body: 'Ваша задача спасти королевство за минимальное время и минимальные расходы.',
     url: 'SpaceTransport'
   },
+  CargoPackingGame: {
+    title: 'Упаковка грузов',
+    body:
+      'Необходимо правильно упаковать грузы. \n' +
+      'Перетаскивайте свойства груза из левой панели в соответсвующие слоты накладной. ',
+    url: 'CargoPacking',
+  },
 };
 
 const Logistics: React.FC = () => {
@@ -64,6 +71,12 @@ const Logistics: React.FC = () => {
           <div
             className={classes.truck}
             onClick={() => handleGameClick('truckGame')}
+          >
+            <Indicator></Indicator>
+          </div>
+          <div
+            className={classes.cargoPacking}
+            onClick={() => handleGameClick('CargoPackingGame')}
           >
             <Indicator></Indicator>
           </div>

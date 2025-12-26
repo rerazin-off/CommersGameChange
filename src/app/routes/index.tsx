@@ -17,6 +17,7 @@ const Yur = React.lazy(()=>import('../../pages/FirstCorpus/Yur/Yur'));
 const Programmers = React.lazy(()=>import('../../pages/FirstCorpus/Programmers/Programmers'));
 const Economist = React.lazy(()=>import('../../pages/FirstCorpus/Economist/Economist'));
 
+
 //Страницы второго корпуса
 const Dou = React.lazy(()=>import('../../pages/SecondCorpus/Dou/dou'));
 const Bank = React.lazy(()=>import('../../pages/SecondCorpus/bank/Bank'));
@@ -44,12 +45,14 @@ const GameRast = React.lazy(()=>import('../../pages/game/rast/gameRast'));
 const Rocket = React.lazy(()=>import('../../pages/game/rocket/Rocket'));
 const SpaceTransport = React.lazy(()=>import('../../pages/game/SpaceTransport/SpaceTransport'));
 const Upbringing = React.lazy(()=>import('../../pages/game/upbringing/Upbringing'));
-const RelaxRoom = React.lazy(()=> import('../../pages/game/relaxRoom/relaxRoom'));
-const RestRoom = React.lazy(()=> import('../../pages/game/RestRoom/RestRoom'));
-const Litebot = React.lazy(() => import('../../pages/game/liteBot/App'));
-const MagicalCrimes = React.lazy(() => import('../../pages/game/magicalCrimes/MagicalCrimes'));
-const PensionGalaxy = React.lazy(() => import('../../pages/game/PensionGalaxy/PensionGalaxy'));
-const LaborCode = React.lazy(() => import('../../pages/game/PensionGalaxy/pages/LaborCode/LaborCode'));
+const Connector = React.lazy(()=>import('../../pages/game/Connector/components/game'));
+const siteBuilde = React.lazy(()=>import('../../pages/game/siteBuilder/App'));
+const geometricPerson = React.lazy(()=>import('../../pages/game/geometricPerson/src/App'));
+const Xylophone = React.lazy(() =>import('../../pages/game/xylophone/Xylophone'));
+const Concert = React.lazy(() =>import('../../pages/game/Concert/Concert'));
+const CargoPacking = React.lazy(() =>import('../../pages/game/CargoPackingGame/CargoPackingGame'));
+
+import Preloader from '../../components/Preloaer/Preloader';
 
 import { Musical } from '../../pages/game/musical/musical.js';
 import { CommerceTovary } from '../../pages/game/commerce/CommerceTovary';
@@ -97,6 +100,7 @@ export const router = createBrowserRouter([
   { path: RoutesEnum.MUSIC, element: withSuspense(MusiciansRoom) },
   { path: '/ElemShool', element: withSuspense(ElementarySchool) },
   { path: '/Psih', element: withSuspense(Psih) },
+  // { path: RoutesEnum.GAME, element: withSuspense(Game) },
 
   // Игровые маршруты
   { path: '/doyGame', element: withSuspense(Doy) },
@@ -110,6 +114,8 @@ export const router = createBrowserRouter([
   { path: '/upbringing', element: withSuspense(Upbringing) },
   { path: '/deti', element: withSuspense(MovieGame) },
   { path: '/musicalcategories', element: withSuspense(Musical) },
+  { path: '/xylophonesounds', element: withSuspense(Xylophone)},
+  { path: '/concertsounds', element: withSuspense(Concert)},
   { path: '/commerce', element: withSuspense(CommercePlayGame) },
   { path: '/commerce_2', element: withSuspense(Commerce) },
   { path: '/SpaceTransport', element: withSuspense(SpaceTransport) },
@@ -117,10 +123,9 @@ export const router = createBrowserRouter([
   { path: '/swiperPage', element: withSuspense(SwiperPage) },
   { path: '/childWardrobe', element: withSuspense(ChildWardrobe) },
   { path: '/gameRast', element: withSuspense(GameRast) },
-  {path: '/relaxRoom', element: withSuspense(RelaxRoom)},
-  { path: '/restRoom', element: withSuspense(RestRoom) },
-  { path: '/liteBot', element: withSuspense(Litebot) },
-  { path: '/magicalCrimes', element: withSuspense(MagicalCrimes) },
-  { path: '/pensionGalaxy', element: withSuspense(PensionGalaxy) },
-  { path: '/laborCode', element: withSuspense(LaborCode) },
+  { path: '/siteBuilde', element: withSuspense(siteBuilde) },
+  { path: '/geometricPerson', element: withSuspense(geometricPerson) },
+  { path: '/CargoPacking', element: withSuspense(CargoPacking) },
+  { path: '/Connector', element: withSuspense(Connector) },
+  {path: '/preloader', element: <Preloader/>}
 ]);

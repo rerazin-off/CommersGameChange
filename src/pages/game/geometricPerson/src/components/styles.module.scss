@@ -1,0 +1,1531 @@
+// Основные стили
+body {
+  background: url(/src/assets/img/фонт.svg);
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  min-height: 100%;
+  padding: 20px 0 !important;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+
+  h1, p, h2, span, h3, h4, div {
+    margin: 0;
+  }
+
+  &.dragging {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+  }
+}
+
+html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  touch-action: pan-y;
+  overscroll-behavior: contain;
+}
+
+.gameContainer {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  font-family: "Cruinn", sans-serif;
+  min-height: calc(100vh - 80px);
+  max-height: calc(100vh - 80px);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+
+  h1 {
+    font-size: 2rem;
+    color: #4a6fa5;
+    margin-bottom: 0.5rem;
+
+    i {
+      margin-right: 8px;
+      color: #ff6b6b;
+    }
+  }
+
+  p {
+    color: #666;
+    font-size: 1rem;
+  }
+}
+
+.progressContainer {
+  margin-bottom: 1.5rem;
+}
+
+.progressBar {
+  height: 6px;
+  background: #e0e0e0;
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, #06d6a0, #118ab2);
+  border-radius: 3px;
+  transition: width 0.5s ease;
+}
+
+.steps {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  padding: 0 15px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 40px;
+    right: 40px;
+    height: 2px;
+    background: #e0e0e0;
+    z-index: 1;
+  }
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
+  min-width: 60px;
+}
+
+.stepNumber {
+  width: 35px;
+  height: 35px;
+  background: #e0e0e0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+  transition: all 0.3s ease;
+
+  &.active {
+    background: #00ffbd;
+    color: white;
+    transform: scale(1.1);
+  }
+
+  &.completed {
+    background: #4ecdc4;
+    color: white;
+  }
+}
+
+.stepName {
+  font-size: 0.8rem;
+  color: #666;
+  text-align: center;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.gameArea {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  flex: 1;
+  min-height: 0;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.assemblyPanel {
+  background: #f8f9fa;
+  padding: 1.2rem;
+  border-radius: 12px;
+  border: 2px solid #e9ecef;
+  display: flex;
+  flex-direction: column;
+
+  h2 {
+    color: #4a6fa5;
+    margin-bottom: 0.8rem;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    i {
+      color: #ff6b6b;
+      font-size: 1.1rem;
+    }
+  }
+}
+
+.personPreview {
+  background: white;
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+  flex: 1;
+  min-height: 0;
+  position: relative;
+  width: 450px;
+}
+
+.geometricPerson {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  position: relative;
+  width: 100%;
+  height: 400px;
+}
+
+// Позиционирование дроп-зон поверх человечка
+.personHead {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 100px;
+  z-index: 10;
+}
+
+.torsoSection {
+  position: absolute;
+  top: 120px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  z-index: 9;
+}
+
+.leftArm, .rightArm {
+  position: relative;
+  width: 100px;
+  height: 100px;
+}
+
+.leftArm {
+  transform: rotate(15deg);
+}
+
+.rightArm {
+  transform: rotate(-15deg);
+}
+
+.body {
+  position: relative;
+  width: 120px;
+  height: 140px;
+}
+
+.legsSection {
+  position: absolute;
+  top: 270px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 20px;
+  z-index: 8;
+}
+
+.leftLeg, .rightLeg {
+  position: relative;
+  width: 90px;
+  height: 130px;
+}
+
+.leftLeg {
+  transform: rotate(10deg);
+}
+
+.rightLeg {
+  transform: rotate(-10deg);
+}
+
+// Стили для самих SVG (оставляем как было)
+.headSVG, .armSVG, .bodySVG, .legSVG {
+  position: relative;
+  z-index: 2;
+}
+
+.headSVG {
+  width: 100px;
+  height: 100px;
+}
+
+.armSVG {
+  width: 100px;
+  height: 100px;
+}
+
+.bodySVG {
+  width: 120px;
+  height: 140px;
+  stroke-width: 2px !important;
+  stroke: #000 !important;
+}
+
+.legSVG {
+  width: 90px;
+  height: 130px;
+}
+
+// Плейсхолдеры (оставляем как было)
+.placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed #ccc;
+  color: #999;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.personHead .placeholder {
+  border-radius: 50%;
+  font-size: 24px;
+}
+
+.leftArm .placeholder,
+.rightArm .placeholder {
+  border-radius: 8px;
+  font-size: 18px;
+}
+
+.body .placeholder {
+  border-radius: 12px;
+  font-size: 28px;
+}
+
+.leftLeg .placeholder,
+.rightLeg .placeholder {
+  border-radius: 8px;
+  font-size: 20px;
+}
+
+// ДРОП-ЗОНЫ ПОСРЕДИ ЧАСТЕЙ ТЕЛА (НОВОЕ)
+.dropZoneContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  pointer-events: auto;
+}
+
+.dropZone {
+  width: 100%;
+  height: 100%;
+  border: 2px dashed #ddd;
+  border-radius: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  background: rgba(255, 255, 255, 0.95);
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  &:hover:not(.disabled),
+  &.highlighted:not(.disabled) {
+    border-color: #4a6fa5;
+    background: rgba(74, 111, 165, 0.1);
+  }
+
+  &.filled {
+    border-style: solid;
+    border-color: #06d6a0;
+    background: rgba(6, 214, 160, 0.1);
+  }
+
+  &.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &.highlighted {
+    border-color: #4CAF50 !important;
+    border-width: 3px;
+    background: rgba(76, 175, 80, 0.2);
+  }
+}
+
+.dropZoneContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  color: #666;
+  text-align: center;
+  padding: 5px;
+}
+
+.dropZoneIcon {
+  font-size: 20px;
+  color: #999;
+}
+
+.dropZoneText {
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.dropZoneHint {
+  font-size: 10px;
+  color: #888;
+  margin-top: 3px;
+}
+
+.placedShape {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 5px;
+}
+
+.placedSVG {
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+}
+
+.placedShapeInfo {
+  display: none;
+}
+
+.removeButton {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  padding: 0;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 2px;
+    background-color: #ff6b6b;
+    border-radius: 1px;
+  }
+
+  &::before {
+    transform: rotate(45deg);
+  }
+
+  &::after {
+    transform: rotate(-45deg);
+  }
+
+  &:hover {
+    &::before,
+    &::after {
+      background-color: #ff3333;
+      height: 3px;
+    }
+  }
+}
+
+// УБИРАЕМ СТАРУЮ СЕТКУ ДРОП-ЗОН
+.dropZonesGrid {
+  display: none;
+}
+
+.currentStepInfo {
+  background: white;
+  padding: 0.8rem;
+  border-radius: 8px;
+  border-left: 4px solid #ff6b6b;
+  margin-top: auto;
+
+  h3 {
+    margin: 0 0 0.4rem 0;
+    font-size: 1.1rem;
+    color: #4a6fa5;
+
+    span {
+      color: #ff6b6b;
+    }
+  }
+
+  p {
+    margin: 0;
+    color: #666;
+    font-size: 0.9rem;
+  }
+}
+
+.selectedShapeHint {
+  margin-top: 0.4rem !important;
+  font-size: 0.85rem !important;
+  color: #4a6fa5 !important;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.shapesPanel {
+  background: white;
+  padding: 1.2rem;
+  border-radius: 12px;
+  border: 2px solid #e9ecef;
+  display: flex;
+  flex-direction: column;
+
+  h2 {
+    color: #4a6fa5;
+    margin-bottom: 0.8rem;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    i {
+      color: #ff6b6b;
+      font-size: 1.1rem;
+    }
+  }
+}
+
+.shapesHint {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.8rem;
+  padding: 0.6rem;
+  background: rgba(74, 111, 165, 0.05);
+  border-radius: 8px;
+  color: #4a6fa5;
+  font-size: 13px;
+
+  i {
+    font-size: 14px;
+  }
+}
+
+.shapesGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.8rem;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 5px;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 2px;
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.draggableShape {
+  cursor: grab;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 0.8rem;
+  background: white;
+  transition: all 0.3s ease;
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  touch-action: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  min-height: 130px;
+
+  &:hover:not(:active) {
+    border-color: #4a6fa5;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  &:active {
+    cursor: grabbing;
+    opacity: 0.7;
+    transform: scale(0.98);
+  }
+
+  &.dragging {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}
+
+.shapeVisual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+
+  .cardSVG {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+  }
+}
+
+.shapeInfo {
+  text-align: center;
+
+  h4 {
+    font-size: 13px;
+    color: #333;
+    margin-bottom: 0.2rem;
+  }
+}
+
+.dragHint {
+  font-size: 10px;
+  color: #4a6fa5;
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+
+  i {
+    font-size: 11px;
+  }
+}
+
+.controls {
+  display: flex;
+  gap: 0.8rem;
+  justify-content: center;
+  padding-top: 1rem;
+  margin-top: auto;
+  border-top: 1px solid #e9ecef;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.button {
+  padding: 10px 20px;
+  background: white;
+  border: 2px solid #4a6fa5;
+  color: #4a6fa5;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.3s ease;
+
+  &:hover:not(:disabled) {
+    background: #e9ecef;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.buttonPrimary {
+  padding: 10px 20px;
+  background: #4a6fa5;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.3s ease;
+
+  &:hover:not(:disabled) {
+    background: #3a5a8a;
+  }
+
+  &:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
+
+.resultModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+
+  @media (max-height: 768px) {
+    padding: 10px;
+  }
+}
+
+.modalContent {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  width: 100%;
+  max-width: 1100px;
+  height: calc(100vh - 40px);
+  max-height: calc(100vh - 40px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  @media (min-height: 1200px) {
+    height: calc(100vh - 80px);
+    max-height: calc(100vh - 80px);
+  }
+
+  @media (max-height: 768px) {
+    height: calc(100vh - 20px);
+    max-height: calc(100vh - 20px);
+    padding: 15px;
+  }
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  flex-shrink: 0;
+
+  h2 {
+    color: #4a6fa5;
+    margin: 0;
+    font-size: 1.6rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  cursor: pointer;
+  color: #999;
+  padding: 5px;
+  flex-shrink: 0;
+
+  &:hover {
+    color: #ff6b6b;
+  }
+}
+
+.finalPerson {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin: 0;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+}
+
+.personVisual {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 12px;
+  border: 2px solid #e9ecef;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.personInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  border: 2px solid #e9ecef;
+  min-height: 0;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 2px;
+  }
+}
+
+// ГЕОМЕТРИЧЕСКИЙ ЧЕЛОВЕК В МОДАЛКЕ
+.geometricPerson {
+  .headSVG {
+    width: 80px;
+    height: 80px;
+  }
+
+  // ТЕЛО В МОДАЛКЕ - ТОНЬШЕ
+  .bodySVG {
+    width: 100px;
+    height: 115px;
+    stroke-width: 2px !important; // ТОНЬШЕ
+    stroke: #000 !important;
+  }
+
+  .armSVG {
+    width: 60px;
+    height: 60px;
+  }
+
+  .legSVG {
+    width: 70px;
+    height: 100px;
+  }
+}
+
+.shapeStats {
+  background: white;
+  padding: 10px;
+  border-radius: 8px;
+  width: 100%;
+  border: 1px solid #e0e0e0;
+  flex-shrink: 0;
+
+  h4 {
+    margin: 0 0 8px 0;
+    color: #4a6fa5;
+    font-size: 1.1rem;
+    text-align: center;
+    font-weight: 600;
+  }
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+
+  @media (max-width: 480px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 8px;
+  background: #f8f9fa;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+}
+
+.statShape {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.statSVG {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.statCount {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #4a6fa5;
+}
+
+.personalityType {
+  text-align: center;
+  padding: 10px;
+  background: linear-gradient(135deg, #f0f7ff, #e7f8f4);
+  border-radius: 10px;
+  border: 2px solid #4a6fa5;
+  flex-shrink: 0;
+
+  h3 {
+    margin: 0 0 8px 0;
+    color: #333;
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+}
+
+.typeBadge {
+  display: inline-block;
+  background: linear-gradient(90deg, #4a6fa5, #06d6a0);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  box-shadow: 0 3px 8px rgba(6, 214, 160, 0.3);
+}
+
+.description {
+  p {
+    color: #555;
+    line-height: 1.5;
+    margin: 8px 0;
+    font-size: 1rem;
+  }
+}
+
+.traits {
+  margin: 8px 0;
+  flex-shrink: 0;
+
+  h4 {
+    color: #4a6fa5;
+    margin: 0 0 8px 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+}
+
+.traitsList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.traitBadge {
+  background: #e7f8f4;
+  color: #06d6a0;
+  padding: 6px 12px;
+  border-radius: 16px;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid rgba(6, 214, 160, 0.3);
+}
+
+.adviceSection {
+  background: #f8f9fa;
+  padding: 12px;
+  border-radius: 10px;
+  border-left: 4px solid #ff6b6b;
+  margin: 8px 0;
+  flex-shrink: 0;
+
+  h4 {
+    color: #4a6fa5;
+    margin: 0 0 8px 0;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+  }
+}
+
+.adviceList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.adviceItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  color: #555;
+  font-size: 0.95rem;
+  line-height: 1.4;
+
+  &::before {
+    content: '✓';
+    color: #06d6a0;
+    font-weight: bold;
+    flex-shrink: 0;
+    font-size: 0.95rem;
+  }
+}
+
+.shapeExplanation {
+  background: #f0f7ff;
+  padding: 10px;
+  border-radius: 8px;
+  margin: 8px 0;
+  border-left: 4px solid #4a6fa5;
+  flex-shrink: 0;
+
+  h4 {
+    margin: 0 0 6px 0;
+    color: #4a6fa5;
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+
+  p {
+    margin: 0 0 6px 0;
+    color: #555;
+    font-size: 0.95rem;
+    line-height: 1.4;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.modalControls {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: auto;
+  padding-top: 15px;
+  border-top: 1px solid #e9ecef;
+  flex-shrink: 0;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+// Визуальный элемент для перетаскивания
+.dragVisual {
+  pointer-events: none;
+  position: fixed !important;
+  z-index: 10000 !important;
+  opacity: 0.9 !important;
+  width: 60px !important;
+  height: 60px !important;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}
+
+// Адаптация для очень маленьких экранов
+@media (max-height: 600px) {
+  .modalContent {
+    padding: 10px;
+  }
+
+  .finalPerson {
+    gap: 10px;
+  }
+
+  .personVisual,
+  .personInfo {
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .geometricPerson {
+    .headSVG {
+      width: 60px;
+      height: 60px;
+    }
+
+    .bodySVG {
+      width: 80px;
+      height: 95px;
+    }
+
+    .armSVG {
+      width: 50px;
+      height: 50px;
+    }
+
+    .legSVG {
+      width: 60px;
+      height: 85px;
+    }
+  }
+
+  .modalHeader h2 {
+    font-size: 1.3rem;
+  }
+
+  .typeBadge {
+    font-size: 1.1rem;
+    padding: 8px 16px;
+  }
+
+  .description p,
+  .adviceItem,
+  .traitBadge {
+    font-size: 0.9rem;
+  }
+}
+
+.gameContainer::-webkit-scrollbar {
+  width: 6px;
+}
+
+.gameContainer::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.gameContainer::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 3px;
+}
+
+.gameContainer::-webkit-scrollbar-thumb:hover {
+  background: #aaa;
+}// В файле стилей измените стили .dropZone:
+.dropZone {
+  width: 100%;
+  height: 100%;
+  border: 2px dashed #ddd;
+  border-radius: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  background: rgba(255, 255, 255, 0.85); // Полупрозрачный фон
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+
+  // УБИРАЕМ зеленую подсветку при заполнении
+  &.filled {
+    display: none !important; // Скрываем заполненную дроп-зону
+  }
+
+  &:hover:not(.disabled),
+  &.highlighted:not(.disabled) {
+    border-color: #4a6fa5;
+    background: rgba(74, 111, 165, 0.15);
+  }
+
+  &.disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  &.highlighted {
+    border-color: #4CAF50 !important;
+    border-width: 3px;
+    background: rgba(76, 175, 80, 0.2);
+  }
+}
+
+// Обновите стили для размещенных фигур
+.placedShape {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 2; // Фигура под дроп-зоной
+}
+
+// Убедитесь, что SVG фигуры имеют правильный z-index
+.headSVG, .armSVG, .bodySVG, .legSVG {
+  position: relative;
+  z-index: 2;
+}
+
+// Плейсхолдеры должны быть под фигурами
+.placeholder {
+  z-index: 1;
+}
+
+// Дроп-зона должна быть над фигурой ТОЛЬКО когда пустая
+.dropZoneContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  pointer-events: auto;
+}
+
+// Кнопка удаления должна быть над всем
+//.removeButton {
+//  position: absolute;
+//  top: 5px;
+//  right: 5px;
+//  cursor: pointer;
+//  color: #ff6b6b;
+//  background: white;
+//  border: 1px solid #ff6b6b;
+//  padding: 0.2rem;
+//  border-radius: 50%;
+//  width: 22px;
+//  height: 22px;
+//  display: flex;
+//  align-items: center;
+//  justify-content: center;
+//  font-size: 11px;
+//  transition: all 0.2s ease;
+//  flex-shrink: 0;
+//  z-index: 10; // Высокий z-index для кнопки удаления
+//
+//  &:hover {
+//    background: rgba(255, 107, 107, 0.1);
+//    transform: scale(1.1);
+//  }
+//}
+// ДОБАВЬТЕ эти стили в ваш SCSS файл:
+
+// Контейнер для фигур
+.shapeContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+
+// Обновите позиционирование частей тела для выравнивания
+.personHead {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 100px;
+  z-index: 10;
+
+  .headSVG {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain;
+  }
+}
+
+.torsoSection {
+  position: absolute;
+  top: 120px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  z-index: 9;
+}
+
+.leftArm, .rightArm {
+  position: relative;
+  width: 100px;
+  height: 100px;
+
+  .armSVG {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain;
+  }
+}
+
+.leftArm {
+  transform: rotate(15deg);
+}
+
+.rightArm {
+  transform: rotate(-15deg);
+}
+
+.body {
+  position: relative;
+  width: 120px;
+  height: 140px;
+
+  .bodySVG {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain;
+    stroke-width: 2px !important;
+    stroke: #000 !important;
+  }
+}
+
+.legsSection {
+  position: absolute;
+  top: 270px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 20px;
+  z-index: 8;
+}
+
+.leftLeg, .rightLeg {
+  position: relative;
+  width: 90px;
+  height: 130px;
+
+  .legSVG {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain;
+  }
+}
+
+.leftLeg {
+  transform: rotate(10deg);
+}
+
+.rightLeg {
+  transform: rotate(-10deg);
+}
+
+// Плейсхолдеры
+.placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed #ccc;
+  color: #999;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.personHead .placeholder {
+  border-radius: 50%;
+  font-size: 24px;
+}
+
+.leftArm .placeholder,
+.rightArm .placeholder {
+  border-radius: 8px;
+  font-size: 18px;
+}
+
+.body .placeholder {
+  border-radius: 12px;
+  font-size: 28px;
+}
+
+.leftLeg .placeholder,
+.rightLeg .placeholder {
+  border-radius: 8px;
+  font-size: 20px;
+}
+
+// Дроп-зоны
+.dropZoneContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  pointer-events: auto;
+}
+
+.dropZone {
+  width: 100%;
+  height: 100%;
+  border: 2px dashed #ddd;
+  border-radius: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  background: rgba(255, 255, 255, 0.85);
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+
+  &:hover:not(.disabled),
+  &.highlighted:not(.disabled) {
+    border-color: #4a6fa5;
+    background: rgba(74, 111, 165, 0.15);
+  }
+
+  &.disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  &.highlighted {
+    border-color: #4CAF50 !important;
+    border-width: 3px;
+    background: rgba(76, 175, 80, 0.2);
+  }
+}
+
+.dropZoneContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  color: #666;
+  text-align: center;
+  padding: 5px;
+}
+
+.dropZoneIcon {
+  font-size: 20px;
+  color: #999;
+}
+
+.dropZoneText {
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+// Кнопка удаления
+//.removeButton {
+//  position: absolute;
+//  top: 5px;
+//  right: 5px;
+//  cursor: pointer;
+//  color: #ff6b6b;
+//  background: white;
+//  border: 1px solid #ff6b6b;
+//  padding: 0.2rem;
+//  border-radius: 50%;
+//  width: 22px;
+//  height: 22px;
+//  display: flex;
+//  align-items: center;
+//  justify-content: center;
+//  font-size: 11px;
+//  transition: all 0.2s ease;
+//  flex-shrink: 0;
+//  z-index: 10;
+//
+//  &:hover {
+//    background: rgba(255, 107, 107, 0.1);
+//    transform: scale(1.1);
+//  }
+//}
+
+// УБЕРИТЕ или ЗАКОММЕНТИРУЙТЕ старые стили для SVG (если они были):
+// .headSVG, .armSVG, .bodySVG, .legSVG {
+//   position: relative;
+//   z-index: 2;
+// }
+//
+// .headSVG {
+//   width: 100px;
+//   height: 100px;
+// }
+//
+// .armSVG {
+//   width: 100px;
+//   height: 100px;
+// }
+//
+// .bodySVG {
+//   width: 120px;
+//   height: 140px;
+//   stroke-width: 2px !important;
+//   stroke: #000 !important;
+// }
+//
+// .legSVG {
+//   width: 90px;
+//   height: 130px;
+// }

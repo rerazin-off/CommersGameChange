@@ -278,21 +278,21 @@ const Commerce: React.FC = () => {
       let dropTarget = null;
       
       for (const el of elements) {
-        if (el.hasAttribute('data-refrigerator')) {
+        if (el.hasAttribute('blocks-refrigerator')) {
           dropTarget = el;
           break;
         }
-        if (el.closest('[data-purple-zone]')) {
-          dropTarget = el.closest('[data-purple-zone]');
+        if (el.closest('[blocks-purple-zone]')) {
+          dropTarget = el.closest('[blocks-purple-zone]');
           break;
         }
       }
 
       if (dropTarget) {
-        if (dropTarget.hasAttribute('data-refrigerator')) {
-          const refrigeratorIndex = parseInt(dropTarget.getAttribute('data-refrigerator') || '0');
+        if (dropTarget.hasAttribute('blocks-refrigerator')) {
+          const refrigeratorIndex = parseInt(dropTarget.getAttribute('blocks-refrigerator') || '0');
           handleDropOnRefrigerator(refrigeratorIndex);
-        } else if (dropTarget.hasAttribute('data-purple-zone')) {
+        } else if (dropTarget.hasAttribute('blocks-purple-zone')) {
           handleDropOnPurpleZone();
         } else if (draggedFromRefrigeratorIndex.current !== null) {
           handleDropOnPurpleZone();
@@ -361,7 +361,7 @@ const Commerce: React.FC = () => {
 
   const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
-    const refrigeratorIndex = parseInt(e.currentTarget.getAttribute('data-refrigerator') || '0');
+    const refrigeratorIndex = parseInt(e.currentTarget.getAttribute('blocks-refrigerator') || '0');
     handleDropOnRefrigerator(refrigeratorIndex);
   };
 

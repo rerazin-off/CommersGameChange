@@ -18,6 +18,16 @@ const gameData: Record<string, { title: string; body: string; url: string }> = {
       'их сегодня. Чтобы узнать историю развития ЭВМ, вам\n необходимо написать команды для робота.',
     url: 'liteBot'
   },
+  siteBuild: {
+    title: 'Создание сайта',
+    body: 'Вам необходимо собрать веб-страницу из основных блоков — Header, Navigation, Main, Footer и других. Расположите элементы в правильном порядке, чтобы страница получилась корректной и логичной. Будьте внимательны: неправильная структура приведёт к ошибкам в макете!',
+    url: 'siteBuilde'
+  },
+  connectorGame: {
+    title: 'Витая пара',
+    body: 'Увлекательная головоломка по компьютерным сетям! Ваша задача — правильно "обжать" сетевой кабель, соединив разноцветные проводки с соответствующими контактами разъёма. Каждая успешная сборка восстанавливает часть сети и приближает вас к запуску сервера!',
+    url: 'Connector'
+  },
 };
 
 const Programmers: React.FC = () => {
@@ -45,6 +55,8 @@ const Programmers: React.FC = () => {
       <div className={classes.container}>
         <div className={classes.comp} onClick={() => handleGameClick('computerGame')}><Indicator></Indicator></div>
         <div className={classes.robot} onClick={() => handleGameClick('robotGame')}><Indicator></Indicator></div>
+        <div className={classes.connector} onClick={() => handleGameClick('connectorGame')}><Indicator></Indicator></div>
+        <div className={classes.siteBuild} onClick={() => handleGameClick('siteBuild')}><Indicator></Indicator></div>
       </div>
       <div className={classes.card}><Card type={'game'} title={cardData.title} body={cardData.body} game={cardData.url} backLink={'programmers'}
                                           isOpen={openIsCard} onClose={closeCard} /></div>

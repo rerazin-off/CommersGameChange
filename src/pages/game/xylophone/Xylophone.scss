@@ -1,0 +1,43 @@
+* {
+  outline: none !important;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+.root{
+  background-color: #0E0430;
+  position: relative;
+}
+.game-background{
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-image: url('../../../assets/img/game_assets/xylophone-assets/main-background.png');
+  background-size: cover;
+}
+.keys{
+  position: absolute;
+  display: flex;
+  top: 48vh;
+  left: 32vh;
+  transform: rotate(-20deg);
+  transform-origin: center
+}
+.backButton{
+  position: absolute;
+  bottom: 3vh;
+  left: 5vh
+}
+.audio-button{
+  position: absolute;
+  top: 50vh;
+  right: 20px;
+  z-index: 100;
+}
+.reset-button{
+  position: absolute;
+  top: 50vh;
+  left: 55vw;
+  z-index: 100;
+}
+.meduim{left: 80vw; z-index: 99;}
+.hard{right: 15vw; z-index: 100;}

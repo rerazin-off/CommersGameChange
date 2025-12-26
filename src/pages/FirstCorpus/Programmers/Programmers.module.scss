@@ -21,11 +21,11 @@
 
   .container{
 
-    .comp{
+    .siteBuild{
       position: fixed;
       top: 39%;
-      left: 22.5%;
-      width: 450px;
+      left: 33%;
+      width: 200px;
       height: 320px;
       cursor: pointer;
       display: flex;
@@ -33,7 +33,7 @@
       align-items: center;
       div{
         position: absolute;
-        right: 125px;
+
         top: 80px;
       }
     }
@@ -51,6 +51,22 @@
       div{
         position: absolute;
         top: 280px;
+      }
+    }
+    .comp{
+      position: fixed;
+      top: 40%;
+      right: 68.5%;
+      width: 170px;
+      height: 300px;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      div{
+        position: absolute;
+        top: 50%;
+        left: 30%;
       }
     }
   }

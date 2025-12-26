@@ -1,0 +1,34 @@
+body {
+  font-family: "Cruinn", sans-serif;
+  margin: 0;
+  padding: 0;
+  h3 {
+    margin-bottom: 10px;
+    font-family: "Cruinn", sans-serif;
+  }
+  strong{
+    font-family: "Cruinn", sans-serif;
+    font-weight: bold;
+    font-size: 24px;
+  }
+  div{
+    font-family: "Cruinn", sans-serif;
+    font-size: 18px;
+  }
+  button{
+    font-family: "Cruinn", sans-serif;
+    font-size: 20px;
+  }
+  .buttons{
+    position: fixed;
+    bottom: 1.1%;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 400px;
+    padding-top: 30px;
+    padding-left: 30px;
+  }
+}
+
