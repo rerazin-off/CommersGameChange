@@ -7,19 +7,27 @@ import ErrorCard from '../ErrorCard/ErrorCard';
 
 
 const Scene = ({ numEvidence, evidences, environment, onBack, onCorrectAnswer, onCloseCase, falseEvidences }) => {
-  const [currentEvidence, setCurrentEvidence] = useState(null);
   const [foundEvidence, setFoundEvidence] = useState([]);
   const [countClick, setCountClick] = useState(0);
   const heartsToDisplay = Math.max(0, 10 - countClick);
-  const [showError, setShowError] = useState(false);
+  const [activeCard, setActiveCard] = useState(null);
+  const [activeCardData, setActiveCardData] = useState(null);
+  const [caseClosed, setCaseClosed] = useState(false);
 
   const evidenceClick = (evidence) => {
-    setCurrentEvidence(evidence);
     if (!foundEvidence.some(el => el.id === evidence.id)) {
       setFoundEvidence(prev => [...prev, evidence]);
       onCorrectAnswer();
     }
+    setActiveCard('evidence');
+    setActiveCardData(evidence);
   };
+
+  const falseEvidenceClick = (falseEvidence) =>{
+    setCountClick(prev => prev + 1);
+    setActiveCard('falseEvidence');
+    setActiveCardData(falseEvidence);
+  }
 
   const wrongClick = (e) => {
     if (e.target === e.currentTarget) {
@@ -28,10 +36,11 @@ const Scene = ({ numEvidence, evidences, environment, onBack, onCorrectAnswer, o
   };
 
   useEffect(() => {
-    if (numEvidence === foundEvidence.length) {
+    if (!caseClosed && foundEvidence.length === numEvidence) {
+      setCaseClosed(true);
       onCloseCase();
     }
-  }, [foundEvidence, numEvidence, onCloseCase]);
+  }, [foundEvidence.length, numEvidence, onCloseCase, caseClosed]);
 
   return (
     <div
@@ -74,24 +83,29 @@ const Scene = ({ numEvidence, evidences, environment, onBack, onCorrectAnswer, o
             bottom: `${evidence.positions[0]}vh`,
             right: `${evidence.positions[1]}vh`,
           }}
-          onClick={(e) => {
-            setCountClick(prev => prev + 1);
-            setShowError(true);
+          onClick={() => {
+            falseEvidenceClick(evidence)
           }}
         ></div>
       ))}
 
       <CardEvidences
-        openCard={currentEvidence !== null}
-        evidence={currentEvidence}
-        onClose={() => setCurrentEvidence(null)}
+        openCard={activeCard === 'evidence'}
+        evidence={activeCardData}
+        onClose={() => {
+          setActiveCard(null);
+          setActiveCardData(null);
+        }}
       />
 
       <ErrorCard
+        openCard={activeCard === 'falseEvidence'}
         title={'Ошибка'}
         content={'Этот объект не является уликой'}
-        isOpen={showError}
-        onClose={() => setShowError(false)}
+        onClose={() => {
+          setActiveCard(null);
+          setActiveCardData(null);
+        }}
       />
 
       <ErrorCard

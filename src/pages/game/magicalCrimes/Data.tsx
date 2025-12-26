@@ -208,7 +208,7 @@ export const Evidences: Evidence[] = [
     name: 'Царапины',
     type: 'Свежие линейные ссадины на ноге, расположенные параллельно. Характер повреждений свидетельствует о возможном нанесении ногтями или острым предметом во время физического контакта.',
     size: [1, 3],
-    positions: [17.5, 71.3],
+    positions: [15.5, 72.3],
     image: EvidenceImg11,
   },
   {
@@ -331,11 +331,6 @@ export const FalseEvidence = [
     idScenes: 2,
     size: [3, 3],
     positions: [41, 15],
-  },
-  {
-    idScenes: 2,
-    size: [4, 6],
-    positions: [39, 131],
   },
   {
     idScenes: 3,
