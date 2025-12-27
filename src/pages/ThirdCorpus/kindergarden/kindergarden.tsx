@@ -19,7 +19,7 @@ const gameData: Record<string, { title: string; body: string; url: string }> = {
       '\n' +
       'Задача: распределить предметы/игрушки согласно возрасту ребенка.',
     //
-    url:'MovieGame'
+    url:'upbringing'
   },
   telescopeGame: {
     title: 'Угадай-ка',

@@ -44,6 +44,8 @@ const LogistCep = React.lazy(()=>import('../../pages/game/logist/LogistCep'));
 const GameRast = React.lazy(()=>import('../../pages/game/rast/gameRast'));
 const Rocket = React.lazy(()=>import('../../pages/game/rocket/Rocket'));
 const SpaceTransport = React.lazy(()=>import('../../pages/game/SpaceTransport/SpaceTransport'));
+const MagicalCrimes = React.lazy(() =>import('../../pages/game/magicalCrimes/MagicalCrimes'));
+const LiteBot = React.lazy(()=>import('../../pages/game/liteBot/App'));
 const Upbringing = React.lazy(()=>import('../../pages/game/upbringing/Upbringing'));
 const Connector = React.lazy(()=>import('../../pages/game/Connector/components/game'));
 const siteBuilde = React.lazy(()=>import('../../pages/game/siteBuilder/App'));
@@ -51,11 +53,13 @@ const geometricPerson = React.lazy(()=>import('../../pages/game/geometricPerson/
 const Xylophone = React.lazy(() =>import('../../pages/game/xylophone/Xylophone'));
 const Concert = React.lazy(() =>import('../../pages/game/Concert/Concert'));
 const CargoPacking = React.lazy(() =>import('../../pages/game/CargoPackingGame/CargoPackingGame'));
+const PongGame = React.lazy(() =>import('../../pages/game/ElementarySchool/Pong/PongGame'));
 
 import Preloader from '../../components/Preloaer/Preloader';
 
 import { Musical } from '../../pages/game/musical/musical.js';
 import { CommerceTovary } from '../../pages/game/commerce/CommerceTovary';
+import PensionGalaxy from '../../pages/game/PensionGalaxy/PensionGalaxy';
 
 const LoadingFallback = () => <SpacePreloader/>;
 
@@ -119,6 +123,9 @@ export const router = createBrowserRouter([
   { path: '/commerce', element: withSuspense(CommercePlayGame) },
   { path: '/commerce_2', element: withSuspense(Commerce) },
   { path: '/SpaceTransport', element: withSuspense(SpaceTransport) },
+  { path: '/magicalCrimes', element: withSuspense(MagicalCrimes) },
+  { path: '/pensionGalaxy', element: withSuspense(PensionGalaxy) },
+  {path: '/liteBot', element: withSuspense(LiteBot)},
   { path: '/chemodany', element: withSuspense(BankGramotnost) },
   { path: '/swiperPage', element: withSuspense(SwiperPage) },
   { path: '/childWardrobe', element: withSuspense(ChildWardrobe) },
@@ -127,5 +134,6 @@ export const router = createBrowserRouter([
   { path: '/geometricPerson', element: withSuspense(geometricPerson) },
   { path: '/CargoPacking', element: withSuspense(CargoPacking) },
   { path: '/Connector', element: withSuspense(Connector) },
+  { path: '/PongGame', element: withSuspense(PongGame) },
   {path: '/preloader', element: <Preloader/>}
 ]);
