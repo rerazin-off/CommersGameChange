@@ -11,11 +11,6 @@
   align-items: center;
   gap: 2vh;
 }
-img{
-  position: absolute;
-  bottom: 3vh;
-  right: 2vw;
-}
 .question::before,
 .question::after {
   content: "";
@@ -112,4 +107,10 @@ button{
   width: 100vw;
   height: 100vh;
   z-index: 1000;
+}
+
+.fingerprint{
+  position: absolute;
+  bottom: 3vh;
+  right: 2vw;
 }

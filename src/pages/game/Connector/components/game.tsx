@@ -20,6 +20,7 @@ import greenWhite from "../assets/green-white.svg";
 import orange from "../assets/orange.svg";
 import orangeWhite from "../assets/orange-white.svg";
 import Custom from './Custom';
+import { RoutesEnum } from '../../../../app/routes';
 
 const WIRES = [
   { image: orangeWhite, color: "orangeWhite", targetPin: 0 },
@@ -103,6 +104,7 @@ export default function Game() {
   const [showError, setShowError] = useState(false);
   const [showNotification, setShowNotification] = useState(false);
   const [shuffledWires] = useState(() => shuffleArray(WIRES));
+  const navigate = useNavigate();
 
   const allPinsFilled = useMemo(
     () => Object.keys(connections).length === WIRES.length,
@@ -159,6 +161,7 @@ export default function Game() {
       setShowNotification(true);
     }
   };
+
 
   return (
     <>
@@ -234,20 +237,16 @@ export default function Game() {
             </div>
           )}
 
-          {/* ===== НИЖНИЕ КНОПКИ НАВИГАЦИИ ===== */}
-          <div className="buttons">
-            <Link to="/1">
-              <Button bgColor="white" type="back_arrow" />
-            </Link>
-
-            <Link to="/">
-              <Button bgColor="white" type="gallery" />
-            </Link>
-
-            <Link to="/psih">
-              <Button bgColor="white" type="meditation" />
-            </Link>
+          <div className='backButton'>
+            <Button
+              bgColor="pink"
+              type="type1v2"
+              onClick={() => navigate(RoutesEnum.PROGRAMMERS)}
+            >
+              НАЗАД
+            </Button>
           </div>
+
         </div>
       </DndProvider>
     </>
