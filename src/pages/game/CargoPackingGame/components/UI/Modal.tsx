@@ -30,9 +30,10 @@ export const Modal: FC<ModalProps> = ({
           borderRadius: 16,
           textAlign: "center",
           width: 420,
+          color:'#000'
         }}
       >
-        <h2 style={{fontSize: 38}}>Игра завершена</h2>
+        <h2 style={{fontSize: 38, fontFamily:'Comfortaa'}}>Игра завершена</h2>
 
         <p style={{ margin: "16px 0", fontSize: 28 }}>
           Успешно отправлено: <b>{successCount}</b> из <b>{total}</b>

@@ -1,8 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap&subset=cyrillic');
 @import url('https://fonts.googleapis.com/css?family=Lobster&display=swap&subset=cyrillic');
-/* *{
-    box-sizing: border-box;
-} */
 body{
     display: flex;
     flex-direction: row;

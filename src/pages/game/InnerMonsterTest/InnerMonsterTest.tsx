@@ -190,7 +190,7 @@ const ProductInfoModal: React.FC<ProductInfoModalProps> = ({ product, onClose })
   );
 };
 
-const RestRoom: React.FC = () => {
+const InnerMonsterTest: React.FC = () => {
   const navigate = useNavigate();
   const [openIsCard, setOpenIsCard] = useState(false);
   const [attempts, setAttempts] = useState(0);
@@ -534,4 +534,4 @@ const RestRoom: React.FC = () => {
   );
 };
 
-export default RestRoom;
+export default InnerMonsterTest;

@@ -15,6 +15,7 @@ body{
       width: 220px;
 
       .block-item {
+        font-family: 'Arial';
         padding: 10px;
         border: 1px solid #333;
         margin-bottom: 8px;
@@ -83,6 +84,7 @@ body{
           .block-content {
             font-size: 12px;
             margin-top: 3px;
+            font-family: 'Arial';
           }
 
           .children {
@@ -133,9 +135,14 @@ body{
 
 
 
-
+.info-scroll{
+  p{
+    color: #000;
+  }
+}
 .titleBlocks{
   color: black;
+  font-family: 'Arial';
 }
 .gm-modal-backdrop {
   position: fixed;
@@ -147,6 +154,7 @@ body{
   z-index: 9999;
 }
 .gm-modal {
+  font-family: 'Arial';
   width: 420px;
   max-width: 92%;
   background: white;

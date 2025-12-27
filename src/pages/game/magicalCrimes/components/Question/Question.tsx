@@ -92,7 +92,7 @@ const Question = ({ fairyTale, onBack, onCorrectAnswer, onCloseCase, onCompleteQ
     <div className={classes.question}>
       <div className={classes.cornerTopRight}></div>
       <div className={classes.cornerBottomLeft}></div>
-      <img src={fingerprint} alt="fingerprint" />
+      <img src={fingerprint} className={classes.fingerprint} alt="fingerprint" />
       <h1>Дело: {fairyTale.name}</h1>
       <h2>Ситуация</h2>
       <p>{fairyTale.situation}</p>

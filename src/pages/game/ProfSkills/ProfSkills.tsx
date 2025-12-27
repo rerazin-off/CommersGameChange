@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import classes from './RelaxRoom.module.scss';
+import classes from './RelaxRoom.scss';
 import ImageCard from './components/ImageCard'; 
 import { Button } from '../../../components/Button/Button';
 import { useNavigate } from 'react-router-dom';
@@ -29,7 +29,7 @@ const shuffleArray = (array: any[]) => {
   return newArray;
 };
 
-const RelaxRoom = () => {
+const ProfSkills = () => {
   const initialPairs: ImagePair[] = [
     {
       top: { src: 'src/assets/img/game_assets/relax-room/1.svg', alt: 'время', id: 1 },
@@ -423,4 +423,4 @@ const RelaxRoom = () => {
   );
 };
 
-export default RelaxRoom;
+export default ProfSkills;

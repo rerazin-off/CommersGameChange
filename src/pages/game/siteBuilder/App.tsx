@@ -4,19 +4,26 @@ import { DndProvider } from "react-dnd";
 import { TouchBackend } from "react-dnd-touch-backend";
 import Game from "./components/Game";
 import classes from './styles.module.scss';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '../../../components/Button/Button';
+import { RoutesEnum } from '../../../app/routes';
 
 
 
 const App: React.FC = () => {
+  const navigate = useNavigate();
+
   return (
     <DndProvider backend={TouchBackend} options={{ enableMouseEvents: true }}>
       <Game />
-      <div className={classes.buttons}>
-        <Link to={"/Programmers"}><Button bgColor={'white'} type={"back_arrow"} /></Link>
-        <Link to={"/"}><Button bgColor={'white'} type={"gallery"} /></Link>
-        <Link to={"/psih"}><Button bgColor={'white'} type={"meditation"} /></Link>
+      <div className='backButton'>
+        <Button
+          bgColor="pink"
+          type="type1v2"
+          onClick={() => navigate(RoutesEnum.PROGRAMMERS)}
+        >
+          НАЗАД
+        </Button>
       </div>
     </DndProvider>
   );
