@@ -175,7 +175,10 @@ const Rocket: React.FC = () => {
           <Button
             bgColor="pink"
             type="type1v2"
-            onClick={() => navigate(RoutesEnum.SPECIALKINDERGARDEN)}
+            onClick={() => {
+              localStorage.setItem('fromGame', 'true');
+              navigate(RoutesEnum.SPECIALKINDERGARDEN)
+            }}
           >
             НАЗАД
           </Button>

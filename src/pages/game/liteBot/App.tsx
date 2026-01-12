@@ -45,7 +45,10 @@ function App() {
               <Button
                 bgColor="pink"
                 type="type1v2"
-                onClick={() => navigate(RoutesEnum.PROGRAMMERS)}
+                onClick={() => {
+                  localStorage.setItem('fromGame', 'true');
+                  navigate(RoutesEnum.PROGRAMMERS)
+                }}
               >
                   НАЗАД
               </Button>

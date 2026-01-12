@@ -28,6 +28,11 @@ const gameData: Record<string, { title: string; body: string; url: string }> = {
     body: 'Увлекательная головоломка по компьютерным сетям! Ваша задача — правильно "обжать" сетевой кабель, соединив разноцветные проводки с соответствующими контактами разъёма. Каждая успешная сборка восстанавливает часть сети и приближает вас к запуску сервера!',
     url: 'Connector'
   },
+  flexboxAlien: {
+    title: 'css-галактика',
+    body: 'Эта игра поможет вам в интересной форме изучить css код. Помоги Таяну и его друзьям вернуться домой.',
+    url: 'flexboxAlien'
+  },
 };
 
 const Programmers: React.FC = () => {
@@ -50,13 +55,21 @@ const Programmers: React.FC = () => {
 
   return (
   <div className={classes.cont}>
-    <Assistant fon={'firstPlanet1'} link={'1'} cat={"-140px"} mar={"-530px"} title={"Добро пожаловать на специальность 09.02.07 Информационные системы и программирование!"} body={"Эта специальность готовит специалистов по разработке, внедрению и сопровождению информационных систем и ПО. Студенты осваивают программирование, базы данных, сети, информационную безопасность и тестирование."}></Assistant>
+    <Assistant
+      fon={'firstPlanet1'}
+      link={'1'}
+      cat={"-140px"}
+      mar={"-530px"}
+      title={"Добро пожаловать на специальность 09.02.07 Информационные системы и программирование!"}
+      body={"Эта специальность готовит специалистов по разработке, внедрению и сопровождению информационных систем и ПО. Студенты осваивают программирование, базы данных, сети, информационную безопасность и тестирование."}>
+    </Assistant>
     <div className={classes.progs}>
       <div className={classes.container}>
         <div className={classes.comp} onClick={() => handleGameClick('computerGame')}><Indicator></Indicator></div>
         <div className={classes.robot} onClick={() => handleGameClick('robotGame')}><Indicator></Indicator></div>
-        <div className={classes.connector} onClick={() => handleGameClick('connectorGame')}><Indicator></Indicator></div>
+        <div className={classes.connectorIndicator} onClick={() => handleGameClick('connectorGame')}><Indicator></Indicator></div>
         <div className={classes.siteBuild} onClick={() => handleGameClick('siteBuild')}><Indicator></Indicator></div>
+        <div className={classes.flexboxIndicator} onClick={()=>handleGameClick('flexboxAlien')}><Indicator></Indicator></div>
       </div>
       <div className={classes.card}><Card type={'game'} title={cardData.title} body={cardData.body} game={cardData.url} backLink={'programmers'}
                                           isOpen={openIsCard} onClose={closeCard} /></div>

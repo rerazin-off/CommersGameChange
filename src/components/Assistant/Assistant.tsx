@@ -7,7 +7,6 @@ import { Button } from '../Button/Button';
 import { classNames } from '../../helpers/classNames/classNames';
 import { useSearchParams } from 'react-router-dom';
 
-
 export const Assistant = ((props: { title: string ; body: string; mar:string; cat:string; fon: string; link: string;}) => {
 
   const [openHelper, setOpenHelper] = useState(true);

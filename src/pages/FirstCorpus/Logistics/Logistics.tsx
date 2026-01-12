@@ -12,7 +12,6 @@ const gameData: Record<string, { title: string; body: string; url: string }> = {
     body:
       'Интерактивное приложение Логистическая цепочка. Вам будет необходимо расставить' +
       ' в правильном порядке все элементы транспортировки!',
-    // url: '../../../production/dopolnenie/koni/index.html'
     url: 'gamelogist',
   },
   hologramGame: {

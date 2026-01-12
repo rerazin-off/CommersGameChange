@@ -3,7 +3,7 @@ import { DndProvider } from 'react-dnd';
 import classes from './musical.module.scss';
 import ItemsList from './components/ItemsList';
 
-export function Musical() {
+function Musical() {
   return (
     <DndProvider backend={TouchBackend}>
       <div className={classes.mainBG}>
@@ -12,3 +12,5 @@ export function Musical() {
     </DndProvider>
   )
 }
+
+export default Musical;

@@ -17,8 +17,8 @@ const gameData: Record<string, { title: string; body: string; url: string  }> = 
     url: 'geometricPerson'
   },
   profSkills: {
-    title: 'Тест',
-    body: 'Вам необходимо ответить на вопросы. В конце, основываясь на ваших ответах будет указан тип человека, к которому вы относитесь.',
+    title: 'Проф навыки',
+    body: 'Вам необходимо соотнести специалистов с их основными навыками.',
     url: 'profSkills'
   },
 
