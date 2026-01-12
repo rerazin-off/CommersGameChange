@@ -71,7 +71,10 @@ const MagicalCrimes: React.FC = () => {
         className={classes.backButton}
         bgColor="pink"
         type="type1v2"
-        onClick={()=>navigate(RoutesEnum.YUR)}
+        onClick={()=> {
+          localStorage.setItem('fromGame', 'true');
+          navigate(RoutesEnum.YUR)
+        }}
       >
         НАЗАД
       </Button>

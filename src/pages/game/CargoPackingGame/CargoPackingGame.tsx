@@ -98,7 +98,10 @@ const CargoPackingGame = () => {
           <Button
             bgColor="pink"
             type="type1v2"
-            onClick={() => navigate("/logistics")}
+            onClick={() => {
+              localStorage.setItem('fromGame', 'true');
+              navigate("/logistics")
+            }}
           >
             НАЗАД
           </Button>

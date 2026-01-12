@@ -35,6 +35,7 @@ const MusiciansRoom = React.lazy(()=>import('../../pages/ThirdCorpus/musiciansro
 const siteBuilde = React.lazy(()=>import('../../pages/game/siteBuilder/App'));
 const Connector = React.lazy(()=>import('../../pages/game/Connector/components/game'));
 const LiteBot = React.lazy(()=>import('../../pages/game/liteBot/App'));
+const FlexxboxAlien = React.lazy(()=>import('../../pages/game/flexboxAlien/FlexBoxAlien'));
 
 //Игры логистов
 const CargoPacking = React.lazy(() =>import('../../pages/game/CargoPackingGame/CargoPackingGame'));
@@ -70,12 +71,12 @@ const Upbringing = React.lazy(()=>import('../../pages/game/upbringing/Upbringing
 const GameRast = React.lazy(()=>import('../../pages/game/rast/gameRast'));
 const Rocket = React.lazy(()=>import('../../pages/game/rocket/Rocket'));
 
-//Игры начальных классов
+//Игры музыкального образования
 const Xylophone = React.lazy(() =>import('../../pages/game/xylophone/Xylophone'));
 const Concert = React.lazy(() =>import('../../pages/game/Concert/Concert'));
 const Musical = React.lazy(() =>import('../../pages/game/musical/musical'));
 
-//Игры музыкального образования
+//Игры начальных классов
 const PongGame = React.lazy(() =>import('../../pages/game/ElementarySchool/Pong/PongGame'));
 
 //Психологическая комната
@@ -162,5 +163,6 @@ export const router = createBrowserRouter([
   { path: '/PongGame', element: withSuspense(PongGame) },
   { path: '/innerMonsterTest', element: withSuspense(InnerMonsterTest) },
   { path: '/profSkills', element: withSuspense(ProfSkills) },
+  {path: '/flexboxAlien', element: withSuspense(FlexxboxAlien) },
   {path: '/preloader', element: <Preloader/>}
 ]);

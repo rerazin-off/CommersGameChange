@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import Game from './components/game'
 import { Button } from '../../../../components/Button/Button';
 import classes from './PongGame.module.scss'
+import { RoutesEnum } from '../../../../app/routes';
+import { useNavigate } from 'react-router-dom';
 
 const PongGame = () => {
+  const navigate=useNavigate();
   const buttons = ['Легкий', 'Средний', 'Сложный']
   const [onClickActive, setClickActive] = useState(false);
   const [difficulty, setDifficulty] = useState(0);
@@ -26,6 +29,11 @@ const PongGame = () => {
       )}
 
       {onClickActive && <Game className={classes.Convas} difficulty={speed[difficulty]} lvl={list_lvl[difficulty]}/>}
+      <Button className={classes.backButton} bgColor="pink" type="type1v2"
+              onClick={() => {
+                localStorage.setItem('fromGame', 'true');
+                navigate('/ElemShool');
+              }}>НАЗАД</Button>
     </div>
   );
 }

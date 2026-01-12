@@ -150,7 +150,10 @@ const BankGramotnost = () => {
           <Button
             bgColor="pink"
             type="type1v2"
-            onClick={() => navigate(RoutesEnum.BANK)}
+            onClick={() => {
+              localStorage.setItem('fromGame', 'true');
+              navigate(RoutesEnum.BANK)
+            }}
           >
             НАЗАД
           </Button>

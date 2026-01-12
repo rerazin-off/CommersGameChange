@@ -16,11 +16,14 @@ const App: React.FC = () => {
   return (
     <DndProvider backend={TouchBackend} options={{ enableMouseEvents: true }}>
       <Game />
-      <div className='backButton'>
+      <div className={classes.backButton}>
         <Button
           bgColor="pink"
           type="type1v2"
-          onClick={() => navigate(RoutesEnum.PROGRAMMERS)}
+          onClick={() => {
+            localStorage.setItem('fromGame', 'true');
+            navigate(RoutesEnum.PROGRAMMERS)
+          }}
         >
           НАЗАД
         </Button>
