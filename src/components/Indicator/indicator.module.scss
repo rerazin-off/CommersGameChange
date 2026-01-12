@@ -17,5 +17,9 @@
   display: flex;
   justify-content: center;
   align-content: center;
+  img{
+    position: static !important;
+    filter: drop-shadow(5px 5px 10px #fff);
+  }
 }
 

@@ -98,7 +98,7 @@ const ImageCard: React.FC<ImageCardProps> = ({
   );
 };
 
-const Commerce: React.FC = () => {
+const ShelfSort: React.FC = () => {
   const navigate = useNavigate();
   const [openIsCard, setOpenIsCard] = useState(false);
   const [attempts, setAttempts] = useState(0);
@@ -652,4 +652,4 @@ const Commerce: React.FC = () => {
   );
 };
 
-export default Commerce;
+export default ShelfSort;

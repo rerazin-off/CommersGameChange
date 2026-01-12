@@ -1,9 +1,8 @@
 
 .cont{
-  background: url("../../../assets/img/fon/programmers_s_knopkoy.png");
+  background: url("../../../assets/img/fon/prog_background.svg");
   background-repeat: no-repeat;
   background-position: center;
-  //height: 1080px;
   height: 100vh;
 }
 .buttons{
@@ -23,8 +22,8 @@
 
     .siteBuild{
       position: fixed;
-      top: 39%;
-      left: 33%;
+      top: 59%;
+      left: 34%;
       width: 200px;
       height: 320px;
       cursor: pointer;
@@ -39,8 +38,8 @@
     }
     .robot{
       position: fixed;
-      top: 38%;
-      right: 25%;
+      top: 47vh;
+      right: 15vw;
       width: 320px;
       height: 540px;
       cursor: pointer;
@@ -65,9 +64,21 @@
       align-items: center;
       div{
         position: absolute;
-        top: 50%;
-        left: 30%;
+        top: 12%;
+        left: 7%;
       }
     }
   }
+}
+
+.connectorIndicator{
+  position: absolute;
+  top: 83vh;
+  left: 25vw;
+}
+
+.flexboxIndicator{
+  position: absolute;
+  top: 65vh;
+  left: 51vw;
 }

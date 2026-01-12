@@ -1,0 +1,32 @@
+.game{
+  background: url('../../../assets/img/game_assets/flexbox-alien-img/bg.svg'), no-repeat;
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  display: flex;
+  flex-direction: row;
+  font-family: 'Jura';
+  font-size: 20px;
+}
+
+.informPanel{
+  padding: 5vh 10vh;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(100px);
+  width: 40%;
+  color: #fff;
+  h1{
+    font-weight: 200;
+    text-align: center;
+  }
+}
+
+.planet{
+  width: 22%;
+}
+
+.backButton{
+  position: absolute;
+  bottom: 3vh;
+  left: 1vh;
+}

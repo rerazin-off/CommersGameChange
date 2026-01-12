@@ -28,6 +28,7 @@ export const CargoView: FC<CargoViewProps> = ({ cargo }) => {
           fontSize: 46,
           marginTop: 16,
           color: "#ffffff",
+          fontFamily:'Comfortaa',
         }}
       >
         {cargo.name}

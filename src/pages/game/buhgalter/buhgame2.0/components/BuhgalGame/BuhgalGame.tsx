@@ -153,7 +153,10 @@ const ExpenseSorterGame: React.FC = () => {
           <Button
             bgColor="pink"
             type="type1v2"
-            onClick={() => navigate(RoutesEnum.ECONOMIST)}
+            onClick={() => {
+              localStorage.setItem('fromGame', 'true');
+              navigate(RoutesEnum.ECONOMIST)
+            }}
           >
             НАЗАД
           </Button>

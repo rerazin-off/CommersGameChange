@@ -86,7 +86,7 @@ const InfoModal: React.FC<{ open: boolean; onClose: () => void }> = ({
       >
         <button className="gm-modal-close" onClick={onClose}>×</button>
 
-        <h2>Информация о блоках</h2>
+        <h2 style={{fontFamily:'Arial'}}>Информация о блоках</h2>
 
         <div className="info-scroll">
           <h3 className="titleBlocks" >Header</h3>
@@ -152,7 +152,7 @@ const ErrorModal: React.FC<{
 
         <ul>
           {errors.map((err, i) => (
-            <li key={i}>{err}</li>
+            <li key={i} style={{fontFamily:"Arial"}}>{err}</li>
           ))}
         </ul>
       </div>

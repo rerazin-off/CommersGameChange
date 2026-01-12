@@ -57,7 +57,7 @@ export const wear1 = [
             {img: sandals, name:'Сандали', correct: true},
             {img: rubberBoots, name:'Резиновые сапоги', correct: false},
         ],
-        positions: [75.8, 58.4],
+        positions: [75.5, 58.4],
         width: '250',
         zIndex: 100,
     },
@@ -81,7 +81,7 @@ export const wear1 = [
             {img: jeans2,  name: 'Джинсы', correct: false},
             {img: trousers, name: 'Брюки', correct: true}
         ],
-        positions: [48.6, 59.3],
+        positions: [45.6, 59.3],
         width: '240',
         zIndex: 9,
     },

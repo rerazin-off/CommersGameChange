@@ -1,4 +1,4 @@
-import Card from '..//..//..//..//components/Card/Card';
+import Card from '../../../../components/Card/Card';
 import classes from './CardFinish.module.scss';
 
 type CardFinishProps = {

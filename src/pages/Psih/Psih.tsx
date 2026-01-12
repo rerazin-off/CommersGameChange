@@ -6,20 +6,20 @@ import { Link } from 'react-router-dom';
 import { Assistant } from '../../components/Assistant/Assistant';
 
 const gameData: Record<string, { title: string; body: string; url: string  }> = {
-  floursGame: {
+  innerMonsterTest: {
     title: 'Внутренний монстр',
     body: 'Наше подсознание таит в себе много неизведанного и неожиданного, даже для нас самих. Чтобы определить это, предлогаем пройти тест. Выберите фигуру, которая вам нравится!',
-    url: ''
+    url: 'innerMonsterTest'
   },
   geometricPerson: {
     title: 'Собери человечка',
     body: 'Вам необходимо собрать человечка из различных фигур. В результате будет определён ваш тип!',
     url: 'geometricPerson'
   },
-  pillowsGame: {
-    title: 'Тест',
-    body: 'Вам необходимо ответить на вопросы. В конце, основываясь на ваших ответах будет указан тип человека, к которому вы относитесь.',
-    url: ''
+  profSkills: {
+    title: 'Проф навыки',
+    body: 'Вам необходимо соотнести специалистов с их основными навыками.',
+    url: 'profSkills'
   },
 
 };
@@ -47,9 +47,9 @@ const Psih: React.FC = () => {
       <Assistant fon={'psih'} link={'1'} cat={"-80px"} title={" Добро пожаловать в комнату психологической разгрузки!"} body={"Здесь вы найдете поддержку, уютное пространство для восстановления и сможете поговорить с нашим педагогом-психологом по предварительной записи. "} mar={"-495px"}></Assistant>
       <div className={classes.progs}>
         <div className={classes.container}>
-          <div className={classes.flours} onClick={() => handleGameClick('floursGame')}></div>
+          <div className={classes.flours} onClick={() => handleGameClick('innerMonsterTest')}></div>
           <div className={classes.pillow} onClick={() => handleGameClick('geometricPerson')}></div>
-          <div className={classes.pillows} onClick={() => handleGameClick('pillowsGame')}></div>
+          <div className={classes.pillows} onClick={() => handleGameClick('profSkills')}></div>
 
         </div>
         <div className={classes.card}><Card title={cardData.title} body={cardData.body} game={currentGame}

@@ -1,0 +1,42 @@
+.codesandbox{
+  display: flex;
+  flex-direction: row;
+  p{
+    margin: 0;
+    font-size: 14px;
+  }
+}
+
+.editorArea{
+  font-size: 14px;
+  padding: 1vh;
+  background-color: #17113D;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  button{
+    background: #fff;
+    border: none;
+    padding: 1vh 2vh;
+    width: 10%;
+    color: #5A44EF;
+    font-family: 'BOWLER';
+    border-radius: 7px;
+    font-size: 10px;
+  }
+}
+
+.countPanel{
+  padding: 1vh;
+  background-color: #08041F;
+  display: flex;
+  flex-direction: column;
+  gap: 1vh;
+  text-align: end;
+}
+
+.disabled{
+  background: #707070 !important;
+  color: #404040 !important;
+}

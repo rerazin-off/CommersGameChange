@@ -30,38 +30,70 @@ const SpecialKidergarden = React.lazy(()=>import('../../pages/ThirdCorpus/specia
 const MusiciansRoom = React.lazy(()=>import('../../pages/ThirdCorpus/musiciansroom/MusiciansRoom'));
 
 //Страницы игр
-const BankGame = React.lazy(()=>import('../../pages/game/bank/bankGame'));
-const BankGramotnost = React.lazy(()=>import('../../pages/game/bankgramotnost/BankGramotnost'));
+
+//Игры программистов
+const siteBuilde = React.lazy(()=>import('../../pages/game/siteBuilder/App'));
+const Connector = React.lazy(()=>import('../../pages/game/Connector/components/game'));
+const LiteBot = React.lazy(()=>import('../../pages/game/liteBot/App'));
+const FlexxboxAlien = React.lazy(()=>import('../../pages/game/flexboxAlien/FlexBoxAlien'));
+
+//Игры логистов
+const CargoPacking = React.lazy(() =>import('../../pages/game/CargoPackingGame/CargoPackingGame'));
+const SpaceTransport = React.lazy(()=>import('../../pages/game/SpaceTransport/SpaceTransport'));
+const LogistCep = React.lazy(()=>import('../../pages/game/logist/LogistCep'));
+
+//Игры юристов
+const MagicalCrimes = React.lazy(() =>import('../../pages/game/magicalCrimes/MagicalCrimes'));
+
+//Игры бухгалтеров
+const PensionGalaxy = React.lazy(() =>import('../../pages/game/PensionGalaxy/PensionGalaxy'));
 const ExpenseSorterGame = React.lazy(()=>import('../../pages/game/buhgalter/buhgame2.0/components/BuhgalGame/BuhgalGame'));
-const ChildWardrobe = React.lazy(()=>import('../../pages/game/childWardrobe/ChildWardrobe'));
-const Commerce = React.lazy(()=>import('../../pages/game/commerce/Commerce'));
+
+//Игры торгового дела
+const Commerce = React.lazy(()=>import('../../pages/game/commerce/ShelfSort'));
 const CommercePlayGame = React.lazy(()=>import('../../pages/game/commerce_2/CommercePlayGame'));
 const CommerceMat = React.lazy(()=>import('../../pages/game/commerceMat/CommerceMat'));
 const CommerceSr = React.lazy(()=>import('../../pages/game/commerceSrok/CommerceSr'));
-const MovieGame = React.lazy(()=>import('../../pages/game/deti/Moviegame'));
+
+//Игры банковского дела
+const BankGame = React.lazy(()=>import('../../pages/game/bank/bankGame'));
+const BankGramotnost = React.lazy(()=>import('../../pages/game/bankgramotnost/BankGramotnost'));
+
+//Игры ДОУ
 const Doy = React.lazy(()=>import('../../pages/game/doy/doy'));
-const LogistCep = React.lazy(()=>import('../../pages/game/logist/LogistCep'));
+
+//Игры дошколльного образования
+const ChildWardrobe = React.lazy(()=>import('../../pages/game/childWardrobe/ChildWardrobe'));
+const MovieGame = React.lazy(()=>import('../../pages/game/deti/Moviegame'));
+const Upbringing = React.lazy(()=>import('../../pages/game/upbringing/Upbringing'));
+
+//Игры специального дошкольного образования
 const GameRast = React.lazy(()=>import('../../pages/game/rast/gameRast'));
 const Rocket = React.lazy(()=>import('../../pages/game/rocket/Rocket'));
-const SpaceTransport = React.lazy(()=>import('../../pages/game/SpaceTransport/SpaceTransport'));
-const MagicalCrimes = React.lazy(() =>import('../../pages/game/magicalCrimes/MagicalCrimes'));
-const LiteBot = React.lazy(()=>import('../../pages/game/liteBot/App'));
-const Upbringing = React.lazy(()=>import('../../pages/game/upbringing/Upbringing'));
-const Connector = React.lazy(()=>import('../../pages/game/Connector/components/game'));
-const siteBuilde = React.lazy(()=>import('../../pages/game/siteBuilder/App'));
-const geometricPerson = React.lazy(()=>import('../../pages/game/geometricPerson/src/App'));
+
+//Игры музыкального образования
 const Xylophone = React.lazy(() =>import('../../pages/game/xylophone/Xylophone'));
 const Concert = React.lazy(() =>import('../../pages/game/Concert/Concert'));
-const CargoPacking = React.lazy(() =>import('../../pages/game/CargoPackingGame/CargoPackingGame'));
+const Musical = React.lazy(() =>import('../../pages/game/musical/musical'));
+
+//Игры начальных классов
 const PongGame = React.lazy(() =>import('../../pages/game/ElementarySchool/Pong/PongGame'));
 
-import Preloader from '../../components/Preloaer/Preloader';
+//Психологическая комната
+const geometricPerson = React.lazy(()=>import('../../pages/game/geometricPerson/src/App'));
+const InnerMonsterTest = React.lazy(()=>import('../../pages/game/InnerMonsterTest/InnerMonsterTest'));
+const ProfSkills = React.lazy(()=>import('../../pages/game/ProfSkills/ProfSkills'));
 
-import { Musical } from '../../pages/game/musical/musical.js';
+import Preloader from '../../components/Preloaer/Preloader';
 import { CommerceTovary } from '../../pages/game/commerce/CommerceTovary';
-import PensionGalaxy from '../../pages/game/PensionGalaxy/PensionGalaxy';
 
 const LoadingFallback = () => <SpacePreloader/>;
+
+const withSuspense = (Component: React.ComponentType) => (
+  <Suspense fallback={<LoadingFallback />}>
+    <Component />
+  </Suspense>
+);
 
 export enum RoutesEnum {
   HOME = '/',
@@ -80,12 +112,6 @@ export enum RoutesEnum {
   MUSIC = '/music',
   YUR = '/yur',
 }
-
-const withSuspense = (Component: React.ComponentType) => (
-  <Suspense fallback={<LoadingFallback />}>
-    <Component />
-  </Suspense>
-);
 
 export const router = createBrowserRouter([
   { path: RoutesEnum.HOME, element: withSuspense(MainPage) },
@@ -135,5 +161,8 @@ export const router = createBrowserRouter([
   { path: '/CargoPacking', element: withSuspense(CargoPacking) },
   { path: '/Connector', element: withSuspense(Connector) },
   { path: '/PongGame', element: withSuspense(PongGame) },
+  { path: '/innerMonsterTest', element: withSuspense(InnerMonsterTest) },
+  { path: '/profSkills', element: withSuspense(ProfSkills) },
+  {path: '/flexboxAlien', element: withSuspense(FlexxboxAlien) },
   {path: '/preloader', element: <Preloader/>}
 ]);

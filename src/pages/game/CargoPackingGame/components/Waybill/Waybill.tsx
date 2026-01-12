@@ -2,6 +2,7 @@ import React from "react";
 import { WaybillDropSlot } from "./DropSlot";
 import { Option, Cargo } from "../../types/game";
 import { WaybillSubmitButton } from "./WaybillSubmitButton";
+import '../../CargoPackingGame.module.scss';
 
 // Импортируем фоновую SVG
 import waybillBg from '../../assets/img/fon/waybill-bg.svg';
@@ -65,8 +66,8 @@ export const Waybill = ({
           backgroundSize: "100% 100%",
           filter: "drop-shadow(0 10px 20px rgba(0,0,0,0.25))",
           padding: "60px 120px 0px 40px",
-          boxSizing: "border-box",
         }}
+        className='invoice'
       >
         <div
           style={{
