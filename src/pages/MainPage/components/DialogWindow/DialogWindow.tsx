@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useState } from 'react';
 import classes from './DialogWindow.module.scss';
 import IconX from '../../../../assets/img/x_button.svg';
 
@@ -9,32 +8,28 @@ interface DialogWindowProps {
 }
 
 const DialogWindow = (props: DialogWindowProps) => {
-  const [openHelper, setOpenHelper] = useState(true);
+  const [openHelper, setOpenHelper] = useState(true); // Локальное состояние для открытия окна
 
-  useEffect(() => {
-    const fromGame = localStorage.getItem('fromGame') === 'true';
-    if (fromGame) {
-      setOpenHelper(false);
-      localStorage.removeItem('fromGame');
-    }
-  }, []);
+  const handleClose = () => {
+    setOpenHelper(false); // Закрытие окна
+  };
 
   if (!openHelper) {
-    return null;
+    return null; // Если окно закрыто, не рендерим его
   }
 
   return (
     <div className={classes.tooltip}>
       <img
-        onClick={() => setOpenHelper(false)}
+        onClick={handleClose} // Закрытие по клику
         src={IconX}
         className={classes.X}
+        alt="Close"
       />
       <p className={classes.title}>{props.title}</p>
       <p className={classes.body}>{props.body}</p>
     </div>
   );
-}
-  ;
+};
 
-  export default DialogWindow;
+export default DialogWindow;

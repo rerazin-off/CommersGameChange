@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
-import classes from './RelaxRoom.scss';
+import './RelaxRoom.scss';
+
+
 import ImageCard from './components/ImageCard'; 
 import { Button } from '../../../components/Button/Button';
 import { useNavigate } from 'react-router-dom';
