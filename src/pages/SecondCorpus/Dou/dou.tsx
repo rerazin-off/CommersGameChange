@@ -44,9 +44,9 @@ const Dou: React.FC = () => {
       <div className={classes.progs}>
         <Assistant fon={'secondPlanet1'} link={'2'} cat={"-170px"} title={"Добро пожаловать на специальность 46.02.01 Документационное обеспечение управления и архивоведение!"} body={"Эта специальность обучает работе с документацией и архивами. Студенты изучают оформление документов, документооборот и использование IT-технологий."} mar={"-535px"}></Assistant>
         <div className={classes.container}>
-          <div className={classes.laptop} onClick={() => handleGameClick('laptopGame')}>
-            <Indicator></Indicator>
-          </div>
+          {/*<div className={classes.laptop} onClick={() => handleGameClick('laptopGame')}>*/}
+          {/*  <Indicator></Indicator>*/}
+          {/*</div>*/}
           <div className={classes.shelfs} onClick={() => handleGameClick('shelfsGame')}>
             <Indicator></Indicator>
           </div>

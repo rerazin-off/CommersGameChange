@@ -56,12 +56,12 @@ const Bank: React.FC = () => {
       <Assistant fon={'secondPlanet1'} link={'2'} cat={"-120px"} mar={"-440px"} title={"Добро пожаловать на специальность 38.02.07 Банковское дело!"} body={"Эта специальность обучает студентов основам экономики, банковского законодательства, кредитных и депозитных операций, валютного обмена и управления рисками."}></Assistant>
       <div className={classes.progs}>
         <div className={classes.container}>
-          <div className={classes.papka} onClick={() => handleGameClick('papkaGame')}>
-            <Indicator></Indicator>
-          </div>
-          <div className={classes.list} onClick={() => handleGameClick('listGame')}>
-            <Indicator></Indicator>
-          </div>
+          {/*<div className={classes.papka} onClick={() => handleGameClick('papkaGame')}>*/}
+          {/*  <Indicator></Indicator>*/}
+          {/*</div>*/}
+          {/*<div className={classes.list} onClick={() => handleGameClick('listGame')}>*/}
+          {/*  <Indicator></Indicator>*/}
+          {/*</div>*/}
           <div className={classes.ekran} onClick={() => handleGameClick('ekranGame')}>
             <Indicator></Indicator>
           </div>

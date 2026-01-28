@@ -56,12 +56,12 @@ const ElementarySchool = () => {
       ></Assistant>
       <div className={classes.progs}>
         <div className={classes.container}>
-          <div
-            className={classes.backpack}
-            onClick={() => handleGameClick('backpackGame')}
-          >
-            <Indicator></Indicator>
-          </div>
+          {/*<div*/}
+          {/*  className={classes.backpack}*/}
+          {/*  onClick={() => handleGameClick('backpackGame')}*/}
+          {/*>*/}
+          {/*  <Indicator></Indicator>*/}
+          {/*</div>*/}
           <div
             className={classes.glass}
             onClick={() => handleGameClick('PongGame')}

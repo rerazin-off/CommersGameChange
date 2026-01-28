@@ -67,24 +67,24 @@ const Yur: React.FC = () => {
       ></Assistant>
       <div className={classes.progs}>
         <div className={classes.container}>
-          <div
-            className={classes.shelf}
-            onClick={() => handleGameClick('shelfGame')}
-          >
-            <Indicator></Indicator>
-          </div>
-          <div
-            className={classes.piggyBank}
-            onClick={() => handleGameClick('piggyBankGame')}
-          >
-            <Indicator></Indicator>
-          </div>
-          <div
-            className={classes.sheet}
-            onClick={() => handleGameClick('sheetGame')}
-          >
-            <Indicator></Indicator>
-          </div>
+          {/*<div*/}
+          {/*  className={classes.shelf}*/}
+          {/*  onClick={() => handleGameClick('shelfGame')}*/}
+          {/*>*/}
+          {/*  <Indicator></Indicator>*/}
+          {/*</div>*/}
+          {/*<div*/}
+          {/*  className={classes.piggyBank}*/}
+          {/*  onClick={() => handleGameClick('piggyBankGame')}*/}
+          {/*>*/}
+          {/*  <Indicator></Indicator>*/}
+          {/*</div>*/}
+          {/*<div*/}
+          {/*  className={classes.sheet}*/}
+          {/*  onClick={() => handleGameClick('sheetGame')}*/}
+          {/*>*/}
+          {/*  <Indicator></Indicator>*/}
+          {/*</div>*/}
           <div
             className={classes.hammer}
             onClick={() => handleGameClick('hammerGame')}
