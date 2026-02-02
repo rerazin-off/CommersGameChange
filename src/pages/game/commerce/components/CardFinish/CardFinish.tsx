@@ -23,7 +23,7 @@ const CardFinish = (props: CardFinishProps) => {
           </>
         }
         
-        game="logistics"
+        game="tovaroveds"
         backLink=""
         isOpen={isOpenCard}
         onClose={onClose}

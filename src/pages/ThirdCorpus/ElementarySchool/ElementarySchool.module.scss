@@ -30,6 +30,9 @@
   justify-content: space-between;
   align-items: center;
 }
+.hide{
+  opacity: 0;
+}
 .backpack{
   width: 140px;
   height: 170px;
@@ -47,7 +50,7 @@
 .glass{
   width: 110px;
   height: 150px;
-  transform: translate(-450px, 260px);
+  transform: translate(-372px, 236px);
   border-radius: 116.8px;
   display: flex;
   justify-content: center;

@@ -27,7 +27,7 @@ const SecondCorpus = () => {
             <Link to={'/bank'} className={classes.spec2}>
               <Button
                 type="marker"
-                imageSrc="src/assets/img/buttons/marker/secondCorpus/bank.svg"
+                imageSrc="/src/assets/img/bank.svg"
                 bgColor="purple"
                 colorText="white"
               />

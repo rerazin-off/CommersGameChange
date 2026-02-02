@@ -31,12 +31,12 @@ html{
 
   &:nth-child(1) {
     transform: translate(100px, 100px);
-    background: url("src/assets/img/game_assets/bank-chemodany/mysor.svg");
+    background: url("/src/assets/img/game_assets/bank-chemodany/mysor.svg");
   }
 
   &:nth-child(2) {
     transform: translate(1600px, -250px);
-    background: url("src/assets/img/game_assets/bank-chemodany/bankir.svg");
+    background: url("/src/assets/img/game_assets/bank-chemodany/bankir.svg");
   }
 }
 //    &:nth-child(3) {

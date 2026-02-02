@@ -5,7 +5,7 @@ import { WaybillSubmitButton } from "./WaybillSubmitButton";
 import '../../CargoPackingGame.module.scss';
 
 // Импортируем фоновую SVG
-import waybillBg from '../../assets/img/fon/waybill-bg.svg';
+
 
 type WrongMap = {
   type: boolean;
@@ -49,7 +49,7 @@ export const Waybill = ({
   return (
     <div
       style={{
-        width: 680,
+        width: 700,
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -57,10 +57,10 @@ export const Waybill = ({
     >
       <div
         style={{
-          width: 657,
+          width: 510,
           height: 800,
           position: "relative",
-          backgroundImage: `url(${waybillBg})`, // Используем импортированную переменную
+          backgroundImage: `url(/src/assets/img/waybill-bg.svg)`, // Используем импортированную переменную
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center",
           backgroundSize: "100% 100%",

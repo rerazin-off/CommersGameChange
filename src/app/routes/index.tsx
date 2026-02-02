@@ -84,8 +84,11 @@ const geometricPerson = React.lazy(()=>import('../../pages/game/geometricPerson/
 const InnerMonsterTest = React.lazy(()=>import('../../pages/game/InnerMonsterTest/InnerMonsterTest'));
 const ProfSkills = React.lazy(()=>import('../../pages/game/ProfSkills/ProfSkills'));
 
+
 import Preloader from '../../components/Preloaer/Preloader';
 import { CommerceTovary } from '../../pages/game/commerce/CommerceTovary';
+
+
 
 const LoadingFallback = () => <SpacePreloader/>;
 
@@ -164,5 +167,6 @@ export const router = createBrowserRouter([
   { path: '/innerMonsterTest', element: withSuspense(InnerMonsterTest) },
   { path: '/profSkills', element: withSuspense(ProfSkills) },
   {path: '/flexboxAlien', element: withSuspense(FlexxboxAlien) },
+  // {path: '/motherBoard', element: withSuspense(MotherBoard) },
   {path: '/preloader', element: <Preloader/>}
 ]);

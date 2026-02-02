@@ -33,6 +33,7 @@ const DropBagArea = ({positions, setPositions}: DropBagAreaProps) => {
         .map((bag) => (
           <DraggableBag key={bag.id} bag={bag} />
         ))}
+
     </div>
   );
 };

@@ -10,7 +10,7 @@ const gameData: Record<string, { title: string; body: string; url: string }> = {
   computerGame: {
     title: 'Собери компьютер',
     body: 'Интерактивное приложение Материнская Плата. Вам будет необходимо правильно расставить компоненты материнской платы по слотам',
-    url: '../../../production/mat/index.html'
+    url: '/motherboard.sfera.local/',
   },
   robotGame: {
     title: 'Поколение ЭВМ',
@@ -65,9 +65,9 @@ const Programmers: React.FC = () => {
     </Assistant>
     <div className={classes.progs}>
       <div className={classes.container}>
-        {/*<div className={classes.comp} onClick={() => handleGameClick('computerGame')}><Indicator></Indicator></div>*/}
+        <div className={classes.comp} onClick={() => handleGameClick('computerGame')}><Indicator></Indicator></div>
         <div className={classes.robot} onClick={() => handleGameClick('robotGame')}><Indicator></Indicator></div>
-        {/*<div className={classes.connectorIndicator} onClick={() => handleGameClick('connectorGame')}><Indicator></Indicator></div>*/}
+        <div className={classes.connectorIndicator} onClick={() => handleGameClick('connectorGame')}><Indicator></Indicator></div>
         <div className={classes.siteBuild} onClick={() => handleGameClick('siteBuild')}><Indicator></Indicator></div>
         <div className={classes.flexboxIndicator} onClick={()=>handleGameClick('flexboxAlien')}><Indicator></Indicator></div>
       </div>

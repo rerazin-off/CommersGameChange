@@ -56,7 +56,7 @@ export const useGameState = () => {
     setState((prev) => ({
       ...prev,
       selection: { ...prev.selection, type: option },
-      wrong: emptyWrong,
+      wrong: emptyWrong, // Сбрасываем подсветку ошибок при новом выборе
     }));
   };
 
@@ -115,23 +115,26 @@ export const useGameState = () => {
     };
 
     const isCorrect = !wrong.type && !wrong.package && !wrong.filler;
-
-    if (!isCorrect) {
-      setState((prev) => ({
-        ...prev,
-        hadMistake: true,
-        wrong,
-      }));
-
-      return { success: false, awardedPoint: false, incomplete: false, wrong };
-    }
-
-    const awardedPoint = !state.hadMistake;
+    const awardedPoint = isCorrect && !state.hadMistake;
 
     setState((prev) => {
       const nextIndex = prev.currentCargoIndex + 1;
       const isFinished = nextIndex >= prev.cargos.length;
 
+      // Если игра не закончена, переходим к следующему грузу
+      if (!isFinished) {
+        return {
+          ...prev,
+          currentCargoIndex: nextIndex,
+          successCount: awardedPoint ? prev.successCount + 1 : prev.successCount,
+          isFinished,
+          selection: { type: null, package: null, filler: null },
+          hadMistake: false,
+          wrong: emptyWrong, // Важно: сбрасываем подсветку ошибок для нового груза
+        };
+      }
+
+      // Если игра закончена
       return {
         ...prev,
         currentCargoIndex: nextIndex,
@@ -139,11 +142,16 @@ export const useGameState = () => {
         isFinished,
         selection: { type: null, package: null, filler: null },
         hadMistake: false,
-        wrong: emptyWrong,
+        wrong: isCorrect ? emptyWrong : wrong, // Только на последнем грузе показываем ошибки
       };
     });
 
-    return { success: true, awardedPoint, incomplete: false, wrong: emptyWrong };
+    return {
+      success: isCorrect,
+      awardedPoint,
+      incomplete: false,
+      wrong: isCorrect ? emptyWrong : wrong
+    };
   };
 
   const resetGame = () => {

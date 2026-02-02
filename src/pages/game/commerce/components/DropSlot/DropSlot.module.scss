@@ -57,14 +57,14 @@ html{
 
   &:nth-child(1) {
     transform: translate(1290px, 40px);
-    background: url("src/assets/img/game_assets/commerceTovary/bakaleay.svg");
+    background: url("/src/assets/img/game_assets/commerceTovary/bakaleay.svg");
     background-size: contain;
     background-repeat: no-repeat;
   }
 
   &:nth-child(2) {
     transform: translate(1290px, 180px);
-    background: url("src/assets/img/game_assets/commerceTovary/gastronom.svg");
+    background: url("/src/assets/img/game_assets/commerceTovary/gastronom.svg");
     background-size: contain;
     background-repeat: no-repeat;
   }

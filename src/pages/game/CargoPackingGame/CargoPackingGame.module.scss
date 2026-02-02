@@ -2,6 +2,13 @@
   font-family: "Cruinn";
   src: url("./assets/fonts/ofont.ru_Cruinn.ttf") format("truetype");
 }
+@font-face {
+  font-family: "Comfortaa";
+  src: url("/src/assets/fonts/Comfortaa.ttf") format("truetype");
+}
+* {
+  font-family: "Comfortaa";
+}
 
 .root {
   position: relative;

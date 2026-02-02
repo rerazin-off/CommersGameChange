@@ -17,7 +17,7 @@ const CardError = ({ attempts, isOpenCard, onClose }: CardErrorProps) => {
       }
       onClose={onClose}
       isOpen={isOpenCard}
-      game="specialkindergarden" // Используем прямой путь
+      game="SpecialKinder" // Используем прямой путь
       backLink=""
       type="gameOver"
     />

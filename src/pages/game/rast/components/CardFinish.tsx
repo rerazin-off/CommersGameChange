@@ -18,7 +18,7 @@ const CardFinish = ({ attempts, isOpenCard, onClose }: CardFinishProps) => {
       }
       onClose={onClose}
       isOpen={isOpenCard}
-      game="specialkindergarden" // Используем прямой путь
+      game="SpecialKinder" // Используем прямой путь
       backLink=""
       type="gameOver"
     />

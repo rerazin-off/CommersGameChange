@@ -26,7 +26,6 @@ import EvidenceImg15 from '@/assets/img/game_assets/magicalCrimes-img/EvidenceIm
 import EvidenceImg16 from '@/assets/img/game_assets/magicalCrimes-img/EvidenceImg16.png';
 import EvidenceImg17 from '@/assets/img/game_assets/magicalCrimes-img/EvidenceImg17.png';
 import EvidenceImg18 from '@/assets/img/game_assets/magicalCrimes-img/EvidenceImg18.png';
-import EvidenceImg19 from '@/assets/img/game_assets/magicalCrimes-img/EvidenceImg19.png';
 
 export interface FairyTale {
   id: number;
