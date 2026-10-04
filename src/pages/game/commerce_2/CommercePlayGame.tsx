@@ -156,15 +156,14 @@ const CommercePlayGame: React.FC = () => {
   ];
 
   const refrigerators: Refrigerator[] = [
-    { src: '/src/assets/img/commerce_img/1.png', alt: 'Холодильник для напитков', categories: ['drinks'], width: 300, height: 350 },
-    { src: '/src/assets/img/commerce_img/9.png', alt: 'Холодильник для молочной продукции', categories: ['dairy'], width: 300, height: 350 },
-    { src: '/src/assets/img/commerce_img/14.png', alt: 'Холодильник для рыбы', categories: ['fish'], width: 300, height: 350 },
+    { src: '/src/assets/img/commerce_img/1_v2.png', alt: 'Холодильник для напитков', categories: ['drinks'], width: 250, height: 300 },
+    { src: '/src/assets/img/commerce_img/2_v2.png', alt: 'Холодильник для молочной продукции', categories: ['dairy'], width: 250, height: 300 },
+    { src: '/src/assets/img/commerce_img/3_v2.png', alt: 'Холодильник для рыбы', categories: ['fish'], width: 250, height: 300 },
     {
-      src: '/src/assets/img/commerce_img/gorkka2.png',
+      src: '/src/assets/img/commerce_img/4_v2.png',
       alt: 'Стеллаж для продуктов',
       categories: ['grocery', 'grocery1', 'grocery2', 'grocery3'],
-      width: 300,
-      height: 350
+      width: 250, height: 300
     },
   ];
 
@@ -179,8 +178,9 @@ const CommercePlayGame: React.FC = () => {
     });
 
     const allProductsPlaced = matchedItems.length + productsInPurpleZone.length === products.length;
+    const allProductsAccountedFor = matchedItems.length <= products.length;
 
-    setIsVisibleButton(allRefrigeratorsFilled && allProductsPlaced);
+    setIsVisibleButton(allRefrigeratorsFilled && allProductsAccountedFor);
   }, [matchedItems, productsInPurpleZone, products.length, refrigerators.length]);
 
   const checkBakaleyaNeighborhood = (targetRefrigeratorIndex: number, productIndex: number) => {
@@ -274,11 +274,11 @@ const CommercePlayGame: React.FC = () => {
       const dropTarget = document.elementFromPoint(touch.clientX, touch.clientY);
 
       if (dropTarget) {
-        const refrigeratorElement = dropTarget.closest('[blocks-refrigerator]');
+        const refrigeratorElement = dropTarget.closest('[data-refrigerator]');
         if (refrigeratorElement) {
-          const refrigeratorIndex = parseInt(refrigeratorElement.getAttribute('blocks-refrigerator') || '0');
+          const refrigeratorIndex = parseInt(refrigeratorElement.getAttribute('data-refrigerator') || '0');
           handleDropOnRefrigerator(refrigeratorIndex);
-        } else if (dropTarget.closest('[blocks-purple-zone]')) {
+        } else if (dropTarget.closest('[data-purple-zone]')) {
           handleDropOnPurpleZone();
         } else if (touchActive.source === 'refrigerator') {
           handleDropOnPurpleZone();
@@ -385,7 +385,7 @@ const CommercePlayGame: React.FC = () => {
   const handleDropOnRefrigeratorsArea = (e: React.DragEvent) => {
     e.preventDefault();
 
-    const refrigeratorElements = document.querySelectorAll('[blocks-refrigerator]');
+    const refrigeratorElements = document.querySelectorAll('[data-refrigerator]');
     const dropX = e.clientX;
     const dropY = e.clientY;
 
@@ -402,7 +402,7 @@ const CommercePlayGame: React.FC = () => {
 
       if (distance < minDistance) {
         minDistance = distance;
-        closestRefrigerator = el.getAttribute('blocks-refrigerator');
+        closestRefrigerator = el.getAttribute('data-refrigerator');
       }
     });
 
@@ -424,7 +424,7 @@ const CommercePlayGame: React.FC = () => {
       left: 0,
       width: '100%',
       height: '100%',
-      backgroundImage: 'url(/src/assets/img/fon/commerce_room.svg)',
+      backgroundImage: 'url(/src/assets/img/fon/commerce_room_v3.png)',
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
@@ -483,10 +483,15 @@ const CommercePlayGame: React.FC = () => {
           {errorMessage}
         </div>
       )}
-
+      
       <div
         style={{
           backgroundColor: 'rgba(192, 173, 195, 0.5)',
+          backgroundImage: 'url(/src/assets/img/commerce_img/img_2/zone_purple.png)',
+          backgroundSize:'108% 120%',
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center',
+          borderRadius:'55px',
           padding: '15px',
           height: '50%',
           display: 'flex',

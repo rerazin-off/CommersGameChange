@@ -66,5 +66,16 @@
   "main": "eslint.config.js",
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "allowScripts": {
+    "@parcel/watcher": true,
+    "core-js": true,
+    "cwebp-bin": true,
+    "esbuild": true,
+    "gifsicle": true,
+    "jpegtran-bin": true,
+    "mozjpeg": true,
+    "optipng-bin": true,
+    "pngquant-bin": true
+  }
 }
